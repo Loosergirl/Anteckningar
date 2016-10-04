@@ -1,0 +1,211 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;\red255\green0\blue0;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sl240\slmult1\lang29\b\f0\fs22 Automatically Global\b0\par
+If you assign a value to a variable that has not been declared, it will automaticall become a \b global \b0 variable. I.e.\par
+\cf1\f1 myFunction();\f0\par
+\cf2 //code here\par
+\cf1\f1 function myFunction() \{\par
+    carName = "Volvo";\par
+\}\cf0\f0\par
+\par
+\b Global Variables in HTML\b0\par
+With JavaScript, the global scope is the complete JavaScript environment. In HTML, the global scope is the window object. All global variables belong to the window object.\par
+\par
+\b Obs!\b0\par
+Your global variables or functions can overwrite window variables or functions. Any function, including the window object, can overwrite your global variables and functions.\par
+\par
+\b Closures\b0\par
+Private variables can be made possible with closures.\par
+\par
+\b Issue with Global\b0\par
+Suppose you want to use a variable for counting something, and you wnt this counter to be available to all functions. A global variable and a function to increase the counter could be used, i.e.:\par
+\cf1\f1 var counter = 0;\par
+\par
+function add() \{\par
+    counter += 1;\par
+\}\par
+\par
+add();\par
+add();\par
+add();\par
+\cf2 // the counter is now equal to 3\cf0\f0\par
+\par
+The counter should only be changed by the \cf1\f1 add()\cf0\f0  function. The problem is that any script on the page can change the counter, without calling \cf1\f1 add()\cf0\f0 . But it the counter is declared inside the function, nobody will be able to change it without calling \cf1\f1 add()\cf0\f0 .\par
+\par
+\cf1\f1 var counter = 0;\par
+\par
+function add() \{\par
+    var counter = 0;\par
+    counter += 1;\par
+\}\par
+\par
+add();\par
+add();\par
+add();\par
+\cf2 // the counter should now be 3, but it doesn't work!\cf0\f0\par
+\par
+\b A JavaScript inner function can solve this.\par
+\b0\par
+\b Nested Functions\b0\par
+JavaScript supports nested functions. Nested functions have access to the scope "above" them. However, the inner function still cannot be reached from the outside.\par
+\par
+\b Closures\b0\par
+A closure is a function having access to the parent scope, even after the parent scope has closed.\par
+\par
+A self-invoking function:\par
+\par
+\cf1\f1 var add = (function () \{\par
+    var counter = 0;\par
+    return function () \{return counter += 1;\}\par
+ \})();\par
+\par
+add();\par
+add();\par
+add();\par
+\par
+\cf2 // the counter is now 3\cf0\f0\par
+\par
+Jfr. anonym funktion fr\'e5n 22/9:\par
+De kan skapas utan att ha namn, d\'e5 ligger de d\'e4r och kan inte g\'f6ra n\'e5got:\par
+\cf1\f1 (function() \{\par
+\tab alert('Hello World');\par
+\})\cf3 ();\cf0\f0\par
+\par
+\cf3 R\'f6tt\cf0 : Funktionen kallar p\'e5 sig sj\'e4lv. L\'e4gg till detta sedan.\par
+\par
+The variable add is assigned the return value of a self-invoking function. The self-invoking function runs only one, setting the counter to zero and returning the function expression. Thus add becomes a function while the counter still can be accessed in the parent scope. This JavaScript closure makes it possible for a function to have "private" variables. \par
+\par
+-------------------------------------------------------------------------------------------------------\par
+\b\fs32 F\'f6rmiddag\b0\fs22\par
+\par
+Vi har en \b function declaration \b0 n\'e4r man skriver funktionens namn. En funktion skapas. Det finns flera olika s\'e4tt att skapa funktioner p\'e5. Ett alternative s\'e4tt \'e4r \b function expression\b0 : Man sparar en anonym funktion i en variabel. Dessa funktioner kan anv\'e4ndas p\'e5 ungef\'e4r samma s\'e4tt "som vanligt". \par
+\par
+\b Function declaration\b0 :\par
+\cf1\f1 function myFunction() \{\par
+\cf2     // Do stuff\par
+\cf1\}\cf0\f0\par
+\par
+\b Function expression\b0 :\cf1\f1\par
+var myFunction = function\{\par
+    alert('Not Anonyous!');\par
+\};\cf0\f0\par
+\par
+\i Obs! Semikolon ska vara med efter function expression \'e4ven om det inte var det p\'e5 genomg\'e5ngen.\par
+\i0\par
+S\'e5dana funktioner \'e4r fortfarande namngivna. Det finns ocks\'e5 helt anonyma funktioner som inte har namn och inte kan kallas p\'e5. Man kan skicka med funktioner i andra funktioner eller k\'f6ra sig sj\'e4lva; d\'e5 beh\'f6vs inte namn. Nedanst\'e5ende funktion k\'f6rs aldrig:\par
+\par
+\cf1\f1 (function()\{\par
+    alert('Anonymous!')\par
+\});\cf0\f0\par
+\par
+\b Scope\b0 : Om vi har en funktion och en variabel s\'e5 befinner de sig i olika scopes. N\'e4r en funktion skapas f\'e5r den ett eget scope. Det som skapas inuti det blir inte tillg\'e4ngligt utanf\'f6r. Det som inte ligger i en funktion hamnar i det globala scopet (global scope). Det \'e4r generellt sett d\'e5ligt n\'e4r variabler ligger i det globala scopet. \par
+\par
+F\'f6r att summera: Varje funktion har sitt eget scope. Funktionen har tillg\'e5ng till alla yttre scope. Globala scopet har d\'e4remot inte tillg\'e5ng till funktionen scope. \par
+\par
+Det blir viktigt var man deklarerar sin variabel och vad den heter. Om en funktion inneh\'e5ller en variabel och en annan variabel utanf\'f6r den ges samma namn kommer funktionens variabel att prioriteras inuti funktionen. \par
+\par
+Beroende p\'e5 om function declaration eller function expression anv\'e4nds behandlas de olika. Funktioner som kallas p\'e5 innan de deklareras \'e4r det inte n\'e5got problem f\'f6r function declaration. Om man inst\'e4llet anv\'e4nder function expression kan inte funktionen kallas p\'e5 innan den deklareras. Den ena funktionen skjuts upp medan den andra inte g\'f6r det; detta kallas \b hoisting\b0 .\par
+\par
+Function declaration samt variable declaration "hoistas" till toppen av det nuvarande scopet. De deklareras i toppen av scopet. De "skjuts upp" till toppen av scopet. Men \'e4ven om variabler skjuts upp g\'f6r inte deras v\'e4rden det (de blir undefined). Man s\'e4ger att de \'e4r deklarerade men inte tilldelade n\'e5got v\'e4rde. Best practice \'e4r att deklarera sina variabler i b\'f6rjan.\par
+\par
+\b Funktioner som argument eller parametrar\b0 :\par
+Att skicka in funktioner i funktioner. Funktionerna kan hoppa runt lite hur som helst. \par
+\par
+\b Exempel: setInterval\b0\par
+En inbygd funktion som g\'f6r n\'e5got inom ett visst intervall. Funktionen tar tv\'e5 parametrar: en funktion och ett intervall. T.ex. "du ska \cf1\f1 console.log\cf0\f0 :a detta var tredje sekund". Inparametern f\'f6r intervallet \'e4r millisekunder. \par
+\par
+\cf1\f1 var myFunction = function() \{\par
+    console.log('Every Second');\par
+\}\par
+\par
+setInterval(myFunction, 1000);\par
+\cf0\f0\par
+H\'e4r ovanf\'f6r skickas en namngiven funktion med i en funktion.\par
+\par
+Anonyma funktioner anv\'e4nds mycket i JavaScript. Funktionerna beh\'f6ver inte namnges. H\'e4r nedanf\'f6r anv\'e4nds en anonym funktion som argument:\par
+\par
+\cf1\f1 setInterval(function()\{\par
+    console.log('Every Second!')\}\par
+, 1000);\cf0\f0\par
+\par
+\b Callbacks\b0 :\par
+Ett annat exempel p\'e5 hur man skickar med funktioner till andra funktioner. Funktioner som skickas med som argument kan kallas p\'e5 n\'e4r funktionen k\'f6rts klart; detta kallas callbacks. \par
+\par
+Exempel:\par
+\cf1\f1 var myFunction = function(value, callback) \{\par
+    \cf2 // Do something with value\cf1\par
+    callback();\par
+\}\par
+\cf0\f0\par
+Callback l\'e5ter en kalla p\'e5 funktionen i slutet n\'e4r det innan redan har h\'e4nt. Man kontrollerar om det innan redan har h\'e4nt. S\'e4g att vi skickar med ett v\'e4rde:\par
+\par
+\cf1\f1 var myFunction = function(value, callback) \{\par
+    value + 1;\par
+    callback(value);\par
+\}\par
+\par
+myFunction(10, logger);\cf0\f0\par
+\par
+???????????????????????????????????????????\par
+\cf1\f1 function logger(value) \{\par
+    console.log(value);\par
+\}\cf0\f0\par
+??????????????????????????????????????????????\par
+\par
+\i Obs! Callback \'e4r har bara namnet p\'e5 en parameter. Den skulle kunna heta vad som helst. Callback \'e4r inte n\'e5gon inbygd funktion. \par
+\i0\par
+\b Funktioner i funktioner\b0 :\par
+Den inre funktionen kan kallas p\'e5 direkt i den yttre.\par
+\cf1\f1\par
+function myOuterFunction() \{\par
+    function myInnerFunction() \{\par
+    \}\par
+    myInnerFunction();\tab\cf2 // Kalla direkt p\'e5 den inre funktionen.\cf1\par
+\}\par
+\par
+myOuterFunction();\tab\tab\cf2 // B\'e5da funktionerna k\'f6rs\cf0\f0\par
+\par
+N\'e4r vi skapar en funktion inuti en annan funktion skapas automatiskt en closure. Den inre funktionen har tillg\'e5ng till den yttre funktionens variabler trots att den yttre funtkionen inte k\'f6rts klart. Den yttre funktionen "kommer ih\'e5g" var den skapades. Det kallas plosion.\par
+\par
+Det g\'e5r ocks\'e5 att returnera inre funktioner i yttre funktioner.\par
+\par
+------------------------------------------------------------------------------------\par
+\par
+\cf2\f1 //Kolla om en callback finns\cf1\par
+if(callback)\{\par
+  callback();\par
+\}\par
+\cf2 /* Kolla om typen av v\'e5r callback \'e4r en funktion med typeof. typof kan anv\'e4ndas p\'e5 alla sorters variabler */\par
+\cf1 if (typeof callBack == 'function')\cf0\f0\par
+\par
+------------------------------------------------------------------------------------\par
+\b\fs24 Kalla p\'e5 en funktion n\'e4stlad inuti en annan, utanf\'f6r b\'e5da funktionerna:\par
+\b0\fs22\par
+\cf2\f1 /*Deklarera en funktion i en funktion samt kalla p\'e5 den funktionen inuti\par
+I detta fall kallas den inre funktionen p\'e5 direkt inuti den yttre funktionen */\cf1\par
+function myOuterFunction()\{\par
+\par
+    function myInnerFunction()\{\par
+\par
+    \}\par
+    myInnerFunction();\par
+\}\par
+\par
+\cf2 /* N\'e4r vi kallar p\'e5 den yttre funktionen kommer b\'e5da funktionerna att k\'f6ras */\cf1\par
+myOuterFunction();\par
+\par
+\cf2 //Man kan \'e4ven returnera en funktion inuti den yttre funktionen\par
+\cf1 function myOuterFunction2()\{\par
+\par
+    return function()\{\}\par
+\}\par
+\par
+\cf2 //Hur vi kallar p\'e5 funktionen ovan\par
+\cf1\par
+var inner = myOuterFunction2();\par
+\cf2 //Nu lagras den inre funktionen i var inner och kan av\'e4ndas som en funktion\par
+\cf1 inner();\cf0\f0\par
+\par
+asf\par
+}
+ 

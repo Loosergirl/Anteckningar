@@ -1,0 +1,132 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red255\green0\blue0;\red0\green176\blue80;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sl240\slmult1\lang29\f0\fs22 uppgift @ 12\par
+\fs28\par
+\b Minnesanteckningar till uppgift\b0\fs22\par
+$ \'e4r en shell prompt. Det syns n\'e4r terminalen \'e4r redo f\'f6r ett kommando. N\'e4r man skriver in ls tittar kommandot i foldern man \'e4r i och listar filerna i den. ls \'e4r ett exempel p\'e5 ett kommando, ett direktiv till datorn att g\'f6ra en viss sak.\par
+\par
+Mappar och foldrar kallas \i directories\i0 . Filer och direcotries p\'e5 datorn \'e4r organiserade i ett filsystem. Ett filsystem organiserar en datorns filer och directories i en tr\'e4dliknande form. Den f\'f6rsta directory:n kallas \i root directory\i0 . I root directory ligger alla andra directories och filer i filsystemet; den kallas \i parent directory\i0 . Varje parent directory har \i child directories \i0 (undermappar) och filer. Directories kan ha flera filer och child directories som kan ligga n\'e4stlade i varandra i flera steg.\par
+\par
+N\'e4r man skriver in pwd i terminalen skrivs s\'f6kv\'e4gen f\'f6r den mapp man \'e4r i ut. pwd st\'e5r f\'f6r "print working directory". Genom att anv\'e4nda ls och pwd kan man se var man \'e4r i filsystemet.\par
+\par
+Kommandot cd f\'f6ljt av namnet p\'e5 en mapp eller undermapp flyttar dig till den mappen. cd betyder "change directory".\par
+\par
+N\'e4r en fil, en mapp, eller ett program skrivs in i ett kommando kallas det f\'f6r ett \i argument\i0 . cd kommandot tar namnet p\'e5 en mapp (en directory) som argument och byter till den mappen.\par
+\par
+cd .. betyder att man g\'e5r upp en niv\'e5 i filsystemet till en parent directory.\par
+\par
+F\'f6r att navigera direkt till en mapp, anv\'e4nd cd f\'f6ljt av mappens s\'f6kv\'e4g som argument (t.ex. cd jan/memory/ f\'f6r att g\'e5 direkt till memory som ligger i jan.)\par
+\par
+mkdir st\'e5r f\'f6r "make directory". Detta kommando tar namnet som den nya mappen ska f\'e5 som argument och skapar sedan en ny mapp d\'e4r man \'e4r.\par
+\par
+touch f\'f6ljt av ett argument skapar en ny fil i mappen. Filnamnet \'e4r argument. En ny tom fil skapas (gl\'f6m inte fil\'e4ndelsen).\par
+\par
+**\par
+\par
+ls -a\tab  -a modifierar ls s\'e5 att kommandot \'e4ven listar filer & mappar som b\'f6rjar med punkt (.) Annars \'e4r dessa g\'f6mda. -a \'e4r en \i option\i0 . Options modifierar kommandos beteende. (Observera mellanslag efter ls.)\par
+\par
+ls -a\tab listar allt inneh\'e5ll, inklusive dolda filer & mappar\par
+ls -l\tab listar allt inneh\'e5ll i en mapp i l\'e5ngt format\par
+ls -t\tab ordnar filerna och mapparna efter tiden de senast modifierats\par
+ls -alt\tab de tre ovanst\'e5ende samtidigt\par
+\par
+Med -l option listas filerna & mapparna som en tabell d\'e4r kolumner separeras med mellanslag. Kolumnerna st\'e5r f\'f6r:\par
+1: Access rights. Actions permitted on a file or directory.\par
+2: Number of hard links. Number of child directories and files including the parent directo\par
+y link (..) and the current directory link (.)\par
+3: Username of file's owner.\par
+4: Name of group that owns the file.\par
+5: Size of file in bytes.\par
+6: Date & time last modified (3 columns)\par
+7: Name of file or directory.\par
+\par
+cp\tab copies files or directories. The content of a file or directory is put into another. \par
+cp \cf1 vad som ska kopieras \cf2 vad som ska kopieras in i\cf0\par
+Fil\'e4ndelser f\'f6r filer och / som \'e4ndelse f\'f6r mappar\par
+Om man skriver fler filer kopieras de alla. M\'e5let skrivs alltid sist.\par
+Man m\'e5ste vara i mappen man ska kopiera fr\'e5n eller skriva ut s\'f6kv\'e4gen.\par
+\par
+tocuh filename.txt\tab creates a new file in the working directory\par
+\par
+Examples\tab\tab\par
+\par
+cp m*.txt scifi/\tab\tab Here, m*.txt selects all files in the working directory starting with m and ending with .txt, and copies them to scifi/\par
+\par
+mv superman.txt superhero/\tab\tab\tab\tab flyttar filen till superhero-mappen\par
+\par
+mv batman.txt spiderman.txt\tab\tab\tab byter namn p\'e5 batman.txt till spiderman.txt\par
+\par
+\par
+mv wonderwoman.txt batman.txt superhero/\tab\tab flyttar b\'e5da filerna till superhero\par
+\par
+rm waterboy.txt\tab\tab\tab\tab\tab tar bort filen\par
+\par
+rm -r slapstick\tab\tab\tab\tab\tab\tab tar bort en hel mapp och allt i den. -r st\'e5r f\'f6r recursive. Det finns inget kommando att ta tillbaka filerna.\par
+\par
+'''''''''''''''''''''''''''''''''''''''''''''''''\par
+Redirection: Through redirection you can direct the input and output of a command to and from other files and programs, and chain commands together in a pipeline.\par
+\par
+echo "Hello"\tab\tab\tab skriver ut Hello i kommandotolken\par
+\par
+standard input, abbreviated as \b stdin\b0 , is information inputted into the terminal through the keyboard or input device\par
+\par
+standard output, abbreviated as \b stdout\b0 , is the information outputted after a process is run\par
+\par
+standard error, abbreviated as \b stderr\b0 , is an error message outputted by a failed process\par
+\par
+Redirection reroutes standard input, standard output, and astandard error to or from a different location.\par
+\par
+echo "Hello" > hello.txt\tab\tab redirects stdout to a file; "Hello" is the stdin.\par
+\par
+cat hello.txt\tab\tab\tab\tab cat outputs the contents of a file to the terminal.\par
+\par
+cat oceans.txt > continents.txt\tab\tab takes the stdout of the command on the left and reidrects it to the file on the right; all original conent is overwritten\par
+\par
+cat glaciers.txt >> rivers.txt\tab\tab stdout of the command on the left is redirected to the file on the right; the original content remains and is added to (it's appended)\par
+\par
+cat < lakes.txt\tab\tab\tab takes the stdin from the file on the right and inputs it into the program on the left; the stdout appears in the terminal\par
+\par
+cat volcanoes.txt | wc\tab\tab\tab | is a pipe; it takes the stdout of the command on the left, and \i pipes\i0  it as stdin to the command on the right. Think of this as "command to command" redirection. Resultatet av kommandot p\'e5 v\'e4nstra sidan stoppas in p\'e5 den h\'f6gra. wc skriver ut numrerna; antal rader, ord, bokst\'e4ver i filen. \par
+H\'e4r: Texten i volcanoes.txt tas och rader, ord, och bokst\'e4ver r\'e4knas.\par
+\par
+cat volcanoes.txt | wc | cat > islands.txt\tab Multiple | can be chained together. The stdout here is that of cat volcanoes.txt which is piped to the wc command. The stdout of wc is the piped to cat, and finally redirected to islands.txt.\par
+\par
+* cat fr\'e5n concatenate: sammanl\'e4nkat\par
+\par
+sort lakes.txt\tab\tab\tab ordnar i bokstavsordning och skriver ut i terminalen\par
+\par
+cat lakes.txt |sort > sorted-lakes.txt\tab the command takes the stdout from cat lakes.txt and "pipes" it to sort. The stdout of sourt is redirected to sorted-lakes.txt\par
+\par
+uniq deserts.txt\tab\tab uniq stands for unique. It filters out adjacent, duplicate lines in a file. If duplicates are not adjacent they remain.\par
+\par
+sort deserts.txt | uniq\tab\tab First sort is used to alphabetize a file, the it is "piped" to uniq. All duplicate lines are alphabetized and thus filtered out.\par
+\par
+sort deserts.txt | uniq > uniq-deserts.txt\tab The filtered contents are sent to uniq-deserts-txt.\par
+\par
+grep Mount mountains.txt\tab\tab grep means "global regular expression print" and searches files for lines that match a pattern and returns the result. It is case sensitive. Here, it searches for "Mount" in mountains.txt\par
+\par
+grep -i Mount mountains.txt\tab\tab enables the grep command to be case \i in\i0 sensitive. \par
+\par
+grep -R Arctic /home/ccuser/workspace/geography\tab searches all files in a directory and outputs \i filenames and lines \i0 containing matched results. -R stands for "recursive". Here, grep -R searches the /home/ccuser/workspace/geography directory for the string "Arctic" and outputs filenames and lines with matched results.\par
+\par
+grp -Rl Arctic /home/ccuser/workspace/geography\tab grep -Rl searches all files in a directory and outputs \i only filenames \i0 with matched results. -R stands for recursive and l stands fro "files with matches".\par
+\par
+sed 's/snow/rain/' forests.txt\tab\tab sed stands for "stream editor". It accepts stdin and modifies it based on an expression, before displaying it as output data. It is similar to "find and replace". \par
+s stands for substitution. It is always used when using sed for substitution.\par
+snow: the search string, the text to find.\par
+rain: the replacement string, the string to add in place.\par
+Here, sed searches forests.txt for the word "snow" and replaces it with "rain". However, the above command will only replace the first instance of "snow" on a line.\par
+\par
+sed 's/snow/rain/g' forests.txt\tab\tab Here, the g expression is used. It means "global". sed searches forests.txt for the word "snow" and replaces it with "rain", globally; all instances of "snow" will be turned to "rain".\par
+\par
+******\par
+cat name.txt >> age.txt |mv age.txt nameage.txt\par
+******\par
+Each time we launch the terminal application, it creates a new session. The session immediately loads settings and preferences that make up the command line environment.\par
+\par
+\par
+\par
+\par
+\par
+}
+ 
