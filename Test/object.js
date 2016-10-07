@@ -120,7 +120,7 @@ for (i in album) {
 //----------------------------
 // En funktion som skriver ut objektet
 
-
+/*
 
 var album = {
 	albumName: "Idol",
@@ -151,4 +151,4 @@ function printContent(album) {
 
 	console.log(printContent(album));
 
-	
+	*/ 
