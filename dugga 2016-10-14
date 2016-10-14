@@ -1,0 +1,21 @@
+// Fråga 10 och fråga 18
+//-------------------------------------------
+//Vad returnerar funktionen? 
+function whatDoIReturn() {
+    var a = 2;
+    var b = 3;
+    
+    var c = a + b;
+}
+whatDoIReturn()
+
+// RÄTT SVAR: undefined
+//-------------------------------------
+/* En javascriptfunktion kan skicka tillbaka flera värden på en gång, t.ex: */
+
+function myFunction() {
+  return 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri';
+}
+var days = myFunction();
+
+// RÄTT SVAR: FALSKT

@@ -1,0 +1,234 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sl240\slmult1\lang29\f0\fs22 Anv\'e4nds f\'f6r Gists, kommentarer i issues och pull requests samt filer med .md eller .markdown \'e4ndelser.\par
+\par
+\b Headers\b0\par
+\f1 # H1\par
+## H2\par
+### H3\par
+#### H4\par
+##### H5\par
+###### H6\par
+\par
+\f0 Or, for H1 and H2:\par
+Alt-H1\par
+======\par
+\par
+Alt-H2\par
+------\par
+\par
+\b Emphasis\b0\par
+\f1 *This text will be italic*\par
+_This will also be italic_\f0\par
+\par
+\f1 **This text will be bold**\par
+__This will also be bold__\f0\par
+\par
+\f1 _You **can** combine them_\f0\par
+\par
+\b Strikethrough\b0\par
+Any word wrapped with two tildes (like \f1 ~~this~~\f0 ) will appear crossed out.\par
+\par
+\b Line Breaks\b0\par
+My basic recommendation for learning how line breaks work is to experiment and discover -- hit <Enter> once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.\b\par
+\par
+Unordered lists\b0\par
+\f1 * Item 1\par
+* Item 2\par
+    * Item 2a\par
+    * Item 2b\par
+\par
+* Unordered list can use asterisks\par
+- Or minuses\par
++ Or pluses\f0\par
+\par
+\b Ordered list\b0\par
+\f1 1. Item 1\par
+2. Item 2\par
+3. Item 3\par
+   * Item 3a\par
+   * Item 3b\par
+\par
+1. First ordered list item\par
+2. Another item\par
+  * Unordered sub-list. \par
+1. Actual numbers don't matter, just that it's a number\par
+  1. Ordered sub-list\par
+4. And another item.\par
+\par
+   To have a line break without a paragraph, you will need to use two trailing spaces.  \par
+   Note that this line is separate, but within the same paragraph.  \par
+   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)\par
+\par
+\f0 Trailing space = space \i after \i0 the sentence, on the same line\par
+\par
+\b Images\b0\par
+\f1 ![GitHub Logo](/images/logo.png)\par
+Format: ![Alt Text](url)\par
+\par
+\f0 Inline-style\f1 : \par
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")\par
+\par
+\f0 alt text \'e4r h\'e4r vad du kallar bilden. Du kan d\'f6pa bilden till vad som helst.\f1\par
+\par
+\f0 Reference-style\f1 : \par
+![alt text][logo]\par
+\par
+[logo]: {\field{\*\fldinst{HYPERLINK "https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"}}{\fldrslt{\ul\cf1 https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png}}}\f1\fs22  "Logo Title Text 2"\f0\par
+\par
+\b Links\b0\par
+{\field{\*\fldinst{HYPERLINK "http://github.com"}}{\fldrslt{\ul\cf1 http://github.com}}}\f0\fs22  - automatic!\par
+\f1 [GitHub](http://github.com)\par
+\par
+[I'm an inline-style link](https://www.google.com)\par
+\par
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")\par
+\par
+[I'm a reference-style link][Arbitrary case-insensitive reference text]\par
+\par
+[I'm a relative reference to a repository file](../blob/master/LICENSE)\par
+\par
+[You can use numbers for reference-style link definitions][1]\par
+\par
+\f0 Or leave it empty and use the\f1  [link text itself].\par
+\par
+URLs and URLs in angle brackets will automatically get turned into links. \par
+{\field{\*\fldinst{HYPERLINK "http://www.example.com"}}{\fldrslt{\ul\cf1 http://www.example.com}}}\f1\fs22  or <{\field{\*\fldinst{HYPERLINK "http://www.example.com"}}{\fldrslt{\ul\cf1 http://www.example.com}}}\f1\fs22 > and sometimes \par
+example.com (but not on Github, for example).\f0\par
+\par
+\b Blockquotes\b0\par
+\f1 As Kanye West said:\par
+\par
+> \f0 We're living the future so\f1\par
+> \f0 the present is our past.\par
+\par
+\b Inline code\b0\par
+I think you should use an\par
+\f1 `<addr>`\f0  element here instead.\par
+\par
+\b Inline HTML\par
+\b0 You can also use raw HTML in your Markdown, and it'll mostly work pretty well.\par
+\par
+\f1 <dl>\par
+  <dt>Definition list</dt>\par
+  <dd>Is something people use sometimes.</dd>\par
+\par
+  <dt>Markdown in HTML</dt>\par
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>\par
+</dl>\f0\par
+\par
+\b Syntax highlighting\b0\par
+\f1 ```javascript\par
+function fancyAlert(arg) \{\par
+  if(arg) \{\par
+    $.facebox(\{div:'#foo'\})\par
+  \}\par
+\}\par
+```\par
+\par
+Inline `code` has `back-ticks around` it.\par
+\par
+\f0 Blocks of code are either fenced by lines with three back-ticks \f1 ```\f0 , or are indented with four spaces. I recommend only using the fenced code blocks -- they're easier and only they support syntax highlighting.\par
+\par
+\f1 ```javascript\par
+var s = "JavaScript syntax highlighting";\par
+alert(s);\par
+```\par
+ \par
+```python\par
+s = "Python syntax highlighting"\par
+print s\par
+```\par
+ \par
+```\par
+No language indicated, so no syntax highlighting. \par
+But let's throw in a <b>tag</b>.\par
+```\f0\par
+\par
+\par
+\b Indent code by four spaces\b0\par
+\f1     function fancyAlert(arg) \{\par
+      if(arg) \{\par
+        $.facebox(\{div:'#foo'\})\par
+      \}\par
+    \}\f0\par
+\par
+\b Task lists\b0\par
+\f1 - [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported\par
+- [x] list syntax required (any unordered or ordered list supported)\par
+- [x] this is a complete item\par
+- [ ] this is an incomplete item\f0\par
+\par
+\pard\li720\sl240\slmult1 If you include a task list in the first comment of an Issue, you will get a handy progress indicator in your issue list. It also works in Pull Requests!\par
+\pard\sl240\slmult1\par
+\b Tables\b0\par
+\pard\li720\sl240\slmult1 You can create tables by assembling a list of words and dividing them with hyphens - (for the first row), and then separating each column with a pipe |:\par
+\par
+\pard\sl240\slmult1\f1 First Header | Second Header\par
+------------ | -------------\par
+Content from cell 1 | Content from cell 2\par
+Content in the first column | Content in the second column\f0\par
+\par
+There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the  raw Markdown line up prettily. You can also use inline Markdown.\par
+\par
+\f1 Markdown | Less | Pretty\par
+--- | --- | ---\par
+*Still* | `renders` | **nicely**\par
+1 | 2 | 3\f0\par
+\par
+\par
+\b SHA references\par
+\b0 Any reference to a commit\rquote s SHA-1 hash will be automatically converted into a link to that commit on GitHub.\par
+\par
+\f1 16c999e8c71134401a78d4d46435517b2271d6ac\par
+mojombo@16c999e8c71134401a78d4d46435517b2271d6ac\par
+mojombo/github-flavored-markdown@16c999e8c71134401a78d4d46435517b2271d6ac\par
+\f0\par
+\b Issue references within a repository\b0\par
+Any number that refers to an Issue or Pull Request will be automatically converted into a link.\par
+\par
+\f1 #1\par
+mojombo#1\par
+mojombo/github-flavored-markdown#1\f0\par
+\par
+\b Username @mentions\b0\par
+Typing an @ symbol, followed by a username, will notify that person to come and view the comment. This is called an \ldblquote @mention\rdblquote , because you\rquote re mentioning the individual. You can also @mention teams within an organization.\par
+\par
+\b Automatic linking for URLs\b0\par
+Any URL (like {\field{\*\fldinst{HYPERLINK "http://www.github.com/"}}{\fldrslt{\ul\cf1 http://www.github.com/}}}\f0\fs22 ) will be automatically converted into a clickable link.\par
+\par
+\b Emoji\b0\par
+GitHub supports emoji! To see a list of every image we support, check out the Emoji Cheat Sheet.\par
+{\field{\*\fldinst{HYPERLINK "http://www.webpagefx.com/tools/emoji-cheat-sheet/"}}{\fldrslt{\ul\cf1 http://www.webpagefx.com/tools/emoji-cheat-sheet/}}}\f0\fs22\par
+\par
+\b Horizontal Rule (a line)\b0\par
+Create a simple line dividing the page using three or more...\par
+\par
+\f1 ---\f0\par
+\par
+Hyphens\par
+\par
+\f1 ***\f0\par
+\par
+Asterisks\par
+\par
+\f1 ___\f0\par
+\par
+Underscores\par
+\par
+\b Youtube videos\b0\par
+They can't be added directly but you can add an image with a link to the video like this:\par
+\par
+\f1 <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE\par
+" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" \par
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>\par
+\f0\par
+Or, in pure Markdown, but losing the image sizing and border:\par
+\par
+\f1 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)\par
+\f0\par
+\b Bug\b0\par
+Referencing a bug by #bugID in your git commit links it to the slip. For example #1.\par
+\par
+}
+ 

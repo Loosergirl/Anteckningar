@@ -1,0 +1,226 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sl240\slmult1\lang29\b\f0\fs36 Mer om objekt och prototyper\b0\fs22\par
+Vi har ett objekt. Varje property har ett namn och ett v\'e4rde.\par
+\par
+\cf1\f1 var obj = \{\par
+    name: "Jesper"\par
+\};\cf0\f0\par
+\par
+F\'f6r att komma \'e5t ett v\'e4rde anv\'e4nder vi \cf1\f1 obj.name\cf0\f0 .\par
+\par
+Object literals \'e4r d\'e5 curly brackets anv\'e4nds f\'f6r att skapa ett objekt (precis som vi gjort). Man matar in flera v\'e4rden som m\'e5ste vara separerade med kommatecken (gl\'f6m inte kommatecknen). Funktioner kan ocks\'e5 sparas i objektet.\par
+\par
+Konstruktorer \'e4r funktioner som skapar objekt:\par
+\cf1\f1 function Person(name, age) \{\par
+    this.name = name;\par
+    this.age = age;\par
+    this.getName = function() \{\par
+        console.log(this.name, this.age)\par
+    \}\par
+\}\cf0\f0\par
+\par
+Det kan vara bra att anv\'e4nda stor bokstav i b\'f6rjan p\'e5 konstruktorers namn. Det \'e4r en hint om att det \'e4r en konstruktor s\'e5 att man inte blandar ihop den med vanliga funktioner.\par
+\par
+Ordet \cf1\f1 new \cf0\f0 indikerar att ett nytt objekt skapas:\par
+\cf1\f1 var person1 = new Person("Jesper", 25);\cf0\f0\par
+\par
+Med \cf1\f1 console.log \cf0\f0 skrivs objektets konstruktor ut med v\'e4rden insatta f\'f6r parametrarna.\par
+\cf1\f1 console.log(person1);\cf0\f0\par
+\par
+Ist\'e4llet f\'f6r att ge varje objekt en funktion kan man ge varje konstruktor en ny funktion! Varje objekt har en \b prototyp\b0 . Det \'e4r n\'e5got som \'e4rvs.\par
+\par
+\cf1\f1 Person.prototype.getName = function() \{\par
+    console.log(this.name);\par
+\}\cf0\f0\par
+\par
+H\'e4r binder vi \cf1\f1 getName\f0  \cf0 till sj\'e4lva personen. Alla nya personer kommer att ha den funktionen. Det g\'f6r samma sak, fast nu \'e4r inte funktionen bunden till objektet utan till \cf1\f1 Person\cf0\f0 . \'c4ven om funktionen bunden till varje objekt tas bort, har vi prototypens funktion som h\'e4mtar namnet. Det binds till konstruktorn ist\'e4llet.\par
+\par
+\pard\sl240\slmult1\qc ***\par
+\pard\sl240\slmult1\par
+Detta \'e4r bra. Man kan l\'e5ta nya objekt \'e4rva fr\'e5n varandra:\par
+\par
+\cf1\f1 function Employee (name, age, title) \{\par
+    this.name = name;\par
+    this.age = age;\par
+    this.title = title;\par
+\}\par
+\par
+Person.prototype.getName = function() \{\par
+    console.log(this.name);\par
+\}\par
+\par
+Employee.prototype = new Person();\par
+\par
+\cf0\f0 Vi l\'e5ter Employee \'e4rva av Person. D\'e4rmed kan Employee anv\'e4nda samma funktioner.\cf1\f1\par
+\par
+var emp1 = new Employee("Jesper", 25, "Teacher");\par
+empt1.getName();\par
+\cf0\f0\par
+En anst\'e4lld \'e4r en person med namn och \'e5lder, men har \'e4ven en titel.\par
+\par
+Man vill tilldela prototypen innan man skapar objektet.\par
+\par
+\cf1\f1 Employee\f0  \cf0 kommer \'e4rva funktionen \cf1\f1 getName \cf0\f0 fr\'e5n \cf1\f1 Person\cf0\f0 .\par
+\par
+Andra spr\'e5k har klasser som kan \'e4rva av varandra. JavaScripts motsvarighet \'e4r prototyper.\par
+\par
+\b Function.call(object, argument)\par
+\b0 Varje funktionsobjekt JavaScript har en inbygd funktion som heter \cf1\f1 call\cf0\f0 :\par
+\cf1\f1 function Person(name, age) \{\par
+    this.name = name;\par
+    this.age = age;\par
+    \}\par
+\}\par
+\par
+Person.prototype.getName = function() \{\par
+    console.log(this.name);\par
+\}\cf0\f0\par
+\par
+\cf1\f1 Person.call(person1, "Inte Jesper", 55);\par
+getName.call(person1);\cf0\f0\par
+\par
+Det fungerar \'e4ven med nya v\'e4rden:\par
+\cf1\f1 getName.call(person1, "Inte Jesper", 55);\cf0\f0\par
+\par
+Genom \cf1\f1 call \cf0\f0 kan man l\'e5ta kod \'e4rva av annan kod. Ett alternativ till Employee-konstruktorn \'e4r:\par
+\cf1\f1 function Employee (name, age, title) \{\par
+    Person.call(this, name, age);\par
+    this.title = title;\par
+\}\cf0\f0\par
+\par
+Man kan \'e4ven standardisera s\'e5 att alla employee f\'e5r titeln Employee:\par
+\cf1\f1 function Employee (name, age, title) \{\par
+    Person.call(this, name, age);\par
+    this.title = "Employee";\par
+\}\cf0\f0\par
+\par
+Om man s\'f6ker efter ett namn p\'e5 \cf1\f1 Employee\cf0\f0 , men namnet finns i \cf1\f1 Person\cf0\f0 , kommer JavaScript s\'f6ka igenom alla l\'e4nkade objekt. JavaScript s\'f6ker upp\'e5t i prototyp-kedjan.\par
+\par
+\cf1\b\f1 Apply\f0  \cf0\b0 g\'f6r samma sak som \cf1\f1 Call\cf0\f0  men tar arrayer som argument:\par
+\cf1\f1 Person.apply(person1, ["array", "array"]);\cf0\f0\par
+\par
+\b Mozilla Developer Network on \f1 call\b0\f0 :\par
+"\b Note\b0 : While the syntax of this function is almost identical to that of \cf1\f1 apply()\cf0\f0 , the fundamental difference is that \cf1\f1 call()\cf0\f0  accepts an argument list, while \cf1\f1 apply()\cf0\f0  accepts a single array of arguments."\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs36 Personliga anteckningar\par
+\fs32 w3schools.com\b0\fs22\par
+Prototyper \'e4r objekt. Egenskaper och metoder \'e4rvs fr\'e5n prototyper.\par
+\par
+Objekt som skapas med objekt litteralen eller med \cf1\f1 new Object()\cf0\f0  \'e4rver fr\'e5n prototypen \cf1\f1 Object.prototype\cf0\f0 .\par
+\par
+Objekt som skapas med \cf1\f1 new Date()\cf0\f0  \'e4rver prototypen \cf1\f1 Date.prototype\cf0\f0 . Alla JavaScript objekt (inklusive Data, Array, RegEx och, Function) \'e4rver fr\'e5n \cf1\f1 Object.prototype\cf0\f0 .\par
+\par
+\b\fs28 Skapa en prototyp (som konstruktor)\b0\fs22\par
+\cf1\f1 function Person(first, last, age, eyecolor) \{\par
+    this.firstName = first;\par
+    this.lastName = last;\par
+    this.age = age;\par
+    this.eyeColor = eyecolor;\par
+\}\cf0\f0\par
+\par
+Med en konstruktor funktion kan man anv\'e4nda nyckelordet new f\'f6r att skapa nya objekt fr\'e5n samma prototyp:\par
+\cf1\f1 var myFather = new Person("John", "Doe", 50, "blue);\par
+var myMother = new Person("Sally", "Rally", 48, "green");\cf0\f0\par
+\par
+Den h\'e4r konstruktorfunktionen \'e4r prototypen f\'f6r \cf1\f1 Person\cf0\f0 -objekten. Namn p\'e5 konstruktor-funktioner b\'f6r b\'f6rja med stor bokstav.\par
+\par
+\b\fs28 L\'e4gga till en property till ett objekt\b0\fs22\par
+\cf1\f1 myFather.nationality = "English";\cf0\f0\par
+\par
+H\'e4r l\'e4ggs property:n bara till f\'f6r \cf1\f1 myFather\cf0\f0  och inte f\'f6r \cf1\f1 myMother\cf0\f0 .\par
+\par
+\b\fs28 L\'e4gga till en metod till ett objekt (som konstruktor)\par
+\cf1\b0\f1\fs22 myFather.name = function () \{\par
+    return this.firstName + " " + this.lastName;\par
+\};\cf0\f0\par
+\par
+F\'f6r att l\'e4gga till en ny property till en prototyp m\'e5ste man l\'e4gga till det till konstruktor-funktionen:\cf1\f1\par
+function Person(first, last, age, eyecolor) \{\par
+    this.firstName = first;\par
+    this.lastName = last;\par
+    this.age = age;\par
+    this.eyeColor = eyecolor;\par
+    this.nationality = "English"\par
+\}\cf0\f0\par
+\par
+\par
+\b\fs28 L\'e4gga till metoder till  en prototyp (som konstruktor)\b0\fs22\par
+\cf1\f1 function Person(first, last, age, eyecolor) \{\par
+    this.firstName = first;\par
+    this.lastName = last;\par
+    this.age = age;\par
+    this.eyeColor = eyecolor;\par
+    this.name = function() \{return this.firstName + " " + this.lastName;\};\par
+\}\cf0\f0\par
+\par
+\b\fs32 Anv\'e4nda prototype propertyn\b0\fs22\par
+Prototype propertyn g\'f6r det m\'f6jligt att l\'e4gga till fler properties till en existerande prototyp:\cf1\f1\par
+function Person(first, last, age, eyecolor) \{\par
+    this.firstName = first;\par
+    this.lastName = last;\par
+    this.age = age;\par
+    this.eyeColor = eyecolor;\par
+\}\par
+Person.prototype.nationality = "English";\cf0\f0\par
+\par
+Prototype propertyn l\'e5ter en ocks\'e5 l\'e4gga till nya metoder till prototyper:\cf1\f1\par
+function Person(first, last, age, eyecolor) \{\par
+    this.firstName = first;\par
+    this.lastName = last;\par
+    this.age = age;\par
+    this.eyeColor = eyecolor;\par
+\}\par
+Person.prototype.name = function() \{\par
+    return this.firstName + " " + this.lastName;\par
+\};\cf0\f0\par
+\par
+\b Obs! Modifiera bara dina egna prototyper, aldring prototyper f\'f6r JavaScripts standard objekt.\par
+\b0\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\b\fs32 You Don't Know JS\b0\fs22\par
+N\'e4r du refererar till en property i ett objekt och den propertyn inte finns kommer JavaScript automatiskt anv\'e4nda det objektets inre prototyp-referens f\'f6r att hitta ett annat objekt med propertyn i sig. Se det som n\'e5got att falla tillbaka p\'e5 om propertyn saknas.\par
+\par
+Den inre prototyp-sammanl\'e4nkningen mellan ett objekt till ett annat som det faller tillbaka p\'e5 sker varje g\'e5ng objektet skapas. Det finns en inbygt verktyg som heter \cf1\f1 Object.create(..)\cf0\f0  som kan illustrera detta:\par
+\par
+\cf1\f1 var foo = \{\par
+    a: 42\par
+\}\par
+\par
+// skapa 'bar' och l\'e4nka samman det med 'foo':\par
+var bar = Object.create( foo );\par
+\par
+bar.b = "hello world";\par
+\par
+bar.b;\tab\tab // "hello world"\par
+bar.a;\tab\tab // 42 som delegerades till 'foo'\cf0\f0\par
+\par
+Propertyn \cf1\f1 a\cf0\f0  finns inte i objektet \cf1\f1 bar\cf0\f0 , men eftersom \cf1\f1 bar\f0  \cf0\'e4r prototyp-l\'e4nkat till \cf1\f1 foo\cf0\f0  faller JavaScript tillbaka till \cf1\f1 foo\cf0\f0  objektet och letar efter \cf1\f1 a\cf0\f0  d\'e4r.\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\b\fs32 GitHub uppgift\b0\fs22\par
+Varje objekt har en prototyp som \'e4r ett annat objekt. Som vi har diskuterat \'e4r t.ex. en funktion ett objekt och det mesta annat \'e4r ocks\'e5 objekt. En array \'e4r en typ av objekt. Detta blir m\'f6jligt eftersom inom programmering kan olika objekt \'e4rva variabler och funktioner fr\'e5n varandra eftersom allting \'e4r objekt.\par
+\par
+En funktion inuti en konstruktor \'e4r lika f\'f6r varje objekt som skapas. Variablerna \'e4ndras men funktionen beh\'f6ver inte \'e4ndras. Det kan vara b\'e4ttre om vi skapar en funktion som kan anv\'e4ndas av varje objekt men inte har en kopia inuti varje enskilt objekt.\par
+\par
+\cf1\f1 function Rectangle(width, height) \{\par
+    this.height = height;\par
+    this.width = width;\par
+\}\par
+\par
+var getArea = function()\{\par
+    return this.height * this.width;\par
+\}\par
+\par
+Rectangle.prototype.getArea = getArea;\par
+\par
+var rect = new Rectangle(5, 10);\par
+console.log(rect.getArea());\cf0\f0\par
+\par
+\b\fs28 F\'f6r att se vilken prototyp ett skapat objekt har\b0\fs22\par
+\cf1\f1 console.log(Object.getPrototypeOf(objektnamn)\cf0\f0\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+}
+ 
