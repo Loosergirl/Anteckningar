@@ -1,0 +1,166 @@
+----------------
+=====SYNTAX=====
+----------------
+selector {
+	property: value;
+	property: value;
+}
+
+* CSS selectors are used to "find" or select HTML elements
+based on their element name, id, class, attribute, etc.
+
+=====BY ELEMENT=====
+h1 {
+	color: white;
+	text-align: center
+}
+
+=====BY ID=====
+#para1 {
+	text-align: center;
+	color: red
+}
+
+* Here id="para1"
+
+=====BY CLASS=====
+.center {
+	text-align: center;
+	color: red;
+}
+
+=====ONLY SPECIFIC HTML ELEMENTS AFFECTED BY CLASS=====
+p.center {
+	text-align: center;
+	color: red;
+}
+
+=====HTML: MULTIPLE CLASSES=====
+<p class="center large">This paragraph refers to two classes.</p>
+
+=====GROUPING SELECTORS=====
+h1, h2, p {
+	text-align: center;
+	color: red;
+}
+
+* If elements use the same style definitions, group selectors to minimize code.
+
+=====COMMENTS=====
+/*Any comment*/
+
+---------------------------------------------------------------
+=====INSERTING CSS=====
+------------------------
+=====EXTERNAL STYLE SHEET=====
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+=====INTERNAL STYLE SHEET=====
+<head>
+<style>
+body {
+	background-color: linen;
+}
+</style>
+</head>
+
+=====INLINE STYLES=====
+<h1 style="color:blue;margin-left:30px;">This is a heading.</h1>
+
+=====MULTIPLE STYLE SHEETS=====
+If some properties have been defined for the same selector (element)
+in different style sheets, the value from the last read style sheet
+will be used.
+
+=====CASCADING ORDER=====
+What style will be used if more than one style is specified?
+
+Inline style has the highest priority.
+External and internal style sheets come second.
+Browser default has the lowest priority.
+
+-----------------------------------------------------------------------
+=====COLORS=====
+----------------
+"red"
+"rgb(255, 0, 0)"
+"#ff0000"
+-------------------------------------------------------------------
+=====BACKGROUNDS=====
+-------------------------------
+
+=====BACKGROUND COLOR======
+body {
+	background-color: lightblue;
+}
+
+=====BACKGROUND IMAGE=====
+body {
+	background-image: url("paper.gif");
+}
+
+=====ONLY ALLOW BACKGROUND IMAGE TO REPEAT HORIZONTALLY=====
+body {
+	background-image: url("gradient_bg.png");
+	background-repeat: repeat-x;
+}
+
+=====ONLY ALLOW BACKGROUND IMAGE TO REPEAT VERTICALLY=====
+body {
+	background-image:url("gradient_bg.png");
+	background-repeat: repeat-y;
+}
+
+=====ONLY SHOW BACKGROUND IMAGE ONCE=====
+body {
+	background-image: url("img_tree.png");
+	background-repeat: no-repeat;
+}
+
+=====CHANGE BACKGROUND IMAGE POSITION=====
+body {
+	background-image: url("img_tree.png");
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+=====FIX BACKGROUND IMG EVEN IF SCROLLING=====
+body {
+	background-image: url("img_tree.png");
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed
+}
+
+=====SHORTHAND PROPERTY=====
+body {
+	background: #ffffff url("img_tree.png") no-repeat right top;
+}
+
+* The order of property values is:
+-background-color
+-background-image
+-background-repeat
+-background-attachment
+-background-position
+
+-----------------------------------------------------------------
+
+
+
+body {
+	background-color: lightblue;
+}
+
+
+
+p {
+	font-family: verdana;
+	font-size: 20px;
+}
+
+p {
+	color: red;
+	text-align: center;
+}
