@@ -1,0 +1,143 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sl240\slmult1\lang29\f0\fs22 Jesper kommer vara h\'e4r p\'e5 fredag men Anton h\'e5ller i undervisningen p\'e5 tisdag och onsdag. Photoshop-fixaren kommer p\'e5 eftermiddagen idag.\par
+\par
+Notera: Inga prototyper kommer upp p\'e5 duggan (fredag 11/11). Jesper erk\'e4nner att han tagit upp dem f\'f6r tidigt.\par
+\par
+Enligt Jesper kan det eventuellt g\'e5 att f\'e5 tag p\'e5 WebStorm med en studentlicens via studentmailen.\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\pard\sl240\slmult1\qj\b\fs36 F\'f6rmiddag: Intro till HTML & CSS\par
+\pard\sl240\slmult1\fs22 Planering\b0\par
+Vad vi ska kunna: L\'e4nken HTML-CSS. Hur man tar en designskiss och g\'f6r den till en hemsida. Bl.a. ska vi veta hur man g\'f6r multikolumnlayout, navigation, formul\'e4r samt fels\'f6kning av HTML och CSS. Table-tagg med tabul\'e4r data. Boxmodellen och floatmodellen. Arbetsmetodiken progressive enhancement; hur man g\'f6r sidor mobilanpassade. Hj\'e4lpverktyg som SASS och LESS samt ut\'f6ka CSS-spr\'e5ket med ytterligare funktionalitet.\par
+\par
+F\'f6r VG kr\'e4vs \'e4ven egen implementering  av progressive enhancement. Anpassning till olika enheter (responsivitet).\par
+\par
+Slutprojektet blir en gruppuppgift. Det \'e4r okej att anv\'e4nda mockups fr\'e5n tidigare kurser. Man kan ocks\'e5 v\'e4lja andra grupper. Uppgiften blir att skapa en responsiv webbplats.\par
+\par
+Det blir \'e4ven en mindre individuell inl\'e4mningsuppgift; att g\'f6ra en hemsida.\par
+\par
+Jesper tycker vi ska samla ihop information och dela mer p\'e5 GitHub. T.ex. kod, l\'e4nktips o.s.v. Alla kan ha ett repo i organisationen fend16.\par
+\par
+\b Genomg\'e5ng\b0\par
+N\'e4r man \'f6ppnar en ny webbsida kommer man alltid in p\'e5 en index.html sida. HTML (hypertext markup language) anv\'e4nds. HTML m\'e4rker upp vad som ska finnas med p\'e5 en sida s\'e5 att vi f\'e5r en tydlig struktur. HTML ger oss allts\'e5 struktur. Det strukturerar och m\'e4rker upp. Ett annat exempel \'e4r markdown som anv\'e4nds p\'e5 GitHub.\par
+\par
+\'d6ppnar man en .html fil kommer den \'f6ppnas i en webbl\'e4sare. Vissa saker \'e4r n\'f6dv\'e4ndiga f\'f6r att ett dokument ska kunna tolkas som en hemsida.\par
+\par
+\cf1\f1 <!DOCTYPE html>\par
+<html>\par
+<head>\par
+<meta charset="utf-8">\par
+<title> </title>\par
+</head>\par
+<body>\par
+\par
+</body>\par
+</html>\cf0\f0\par
+\par
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 I html m\'e5ste alla taggar avslutas.\par
+{\pntext\f2\'B7\tab}Head \'e4r metadata som inte visas p\'e5 hemsidan.\par
+{\pntext\f2\'B7\tab}Title \'e4r namnet p\'e5 hemsidans flik.\par
+{\pntext\f2\'B7\tab}Body \'e4r det synliga inneh\'e5llet p\'e5 sidan.\par
+{\pntext\f2\'B7\tab}Allt inneh\'e5ll ska ligga i element.\par
+{\pntext\f2\'B7\tab}Varje element har ursprungliga egenskaper som relaterar till positionering och liknande.\par
+{\pntext\f2\'B7\tab}Vad det g\'e4ller titlar har html en automatisk storlek. Men det g\'e5r att \'e4ndra storleken p\'e5 titlarna.\par
+{\pntext\f2\'B7\tab}Google och s\'f6kmotorer kollar vad man har f\'f6r titlar (h1-h6). Utan n\'e5gon titel kan en sida bli klassad som en invalid html-sida.\par
+{\pntext\f2\'B7\tab}Det viktiga med markup:en i html \'e4r att man ser vad som \'e4r vad.\par
+{\pntext\f2\'B7\tab}Om man g\'e5r in under visa info f\'f6r en webbsida och markerar ett element under fliken element kommer det elementet \'e4ven markeras i visningsf\'f6nstret.\par
+{\pntext\f2\'B7\tab}Egenskaper f\'f6r ett element ses (d\'e5 elementet valts) till h\'f6ger i fliken styles.\par
+{\pntext\f2\'B7\tab}Taggar inuti andra taggar kallas barn till de taggar de ligger i.\par
+{\pntext\f2\'B7\tab}F\'f6r\'e4ldra-taggar i visa info kan \'f6ppnas och st\'e4ngas. Man kan forts\'e4tta att \'f6ppna upp dem och se vad som st\'e5r i dem.\par
+\pard\sl240\slmult1\par
+\b Mer taggar (Se \'e4ven w3schools)\b0\par
+\cf1\f1 <p> .. </p>\cf0\f0\tab\tab Paragraf, avkilt avsnitt.\par
+\cf1\f1 <ul>\cf0\f0\tab\tab\tab Unordered list.\par
+\cf1\f1\tab <li> .. </li>\par
+\tab <li> .. </li>\par
+</ul>\cf0\f0\par
+\cf2\f1 <!--Kommentar-->\cf0\f0\tab HTML kommentar\par
+\cf1\f1 <ol>\cf0\f0\tab\tab\tab Ordered list\par
+\cf1\f1\tab <li> .. </li>\par
+\tab <li> .. </li>\par
+</ol>\par
+<div>\cf0\f0\tab\tab\tab Vanligaste elementet i html. \par
+\cf1\f1 </div>\cf0\f0\par
+\cf1\f1\par
+<div>\cf0\f0  anv\'e4nds f\'f6r att kapsla in element. Det \'e4r ett tomt element. Oftast vill man strukturera upp html s\'e5 att saker som h\'e4nger ihop l\'e4ggs tillsammans och d\'e5 kan \cf1\f1 <div>\cf0\f0  anv\'e4ndas. Helst ska andra metoder anv\'e4ndas. HTML 5 erbjuder m\'e5nga alternativ, t.ex. \cf1\f1 <section>\cf0\f0 , \cf1\f1 <header>\cf0\f0 , \cf1\f1 <footer>\cf0\f0  och \cf1\f1 <article>\cf0\f0 .\par
+\par
+Det g\'e5r att skapa egna element med egna namn, men det rekommenderas inte. Attribut kan inte anv\'e4ndas p\'e5 s\'e5dana element.\par
+\par
+\b DOM\b0\par
+F\'f6rutom html-sidan brukar man prata om DOM:en. Det st\'e5r f\'f6r Document Objekt Model. Varje element vi skapar (t.ex. html-element) \'e4r ett nytt objekt eller en ny nod. T.ex. \'e4r \cf1\f1 <p>\cf0\f0  ett objekt. Nodes \'e4r vad det kallas i DOM men det \'e4r objekt. Vi skapar b\'e5de det visuella (hur det stylas o.s.v.) och kodrepresentationen men det \'e4r hela tiden noder. \par
+\par
+Window \'e4r ursprungsobjektet. Det finns p\'e5 varje sida. Inom window ligger document, sj\'e4lva dokumentet, som skapas n\'e4r man skapar en ny html-sida. Till en b\'f6rjan \'e4r document tomt. Sedan l\'e4gger man in head och body i document och vad som \'e4n kan ligga inom dessa tv\'e5. Saker ligger allts\'e5 inuti varandra.\par
+\par
+De olika objekten har egenskaper som s\'e4ger hur de ska se ut och agera. \'c4ven om html \'e4r till f\'f6r att strukturera sidan finns alla dessa egenskaper.\par
+\par
+Objekten skapas automatiskt och man beh\'f6ver inte t\'e4nka p\'e5 dem. Men det \'e4r vad som sker i bakgrunden. Alla element har relationer till varandra.\par
+\par
+Om man inte tar med sluttaggen skapas elementet \'e4nd\'e5.\par
+\par
+\b Med CSS\b0\par
+Det logiska \'e4r att skapa CSS-filen i samma mapp som index.html. \'c4ndelsen \'e4r .css. Filen beh\'f6ver inte heta n\'e5got specifikt men det kan vara bra att kalla den main eller dylikt f\'f6r att markera att det \'e4r huvud-css:n.\par
+\par
+Skriv detta i html-dokumentets head:\par
+\cf1\f1 <link rel="stylesheet" href="main.css">\cf0\f0\par
+\par
+Inkludera typ:\par
+\cf1\f1 <link rel="stylesheet" type="text/css" href="main.css">\cf0\f0\par
+\par
+Med s\'f6kv\'e4g:\par
+\cf1\f1 <link rel="stylesheet" type="text/css" href="mappnamn/main.css">\cf0\f0\par
+\par
+CSS-filen kan anv\'e4ndas till att styla allt. T.ex. kan man v\'e4lja ett element och \'e4ndra p\'e5 egenskaperna (man l\'e4gger egentligen inte till dem utan \'e4ndrar faktiskt).\par
+\par
+Exempel: G\'f6r alla h1 gr\'f6na och stora:\par
+\par
+\cf1\f1 h1 \{\par
+    color: green;\par
+    font-size:200px;\par
+\}\cf0\f0\par
+\par
+Kommentarer i CSS g\'f6rs i stil med \cf2\f1 /*Hej*/\cf0\f0\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\b\fs36 Eftermiddag\b0\fs22\par
+Uppgift: G\'f6r en egen sida p\'e5 GitHub pages.\par
+\par
+<style> \par
+    h1\{ color: red\}\par
+</style>\tab\tab Skriv CSS emellan. B\'e4ttre med separat fil.\par
+\par
+B\'e4ttre att styla i CSS-filen.\par
+\par
+\b\i F\'f6r att bara styla ett element, en h1, ist\'e4llet f\'f6r alla\b0\i0 :\par
+<h1 class="my-class" id="my-id">Heading 1</h1>\par
+Id p\'e5 just den head:ingen. Ett element kan ha b\'e5de en klass och ett id. Id \'e4r f\'f6r ett element och klass f\'f6r m\'e5nga. \par
+\par
+\b\i Bara klass\b0\i0 :\par
+<h1 class="my-class">Heading 1</h1>\par
+<h1 class="my-class">Heading 2</h1>\par
+\par
+\b I CSS: Punkt f\'f6r klass, # f\'f6r id:\par
+\b0 .myClass\{\par
+    color: lightsalmon;\par
+\}\par
+\par
+#my-id\{\par
+//whatever\par
+\}\par
+\par
+Om b\'e5de klass och id anv\'e4nds, t.ex. om alla i en klass ska ha en f\'e4rg men ett id en annan f\'e4rg, skiver id \'f6ver klass. Klassens f\'e4rg skriver \'f6ver en generell f\'e4rg f\'f6r alla element av en typ.\par
+\par
+St\'e4ng en tag p\'e5 en g\'e5ng genom att avsluta med /.\par
+\par
+placekitten.com...\par
+\par
+Man kan s\'e4tta klasser p\'e5 divs och specificera egenskaper i CSS.\par
+\par
+I chrome developer tools (inspektera en sida) kan man \'e4ndra v\'e4rden i CSS:en till h\'f6ger (styles-tabben). Detta \'e4r bra som f\'f6rhandsvisning.\par
+\par
+<span></span>\tab\tab\tab En paragraf som inte har display-egenskapen block.\par
+\par
+Display block g\'f6r att text l\'e4gger sig p\'e5 rad efter varandra. Det p\'e5verkar hur text l\'e4gger sig kring bilder. De flesta element har display block i html.\par
+}
+ 
