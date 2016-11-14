@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sidan min</title>
+</head>
+<body>
+<!-- En article är som en div fast den berättar mer om innehållet och brukar bestå av en heading (<h1> i det här fallet) följt av text (<p> samt <ul> i det här fallet) -->
+<article>
+    <h1>En rubrik här</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat temporibus quam pariatur, quas qui possimus minima, deleniti culpa optio odit quibusdam at placeat sunt ut iste sed. Eius, incidunt, nostrum!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci rem, illo ipsum officiis, nesciunt natus error voluptatibus consectetur voluptates exercitationem enim assumenda quasi deserunt dolorum. Ea veritatis, harum excepturi!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos sed, laboriosam non odit quae temporibus perferendis obcaecati modi aliquid voluptatem, accusamus eaque iste explicabo facilis repellendus, aliquam voluptate, reiciendis quisquam.</p>
+    <!-- Unordered List: lista utan siffor framför -->
+    <ul class="myList">
+        <!-- List Item -->
+        <li id="item">A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>
+            <!-- Man kan ha en <ul> i en annan <ul> -->
+            <ul class="myList">
+                <li>INNER A</li>
+                <li>INNER B</li>
+                <li>INNER C</li>
+            </ul>
+        </li>
+        <li>D</li>
+        <!-- Kom ihåg att stänga alla taggar -->
+    </ul>
+</article>
+<script src="main.js"></script>
+</body>
+</html>
