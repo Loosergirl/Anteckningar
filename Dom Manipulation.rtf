@@ -1,0 +1,119 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 6.2.9200}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs22\lang29 DOM-manipulation\b0 : Att skapa och \'e4ndra html-kod med hj\'e4lp av JavaScript.\par
+\b Nodes\b0 : DOM:ens olika delar. Oftast bryr vi oss bara om element-typen. Noder inneh\'e5ller element som i sin tur inneh\'e5ller HTML-element samt slutar i typer (t.ex. div).\par
+\b Window\b0 : Roten i DOM-hierarkin. Inneh\'e5ller Document-objektet.\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b Skapa ett DOM element\b0\par
+\cf1\f1 var element = document.createElement(tagName);\par
+\cf0\f0\par
+*  Om elementet \'e4r ok\'e4nt kommer ett \cf1\f1 HTMLUnknownElement\cf0\f0  skapas.\par
+*  H\'e4r \'e4r \cf1\f1 element\f0  \cf0\'e4r elementets objekt\par
+*  H\'e4r \'e4r \cf1\f1 tagName\cf0\f0  en str\'e4ng som talar om vilken typ av element som ska skapas.\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b L\'e4gga till ett skapat element till DOM\par
+\cf1\b0\f1 var child = element.appendChild(child);\par
+\cf0\f0\par
+*  \cf1\f1 element\cf0\f0  f\'f6r namnet p\'e5 parent-elementet\par
+*  \cf1\f1 child\cf0\f0  f\'f6r noden som ska l\'e4ggas in under element.\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b Textnoder\b0\par
+Textnoder \'e4r n\'f6dv\'e4ndiga om n\'e5gon text ska l\'e4ggas till i ett annat element, t.ex. i \cf1\f1 <p>\cf0\f0 .\par
+\par
+\cf1\f1 document.createTextNode("\cf0\f0 Write text here\cf1\f1 ");\par
+\cf0\f0\par
+Textnoden m\'e5ste l\'e4ggas till sitt element:\par
+\cf1\f1 element.appendChild(TextNode);\par
+\cf0\f0 -------------------------------------------------------------------------------------------------------------------\par
+\b Style:a ett HTML-element\par
+\cf1\b0\f1 element.style.color = "ff3300";\par
+element.style.marginTop = "30px";\par
+element.style.paddingBottom = "30px";\par
+\cf0\f0\par
+F\'f6r att f\'e5 veta v\'e4rdena p\'e5 CSS properties f\'f6r ett element anv\'e4nder man\par
+\cf1\f1 window.getComputedStyle()\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b H\'e4mta och s\'e4tta HTML-elementen\par
+\cf1\b0\f1 innerHTML\cf0\f0  s\'e4tter eller h\'e4mtar HTML syntax som beskriver ett elements underordnade element:\par
+\cf2\f1 // H\'e4mta HTML:en f\'f6r "element"\par
+\cf1 var content = element.innerHTML;\par
+\cf0\f0\par
+\cf2\f1 // S\'e4tt HTML:en f\'f6r "otherElement"\par
+\cf1 otherElement.innerHTML = content;\cf0\par
+\f0 -------------------------------------------------------------------------------------------------------------------\par
+\b H\'e4mta och s\'e4tta klassnamn\par
+\cf1\b0\f1 className\cf0\f0  h\'e4mtar och s\'e4tter v\'e4rdet p\'e5 attributet class f\'f6r ett specifikt element:\par
+\cf2\f1 // H\'e4mta klassnamnet f\'f6r "element"\par
+\cf1 var cName = element.className;\par
+\cf0\par
+\cf2 // S\'e4tt klassnamnet p\'e5 "otherElement"\par
+\cf1 other.Element.className = cName;\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b H\'e4mta och s\'e4tta ID\par
+\cf2\b0\f1 // H\'e4mta id:et f\'f6r "element"\par
+\cf1 var idStr = element.id;\par
+\cf0\par
+\cf2 // S\'e4tt id:et f\'f6r "otherElement"\par
+\cf1 otherElement.id = "idStr;\par
+\cf0\f0 -------------------------------------------------------------------------------------------------------------------\par
+\b F\'e5 tillg\'e5ng till DOM-element\par
+a) Genom ID\par
+\b0 Returnerar en referens till elementet genom dess id:\par
+\cf1\f1 element = document.getElementById(id);\par
+\cf0\f0\par
+\b b) Genom klassnamn\par
+\b0 Returnerar en array \'f6ver alla child-element som har ett klassnamn. St\'f6ds inte av IE8 och under.\par
+\cf1\f1 elements = document.getElementsByClassName(names);\par
+\cf2 // eller\par
+\cf1 elements = rootElement.getElementsByClassName(names);\par
+\cf0\f0\par
+*  H\'e4r \'e4r elements en \cf1\f1 HTMLCollection\cf0\f0  av elementen som hittas; names \'e4r en str\'e4ng som representerar listan \'f6ver klassnamn (separerade med mellanslag).\par
+*  \cf1\f1 getElementsByClassName\cf0\f0  kan kallas p\'e5 f\'f6r alla elemen, inte bara i dokumentet. Elementet som det kallas p\'e5 f\'f6r anv\'e4nds som roten f\'f6r s\'f6kningen.\par
+\par
+\b c) Genom tagg-namn\b0\par
+Returnerar en HTMLCollection med element som har tagg-namnet. Hela dokumentet s\'f6ks igenom.\par
+\cf1\f1 var elements = document.getElementsByTagName(name);\par
+\cf0\f0\par
+*  H\'e4r \'e4r \cf1\f1 elements\cf0\f0  en HTMLCollection av elements i ordningen de kommer p\'e5 DOM-tr\'e4det. \cf1\f1 name\cf0\f0  \'e4r en str\'e4ng som st\'e5r f\'f6r elementen. En "\cf1\f1 *\cf0\f0 " representerar alla element.\par
+\par
+\b d) Genom First Found Selector\par
+\b0 Returnerar det f\'f6rsta elementet i dokumentet som matchar den specifika gruppen selektorer. St\'f6ds av IE8 och upp\'e5t.\par
+\cf1\f1 element = document.querySelector(selectors);\par
+\cf0\f0\par
+*  element \'e4r ett element; selectors \'e4r en str\'e4ng med en eller fler CSS selektorer separerade med kommatecken.\par
+\par
+Exempel: F\'f6rsta elementet i dokumentet i klassen "myclass" returneras:\par
+\cf1\f1 var el = document.querySelector(".myclass");\par
+\cf0\f0\par
+\b e) Genom en array med Selectors\par
+\b0 Returnerar en lista \'f6ver elementen i dokumentet som matchar en grupp selektorer. Objektet som returneras \'e4r en NodeList. St\'f6ds av IE8 och upp\'e5t.\par
+\cf1\f1 elementList = document.querySelectorAll(selectors);\par
+\cf0\f0\par
+*  elementList \'e4r en icke-live NodeList av element-objekt.\par
+*  selectors \'e4r en str\'e4ng med en eller flera CSS-selectors separerade med kommatecken.\par
+\par
+Exempel: Returnera en lista \'f6ver alla div-element som har klassen "note" eller "alert":\par
+\cf1\f1 var matches = document.querySelectorAll("div.note, div.alert");\par
+\cf0\f0 -------------------------------------------------------------------------------------------------------------------\par
+\b Relationer\par
+\b0 DOM-elementens relationer och att f\'e5 tillg\'e5ng till element i relation med andra element.\par
+\par
+\b a) Children av ett visst element\par
+\cf1\b0\f1 childNodes\cf0\f0  returnerar en collection av child nodes till ett visst element:\par
+\cf1\f1 var ndList = elementNodeReference.childNodes;\par
+\cf0\f0\par
+\b b) N\'e4sta syskon till ett visst element\par
+\b0 Returnerar noden precis efter den nod som angivits i f\'f6r\'e4lderns \cf1\f1 childNodes\cf0\f0 -lista. Blir \cf1\f1 null\cf0\f0  om den specificerade noden \'e4r den sista p\'e5 listan:\par
+\cf1\f1 nextNode = node.nextSibling;\par
+\cf0\f0\par
+\b c) Child element f\'f6r ett visst objekt\par
+\b0 ParentNode.children \'e4r en read-only property som returnerar en HTMLCollection \'f6ver child element f\'f6r ett objekt. Det som returneras \'e4r objekt och inte str\'e4ngar. F\'f6r att f\'e5 datan fr\'e5n dessa node-objekt m\'e5ste man anv\'e4nda deras properties (t.ex. \cf1\f1 elementNodeReference.children[1].nodeName\cf0\f0  f\'f6r namnet).\par
+var elList = elementNodeReference.children;\par
+\par
+\b d) Element precis efter ett visst element\par
+\cf1\b0\f1 ChildNode.nextElementSibling\cf0\f0  \'e4r en property som returnerar elementet precis innan det som specificerats, s\'e5som de st\'e5r i f\'f6r\'e4lderns \cf1\f1 children list\cf0\f0 . Blir \cf1\f1 null\f0  \cf0 om elementet \'e4r det sista p\'e5 listan:\par
+\cf1\f1 var nextNode = elementNodeReference.nextElementSibling;\par
+\cf0\f0 -------------------------------------------------------------------------------------------------------------------\par
+}
+ 

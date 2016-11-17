@@ -1,0 +1,21 @@
+h1 {
+	font-family: verdana;
+}
+
+li {
+	font-family: constantia;
+	margin: 10px 10px 10px 10px;
+}
+
+#left {
+	background-color: #bdd6ee;
+	float: left;
+	width: 50%;
+}
+
+#right {
+	background-color: #C5E0B3;
+	float: right;
+	width: 50%;
+}
+
