@@ -15,11 +15,12 @@ Funktionen ska även kunna kolla om funktionen ska returnera en rätt som är ve
 En funktion som lägger till maträtten på hemsidan vid varje klick.
 */
 
+var counter = 0;
 
 var menu = [
 	{name: "Palak Paneer", veg: true, url: "http://www.manjulaskitchen.com/palak-paneer-2016/"},
-	{name: "Pannkakor/Plättar"}, veg: true, url: "http://www.spisa.nu/3.12981/recept/pannkakorplattar-med-sylt-och-gradde/"},
-	{name: "Köttbullar med potatismos, gräddsås och stekt löl", veg=false, url: "https://www.landleyskok.se/recept/hemlagade-kottbullar.html/"},
+	{name: "Pannkakor/Plättar", veg: true, url: "http://www.spisa.nu/3.12981/recept/pannkakorplattar-med-sylt-och-gradde/"},
+	{name: "Köttbullar med potatismos, gräddsås och stekt lök", veg: false, url: "https://www.landleyskok.se/recept/hemlagade-kottbullar.html/"},
 	{name: "Baconinlindad kycklingfilé", veg: false, url: "https://www.kokaihop.se/recept/baconinlindad-kycklingfile-2"},
 	{name: "Lasagne och köttfärssås", veg: false, url: "http://www.koket.se/lasagne-med-kottfarssas"},
 	{name: "Majsplättar med avokadoröra", veg: true, url:"https://www.mathem.se/recept/mattias-majsplattar-med-avokado-chimichurri"},
@@ -30,26 +31,32 @@ var menu = [
 
 ];
 
-var counter = 0;
-
-function new(counter) {
-	
+function dish() {
+	// Hämta ut värdet från checkboxen:
 	var vego = document.getElementById('vego');
 
+	// Vald maträtt plockas ut beroende på en räkningsvariabel:
 	var food = menu[counter];
-	/*
-	i = 1;
-	while (vego.checked == true && food.veg == false) {
-		food = menu[counter+i];
-		i++;
+
+	// Maträtten ändras om den inte var vegetarisk men vegetarisk var ikryssat:
+	if (vego.checked == true)
+	{
+		while (food.veg == false) {
+			counter = counter + 1;
+			if (counter >= menu.length) {
+				counter = 0;
+			}
+			food = menu[counter];
+		}
 	}
-	counter += i;
-	if (counter > menu.length) {
+	
+	// Skriv ut maten:
+	document.getElementById('result').innerHTML = food.name;
+	document.getElementById('result').href = food.url;
+
+	//Till nästa gång stiger counter med 1 eller går tillbaka till början:
+	counter = counter + 1;
+	if (counter >= menu.length) {
 		counter = 0;
 	}
-	*/
-
-	document.getElementById('result').innerHTML = food.name;
 }
-
-document.getElementById("myBtn").addEventListener("click", new);
