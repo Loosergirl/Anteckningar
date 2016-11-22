@@ -34,7 +34,7 @@ function add() {
 	marginDiv.appendChild(removeButton);
 	marginDiv.appendChild(bulletPoint);
 	bulletPoint.appendChild(bulletItem);
-	document.getElementById("todo");
+	var todo = document.getElementById("todo");
 	document.todo.appendChild(marginDiv);
 
 	// Få knapparna att fungera

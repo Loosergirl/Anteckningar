@@ -1,0 +1,42 @@
+body, html{
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-flow: row wrap;
+    flex: 1;
+}
+.square{
+    width: 200px;
+    height: 200px;
+    background: teal;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.square2{
+    width: 200px;
+    height: 200px;
+    background: teal;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.inner-square{
+    width: 100px;
+    height: 100px;
+    background: salmon;
+}
+
+#other {
+    background: blue;
+    order: 1;
+}
