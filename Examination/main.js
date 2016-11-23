@@ -50,6 +50,8 @@ function move() {
 
 
 
+    // this refererar till knappen!
+
 
 
     var parent = div.parentElement;

@@ -35,8 +35,8 @@ function add() {
     newUl.appendChild(newLi);
     newLi.appendChild(newNode);
 
-	moveButton.addEventListener("click", move());
-	removeButton.addEventListener("click", remove());
+	moveButton.addEventListener("click", move);
+	removeButton.addEventListener("click", remove);
 
     // Spara:
     function save () {

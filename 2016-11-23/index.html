@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "sv">
+<head>
+    <meta charset="utf-8">
+    <title>Forms</title>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+<form>
+<input type="text" name="username" id="username"placeholder="Användarnamn" required>
+<input type="email" name="email" placeholder="email" required>
+<input type="text" name="name" placeholder="Förnamn" required>
+<input type="text" name="surname" placeholder="Efternamn" required>
+<label for="sex">Kön</label>
+<section id="gender">
+<input type="radio" value="Man" name="sex" checked>Man
+<input type="radio" value="Kvinna" name="sex">Kvinna
+<input type="radio" value="Annat" name="sex">Annat
+</section>
+<label for="password">8-24 tecken</label>
+<input type="password" name="password" placeholder="Lösenord" maxlength="24" minlength="8" required>
+
+<label for="blodgrupp">Blodgrupp</label>
+<select name="blodgrupp">
+	<option value="A">A</option>
+	<option value="B">B</option>
+	<option value="AB">AB</option>
+	<option value="0">0</option>
+</select>
+
+<section id=accept>
+<label for="accept">Acceptera villkoren</label>
+<input type="checkbox" name="accept" required>
+</section>
+
+<input type="submit" name="submit">
+
+
+</form>
+
+</body>
+</html>
+
