@@ -1,51 +1,72 @@
-/*
-Lägga till en syssla i listan ska bestå av:
-Ett element där användaren kan skriva in text t.ex. ”Lära mig JavaScript”.
-En knapp med lämplig text som trycks på för att lägga till texten i rutan till listan
-*/
-// Klart om det fungerar.
-
-/*
-”Att göra”-listan i sig ska bestå av:
-* Flera sysslor (om användaren har lagt till en syssla, annars ska listan vara tom).
-* Förutom att varje syssla innehåller "Att göra-texten" ska det även finnas knappar kopplade till sysslan för att ändra innehållet:
-  - Markera sysslan som klar
-  - Ta bort sysslan
-* När man markerat sysslan som klar ska sysslan läggas i en "Färdiga sysslor"-lista.
-
-*/
+// Räknare för antalet saker på listan:
+var counter = 0;
+var idCounter = "";
 
 function add() {
-	// Hämta ut input
-	var action = document.getElementById("listicle").value;
+    // Räknare för antalet saker på listan:
+    counter++;
+    idCounter += "i";
 
-	// Skapa nya saker
-	var marginDiv = document.createElement('div');
-	var bulletPoint = document.createElement('li');
-	var bulletItem = document.createTextNode(action);
-	// jag tror action ska vara för texten in
-	var moveButton = document.createElement('button');
+	// Hämta värdet:
+    var x = document.getElementById("listicle").value;
+
+    // Skapa en ny div med en bullet point och knappar i sig:
+    var newDiv = document.createElement('div');
+    var newUl = document.createElement('ul');
+    var newLi = document.createElement('li');
+    var newNode = document.createTextNode(x);
+    var moveButton = document.createElement('button');
 	var removeButton = document.createElement('button');
-	moveButton.id = 'moveButton';
-	removeButton.id = 'removeButton';
+	moveButton.innerHTML = "Klar";
+	removeButton.innerHTML = "Ta bort";
 
-	// Sätt ihop
-	marginDiv.appendChild(moveButton);
-	marginDiv.appendChild(removeButton);
-	marginDiv.appendChild(bulletPoint);
-	bulletPoint.appendChild(bulletItem);
-	var todo = document.getElementById("todo");
-	document.todo.appendChild(marginDiv);
+    // Identifiering
+    moveButton.id = 'moveButton';
+    removeButton.id = 'removeButton';
+    newDiv.id = idCounter;
+    newDiv.class = 'bulletBox';
 
-	// Få knapparna att fungera
-	moveButton.addEventListener("click", done());
+    // Sätt ihop allting:
+    var todo = document.getElementById("todo");
+    todo.appendChild(newDiv);
+    newDiv.appendChild(newUl);
+    newDiv.appendChild(moveButton);
+    newDiv.appendChild(removeButton);
+    newUl.appendChild(newLi);
+    newLi.appendChild(newNode);
+
+	moveButton.addEventListener("click", move());
 	removeButton.addEventListener("click", remove());
+
+    // Spara:
+    function save () {
+        return newDiv.id;
+    }
 }
 
-function done() {
+function move() {
+	// Ta loss
+    var divArray = document.getElementsByClassName('bulletBox');
 
+
+
+
+
+    var parent = div.parentElement;
+    parent.removeChild(div);
+
+    // Sätt fast
+    var done = document.getElementById("done");
+    done.appendChild(div);
+    
 }
 
 function remove() {
+    console.log(idCounter);
 
+/*
+    // Ta loss
+    var parent = div.parentElement;
+    parent.removeChild(div);
+    */
 }
