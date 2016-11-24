@@ -1,14 +1,33 @@
-body {
-	background-image: url("healthy-cooking.jpg");
-	background-repeat: no-repeat;
-	text-align: center;
+html, body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	/*Pefekt bakgrund enligt css-tricks.com*/
+	background: url("healthy-cooking.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
-form {
+input[type=checkbox] {
 	margin: 100px 0px 25px 0px;
 }
 
 a {
+	text-decoration: none;
 	font-family: verdana;
 	font-size: xx-large;
+	color: black;
+}
+
+button {
+	margin-bottom: 20px;
+	font-size: large;
+}
+
+#backgroundBox {
+	
 }

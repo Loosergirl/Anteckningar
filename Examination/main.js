@@ -1,74 +1,82 @@
-// Räknare för antalet saker på listan:
-var counter = 0;
-var idCounter = "";
-
 function add() {
-    // Räknare för antalet saker på listan:
-    counter++;
-    idCounter += "i";
-
 	// Hämta värdet:
     var x = document.getElementById("listicle").value;
 
-    // Skapa en ny div med en bullet point och knappar i sig:
-    var newDiv = document.createElement('div');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var newNode = document.createTextNode(x);
-    var moveButton = document.createElement('button');
-	var removeButton = document.createElement('button');
-	moveButton.innerHTML = "Klar";
-	removeButton.innerHTML = "Ta bort";
+    // Kontroll av värdet:
+    if (x == null || x == "") {
+        console.log("Mata in en sträng istället.")
+    }
+    else {
+        // Skapa en ny div med en bullet point och knappar i sig:
+        var newDiv = document.createElement('div');
+        var newUl = document.createElement('ul');
+        var newLi = document.createElement('li');
+        var newNode = document.createTextNode(x);
+        var moveButton = document.createElement('button');
+        var removeButton = document.createElement('button');
+        moveButton.innerHTML = "Klar";
+        removeButton.innerHTML = "Ta bort";
 
-    // Identifiering
-    moveButton.id = 'moveButton';
-    removeButton.id = 'removeButton';
-    newDiv.id = idCounter;
-    newDiv.class = 'bulletBox';
+        // Sätt id:
+        newDiv.id = "littleDiv";
+        moveButton.id = "moveButton";
+        removeButton.id = "removeButton";
 
-    // Sätt ihop allting:
-    var todo = document.getElementById("todo");
-    todo.appendChild(newDiv);
-    newDiv.appendChild(newUl);
-    newDiv.appendChild(moveButton);
-    newDiv.appendChild(removeButton);
-    newUl.appendChild(newLi);
-    newLi.appendChild(newNode);
+        // Sätt ihop allting:
+        var todo = document.getElementById("todo");
+        todo.appendChild(newDiv);
+        newDiv.appendChild(newUl);
+        newDiv.appendChild(moveButton);
+        newDiv.appendChild(removeButton);
+        newUl.appendChild(newLi);
+        newLi.appendChild(newNode);
 
-	moveButton.addEventListener("click", move());
-	removeButton.addEventListener("click", remove());
-
-    // Spara:
-    function save () {
-        return newDiv.id;
+        // Få knapparna att fungera
+        moveButton.addEventListener("click", move);
+        removeButton.addEventListener("click", remove);
     }
 }
 
 function move() {
 	// Ta loss
-    var divArray = document.getElementsByClassName('bulletBox');
-
-
-
-    // this refererar till knappen!
-
-
-
-    var parent = div.parentElement;
-    parent.removeChild(div);
+    var div = this.parentElement;
+    var todo = div.parentElement;
+    todo.removeChild(div);
 
     // Sätt fast
     var done = document.getElementById("done");
     done.appendChild(div);
-    
+
+    // Gör om knapp
+    // (Jag tyckte det var bättre så här än att ta bort den.)
+    var arr = div.children;
+    var moveButton = arr[1];
+    moveButton.innerHTML = "Inte klar";
+    moveButton.removeEventListener("click", move);
+    moveButton.addEventListener("click", unmove);
 }
 
 function remove() {
-    console.log(idCounter);
-
-/*
     // Ta loss
+    var div = this.parentElement;
     var parent = div.parentElement;
     parent.removeChild(div);
-    */
+}
+
+function unmove() {
+    // Ta loss
+    var div = this.parentElement;
+    var done = div.parentElement;
+    done.removeChild(div);
+
+    // Sätt fast
+    var todo = document.getElementById("todo");
+    todo.appendChild(div);
+
+    // Gör om knapp
+    var arr = div.children;
+    var moveButton = arr[1];
+    moveButton.innerHTML = "Klar";
+    moveButton.removeEventListener("click", unmove);
+    moveButton.addEventListener("click", move);
 }

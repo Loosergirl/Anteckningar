@@ -1,5 +1,6 @@
 h1 {
 	font-family: verdana;
+	text-align: center;
 }
 
 li {
@@ -9,6 +10,7 @@ li {
 
 button {
 	margin: 2px 2px 2px 2px;
+	font-family: verdana;
 }
 
 input {
@@ -16,32 +18,50 @@ input {
 }
 
 #left {
-	background-color: #bdd6ee;
+	background: url("blue.png"); 
 	float: left;
 	width: 50%;
+	height:100vh;
+	text-align: center;
 }
 
 #right {
-	background-color: #C5E0B3;
+	background: url("green.png"); 
 	float: right;
 	width: 50%;
+	height:100vh;
+	text-align: center;
 }
 
 #moveButton {
-	background-color: #f2f2f2;
+	background-color: white;
 	font-size: small;
-	border-radius: 8px;
 	margin-left: 10px;
+	height: 25px;
+	border-radius: 8px;
+	border: none;
 }
 
 #removeButton {
-	background-color: #f2f2f2;
+	background-color: white;
 	font-size: small;
+	border-radius: 8px;
+	height: 25px;
+	border: none;
+}
+
+#littleDiv {
+	width: 75%;
+	margin-left: 10%;
+	margin-bottom: 6px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 8px;
 }
 
-#newDiv {
-	border: thin solid #808080;
-	width: 75%;
-	margin-left: 5%;
-}
