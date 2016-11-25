@@ -3,6 +3,7 @@ function add() {
     var x = document.getElementById("listicle").value;
 
     // Kontroll av värdet:
+    // Ja, jag vet att jag kunde ha använt required om jag använt en submit...
     if (x == null || x == "") {
         console.log("Mata in en sträng istället.")
     }
