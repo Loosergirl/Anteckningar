@@ -1,0 +1,112 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\tx426\b\f0\fs32\lang29 Typografi och f\'e4rg i HTML och CSS\fs22\par
+\b0 Det finns m\'e5nga v\'e4gar att g\'e5 vad det g\'e4ller f\'e4rg och typsnitt. Det finns massor av inbyggda typsnitt p\'e5 datorn. P\'e5 n\'e4tet har inte alla exakt samma font. Vissa finns heller inte installerade p\'e5 Mac respektiva Windows. \par
+\par
+\b F\'e4rg \b0\'e4r helt subjektivt. Det finns inga r\'e4tt och fel men en del saker att utg\'e5 ifr\'e5n. Idag ska vi kolla p\'e5 en del verktg men det \'e4r bara att experimentera till man n\'e5r fram till ett bra resultat. Man m\'e5ste ocks\'e5 fr\'e5ga sig vad som \'e4r snyggt idag, vad som \'e4r popul\'e4rt just nu. Idag \'e4r det popul\'e4rt med platta gr\'e4nssnitt utan n\'e5gon border. \par
+\par
+Det finns flera s\'e4tt att representera f\'e4rg. rgb(a) st\'e5r f\'f6r red, green, blue, alpha (alfakanal). Alfakanalen \'e4r eventuell genomskinlighet/opacity. Opacity g\'e5r fr\'e5n 0 till 1. Tyv\'e4rr st\'f6ds inte alfakanalerna i IE8 och bak\'e5t s\'e5 man m\'e5ste ha en fallback.\par
+\par
+Hint: Jespers favoritf\'e4rg \'e4r mintgr\'f6n. Ljust mintgr\'f6n. \par
+\par
+hsl(a) har ocks\'e5 tre v\'e4rden. De st\'e5r f\'f6r Hue, Saturation och Lightness. Hue \'e4r f\'e4rgen. Saturation (m\'e4ttnad) \'e4r hur mycket gr\'e5skala eller f\'e4rg som \'e4r med. Lightness \'e4r hur ljus eller m\'f6rk f\'e4rgen ska vara. \'c4ven hsl kan ha en alfakanal f\'f6r genomskinlighet. D\'e5 beh\'f6vs en backup f\'f6r \'e4ldre versioner av Internet Explorer.\par
+\par
+Det \'e4r naturligtvis b\'e4ttre att anv\'e4nda rgb eller hsl \'e4n de namngivna CSS-f\'e4rgerna. Hexadecimala f\'e4rger fungerar ocks\'e5 men \'e4r sv\'e5rare att tolka i textform. \par
+\par
+{{\field{\*\fldinst{HYPERLINK https://coolors.co }}{\fldrslt{https://coolors.co\ul0\cf0}}}}\f0\fs22  \'e4r ett exempel p\'e5 en generator f\'f6r f\'e4rgpaletter. Det finns ocks\'e5 adobe color ({{\field{\*\fldinst{HYPERLINK https://color.adobe.com }}{\fldrslt{https://color.adobe.com\ul0\cf0}}}}\f0\fs22 ). \'c4r man inloggad p\'e5 adobes hemsida s\'e5 kan man l\'e4tt spara sina paletter i biblioteket i molnet. D\'e5 kan man hitta sina f\'e4rgscheman i Photoshops (och Illustrators) libraries panel. Adobe color brukade \'e4ven finnas som widget direkt i Photoshop (eventuellt ett till\'e4gg?).\par
+\par
+Det finns mycket att st\'e4lla in vad det g\'e4ller \b font properties\b0 . \par
+font-size: px/em/%/small;\par
+font-family: "Arial";\par
+font-color: slategray;\par
+font-weight: bold;\par
+font-style: bold;\par
+font-variant: small-caps;\par
+\par
+Notera: Om en font inte har en fetstilad eller kursiv variant kommer CSS sj\'e4lv f\'f6rs\'f6ka g\'f6ra fonten s\'e5. Typsnitt gjorda till webben brukar ha s\'e5dana varianter.\par
+\par
+Man kan anv\'e4nda \b font shorthand \b0 f\'f6r att l\'e4gga ihop flera font properties. Detta \'e4r bra f\'f6r att det blir kompaktare kod som tar mindre plats.\par
+font: 16px "Arial";\par
+font: 16\tab px/1.5 "Arial";\tab\tab\tab // Radavst\'e5nd/line height = 1.5\par
+font: 16px/1.5 "Arial", sans-serif;\tab /*Ibland finns inte fonten p\'e5 anv\'e4ndarens dator. D\'e5 kan man ha en fallback, typiskt sett sans-serif, serif eller monospace*/\par
+font: 16px/1.5 "Helvetica Neue", "Arial", sans-serif;\tab // Flera fallbacks\par
+\par
+Enki \'e4r en mobil-app f\'f6r att tr\'e4na p\'e5 HTML och CSS (och andra spr\'e5k). Den kommer med nya uppgifter varje dag. Finns \'e4ven som webbsida.\par
+\par
+\b %/em/rem\b0\par
+Procentuella m\'e5tt \'e4r relativa. Fasta vidder \'e4r n\'e5got man ska sky. 100% \'e4r 16px, 1em (egentligen en referens till f\'f6r\'e4lderns font-size) eller 1rem (f\'f6rh\'e5ller sig till anv\'e4ndarens eller webbl\'e4sarens valda storlek).\par
+\par
+\b Extra\b0\par
+Om texten \'e4r lite f\'f6r kompakt kan letter-spacing ge lite luft. Word-spacing \'e4r mellanrum mellan varje ord. Line-height mellan rader.\par
+\f1 letter-spacing: 0.1em;\f0\par
+\f1 word-spacing: 0.1em;\par
+line-height: 1.5;\tab\f0\tab\tab // Ingen enhet; utg\'e5r fr\'e5n font-size.\par
+\par
+\b\fs28 K\'e4llor till typsnitt\b0\fs22\par
+Vi kan till exempel anv\'e4nda Google fonts. Google fonts \'e4r gratis men det finns \'e4ven betaltj\'e4nster. Type kit finns tillg\'e4ngligt via Adobe. \par
+\par
+Ist\'e4llet f\'f6r att h\'e4mta ett lokalt stylesheet kan man h\'e4mta ett externt stylesheet och applicera p\'e5 v\'e5r CSS. D\'e5 finns koden direkt fr\'e5n google fonts hemsida. Naturligtvis beh\'f6vs en fallback.\par
+\par
+\f1 <link href="l\'e4nk" rel=stylesheet>\f0\par
+\par
+Detta g\'f6r att man kan anv\'e4nda fonter som anv\'e4ndaren inte har. Ett problem kan vara storleken p\'e5 fonterna; de kan bli st\'f6rre \'e4n webbsidan. En konsekvens kan vara \i flash of unstyled font\i0 , d\'e5 en webbsida laddar in webbfonten i slutet efter att ha haft en annan font fr\'e5n b\'f6rjan.\par
+\par
+\b\fs28 Font-face\fs22\par
+\b0 Detta \'e4r n\'e5got som finns inbyggt i CSS. Man kan ladda upp sina egna fonter fr\'e5n sin egen dator och skicka upp dem lokalt. Detta \'e4r oftast att f\'f6redra. Om man d\'e4remot inte t\'e4nker p\'e5 performance kan det vara l\'e4ttare att ladda in fr\'e5n google fonts.\par
+\par
+\f1 @font-face (\par
+    font-family: "MyFont";\par
+    src: url("myfont.woff") format("woff"));\par
+    font-weight: normal;\par
+)\par
+\f0\par
+Chansen finns att anv\'e4ndaren redan har fonten p\'e5 datorn.  D\'e5 kan man kontrollera om den finns lokalt p\'e5 datorn:\par
+\par
+\f1 @font-face (\par
+    font-family: "MyFont";\par
+    src: local("myfont.woff") format("woff"), url("myfont.woff") format("woff"));\par
+    font-weight: normal;\par
+)\par
+\f0\par
+En annan bra sida, f\'f6rutom google fonts, \'e4r {{\field{\*\fldinst{HYPERLINK https://www.fontsquirrel.com }}{\fldrslt{https://www.fontsquirrel.com\ul0\cf0}}}}\f0\fs22 . Fonterna d\'e4r \'e4r gratis f\'f6r kommersiell anv\'e4ndning. En webfont generator finns ocks\'e5 tillg\'e4nglig d\'e4r man kan ladda upp sina lokala typsnitt.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://prowebtype.com }}{\fldrslt{https://prowebtype.com\ul0\cf0}}}}\f0\fs22  ger en bra grund i hur man anv\'e4nder webbfonter idag.\par
+{{\field{\*\fldinst{HYPERLINK https:///www.typewolf.com }}{\fldrslt{https:///www.typewolf.com\ul0\cf0}}}}\f0\fs22  ger ocks\'e5 bra resurser i hur man anv\'e4nder fonter, inklusive font pairings.\par
+\par
+{{\field{\*\fldinst{HYPERLINK www.modularscale.com }}{\fldrslt{www.modularscale.com\ul0\cf0}}}}\f0\fs22  hj\'e4lper till med att avg\'f6ra hur mycket text ska skalas. Man utg\'e5r ifr\'e5n en bas och l\'e5ter det andra v\'e4rdet ber\'e4kna storleken p\'e5 texten relaterat till basen.\par
+\par
+S\'e4tt samma marginal som line height? L\'e5t marginaler och padding utg\'e5 fr\'e5n textstorleken.\par
+\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\par
+\b\fs28 Uppgift\b0\fs22\par
+
+\pard\sl276\slmult1\tx426 Bes\'f6k sidor du brukar vara inne p\'e5 och studera f\'f6ljande:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\tx426 Custom webfonts? Kombinationer av fonter?\par
+{\pntext\f2\'B7\tab}F\'e4rgkombinationer? Dominant f\'e4rg/Sekund\'e4r f\'e4rg/Neutral f\'e4rg (bakgrund)\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl360\slmult1\tx426 Positionering av element? Line-height? Margins/Paddings\par
+
+\pard\sl240\slmult1\tx426 Diskutera och skriv ned era fynd. Vad kan \'e5teranv\'e4ndas? Vad kan vi stj\'e4la? Och vilka "d\'e5liga" fynd hittar ni? (fullhack)\par
+\par
+\b En artikel fr\'e5n DN\b0 :\par
+font-family (nav) GuardianSansRegular,Georgia,"Times New Roman",Times,serif\par
+font-family (heading) PublicoBannerBold,Georgia,"Times New Roman",Times,serif\par
+br\'f6dtext: Georgia,"Times New Roman",Times,serif\par
+statistik: Arial,Helvetica,sans-serif\par
+rubrik till detta: GuardianSansBold,Georgia,"Times New Roman",Times,serif\par
+\par
+bakgrundsf\'e4rg helvit rgb(255, 255, 255). Svart text, stark r\'f6d p\'e5 en linje i headern, l\'e4ngs med faktarutor och p\'e5 knappar, gr\'e5aktig kring den valda sidan i nav-bar samt skiljelinjer. Mindre viktig text skrivs i m\'f6rkare gr\'e5. L\'e4nkar i br\'f6dtexten \'e4r himmelsbl\'e5.\par
+\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\par
+\b\fs28 ID och klasser\par
+\b0\fs22 Tanken \'e4r att man bara ska anv\'e4nda klasser f\'f6r att styla i CSS eftersom JavaScript anv\'e4nder ID f\'f6r att h\'e4mta ut v\'e4rden.\par
+\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Inl\'e4mningsuppgift\b0\fs22\par
+Vi ska jobba med relativa m\'e5tt. Uppgiften ska l\'e4mnas in imorgon. Obs! Jobba enligt semantisk html. \par
+}
+ 

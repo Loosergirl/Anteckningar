@@ -1,0 +1,55 @@
+/*Din CSS-fil ska vara strukturerad 
+så att den inte använder några id-selektorer. 
+Du ska alltså bara använda dig utav klasser. 
+Du ska även ange för varje selektor i din CSS 
+i en kommentar:
+- Vilken specificitet selektorn har.
+- Om selectorn appliceras på flera olika element. 
+D.v.s används klassen mer än en gång?
+*/
+
+/*Sidan ska till största del använda sig utav %, 
+em samt rem. Tänk på rytmen och grids.
+*/
+
+/*Samtliga sidor ska ha en enhetlig design. 
+Layouten ska inte skilja sig från sida till sida.*/
+
+/*Tabellen/tabellerna samt formuläret ska ha en
+ custom styling.
+*/
+
+/*Sidan ska använda sig utav 2 custom fonts. 
+En för headings och en för body text
+*/
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	font-family: 'Raleway', Arial, sans-serif;
+	font-size: 1em;
+}
+
+h1 {
+	font-family: 'Josefin Sans', 'Open Sans', sans-serif;
+	font-size: 2.25em;
+}
+
+table {
+	border-collapse: collapse;
+	margin-left: 4.5rem;
+}
+
+td {
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+	text-align: center;
+}
+
+th {
+	border: 1px solid grey;
+}
