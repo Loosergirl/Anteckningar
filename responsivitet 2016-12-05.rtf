@@ -1,0 +1,138 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs22\lang29 Ang\'e5ende validatorn\b0\par
+Om man deklarerat <!DOCTYPE html> i b\'f6rjan av dokumentet utg\'e5r validatorn fr\'e5n html 5. Vill man ha en annan html kan man specifiera en annan html doctype. Det kan resultera i \'e4nnu mer errors.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://validator.w3.org/ }}{\fldrslt{https://validator.w3.org/\ul0\cf0}}}}\f0\fs22\par
+\par
+\b Ang\'e5ende div, header, section o.s.v. \b0\par
+Sk\'e4rml\'e4sare kommer inte kunna veta vad en div \'e4r. Om man anv\'e4nder de nya semantiska elementen kan det hj\'e4lpa till. Naturligtvis f\'e5r man fortfaranda anv\'e4nda div:ar. \par
+\par
+\b Klasser\b0\par
+Man f\'e5r anv\'e4nda hur m\'e5nga klasser man vill. Det g\'e5r att k\'f6tta p\'e5 ordentligt med massor av klasser. Varje element kan ha flera klasser samtidigt, separerare endast med mellanslag. T.ex. kan man dela upp positionering och f\'e4rgstyling. \par
+\par
+\f1 <header class="header flex-center main-header">\par
+\f0\par
+html:en kan d\'e4remot bli ful om f\'f6r m\'e5nga klasser anv\'e4nds men det finns flera s\'e4tt att strukturera upp det p\'e5.\par
+\par
+\b Refaktorera CSS\b0\par
+Det betyder att man g\'f6r allting \'e5teranv\'e4ndbart. Se till att man inte upprepar sig.\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs32 Responsiv Webdesign\b0\fs22\par
+Det finns m\'e5nga s\'e4tt att visa en hemsida. M\'e5nga olika \i devices\i0 . Vi vill att sidan ska anpassa sig efter vilken enhet anv\'e4ndaren anv\'e4nder. Ibland g\'f6rs hela separata sidor f\'f6r mobilanv\'e4ndare. Det blir problem om anv\'e4ndare ska l\'e4nka till sidor och titta p\'e5 dem p\'e5 olika devices.\par
+\par
+Vi vill inte bara anpassa hemsidor f\'f6r alla enheter som finns utan \'e4ven f\'f6r framtida enheter. Man kan ju iallafall f\'f6rs\'f6ka. \par
+\par
+\b Strategier\b0\par
+Vi har ett antal strategier f\'f6r att designa f\'f6r olika uppl\'f6sningar. Vad man ska anv\'e4nda sig av finns det delade meningar om. I huvudsak finns tv\'e5 tillv\'e4gag\'e5ngss\'e4tt: Graceful degradation och progressive enhancement.\par
+\par
+\b Graceful degradation \b0 fokuserar p\'e5 att man bygger hemsidan f\'f6r den mest avancerade browsern. Med det paradigmet f\'e5r \'e4ldre browsers s\'e4mre standard och det \'e4r okej. Fokus \'e4r p\'e5 att utveckla det b\'e4sta m\'f6jliga. Man l\'e4gger tid i slutet p\'e5 att anpassa f\'f6r andra browsers. Taget till sin extrem kan man strunta i vissa browsers. \par
+\par
+Tanken med graceful degradation \'e4r \'e4nd\'e5 att alla bes\'f6kare till sidan ska f\'e5 samma upplevelse.\par
+\par
+\b Progressive enhancement \b0 fokuserar p\'e5 inneh\'e5llet. Det ska g\'e5 att komma \'e5t inneh\'e5llet oavsett vad som g\'e4ller. D\'e4rf\'f6r kan man l\'e4gga ut inneh\'e5ll som \'e4r det allra viktigaste, oavsett vad, som ett slags grund f\'f6r att ha n\'e5got att st\'e5 p\'e5. Syftet \'e4r att man ska leverera ut information till vidast m\'f6jliga publik. \par
+\par
+Oftast vill man att grunden ska vara mer \'e4n bara svart p\'e5 vitt. Det ska vara en enkel design.\par
+\par
+Tillg\'e5ng till inneh\'e5llet f\'f6r personer med funktionsneds\'e4ttningar kommer ocks\'e5 p\'e5 fr\'e5ga.\par
+\par
+En bredare version har en baslinje baserad p\'e5 funktionalitet. En smalare version b\'f6rjar med html, l\'e4gger till CSS och till sist JavaScript. Somliga st\'e4nger av JavaScript p.g.a. s\'e4kerhetsrisken.\par
+\par
+Utifall webbl\'e4sare inte st\'f6djer n\'e5gon alpha-kanal kan man skriva s\'e5 h\'e4r:\par
+\f1 .box-with-opacity\{\par
+    background: rgb(0,0,0);\par
+    background: rgba(0,0,0,0.5);\par
+\}\par
+\f0\par
+Vi ska jobba enligt progressive enhancement f\'f6r att f\'e5 VG!\par
+\par
+\b Mobile first eller desktop first\b0\par
+Uppenbarligen om man utvecklar med en mobil eller en dator i \'e5tanke, i f\'f6rsta hand. Med mobile first ska det se s\'e5 bra ut som m\'f6jligt p\'e5 en mobil. Den vanligaste uppl\'f6sningen anv\'e4nds p\'e5 m\'e5nga mobiler (360x640). P\'e5 andra plats kommer standarden f\'f6r laptops. Ungef\'e4r 25% av alla anv\'e4ndare har mindre vanliga uppl\'f6sningar; det finns m\'e5nga olika varianter. N\'e4r man g\'f6r mobile first beh\'f6ver man inte designa just f\'f6r den vanligaste storleken (360x640) utan snarare ungef\'e4r f\'f6r den.\par
+\par
+Vad det g\'e4ller webbl\'e4sare anv\'e4nder strax \'f6ver 50% Chrome. Safari ligger p\'e5 andra plats p\'e5 strax under 15%, UC Browser f\'f6r mobiler p\'e5 ca 8%. Firefox ca 7%, Opera 5%. Varning f\'f6r att IE ligger kvar p\'e5 5% (var tjugonde anv\'e4nder fortfarande Internet Explorer!).\par
+\par
+Ytterligare n\'e5got att t\'e4nka p\'e5 n\'e4r man anv\'e4nder mobile first \'e4r den begr\'e4nsade bandvidden. Man f\'e5r bara s\'e5 mycket surf per m\'e5nad. Stora bilder drar mycket data.\par
+\par
+\b B\'f6r man anpassa till \'e4ldre browsers eller anv\'e4ndare som inte har JavaScript enabled?\b0 N\'e5got att t\'e4nka p\'e5 \'e4r om man riktar sig till anv\'e4ndare i utvecklingsl\'e4nder. Huvudtexten f\'f6r en webbsida b\'f6r inte l\'e4ggas in med JavaScript eftersom screen readers inte kommer l\'e4sa s\'e5dan text. \'c4ven Google ignorerar text som l\'e4ggs in p\'e5 sidor genom JavaScript; text som f\'f6rst inte finns p\'e5 sidan.\par
+\par
+Vad \'e4r f\'f6retagets image? Ska en image uppr\'e4tth\'e5llas med webbsidor som ser tech:iga och flash:iga ut?\par
+\par
+Just nu \'e4r mobile first och progressive enhancement det som \'e4r inne. Man f\'e5r t\'e4nka efter vad det \'e4r som \'e4r viktigast och vad man egentligen vill med en sida. F\'f6rst\'e5s finns det ytterligare en niv\'e5 efter vanliga sk\'e4rmstorlekar p\'e5 desktops, riktigt stora sk\'e4rmar.\par
+\par
+\b\fs28 Responsiva m\'e5tt\b0\fs22\par
+\b em \b0\'e4r det utr\'e4knade v\'e4rdet f\'f6r font-size propertyn f\'f6r det g\'e4llande elementets f\'f6r\'e4lder. Default \'e4r 16px men kan \'e4ndras i browsern eller via html. Det \'e4r alltid ett relativt m\'e5tt. Man b\'f6r d\'e4remot vara uppm\'e4rksam om man \'e4ndrar font size:n hos f\'f6r\'e4ldern. F\'f6r element som ska skalas upp eller ned kan det vara bra att anv\'e4nda em; d\'e5 beh\'f6ver bara font-size \'e4ndras varefter andra m\'e5tt f\'f6ljer med.\par
+\par
+\b rem \b0\'e4r det utr\'e4knade v\'e4rdet f\'f6r font-size p\'e5 rot-elementet, d.v.s. p\'e5 html-elementet. rem kommer allts\'e5 inte att variera. rem kan vara bra f\'f6r den huvudsakliga layouten, det globala scopet.\par
+\par
+T\'e4nk p\'e5 vad som h\'e4nder om man kombinerar b\'e5da rem och em (se Jespers slide).\par
+\par
+\b 1vw \b0 = 1% av viewport width\par
+\b 1vh \b0 = 1% av viewport height\par
+\b 1vmin \b0 = 1vw eller 1vh; det som \'e4r mindre\par
+\b 1vmax \b0 = 1vw eller 1vh; det som \'e4r st\'f6rre\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Dessa \'e4ndras om man minskar browser-f\'f6nstret, men kanske inte \'e4r optimalt om sk\'e4rmen \'e4r mycket liten.\par
+
+\pard\sl240\slmult1\par
+Ett problem med \b procent \b0\'e4r att det kanske inte alltid finns n\'e5got att relatera till. \par
+\par
+\b\fs28 Media Queries\b0\fs22\par
+\f1 <meta name="viewport" content="width=device-width", initial-scale=1">\f0\par
+Detta betyder att bredden ska vara enhetens bredd. Initial scale g\'e4ller pixlarna; en pixel ska vara en pixel. Googles s\'f6kmotorer kollar om detta finns med p\'e5 sidan. Det g\'e5r att anpassa och zooma in p\'e5 mobiler.\par
+\par
+Den gamla if-satsen \'e4r ocks\'e5 ett slags query. St\'e4mmer det h\'e4r s\'e5 g\'f6r det h\'e4r. P\'e5 samma s\'e4tt \'e4r media queries fr\'e5gor.\par
+\par
+\f1 @media (max-width: 480px) \{\par
+    .container \{\par
+        width: 100%;\par
+    \}\par
+\}\par
+\f0 Alla CSS-regler inom paranteserna kommer anv\'e4ndas om sk\'e4rmen \'e4r max 480px bred. Om media query:n inte st\'e4mmer kommer default att appliceras ist\'e4llet. Det g\'e5r att anv\'e4nda fasta pixlar eller relativa m\'e5tt. Det kan d\'e4remot skilja sig hur olika browsers tolkar det. Det \'e4r alltid bra att anv\'e4nda relativa m\'e5tt, \'e4ven h\'e4r. 30em motsvarar 100% om font-size \'e4r 16px.\par
+\par
+F\'f6rst\'e5s finns \'e4ven \f1 min-width\f0 . Typiskt s\'e4tt anv\'e4nder man \f1 min-width\f0  f\'f6r mobile-first sidor.\par
+\par
+Ett intervall med b\'e5de och:\par
+@media (min-width: 40em) and (max-width: 50em) \{\par
+\}\par
+\par
+B\'e4st \'e4r att l\'e4gga media queries l\'e4ngst ned i CSS-dokumentet.\par
+\par
+Man kan anv\'e4nda sig av mediatyper ocks\'e5. \f1 screen \f0\'e4r en typ av media, vilken som helst. Det finns \'e4ven \f1 print\f0  och \f1 all\f0 . \f1 print\f0  \'e4r vad resultatet blir vid utskrifter av sidan. En A4 beh\'f6ver inte vara responsiv och man kan s\'e4tta fasta marginaler. \par
+\par
+\f1 @media screen and (max-width: 30em) \{\par
+    font-size: 1.5em;\par
+\}\par
+\f0\par
+Tips: En variant d\'e4r man anv\'e4nder \f1 only\f0  kommer ignoreras av \'e4ldre webbl\'e4sare.\par
+\par
+\'c4r mobilen liggande eller st\'e5ende?\par
+\f1 @media screen and (orientation: landscape) \{\par
+    \par
+\}\par
+\f0\par
+Liggande \'e4r \f1 landscape\f0  och st\'e5ende \'e4r \f1 portrait\f0 .\par
+\par
+\b Breakpoints\b0\par
+Breakpoints \'e4r de siffror vi anger f\'f6r max- eller min. Det \'e4r d\'e5 f\'f6r\'e4ndringar ska ske i layouten. L\'e5t inneh\'e5llet styra breakpoints. Det finns inga regler f\'f6r var breakpoints ska s\'e4ttas. Det \'e4r b\'e4st att testa sig fram och se vad som f\'e5r inneh\'e5llet att se bra ut.\par
+\par
+I inspekt\'f6ren i webbl\'e4sare kan man se Toggle Device Toolbar. Man kan titta och se hur det ser ut i olika enheter. Det finns ocks\'e5 responsive mode. Trycker man p\'e5 de tre punkterna i \'f6vre h\'f6gra h\'f6rnet kan man v\'e4lja 'Show media queries'. Man kan hitta, p\'e5 ett ungef\'e4r, vad standard breakpoints \'e4r.\par
+\par
+N\'e4r man inspekterar en viss sida kan man \'e4ven se vilka media queries som satts. L\'e5nga f\'e4rgglada bars representerar olika media queries. H\'f6gerklicka p\'e5 f\'e4rgraderna och v\'e4lj att visa i source code f\'f6r att se hur det kodats exakt.\par
+\par
+\b G\'f6r det responsivt\b0\par
+Radl\'e4ng 40/45 till 80 tecken per rad \'e4r det optimala. En linjeh\'f6jd p\'e5 1.5 till 2 g\'f6r det mer l\'e4ttl\'e4sligt.\par
+\par
+\b Breakpoint hunt\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b0 Titta p\'e5 hemsidor du brukar bes\'f6ka efter media queries\par
+{\pntext\f2\'B7\tab}Anv\'e4nd responsive Mode i webbl\'e4saren f\'f6r att se vad som h\'e4nder n\'e4r du \'e4ndrar storleken p\'e5 f\'f6nstret.\par
+
+\pard\sl240\slmult1 Material.io Resizer\par
+Google Developers: Responsive Patterns\par
+\par
+G\'f6r din hemsida responsiv! Det ska g\'e5 f\'f6r tablet, mobil och laptop.\par
+\par
+\par
+}
+ 
