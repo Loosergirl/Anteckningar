@@ -79,6 +79,7 @@ Ett problem med \b procent \b0\'e4r att det kanske inte alltid finns n\'e5got at
 \par
 \b\fs28 Media Queries\b0\fs22\par
 \f1 <meta name="viewport" content="width=device-width", initial-scale=1">\f0\par
+\par
 Detta betyder att bredden ska vara enhetens bredd. Initial scale g\'e4ller pixlarna; en pixel ska vara en pixel. Googles s\'f6kmotorer kollar om detta finns med p\'e5 sidan. Det g\'e5r att anpassa och zooma in p\'e5 mobiler.\par
 \par
 Den gamla if-satsen \'e4r ocks\'e5 ett slags query. St\'e4mmer det h\'e4r s\'e5 g\'f6r det h\'e4r. P\'e5 samma s\'e4tt \'e4r media queries fr\'e5gor.\par
@@ -89,6 +90,8 @@ Den gamla if-satsen \'e4r ocks\'e5 ett slags query. St\'e4mmer det h\'e4r s\'e5 
     \}\par
 \}\par
 \f0 Alla CSS-regler inom paranteserna kommer anv\'e4ndas om sk\'e4rmen \'e4r max 480px bred. Om media query:n inte st\'e4mmer kommer default att appliceras ist\'e4llet. Det g\'e5r att anv\'e4nda fasta pixlar eller relativa m\'e5tt. Det kan d\'e4remot skilja sig hur olika browsers tolkar det. Det \'e4r alltid bra att anv\'e4nda relativa m\'e5tt, \'e4ven h\'e4r. 30em motsvarar 100% om font-size \'e4r 16px.\par
+\par
+Om 16px \'e4r 1 em kan man dividera pixelavst\'e5nd med 16 f\'f6r att f\'e5 fram antalet em. F\'f6r en media query kommer den storlek p\'e5 fonten som valts i dokumentet att g\'e4lla.\par
 \par
 F\'f6rst\'e5s finns \'e4ven \f1 min-width\f0 . Typiskt s\'e4tt anv\'e4nder man \f1 min-width\f0  f\'f6r mobile-first sidor.\par
 \par

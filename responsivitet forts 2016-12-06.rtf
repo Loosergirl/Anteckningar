@@ -1,0 +1,102 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 Det finns flera s\'e4tt att f\'e5 bilder responsiva. T.ex. kan man skala ned dem. Men man m\'e5ste \'e4ven ta h\'e4nsyn till vilken uppl\'f6sning anv\'e4ndare har. Naturligtvis ska inte bilder se f\'f6r pixliga ut. Ett s\'e4tt \'e4r att man s\'e4tter vidden eller h\'f6jden p\'e5 bilderna till 100% och vidden/h\'f6jden (beroende p\'e5 vad man inte satt till 100%; t\'e4nk p\'e5 om de \'e4r landskap eller portr\'e4tt) till auto och sedan l\'e4gga bilderna i containers. D\'e4refter skalar man om containers. Ofta vill man att bilderna ska ta upp s\'e5 mycket plats de kan och best\'e4mma sin storlek utifr\'e5n kringliggande element.\par
+\par
+Om man har en header med en bild kan det vara l\'e4ttare att s\'e4tta background image ist\'e4llet f\'f6r en image direkt. Det blir sv\'e5rare att manipulera en background-image \'e4n en img i CSS men med en header kommer man inte vilja \'e4ndra s\'e5 mycket.\par
+\par
+Ett problem \'e4r att trots att bilden anpassas till sidan kommer sj\'e4lva bilden fortfarande vara lika stor, vad det g\'e4ller datam\'e4ngd. Laddningstider kan p\'e5verkas. Det \'e4r heller inte bra att skala upp en bild med l\'e5g uppl\'f6sning som kan riskera att bli suddig. Det g\'e4ller att t\'e4nka p\'e5 vad sidan ska ha f\'f6r inneh\'e5ll. Det g\'e5r att anpassa sig till en del scenarion.\par
+\par
+Det finns n\'e5got som heter soruce set: \f1 srcset\f0 . Man kan f\'e5 sidan att h\'e4mta olika bilder beroende p\'e5 sk\'e4rmstorlek:\par
+\cf1\f1 <img srcset="img-big.jpg w1200, img-medium.jpg w600, img-small.jpg w300 src="small.jpg">\par
+\cf0\f0\par
+\f1 w\f0 :et st\'e5r f\'f6r bredden, angivet i pixlar. Naturligtvis m\'e5ste vi ha de tre olika bilderna med de tre olika bredderna ocks\'e5, som separata filer. Vi s\'e4ger till browsern att bilderna har dessa storlekar men de beh\'f6ver inte ha dessa exakta storlekar.\par
+\par
+Olika sk\'e4rmar har olika uppl\'e4sning och olika m\'e4ngder pixlar.\par
+\par
+Bilderna kan \'e4ven anges i relativa storlekar:\par
+\cf1\f1 <img srcset="img-big.jpg 3x, img-medium.jpg 2x, img-small.jpg 1x src="small.jpg">\cf0\f0\par
+\par
+Vi har allts\'e5 \f1 src\f0  som \'e4r default, \f1 srcset\f0  som \'e4r alternativa sources, \f1 w\f0  som \'e4r bredd (width) och sizes som \'e4r storlekar baserat p\'e5 media queries. Med sizes kan man s\'e4ga att en bild ska ha en viss storlek fr\'e5n b\'f6rjan, men sedan justera den. Allts\'e5 kan man s\'e4tta storleken p\'e5 sj\'e4lva elementet ist\'e4llet f\'f6r med en media query i CSS och \'e4ven kombinera metoderna. Det g\'e5r att g\'f6ra extremt komplicerade kombinationer.\par
+\par
+H\'e4r \'e4r en media query inom parentes. N\'e4r den \'e4r \'f6ver 55em ska ett visst v\'e4rde appliceras, d.v.s. det f\'f6rsta v\'e4rdet efter media-query:n. Om det st\'e4mmer ska 20vw appliceras, om det inte st\'e4mmer ska 80vw appliceras.\par
+\cf1\f1 <img sizes="(mind-width: 55em) 20vw, 80vw" srcset="images/nasa1.jpg 300w, images/nasa2.jpg 600w, images/nasa3.jpg 1200w" src="images/nasa1.jpg">\par
+\cf0\f0\par
+Vi separerar bilderna i \f1 srcset\f0  med kommatecken.\par
+\par
+Flera media queries, med parentes, kan anv\'e4ndas f\'f6r samma bild.\par
+\par
+Det g\'e5r f\'f6rst\'e5s att strunta i media queries och bara ange bredder p\'e5 elementet. D\'e5 kommer de inte anpassa sig p\'e5 samma s\'e4tt d\'e5 sk\'e4rmvidden \'e4ndras.\par
+\par
+I Photoshop \'e4r det l\'e4tt att ta fram flera storlekar samtidigt d\'e5 man exporterar en bild. Man kan vilja ha egna suffix med t.ex. _600w, eller vilka bredder man nu kan t\'e4nkas ha, ist\'e4llet f\'f6r Photoshops f\'f6rval.\par
+\par
+Det kan vara v\'e4rt att ordna bilderna i mappar f\'f6r att man ska kunna hitta dem l\'e4ttare. Skriv ut s\'f6kv\'e4gen.\par
+\par
+\f1 <picture>\f0  \'e4r ett nytt html5-element som kan anv\'e4ndas p\'e5 liknande s\'e4tt. Olika sources anv\'e4nds och vi avg\'f6r vilken som ska anv\'e4ndas. Image-taggen m\'e5ste vara med; picture-taggen \'e4r ju bara ett slags wrapper.\par
+\par
+\cf1\f1 <picture>\par
+    <source media="(min-width: 650px)" srcset="images/image-big.png">\par
+    <img src="images/image-small.png" alt="Image">\par
+</picture>\par
+\cf0\f0\par
+I de flesta fall b\'f6r man anv\'e4nda vanliga image-element, inte \f1 <picture>\f0 . Det finns d\'e4remot ett lite annorlunda anv\'e4ndningsomr\'e5de.\par
+\par
+\f1 <picture>\f0  har property:arna \f1 srcset\f0 , \f1 w\f0 , \f1 sizes\f0  och \f1 type\f0 . \f1 type\f0 , som ju inte finns f\'f6r \f1 <img>\f0 , l\'e5ter browsern v\'e4lja mellan olika filformat. \f1 <picture>\f0 -elementet har en smartare algoritm \'e4n image, vilket kan vara b\'e5de bra och d\'e5ligt. Anv\'e4nd det i passande fall men inte annars.\par
+\par
+\b\fs28 Uppgift\b0\fs22\par
+Applicera detta p\'e5 Plantify. Anv\'e4nd \f1 <img>\f0  med srcset och sizes.\par
+\par
+\b\fs28 Tips\b0\fs22\par
+pixact.ly l\'e5ter dig \'f6va p\'e5 hur stora pixlar \'e4r.\par
+\par
+Varje g\'e5ng man g\'f6r ett nytt repo p\'e5 GitHub och vill att det ska vara en ny sida, g\'f6r man ett nytt repo, tar bort master branch och byter branchen till gh-pages. D\'e5 slipper man l\'e4gga allt i samma repo.\par
+\par
+--------------------------------------------------------------------------------------------------------------------------------\b\fs28 Scalable Vector Graphics\b0\fs22\par
+\b Representation av en bild p\'e5 ett koordinatsystem\par
+\cf1\b0\f1 .box \{\par
+    position: absolute;\par
+    top: 0;\par
+    left: 0;\par
+    width: 200px;\par
+    height: 200px;\par
+\}\par
+\cf0\f0\par
+Bilden f\'e5r fyra punkter att f\'f6rh\'e5lla sig till. Inom dessa ritar man upp en box.\par
+\par
+Med .svg (Scalable Vector Graphics) ritar man allts\'e5 upp bilden mellan olika fasta punkter.\par
+\par
+En svg-fil \'e4r en bild och en markup samtidigt. Den kan exporteras som en bild. Det g\'e5r att g\'f6ra en s\'e5dan bild helt i kod, inte bara grafiskt.\par
+\par
+H\'e4r ritar vi ut en rektangel:\par
+\cf1\f1 <svg xmlns="http://www.w3.org/2000/svg">\par
+    <rect x="0" y="0" width="200" height="200"></rect>\par
+</svg>\par
+\cf0\f0\par
+Rektangeln g\'e5r fr\'e5n 0,0 till 0,200, fr\'e5n 200,200 till 200,0.\par
+\par
+Former som st\'f6ds i browsers \'e4r\par
+\f1 rect\f0 , \f1 circle\f0 , \f1 line\f0 , \f1 polyline\f0  och \f1 path\f0 . D.v.s. rektangel, cirkel, enkel linje, linjer, samt komplexa banor. Illustrator \'e4r ett verktyg som g\'f6r det h\'e4r enklare f\'f6r oss.\par
+\par
+Det g\'e5r inte att konvertera komplexa bilder, t.ex. fotografier, till svg. Det skulle g\'e5 i teorin men inte i praktik.\par
+\par
+Om m\'f6jligheten finns att anv\'e4nda SVG-format \'e4r det det b\'e4sta m\'f6jliga alternativet. SVG tar mycket liten plats.\par
+\par
+\cf1\f1 xmlns\f0  \cf0 ser till att svg f\'f6ljer en standard. Man kan anv\'e4nda \cf1\f1 viewBox\f0  \cf0 f\'f6r att f\'f6rminska eller f\'f6rstora objektet s\'e5 att det tar upp mer plats inom sj\'e4lva svg-elementet (t\'e4nk zoom). D\'e5 kan man f\'e5 en del av ett element; klippa det. \par
+\par
+\f1 x\f0  och \f1 y\f0  \'e4r var en \b rect \b0 ska b\'f6rja ritas. Olika egenskaper best\'e4mmer f\'e4rg. \f1 fill\f0  ger fyllnadsf\'e4rg. \f1 stroke\f0  ger kant, stroke-width ger kantens tjocklek.\par
+\par
+F\'f6r en \b circle \b0 anv\'e4nder man cx och cy ist\'e4llet f\'f6r x och y, och r f\'f6r radie ist\'e4llet f\'f6r bredd och h\'f6jd.\par
+\par
+F\'f6r \b line \b0 s\'e4tter x1 och y1 en \'e4nde, och x2 och y2 den andra. Naturligtvis m\'e5ste stroke och stroke-width vara med.\par
+\par
+Med \b polyline \b0 m\'e5ste man ange varje nytt x- och y-v\'e4rde d\'e4r linjen ska g\'e5. Detta skrivs som points. Kommatecken s\'e4tts i v\'e4rdena men bara enkelt mellanslag anv\'e4nds mellan dem.\par
+\par
+SVG-filer kan \'f6ppnas som textfiler. Man kan d\'e5 se hur de ritats upp och det g\'e5r att redigera bilderna. Det g\'e5r dessutom att l\'e4gga till alla effekter som kan anv\'e4ndas i CSS till delar av bilderna. Eventuella lager i illustrator blir id:n i kodform.\par
+\par
+Exportera som svg fr\'e5n Illustrator. Alternativt kan man f\'e5 fram svg code. N\'e5got irriterande \'e4r att man kan f\'e5 underliga l\'e4nkar d\'e5 man skapar svg fr\'e5n Illustrator. Det \'e4r oftast inget problem. Om man ska redigera n\'e5got \'e4r det viktigast att ha koll p\'e5 bredd och h\'f6jd.\par
+\par
+Somliga anv\'e4nder fonts ist\'e4llet f\'f6r svg. Jesper f\'f6respr\'e5kar svg \'f6ver fonts.\par
+\par
+\par
+}
+ 
