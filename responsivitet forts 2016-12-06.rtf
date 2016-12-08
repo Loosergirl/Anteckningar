@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
-{\colortbl ;\red0\green77\blue187;}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.14393}\viewkind4\uc1 
 \pard\sl240\slmult1\f0\fs22\lang29 Det finns flera s\'e4tt att f\'e5 bilder responsiva. T.ex. kan man skala ned dem. Men man m\'e5ste \'e4ven ta h\'e4nsyn till vilken uppl\'f6sning anv\'e4ndare har. Naturligtvis ska inte bilder se f\'f6r pixliga ut. Ett s\'e4tt \'e4r att man s\'e4tter vidden eller h\'f6jden p\'e5 bilderna till 100% och vidden/h\'f6jden (beroende p\'e5 vad man inte satt till 100%; t\'e4nk p\'e5 om de \'e4r landskap eller portr\'e4tt) till auto och sedan l\'e4gga bilderna i containers. D\'e4refter skalar man om containers. Ofta vill man att bilderna ska ta upp s\'e5 mycket plats de kan och best\'e4mma sin storlek utifr\'e5n kringliggande element.\par
 \par
@@ -68,7 +68,7 @@ Med .svg (Scalable Vector Graphics) ritar man allts\'e5 upp bilden mellan olika 
 En svg-fil \'e4r en bild och en markup samtidigt. Den kan exporteras som en bild. Det g\'e5r att g\'f6ra en s\'e5dan bild helt i kod, inte bara grafiskt.\par
 \par
 H\'e4r ritar vi ut en rektangel:\par
-\cf1\f1 <svg xmlns="http://www.w3.org/2000/svg">\par
+\cf1\f1 <svg xmlns="{{\field{\*\fldinst{HYPERLINK http://www.w3.org/2000/svg }}{\fldrslt{http://www.w3.org/2000/svg\ul0\cf0}}}}\f1\fs22 ">\par
     <rect x="0" y="0" width="200" height="200"></rect>\par
 </svg>\par
 \cf0\f0\par
@@ -97,6 +97,22 @@ Exportera som svg fr\'e5n Illustrator. Alternativt kan man f\'e5 fram svg code. 
 \par
 Somliga anv\'e4nder fonts ist\'e4llet f\'f6r svg. Jesper f\'f6respr\'e5kar svg \'f6ver fonts.\par
 \par
+\b\fs28 Responsiva bovar\par
+\b0\fs22 7s, pinches och drifts. Man har en liten design, en stor design, och bovarna d\'e4rimellan. \par
 \par
+\b Sevens\b0\par
+Man trycker ihop inneh\'e5llet s\'e5 att det l\'e4gger sig i 7-m\'f6nster. N\'e4rap\'e5 kvadratiska blder ligger vid sidan om avl\'e5nga textblock som str\'e4cker ut sig l\'e4ngre i h\'f6jdled. En l\'f6sning kan vara att man tar bort n\'e5got, antingen bilden eller text. Ha en plan f\'f6r hur 7:orna ska hanteras.\par
+\par
+\b Pinches\b0\par
+Detta kan vara lite otydligare men h\'e4nder ofta. Man har boxar med text och bilder. De kan d\'e4remot b\'f6rja krocka med varandra s\'e5 att det blir otydligt vilka bilder som h\'f6r till vilken text. Inneh\'e5llsblocken b\'f6rjar inkr\'e4kta p\'e5 varandra. D\'e5 kan man beh\'f6va g\'f6ra det tydligare vad som h\'f6r till vad eller flytta p\'e5 n\'e5got.\par
+\par
+\b Drifts\b0\par
+Detta \'e4r det vanligaste problemet. Vad som fungerar som en bra marginal p\'e5 stora sk\'e4rmar blir en otydlig marginal p\'e5 sm\'e5 sk\'e4rmar. Inneh\'e5llet kan 'drift:a' s\'e5 att det blir sv\'e5rt att se vad som h\'f6r till vad.\par
+\par
+\b Rekommendation\b0\par
+G\'e5 in via bradfrost.gthub.io och pr\'f6va via coepen.io/bradfrost/full/...\par
+\par
+{{\field{\*\fldinst{HYPERLINK http://bradfrost.github.io/this-is-responsive/patterns }}{\fldrslt{http://bradfrost.github.io/this-is-responsive/patterns\ul0\cf0}}}}\f0\fs22\par
+Vad \'e4r b\'e4st?\par
 }
  
