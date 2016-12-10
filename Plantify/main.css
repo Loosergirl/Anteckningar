@@ -12,44 +12,162 @@ D.v.s används klassen mer än en gång?
 em samt rem. Tänk på rytmen och grids.
 */
 
-/*Samtliga sidor ska ha en enhetlig design. 
-Layouten ska inte skilja sig från sida till sida.*/
 
-/*Tabellen/tabellerna samt formuläret ska ha en
- custom styling.
-*/
-
-/*Sidan ska använda sig utav 2 custom fonts. 
-En för headings och en för body text
-*/
-
+/*HTML*/
 html {
 	height: 100%;
 }
 
+/*Body*/
 body {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
 	margin: 0;
 	height: 100%;
-	font-family: 'Raleway', Arial, sans-serif;
-	font-size: 1em;
+	font: 16px/1.5 'Raleway', Arial, sans-serif;
+	background-image: url('back.png');
 }
 
-h1 {
+/*Nav-bar på alla sidor*/
+nav {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+	background-image: url('header.jpg');
+	/*background-color: rgba(98, 193, 175, 0.5);*/
+	/* background-color: rgba(91, 178, 162, 0.5); */
+	height: 6rem;
+	width: 100%;
+}
+
+/*Länkar. Fem stycken, finns endast i nav-bar.*/
+a {
+	text-decoration: none;
+	color: black;
+	text-shadow: 1px 1px 0 #62698B;
+}
+
+/*Rubriker, används på alla sidor utom home/index-sidan.
+Eftersom det är två sections på Contact-sidan används då h2*/
+h1, h2 {
 	font-family: 'Josefin Sans', 'Open Sans', sans-serif;
 	font-size: 2.25em;
 }
 
+/*Huvudtext, endast på main/index-sidan*/
+main {
+	padding-top: 8rem;
+	width: 40rem;
+	font-size: 1.2rem;
+}
+
+/*Annan text, används på Plant Themes och About*/
+section {
+	padding-top: 0.75rem;
+	width: 40rem;
+}
+
+/*Tabell på Pricing-sidan*/
 table {
 	border-collapse: collapse;
-	margin-left: 4.5rem;
+	margin-left: 2.2rem;
+	width: 50rem;
 }
 
-td {
-	border-left: 1px solid grey;
-	border-right: 1px solid grey;
+/*Tabellrader i tabellen på Pricing-sidan*/
+tr {
+	height: 1.5rem;
+}
+
+/*Tabellceller i tabellen på Pricing-sidan, inklusive header cellerna*/
+td, th {
 	text-align: center;
+	padding: 0.25rem 0.75rem 0.25rem 0.75rem;
 }
 
-th {
-	border: 1px solid grey;
+/*Formen på Contact-sidan*/
+form {
+		font: 16px/0.5 'Raleway', Arial, sans-serif;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		width: 75%;
+		padding-left: 6rem;
+}
+
+/*Text- och email inputs i formen på Contact-sidan*/
+input[type=text], input[type=email] {
+	margin-bottom: 3.2rem;
+}
+
+/*Bild på Plant Themes-sidan. 
+Var ursprungligen tre bilder, 
+nu ihopsatta för att följa samma mönster som bilden på About-sidan.*/
+.plant_themes {
+	width: 45%;
+	margin: 1.5rem auto 0 auto;
+}
+
+/*Klass som formaterar loggan på alla sidor.*/
+.logo {
+	height: 12rem;
+	margin-top: 4rem;
+}
+
+/*Formaterar <p>-texten i nav-bar:en som är en "fake-länk"
+till den sida som är vald för tillfället.*/
+.navselect {
+	color: rgb(243, 243, 244);
+	text-shadow: 1px 1px 0 #62698B;
+	font-weight: bold;
+}
+
+/*Lägger in en kant runt omkring exclusive-kolumnen i tabellen.
+Jag får det inte att fungera att gruppera kolumner, förmodligen p.g.a. att 
+flex-flow är satt till column?
+Jag vill ha kant runt exclusive för att motivera köpare att välja det alternativet.*/
+.exclusive, .exclusive_top, .exclusive_bottom {
+	border-left: 2px solid rgb(91, 178, 162);
+	border-right: 2px solid rgb(91, 178, 162);
+}
+
+/*Övre kant till kolumnen med exclusive i Pricing-tabellen.*/
+.exclusive_top {
+	border-top: 2px solid rgb(91, 178, 162);
+}
+
+/*Nedre kant till kolumnen med exclusive i Pricing-tabellen.*/
+.exclusive_bottom {
+	border-bottom: 2px solid rgb(91, 178, 162);
+}
+
+/*Bild på About-sidan*/
+.modernpic {
+	margin-top: 1.5rem;
+}
+
+/*Divar:inuti formen på Contact-sidan. 
+Deras syfte är att bättre positionera elementen i formen.*/
+.form_div {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: space-between;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+
+/*Section på Contact-sidan som positionererar om allt*/
+.ignore_body {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	width: 100%;
+}
+
+/*De två sections på Contact-sidan*/
+.two_sections {
+	text-align: center;
+	width: 32%;
 }
