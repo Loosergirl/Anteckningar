@@ -1,0 +1,149 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red255\green0\blue0;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29  Vanliga standarder\b0\fs22\par
+Standarder som finns - vad \'e4r de? \par
+\par
+\b\fs28 HTML\b0\fs22\par
+HTML \'e4r en standard som vi anv\'e4nder varje dag. HTML har utvecklats \'f6ver tid. Standarderna har inte uppst\'e5tt i ett vakuum. B\'e5de HTML och CSS (s\'e4rskilt CSS3) \'e4r relativt nytt. \par
+\par
+HTML st\'e5r f\'f6r HyperText Markup Language. Hypertext \'e4r text som inneh\'e5ller l\'e4nkar till annan text. L\'e4nkarna kan vara p\'e5 faktiska sidor eller bara URL:er. Idag \'e4r det inte bara text det handlar om utan \'e4ven andra resurser. HTML beh\'f6vs d\'e4remot fortfarande f\'f6r att visa upp vad som finns.\par
+\par
+Markup language \'e4r inte n\'e5got specifikt f\'f6r HTML. Det finns flera andra. Det handlar bara om att m\'e4rka upp saker, vad olika data ska ligga. Ett s\'e4tt att strukturera datan man har. Kort sagt \'e4r ett markup language ett spr\'e5k f\'f6r att m\'e4rka upp inneh\'e5ll. Det g\'e4ller att m\'e4rka upp saker p\'e5 r\'e4tt s\'e4tt och faktiskt bidra med den information vi s\'e4ger att vi ska g\'f6ra. Meningen \'e4r att elementen ska anv\'e4ndas p\'e5 r\'e4tt s\'e4tt, \'e4ven om det inte alltid g\'e5r till s\'e5. \par
+\par
+Andra markup languages \'e4r XML och MarkDown. Det senare \'e4r bara ett mellansteg som konverteras till HTML.\par
+\par
+\b\fs28 SGML\b0\fs22\par
+Det mesta har SGML som utg\'e5ngspunkt. Detta \'e4r inte n\'e5got urspr\'e5k utan ett s\'e4tt att strukturera inneh\'e5ll. F\'f6rkortningen st\'e5r f\'f6r Standardized Generalized Markup Language. Det \'e4r inte ens n\'e5got spr\'e5k alls, bara en ISO-standard f\'f6r att strukturera data. Syftet \'e4r att det ska g\'e5 att \'f6verf\'f6ra data.\par
+\par
+Till en b\'f6rjan var HTML baserat p\'e5 SGML, i versionerna 1-4. Men HTML5 fr\'e5ngick standarden. Vissa saker fr\'e5n SGML lever kvar men vi beh\'f6ver inte f\'f6rh\'e5lla oss till den. Det var WHATWG som l\'e4mnade standarden bakom sig.\par
+\par
+HTML saknar en faktiskt DTD: DocType Definition. Det \'e4r den som anges i b\'f6rjan av varje dokument. I sj\'e4lva verket har inte HTML5 n\'e5gon Doctype. Om man inte s\'e4tter n\'e5gon Doctype kommer HTML5 anv\'e4ndas. Att s\'e4tta n\'e5gon annan Doctype \'e4n HTML \'e4r just nu inte n\'f6dv\'e4ndigt.\par
+\par
+\b\fs28 XHTML\b0\fs22\par
+XHTML \'e4r ett f\'f6rs\'f6k att f\'e5 mer strukturerad HTML. Inte alla ville ha HTML5. XHTML anv\'e4nder en DTD som pekar mot W3Cs specifikation f\'f6r hur dokument ska l\'e4ggas upp.\par
+\par
+\'c4ven de \'e4ldre HTML-versionerna anv\'e4nde Doctype p\'e5 ett s\'e5dant s\'e4tt. Det skiljer sig inte s\'e5 mycket fr\'e5n det vi anv\'e4nt tidigare.\par
+\par
+\b\fs28 XML\b0\fs22\par
+eXtensible Markup Language. Bygger ocks\'e5 p\'e5 SGML (allt bygger inte p\'e5 SGML, men det \'e4r en bra standard f\'f6r att l\'e4gga upp information).\par
+\par
+Vi ska h\'e4mta data fr\'e5n n\'e4tet senare. D\'e5 kommer vi f\'e5 antingen XML eller json. Detta \'e4r inte till f\'f6r att visa datan. Man vill bara h\'e4mta datan f\'f6r att anv\'e4nda den n\'e5gonstans.\par
+\par
+Strukturen liknar vad vi \'e4r vana vid. Det \'e4r taggar som ska st\'e4ngas, med information inuti:\par
+\cf1\f1 <person>\par
+  <name> Gooby Flooby </name>\par
+  <occupation> Made up </occupation>\par
+</person>\par
+\cf0\f0\par
+Sluttaggarna s\'e4ger att vi har h\'e4mtat alla information vi ska och att det inte \'e4r mer data. \par
+\par
+F\'f6rmodligen blir det inte s\'e5 sv\'e5rt eftersom det liknar HTML. Spr\'e5k baserade p\'e5 SGML-strukturen liknar varandra allihop. HTML bygger i grunden ocks\'e5 p\'e5 samma ISO-standard.\par
+\par
+Program som till exempel Word visar data p\'e5 s\'e4rskilda s\'e4tt. Det g\'e5r att packa upp en .docx fil och f\'e5 tillg\'e5ng till Xml-filerna (ett program beh\'f6vs f\'f6r att packa upp den). Olika Xml-filer sk\'f6ter olika delar av dokumentet, t.ex. footnotes, endnotes, document.\par
+\par
+Document Object Model\par
+B\'e5de HTML och XML kan manipuleras med t.ex. JavaScript. DOM (Document Object Model) avg\'f6r hur det ska fungera. \par
+\par
+Varje tag i b\'e5de XML och HTML skapar en \b\i node\b0\i0 . Dessa kan ses i webbl\'e4saren (vad taggarna har f\'f6r v\'e4rden och egenskaper). En nod liknar ett objekt som kan manipuleras med JavaScript. Man kan g\'f6ra saker som \'e4r till\'e5tna av DOM API. \par
+\par
+DOM \'e4r inte v\'e5r HTML men det \'e4r ocks\'e5 v\'e5r HTML. Vi har v\'e5ra taggar, men n\'e4r det visas i webbl\'e4saren har vi v\'e5r DOM d\'e4r. DOM \'e4r inte strikt bundet till HTML.\par
+\par
+Fr\'e4mst finns textnoder eller elementnoder. Det finns ocks\'e5 attributnoder.\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 text node\par
+{\pntext\f2\'B7\tab}element node\par
+{\pntext\f2\'B7\tab}attribute node\par
+
+\pard\sl240\slmult1\par
+DOM-tr\'e4det kan ritas upp p\'e5 olika s\'e4tt. Men man utg\'e5r alltid fr\'e5n dokumentet, rotnoden, \f1 document\f0 . D\'e4r finns alla andra noder som dess barn. Alternativt finns \'e4ven noden \f1 window\f0  som \'e4r hela f\'f6nstret. \par
+\par
+I grunden \'e4r det samma metod som anv\'e4nds n\'e4r man kallar p\'e5 nogot, allts\'e5 \f1 getElementsByTagName\f0 . Detta blir mindre synligt n\'e4r man anv\'e4nder ett ramverk som t.ex. React (vi g\'e5r mot att f\'e5 mer dynamiska hemsidor som uppdateras i realtid).\par
+\par
+\cf1\f1 var els = \cf2 document\cf1 .getElementsByTagName('li');\cf0\f0\par
+\par
+H\'e4r \'e4r det f\'e4rdiga funktioner f\'f6r att h\'e4mta. \cf2\f1 document\f0  \cf0\'e4r objektet d\'e4r alla funktioner finns. Vi f\'e5r i det h\'e4r fallet tillbaka alla \f1 li\f0 -element. Jesper har sagt f\'f6rut att en array returneras, men i sj\'e4lva verket \'e4r det bara en "array-like" collection. Flera inbygda funktioner som fungerar p\'e5 vanliga arrayer fungerar inte h\'e4r. I sj\'e4lva verket \'e4r det antingen en \f1 HTMLCollection\f0  eller en \f1 NodeList\f0  vi f\'e5r tillbaka. Till skillnad fr\'e5n en array s\'e5 saknas prototyper (vi ska g\'e5 in p\'e5 prototyper senare). Det g\'e5r d\'e4remot att konvertera till en array.\par
+\par
+Eftersom allt \'e4r skapat f\'f6r webben liknar notationen JavaScript. Det \'e4r punktnotation (dot notation). Man utg\'e5r ifr\'e5n att det finns objekt.\par
+\cf1\f1 body.style.background = "red";\cf0\f0\par
+\par
+H\'e4r \'e4r en funktion som here querySelector eller querySelectorAll. I det f\'f6rsta fallet f\'e5r man bara ut det f\'f6rsta elementet av den typen som st\'f6ts p\'e5, medan i det andra f\'e5r man ut en \f1 NodeList\f0  med alla elementen:\par
+\cf1\f1 var els = document.querySelectorAll('li');\par
+\cf0\f0\par
+Med en \f1 HTMLCollection\f0  kan man inte f\'e5 ut vissa noder, t.ex. textnoder, utan bara vanliga element. En \f1 NodeList\f0  f\'e5r ut textnoder. Det g\'e5r ocks\'e5 att specificera mer vad man vill ha ut med \cf1\f1 querySelectorAll\cf0\f0 .\par
+\par
+Det finns en till viktig skillnad. En \f1 HTMLCollection\f0  kommer uppdatera sig om man loggar ut de olika samlingarna. \f1 NodeList\f0 :en sparas och uppdateras inte. Inneh\'e5llet \'e4r det samma. Om man tar bort ett element och sedan loggar ut en \f1 HTMLCollection\f0  och en \f1 NodeList\f0 , kommer elementet f\'f6rsvinna fr\'e5n \f1 HTMLCollection\f0 :en medan det finns kvar i \f1 NodeList\f0 :an.\par
+\par
+F\'f6r det mesta kan man behandla det som arrayer. Det g\'e5r f\'f6rst\'e5s att konvertera till arrayer. Men det \'e4r viktigt att komma ih\'e5g att det inte \'e4r faktiska arrayer fr\'e5n b\'f6rjan.\par
+\par
+\b\fs28 Standarder f\'f6r datalagring\par
+\b0\fs22 Vi kommer anv\'e4nda json ist\'e4llet f\'f6r xml. Data ska kunna \b parsas\b0 . Det ska vara l\'e4ttl\'e4st f\'f6r b\'e5de m\'e4nniska och maskin. Vi vill ocks\'e5 kunna konvertera till andra format, s\'e5 en standard m\'e5ste finnas fr\'e5n b\'f6rjan.\par
+\par
+\cf1\f1 var jsObject = \{\par
+    name: "Gurt Flurgur",\par
+    weapon: "Rusty knife",\par
+    hp: 10;\par
+    warCry: function() \{\par
+        return "ugh";\par
+    \}\par
+\}\par
+\cf0\f0\par
+Strukturen liknar varandra i CSS:en, DOM:en och JavaScript \'e4ven om det skiljer sig lite. Man har \b key value pairs\b0 ; nycklar med v\'e4rden kopplade till dem. V\'e4rden kan ligga i varandra. Olika spr\'e5k kallar det olika saker. JavaScript \'e4r inte det enda spr\'e5k som sorterar p\'e5 detta s\'e4tt. \par
+\par
+JSON st\'e5r f\'f6r \b JavaScript Object Notation\b0 . Det kommer fr\'e5n object literal:en i JavaScript och utvecklades fr\'e5n JavaScript fr\'e5n b\'f6rjan. Det kallas f\'f6r ett "Subset of EcMAScript Objects". Det utvecklades till ett s\'e4tt att hantera data i form av objekt.\par
+\par
+N\'e4r man jobbar med webben och JavaScript har vi objekt. Vi vill att informationen som tas in ocks\'e5 ska vara objekt f\'f6r att vi ska kunna veta hur den ska hanteras.\par
+\par
+Standarden \'e4r n\'e5got som liknar ett objekt, enligt vissa strikta regler, men \'e4r mer anpassad f\'f6r att skickas \'f6ver internet:\par
+\par
+\{\par
+    "name" : "Gurt Flurgur",\par
+    "weapon" : "Rusty knife",\par
+    "hp" : "10"\par
+\}\par
+\par
+Det finns en del saker att t\'e4nka p\'e5 vad det g\'e4ller JSON: Allt \'e4r str\'e4ngar. Man f\'e5r heller inte skicka med vad som helst. Beroende p\'e5 vad som ska g\'f6ras med informationen kan det beh\'f6ver konverteras till JavaScript objekt. Det beh\'f6vs inte om det bara \'e4r str\'e4ngar.\par
+\par
+
+\pard\sa200\sl240\slmult1 Till\'e5tna datatyper f\'f6r JSON-objekt \'e4r:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1\f1 Number\par
+{\pntext\f2\'B7\tab}String\par
+{\pntext\f2\'B7\tab}Bool\par
+{\pntext\f2\'B7\tab}Array\par
+{\pntext\f2\'B7\tab}Object\par
+{\pntext\f2\'B7\tab}Whitespace\par
+{\pntext\f2\'B7\tab}Null\par
+
+\pard\sl240\slmult1\f0\par
+Detta g\'e4ller \'e4ven f\'f6r v\'e4rdena i str\'e4ngarna. De m\'e5ste f\'f6rh\'e5lla sig till detta. \par
+\par
+
+\pard\sl240\slmult1 Datatyper som inte till\'e5ts \'e4r \par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1\f1 function()\par
+{\pntext\f2\'B7\tab}undefined\par
+
+\pard\sl240\slmult1\f0\par
+Data som data: Funktioner kan skrivas om som str\'e4ngar, \'e4ven om specifikationen inte s\'e4ger att man ska g\'f6ra s\'e5.\par
+\par
+\b\fs28 L\'e4sbart f\'f6r datorn\par
+\b0\fs22 Det ska vara l\'e4sbart f\'f6r datorn. Det spelar inte n\'e5gon roll om det \'e4r PC eller Mac. JSON \'e4r standarden f\'f6r att skicka information p\'e5 webben. I princip \'e4r det ett mer strukturerat och med strikta objekt.\par
+\par
+\b Key value pairs\par
+\b0 Detta \'e4r nycklar med v\'e4rden kopplade till dem. V\'e4rden kan ligga i varandra; objekt i objekt. Olika spr\'e5k kallar det olika saker. \par
+\par
+\b Serialization\b0\par
+Att konvertera objekt till str\'e4ngar. Det g\'f6rs lite olika f\'f6r olika spr\'e5k. Inte bara ska konvertering ske, utan \'e4ven hur det ska konverteras tillbaka s\'e5 att det g\'e5r att anv\'e4nda. Om man inte formaterat r\'e4tt blir det massor av fel.\par
+\par
+F\'f6r JavaScript har man \cf1\f1 JSON.stringify();\cf0\f0\par
+\par
+\b Parsing\b0\par
+N\'e4r n\'e5got faktiskt omvandlats till JSON, m\'e5ste det kunna tas tillbaka. D\'e5 parsar man. Det kallas \'e4ven de-serialization och sker automatiskt i processen. Ibland kan det d\'e4remot beh\'f6va g\'f6ras manuellt. \par
+\par
+I JavaScript anv\'e4nds \cf1\f1 JSON.parse();\cf0\f0\par
+\par
+\b JSON filer\par
+\b0 Fil\'e4ndelsen f\'f6r JSON \'e4r \f1 .json\f0 . Oftast sparar man inte datan i den formen. Strukturen \'e4r p\'e5 detta s\'e4tt f\'f6r att data ska skickas.\par
+}
+ 
