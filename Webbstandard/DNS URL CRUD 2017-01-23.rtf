@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs22\lang29 HTML5\b0  - Standarden vi anv\'e4nder f\'f6r att skriva v\'e5ra hemsidor. index.html m\'e5ste alltid finnas. P\'e5 \'e4ldre sidor kan \'e4ven index.htm anv\'e4ndas (fr\'e5n tiden d\'e5 Windows bara till\'e4t fil\'e4ndelser p\'e5 tre bokst\'e4ver). WHATWG har en specifikation, som man kan men inte m\'e5ste f\'f6rh\'e5lla sig till. Det kan vara bra att l\'e4gga in flera saker som g\'f6r sidan l\'e4sbar. Det g\'e5r egentligen att leverera en HTML-fil utan n\'e5gon HTML-tag (i HTML5). Men anv\'e4nd \f1 !DOCTYPE html\f0  f\'f6r att undvika f\'f6rvirring med andra filtyper.\par
+\par
+\b DOM\b0  \'e4r ett interface f\'f6r att komma \'e5t HTML eller XML. Det \'e4r varken kopplat till JavaScript eller HTML. Vilket annat spr\'e5k som helst kan manipulera DOM-tr\'e4det. Oftast kommer vi d\'e4remot i kontakt med DOM n\'e4r vi h\'e5ller p\'e5 med JavaScript. Det g\'e5r \'e4ven att anv\'e4nda DOM till att manipulera SVG-element. Ett antal metoder till\'e5ter manipulation av SVG via JavaScript.\par
+\par
+\b XML \b0 och \b JSON \b0\'e4r standardiserade s\'e4tt att strukturera data. Key/value pairs anv\'e4nds. Eftersom vi ska dela data m\'e5ste vi ange den i ett format som anv\'e4ndaren kan tolka.\par
+\par
+\cf1\f1\{\par
+    "key": "value",\par
+    "name": "Florbor Trufyr",\par
+    "likes": ["sunset walks", "fine arts"]\par
+\}\par
+\cf0\f0\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\b\fs32 Standarder f\'f6r att koppla samman webben\par
+\b0\fs22 Vi tar mycket f\'f6r givet n\'e4r vi surfar. I sj\'e4lva verket sker m\'e5nga steg n\'e4r vi bes\'f6ker en sida, f\'f6r det mesta automatiskt.\par
+\par
+ARPANET kan kallas det f\'f6rsta internet. Det var en sammanl\'e4nkning av datorer. Senare lyckades man koppla ihop tv\'e5 datorer mellan Europa och Nordamerika. Detta gjordes m\'f6jligt eftersom vi hade IP connections (internet protocols). \'c4r man p\'e5 internet har man alltid en adress som kan n\'e5s. F\'f6rst\'e5s kan man inte luska ur exakt vilken IP-adress en viss dator har eftersom m\'e5nga enheter \'e4r uppkopplade.\par
+\par
+\b Internal vs. external IP\par
+\b0 Man n\'e5s via ett externt IP. Det finns tj\'e4nster p\'e5 n\'e4tet d\'e4r man kan kontrollera vilket IP man har. Internet-leverant\'f6rerna distribuerar externa IP adresser. Oftast har man en router som mellansteg, som tills\'e4tter interna IP och sj\'e4lv har det externa IP:et. Routern f\'f6rdelar allts\'e5 internet till flera enheter under samma external IP.\par
+\par
+Det nuvarande s\'e4ttet att skriva IP-nummer \'e4r p\'e5 v\'e4g bort. Det finns inte tillr\'e4ckligt med siffror l\'e4ngre f\'f6r att koppla upp alla enheter. 2011 tog de sista IP-adresserna slut. D\'e4rf\'f6r r\'f6r vi oss fr\'e5n IPV4 till IPV6. Problemet v\'e4r k\'e4nt redan under 90-talet och d\'e4rf\'f6r b\'f6rjade man arbeta fram IPV6. Troligtvis kommer inte de l\'e4ngre adresserna ta slut p\'e5 ett bra tag.\par
+\par
+\b URL/Dom\'e4nnamn\b0\par
+F\'f6r att komma \'e5t resurser p\'e5 internet har vi oftast dom\'e4nnamn eller URL dit vi g\'e5r f\'f6r att komma \'e5t resurserna. Ist\'e4llet f\'f6r IP anv\'e4nder man namn. Oftast har vi inte bara en index-sida, utan mycket mer (bl.a. CSS, Javascript). URL st\'e5r f\'f6r Uniform Resource Locator. Vi tycker det verkar som om vi g\'e5r till en viss adress, men i sj\'e4lva verket h\'e4mtar vi resurser. Protokollen s\'e4ger vad som ska h\'e4mtas och n\'e4r. URL:en \'e4r ett standardiserat s\'e4tt att h\'e4mta information. Vad som h\'e4mtas \'e4r inte lika viktigt som att s\'e4ttet att h\'e4mta \'e4r standardiserat.\par
+\par
+En URL \'e4r en typ av URI. Det \'e4r en viss specifikation. URI st\'e5r f\'f6r Uniform Resource Identifier. Ett exempel p\'e5 d\'e4r URI anv\'e4nds \'e4r Spotify. D\'e5 kan bara Spotify-programmet hantera l\'e4nken, till skillnad fr\'e5n om ett URL anv\'e4ndes. URI:er m\'e5ste kopplas till n\'e5got program eller liknande.\par
+\par
+Vad det g\'e4ller URL:er \'e4r de specificerade p\'e5 ett visst s\'e4tt. De l\'e4ses fr\'e5n h\'f6ger till v\'e4nster, inte fr\'e5n v\'e4nster till h\'f6ger. Ett antal saker m\'e5ste vara med f\'f6r att en l\'e4nk ska kunna bes\'f6kas. De ursprungliga top level domains, som anv\'e4ndes fr\'e5n b\'f6rjan, var .com, .org, .net, .int, .edu, .gov, .mil och .arpa. Det beh\'f6vs alltid en top level domain. Om det ser ut som om man har dubbla toppdom\'e4ner \'e4r det i sj\'e4lva verket bara den sista som \'e4r en toppdom\'e4n. \'c4ndelsen .io \'e4r nu popul\'e4r bland tech-f\'f6retag eftersom man tror att det betyder input-output. I sj\'e4lva verket \'e4r .io kopplat till ett landomr\'e5de i England.\par
+\par
+Dom\'e4nnamn skaffas i kombination med toppdom\'e4nnamnet. Det kallas second-level domain. Stora f\'f6retag kan k\'f6pa upp felstavade dom\'e4nnamn och dom\'e4nnamn kombinerade med andra toppdom\'e4nnamn.\par
+\par
+Subdomain \'e4r oftast www. men man kan definiera vilka subdom\'e4n man vill. Det g\'e5r att hoppa \'f6ver www men det anv\'e4ndes i b\'f6rjan f\'f6r att markera att det tillh\'f6r World Wide Web. Nu f\'f6r tiden h\'e4mtas informationen p\'e5 samma s\'e4tt men fr\'e5n b\'f6rjan var det n\'f6dv\'e4ndigt att definiera med www.\par
+\par
+Om http eller https inte anges kommer antagandet att det \'e4r http g\'f6ras (hypertext transfer protocol). Protokoll definierar hur resurser ska h\'e4mtas. \par
+\par
+S\'e4ttet att bes\'f6ka hemsidor \'e4r standardiserat. D\'e4rf\'f6r har man tagit bort en del saker. Filen vi letar efter samt porten s\'e4tts implicit. Vi skriver allts\'e5 inte ut fil\'e4ndelser eller index.html. Vad det g\'e4ller porten; f\'f6r att komma \'e5t en resurs m\'e5ste vi ha en viss port \'f6ppen. N\'e4r man bes\'f6ker en URL p\'e5 en hemsida g\'e5r man alltid genom port 80. \par
+\par
+Github-sidan skulle ha kunnat vara:\par
+{{\field{\*\fldinst{HYPERLINK https://fend16.github.io:80/index.html }}{\fldrslt{https://fend16.github.io:80/index.html\ul0\cf0}}}}\f0\fs22\par
+\par
+\b Dom\'e4nnamn\b0\par
+Tv\'e5 personer kan inte \'e4ga samma dom\'e4nnamn. N\'e5gon m\'e5ste vara \'e4gare. Hur det g\'e5r till att f\'e5 ett dom\'e4nnamn och kopplas till vissa id eller adresser \'e4r upp till anv\'e4ndaren sj\'e4lv. N\'e4r man skaffar ett dom\'e4nnamn blir man bara \'e4gare. Man m\'e5ste k\'f6pa det. Det g\'e5r att k\'f6pa dom\'e4nnamn och l\'e4gga dem p\'e5 h\'f6g utan att anv\'e4nda dem. Man kan ocks\'e5 anv\'e4nda dem f\'f6r att peka vidare till en hemsida; det \'e4r bara en etikett. Ett antal f\'f6retag \'e4gnar sig \'e5t att bara k\'f6pa och s\'e4lja dom\'e4nnamn.\par
+\par
+\b DNS-server\b0\par
+Ett system m\'e5ste h\'e5lla koll p\'e5 vilka namn som g\'e5r var. Varje g\'e5ng vi g\'e5r till en adress kontaktas en DNS-server (\i Se \'e4ven\i0  2016 Dyn cyberattack).\par
+\par
+\b Vad beh\'f6ver vi t\'e4nka p\'e5 i praktiken?\par
+\b0 Man kan kolla vad som h\'e4mtas och n\'e4r. I Developer Tools finns panelen/tabben N\'e4tverk. D\'e4r kan man hitta fel och saker man vill optimera. V\'e4lj "Disable cache" f\'f6r att vi inte vill inkludera n\'e5got som finns lagrat p\'e5 datorn.\par
+\par
+Fels\'f6kning o.s.v. \'e4r m\'f6jlig. Det man ska h\'e5lla koll p\'e5, om saker tar l\'e5ng tid att ladda, \'e4r om de \'e4r bl\'e5a. D\'e5 har de stort inneh\'e5ll. Gr\'f6nt eller gr\'e5tt v\'e4ntar bara p\'e5 att annat inneh\'e5ll ska laddas in.\par
+\par
+Simulera en l\'e5ngsam enhet med throttling, i menyn l\'e4ngst till h\'f6ger brevid checkrutorna. \par
+\par
+Ibland kan problemet vara hur servern levererar inneh\'e5llet.\par
+\par
+Google har verktyget PageSpeed Insights. Google har f\'f6rst\'e5s id\'e9er om vad som \'e4r snabbt. T.ex. kan de s\'e4ga att inline CSS \'e4r b\'e4ttre f\'f6r extra viktig CSS. Andra verktyg \'e4n PageSpeed Insights finns \'e4ven att prova. Lighthouse \'e4r googles egna till\'e4gg i Chrome som g\'f6r samma sak.\par
+\par
+\b\'d6vning\b0\par
+Kolla \'f6vningen f\'f6r n\'e4tverkskoll p\'e5 GitHub.\par
+}
+ 
