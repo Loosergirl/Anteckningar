@@ -1,0 +1,225 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 HTTP-protokollet, HTTPS/SSL/TSL, HTTPS Headers/Body, API, Unders\'f6ka API:er med Postman\par
+\par
+N\'e4r vi lagt upp en hemsida finns massor av resurser som ska skickas och h\'e4mtas. Det finns mycket teknologi och ekvationer som skickas varje g\'e5ng vi g\'f6r en request (h\'e4mtar en hemsida). \par
+\par
+\b\fs28 Hypertext Transfer Protocol (HTTP)\par
+\b0\fs22 Det \'e4r HTTP som allting bygger p\'e5. \par
+\par
+\b Rewind\b0\par
+Vi anv\'e4nder \b URL \b0 f\'f6r att bes\'f6ka en hemsida. Man h\'e4mtar dem via en namn. Det \'e4r n\'f6dv\'e4ndigt att alltid ha HTTP protokollet. Om man inte har n\'e5got annat kommer HTTP anv\'e4ndas. Dom\'e4nnamn som k\'f6ps upp och pekar mot ett specifikt IP d\'e4r en sida ligger. Formen \'e4r:\par
+\f1 protokoll://domainname.topdomain\f0\par
+\par
+Ett f\'f6retag m\'e5ste h\'e5lla koll p\'e5 vart alla adresser g\'e5r.\par
+\par
+Varje enhet p\'e5 internet har ett unikt \b IP\b0 . Vi kopplar upp oss mot varandras IP via ett dom\'e4nnamn. N\'e4r vi h\'e4mtar en sida g\'f6r vi en uppkoppling mot ett specifikt IP, mellan servern och klienten. \'c4r det konfigurerat r\'e4tt \'e4r det standardiserat. All data skickas via detta protokoll. Olika protokoll samverkar och allting m\'e5ste st\'e4mma; annars f\'e5r vi ett felmeddelande.\par
+\par
+F\'f6r det mesta \'e4r det backend:are som sk\'f6ter allt det h\'e4r men det \'e4r viktigt att f\'f6rst\'e5 processen. S\'e4rskilt senare f\'f6r JavaScript.\par
+\par
+\b TCP/IP\par
+\b0 Detta \'e4r vad internet \'e4r byggt p\'e5. \b TCP \b0 st\'e5r f\'f6r Transmittion Control Protocol. \'d6verf\'f6ring av data (transmission), kontrollera att datan \'e4r skickad (control) och g\'f6r det p\'e5 ett standardiserat s\'e4tt (protocol). Det \'e4r ett strikt s\'e4tt att hantera data som sker varje g\'e5ng man bes\'f6ker en hemsida. Man utbyter information och kontrollerar att datan \'e4r skickad p\'e5 r\'e4tt s\'e4tt. Andra protokoll kan ocks\'e5 anv\'e4ndas men det h\'e4r \'e4r det mest anv\'e4nda.\par
+\par
+\b Control\b0\par
+Vid varje \'f6verf\'f6ring m\'e5ste protokollet verifiera att data skickas mellan parterna. Det finns n\'e5gon sorts kontroll f\'f6r att data skickats. En koppling m\'e5ste ske mellan tv\'e5 IP-adresser. Det ska skickas n\'e5gon sorts signal. Man vill ha n\'e5got och man vill ha det p\'e5 ett visst s\'e4tt. D\'e5 skickas ett paket med data. Servern eller den andra anv\'e4ndaren tar emot det och skickar tillbaka ett svar. Servern m\'e5ste bekr\'e4fta hur den ska skicka; det kan n\'e4mligen h\'e4nda att anv\'e4ndaren skickar tillbaka saker till servern. N\'e4r man f\'e5tt tillbaka information skickar anv\'e4ndaren ett acknolegement (ett tack) och sedan uppr\'e4ttas kopplingen. \par
+\par
+Man f\'f6rkortar det \b SYN \b0 och \b ACK\b0 . Synchronize (ena sidan skickar sin information) och Acknowedgement (den andra bekr\'e4ftar att informationen \'e4r mottagen). Det kan liknas vid att man utbyter visitkort p\'e5 varje sida man bes\'f6ker. \par
+\par
+Innan vi f\'e5tt webbsidan skickas allts\'e5 information tre g\'e5nger. Det \'e4r inte n\'e5gra stora meddelanden. Efter detta finns en koppling till servern och fler meddelanden beh\'f6ver inte skickas.\par
+\par
+Man delar upp informationen i mindre delar ist\'e4llet f\'f6r att skicka allt p\'e5 en g\'e5ng. N\'e4r man bes\'f6ker en sida delas informationen upp i v\'e4ldigt sm\'e5 delar. Varje paket f\'e5r inte vara st\'f6rre \'e4n 64kb. Eftersom f\'f6rfr\'e5gningarna \'e4r sm\'e5 g\'e5r det snabbt.\par
+\par
+Processen br\'f6kar kallas \b Three-way handshake\b0 . \par
+\par
+\b TCP \b0\'e4r s\'e4kert; sj\'e4lva protokollet kollar att allting kommer fram och att allting kommer fram i r\'e4tt ordning. Ibland \'e4r det inte n\'f6dv\'e4ndigt att skicka allt p\'e5 det h\'e4r s\'e4kra s\'e4ttet.\par
+\par
+Vi har ocks\'e5 \b UDP\b0 : User Datagram Protocol. Det \'e4r ett annat s\'e4tt att skicka data. Det \'e4r inte det som anv\'e4nds n\'e4r vi h\'e4mtar information p\'e5 n\'e4tet. D\'e5 finns inte kontrollen; det sker inte mellan tv\'e5 olika parter utan ist\'e4llet \'e4r det flera parter som ska samverka. Det anv\'e4nds n\'e4r information ska skickas mellan fler \'e4n tv\'e5 parter. Oftast kommer informationen fram \'e4nd\'e5 men det sker inget handskak d\'e4r man kontrollerar om informationen kommit fram. Informationen skickas som en broadcast. Har man programmerat r\'e4tt kommer det inte vara n\'e5got problem men annars kan information g\'e5 f\'f6rlorad. Det \'e4r fr\'e5gan om datapaket med vissa bytes, inte filer.\par
+\par
+UDP anv\'e4nds till exempel vid multiplayer games. Man vill inte ha en uppkoppling mellan enskilda spelare. Ist\'e4llet ska alla spelare som "lyssnar" p\'e5 informationen f\'e5 den. I det stora hela spelar det inte n\'e5gon roll. Det kan bli hackigt men hela tiden kommer ny information.\par
+\par
+\b\fs28 HTTP\b0\fs22\par
+\'d6verf\'f6ring p\'e5 webben sker via HTTP-protokollet. Fr\'e4mst via \b GET \b0 f\'f6r att h\'e4mta fr\'e5n en server. Varje g\'e5ng vi bes\'f6ker en hemsida och h\'e4mtar n\'e5got g\'f6r vi en request via GET. Man skickar en f\'f6rfr\'e5gan till servern om vad man vill ha. Oftast skickas r\'e4tt information tillbaka. Andra metoder finns f\'f6r att sk\'f6ta olika steg n\'e4r man bes\'f6ker en hemsida. \b POST \b0 anv\'e4nds n\'e4r man ska logga in eller registrera sig eller dylikt. D\'e5 beh\'f6ver man skicka information till servern. D\'e5 m\'e5ste servern vara konfigurerad f\'f6r att kunna ta emot informationen f\'f6r att kunna lagra den. GET och POST \'e4r de tv\'e5 fr\'e4msta s\'e4tten som anv\'e4nds f\'f6r att navigera runt p\'e5 internet.\par
+\par
+Detta sker fortfarande genom protokollet HTTP. Man g\'f6r en request och f\'e5r ett response; en f\'f6rfr\'e5gan f\'e5r ett svar. Oftast \'e4r svaret att man f\'e5r hemsidan. Det kan vara andra saker ocks\'e5. Om en resurs inte hittas f\'e5r vi fortfarande response fr\'e5n servern. D\'e5 \'e4r svaret att resursen inte finns. \par
+\par
+\b De prim\'e4ra metoderna\b0 :\par
+GET: H\'e4mta data.\par
+POST: Skicka data.\par
+PATCH: Uppdatera data (t.ex. byta l\'f6senord men beh\'e5ll resten av informationen).\par
+PUT: Byta ut data (ett helt nytt objekt med ny information).\par
+DELETE: Ta bort data.\par
+\par
+Man m\'e5ste ange att de h\'e4r metoderna ska anv\'e4ndas. Annars antas bara att GET ska anv\'e4ndas.\par
+\par
+\b CRUD\b0\par
+Metoderna brukar kallas f\'f6r CRUD: Create Read Update Delete.\par
+\par
+Hur sker en h\'e4mtning? Mycket metadata skickas n\'e4r man skickar en request.\par
+\par
+\b Typisk GET\par
+\cf1\b0\f1 GET /index.html HTTP/1.1\par
+Host: fend16.github.io\par
+\cf0\f0\par
+F\'f6rst specificeras att man ska anv\'e4nda GET. Sedan vad som ska h\'e4mtas. Sedan att det ska h\'e4mtas via http-protokollet 1.1 (det vanlga http-protokollet som har funnits sedan internets barndom). Http2 \'e4r p\'e5 g\'e5ng ocks\'e5. Man m\'e5ste \'e4ven specificera var informationen h\'e4mtas fr\'e5n. De h\'e4r egenskaperna s\'e4tts automatiskt n\'e4r man g\'f6r en f\'f6rfr\'e5gan. Metod, resurs och ursprung \'e4r det huvudsakliga (detta \'e4r f\'f6renklat).\par
+\par
+Tillbaka f\'e5r vi, om det \'e4r r\'e4tt,\par
+\cf1\f1 HTTP/1.1 200 OK\par
+\cf0\f0\par
+200 \'e4r statuskoden f\'f6r att det \'e4r ok. Efter det skickas sj\'e4lva informationen, i ovanst\'e5ende fall index.html.\par
+\par
+\b HTTP Status Codes\par
+\b0 Den b\'e4sta koden \'e4r \cf1\f1 200 OK\cf0\f0 . All information vi vill ha finns med. Den s\'e4msta \'e4r \cf1\f1 404 NOT FOUND\cf0\f0 ; d\'e5 finns inte resursen. Det g\'e5r att fels\'f6ka men alla g\'e5r det inte att g\'f6ra n\'e5got \'e5t (t.ex. 500 internal server error).\par
+\par
+\i Se \'e4ven\i0 : httpstatuses.com\par
+\par
+100-talen syns inte s\'e5 l\'e4nge. 304 betyder att vi h\'e4mtar en cache:ad version ist\'e4llet (d\'e4rf\'f6r \'e4r det viktigt att kryssa i disable cache i n\'e4tverks-tabben i devtools).\par
+\par
+\b HTTP Headers\par
+\b0 Liknande en html har requests och responses headers och body. Vissa headers \'e4r viktigare \'e4n andra. Headers inneh\'e5ller metadata om varje f\'f6rfr\'e5gan. De ber\'e4ttar om vilken typ av inneh\'e5ll som levereras, hur l\'e4nge inneh\'e5llet ska lagras (cache:as) och vilka som f\'e5r komma \'e5t det. F\'f6r det mesta \'e4r det html, css, JavaScript och bilder.\par
+\par
+\b Inspektera\b0\par
+Console kan ge felmeddelanden om resurser som saknas. Sources f\'f6r att kolla om resurserna faktiskt finns. N\'e4rverks-tabben kan anv\'e4nda record och lista upp vad v\'e5ra k\'e4llor \'e4r f\'f6r n\'e5got. Man kan d\'e4r se vilka metoder (t.ex. GET) som anv\'e4nds och deras status. F\'f6r storlekar \'f6ver vad som h\'e4ntas finns tv\'e5 v\'e4rden. Man beh\'f6ver egentligen inte bry sig om skillnaden. Den m\'f6rkare, \'f6vre, \'e4r den minifierade versionen (gzip med GitHub). Den gr\'e5a varianten \'e4r filens storlek innan den f\'f6rpackats.\par
+\par
+Om man klickar p\'e5 en resurs f\'e5r man upp mer information om den. Man kan se all information som skickas och tas emot. Oftast s\'e4tts den h\'e4r datan automatiskt.\par
+\par
+Det kan vara viktigt att se vilken content-type det \'e4r. Det g\'e5r att modifiera detta. Om html ska tolkas som text kommer inte sidan visas.\par
+\par
+X-v\'e4rden (med X- framf\'f6r sig) \'e4r saker som servern vill ha. Det kan vara vad som helst. Om vissa anv\'e4ndare inte ska ha tillg\'e5ng till informationen kan det s\'e4ttas med s\'e5dana v\'e4rden.\par
+\par
+\b\fs28 Postman\b0\fs22\par
+Ist\'e4llet f\'f6r dev tools n\'e4r man ska kolla information fr\'e5n olika k\'e4llor eller som komplement til det. Ladda ned!\par
+{{\field{\*\fldinst{HYPERLINK https://www.getpostman.com/ }}{\fldrslt{https://www.getpostman.com/\ul0\cf0}}}}\f0\fs22\par
+\par
+Postman \'e4r n\'e4stan ett slags browser, fast annorlunda. Det g\'e5r att kolla liknande saker som n\'e4tverkstabben (den h\'e4r appen blir mer anv\'e4ndbar senare). Det finns mer struktur i Postman.\par
+\par
+I princip skriver man in l\'e4ngst upp, p\'e5 ett liknande s\'e4tt som i en browser, och skriver in URL. Man kan specificera vilken metod man vill anv\'e4nda, typiskt s\'e4tt GET. Vi f\'e5r tillbaka information som liknar det man f\'e5r via en webbl\'e4sare.\par
+\par
+F\'f6rdelen \'e4r att det sparas alla f\'f6rfr\'e5gningar som g\'f6rs i appen (f\'f6rst\'e5s finns historik i den vanliga webbl\'e4saren). Det g\'e5r ocks\'e5 att ha flera tabs (l\'e4ngst upp ovanf\'f6r URL-f\'e4ltet).\par
+\par
+Send f\'f6r att skicka iv\'e4g f\'f6rfr\'e5gan. \par
+\par
+Texten nedanf\'f6r \'e4r vad vi skulle se i elements eller source-tabben. Man kan v\'e4lja att se informationen i Pretty, Raw (r\'e5 kod som skickas) eller Preview (hur hemsidan ser ut). Vi g\'f6r f\'f6rfr\'e5gan bara p\'e5 html-sidan, till skillnad fr\'e5n hur det blir i en webbl\'e4sare.\par
+\par
+Status till h\'f6ger ovanf\'f6r texten \'e4r hur det laddades in. Under Size kan man se storleken p\'e5 headers om man hovrar musen \'f6ver.\par
+\par
+Det finns en tab f\'f6r cookies och en f\'f6r headers. Tooltips dyker upp \'f6ver de olika attributen i headers tabben.\par
+\par
+Det finns en \'f6vning med Postman p\'e5 GitHub:\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/FEND16/webbstandard/blob/master/exercises/03_postman.md }}{\fldrslt{https://github.com/FEND16/webbstandard/blob/master/exercises/03_postman.md\ul0\cf0}}}}\f0\fs22\par
+\par
+Man ska kunna en del headers inf\'f6r provet.\par
+\par
+
+\pard\sl240\slmult1\qc *  *  *\par
+
+\pard\sl240\slmult1\b\fs32 API:er\par
+\b0\fs22 Application Programmable Interface. API finns \'f6verallt. DOM \'e4r ett API och JavaScript \'e4r ett API.\par
+\par
+Funktionen inneh\'e5ller v\'e5r implementation (om vi ska g\'f6ra v\'e5rt eget API):\par
+\cf1\f1 function getAllListItems() \{\par
+    return document.getElementsByTagName('li');\par
+\}\par
+\cf0\f0\par
+Kanske vill man ha sn\'e4vare urval, eller g\'f6ra n\'e5got mellansteg och s\'e5lla ut list items. Men vi ska f\'e5 tillbaka list items hur vi \'e4n g\'f6r; hur vi implementerar det \'e4r inte lika viktigt. Det h\'e4r \'e4r v\'e5r implementation av hur \cf1\f1 getAllListItems()\cf0\f0  ska fungera. N\'e4r vi v\'e4l anv\'e4nder abstraktionen \cf1\f1 getAllListItems();\cf0\f0  f\'f6rv\'e4ntar vi oss att det ska fungera s\'e5 h\'e4r.\par
+\par
+Vi har ett interface, n\'e5got som syns ut\'e5t. Vi d\'f6per v\'e5r kod till n\'e5got som \'e4r l\'e4ttf\'f6rst\'e5eligt s\'e5 att alla kan anv\'e4nda det oavsett hur vi kodat det. Implementationen \'e4r undang\'f6mg i funktioner; man vill g\'f6mma undan koden i funktionerna. Samma sak sker i sass n\'e4r vi anv\'e4nder mixins. \par
+\par
+Det h\'e4r kan man definiera som API, som interface ut\'e5t. Man beh\'f6ver bara l\'e4sa ut vad abstraktionen g\'f6r och inte bry oss om implementationen. Ett API \'e4r just de funktioner eller metoder som en applikation visar ut\'e5t publikt.\par
+\par
+\b Olika API:er vi arbetat med inkluderar\b0 :\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 DOM API\par
+{\pntext\f2\'B7\tab}JavaScript API\par
+
+\pard\sl240\slmult1\par
+Beroende p\'e5 vad man ska g\'f6ra s\'e5 har API olika inneb\'f6rder.\par
+\par
+\b WebbAPI:er\b0\par
+\i "Developing APIs is hard. Postman makes it easy."\par
+\i0\par
+N\'e4r vi pratar om Webb-API:er \'e4r det n\'e5got vi anv\'e4nder ist\'e4llet f\'f6r funktioner i JavaScript; man anv\'e4nder URL:er. \par
+\par
+Postman anv\'e4nds mest f\'f6r att kalla p\'e5 Webb-API:er. D\'e5 beh\'f6vs inte console.log p\'e5 samma s\'e4tt. Med Postman r\'e4cker det om man g\'f6r anropen till API:erna.\par
+\par
+Oftast pratar man om API:er som har endpoints (URL:er) d\'e4r man h\'e4mtar data ifr\'e5n. URL:en man g\'e5r till g\'f6r s\'e5 att man h\'e4mtar en html-sida, men ist\'e4llet f\'f6r att man h\'e4mtar html, css, etc. vill man ha en l\'e4ttl\'e4st datastruktur, t.ex. json. Det ska inte visas upp p\'e5 detta s\'e4tt utan ska bara ha data att manipulera. Oftast f\'e5r man tillbaka informationen just i form av json.\par
+\par
+Vi kan t.ex. g\'f6ra en GET-request till ett visst URL f\'f6r att f\'e5 tillbaka information i form av json:\par
+\cf1\f1 GET HTTP/1.1\par
+Host: {{\field{\*\fldinst{HYPERLINK https://myapi.com/users }}{\fldrslt{https://myapi.com/users\ul0\cf0}}}}\f1\fs22\par
+[\par
+  \{\par
+    "id": "1",\par
+    "name": "User1"\par
+  \}\par
+]\par
+\cf0\f0\par
+Det som styr hur informationen ska skickas eller h\'e4mtas \'e4r CRUD-metoderna. Det ska vara l\'e4tt att h\'e4mta och skicka data vi HTTP-protokollet. I grunden har vi GET, POST, PATCH och DELETE.\par
+\par
+\b Rest API - \i Representational State Transfer\i0\par
+\b0 Detta \'e4r ett flummigt ord. Det handlar mer om hur man kommer \'e5t informationen. Servern best\'e4mmer vad som ska skickas in och anv\'e4ndare beh\'f6ver inte t\'e4nka s\'e5 mycket p\'e5 vad som ska g\'f6ras.\par
+\par
+Servern best\'e4mmer vad som kan skickas ut. Anv\'e4ndaren beh\'f6ver i pricinip bara g\'e5 till URL:en f\'f6r att h\'e4mta informationen. Vi som anv\'e4ndare beh\'f6ver inte k\'e4nna till strukturen av API:et, bara hur vi ska komma \'e5t den.\par
+\par
+Implementationen \'e4r undang\'f6md. Bara de publika metoderna, och i det h\'e4r fallet URL:en, beh\'f6ver k\'e4nnas till. \par
+\par
+\b\'d6ppna API:er\par
+\b0 Internt anv\'e4nder alla sidor sitt eget API f\'f6r att manipulera data. Vissa f\'f6retag v\'e4ljer att g\'f6ra denna data publik och \'f6ppna sina endpoints f\'f6r externa anv\'e4ndare. \par
+\par
+Vissa f\'f6retag kr\'e4ver betalning f\'f6r att sl\'e4ppa sin information.\par
+\par
+\b Get all users\b0\par
+Alla moderna API:er har f\'f6ljande uppl\'e4gg:\par
+\f1 GET: {{\field{\*\fldinst{HYPERLINK https://myapi.com/users }}{\fldrslt{https://myapi.com/users\ul0\cf0}}}}\f0\fs22\par
+\par
+brukar bara st\'e5 /users i slutet. D\'e5 borde man f\'e5 tillbaka alla anv\'e4ndare. Det som returneras \'e4r n\'e4stan alltid json. Man kan lista all information som h\'e4mtas.\par
+\par
+\b Create a new user\par
+\b0\f1 Post: {{\field{\*\fldinst{HYPERLINK https://myapi.com/users }}{\fldrslt{https://myapi.com/users\ul0\cf0}}}}\f0\fs22\par
+Samma url men metoden \'e4r annorlunda. Vi indikerar att vi ska skicka med information till servers med POST.\par
+\par
+Strukturen f\'f6r hur allt ser ut och hur man hittar informationen \'e4r ofta den samma.\par
+\par
+\cf1\f1 GET /users \par
+[\par
+  \{\par
+    "name": "Gurt"\par
+  \},\par
+  \{\par
+    "name": "Flurt"\par
+  \}\par
+]\par
+\cf0\f0\par
+H\'e4r ovan f\'e5r vi en array med json-objekt.\par
+\par
+Med POST:\par
+\cf1\f1 POST /users\par
+name=Kurt\par
+\{\par
+  "name": "Kurt"\par
+\}\par
+\cf0\f0\par
+Man m\'e5ste skicka med en parameter. De v\'e4rden som g\'e5r att tills\'e4ttas ska tills\'e4ttas. D\'e4rf\'f6r m\'e5ste vi veta hur ett objekt ser ut. H\'e4mtar man datan f\'f6rst vet man det.\par
+\par
+Har man kodat sitt API hyfsat bra sker mycket automatiskt. T.ex. att anv\'e4ndare f\'e5r unika id. \par
+\par
+H\'e4r: Om man l\'e4gger in Kurt som ytterligare ett namn kan man \'e5terigen kalla p\'e5 URL:en med GET och se att han ligger d\'e4r.\par
+\par
+\b Enskilda resurser\b0\par
+Om man vill l\'e4gga till n\'e5got n\'e4r en resurs skapas \'e4r metoden /user:\par
+\f1 GET {{\field{\*\fldinst{HYPERLINK https://myapi.com/user/12 }}{\fldrslt{https://myapi.com/user/12\ul0\cf0}}}}\f1\fs22\par
+\f0  URL:en indikerar singular (en anv\'e4ndare). 12 i det h\'e4r fallet \'e4r ett unikt id f\'f6r anv\'e4ndaren. Man f\'e5r tillbaka ett objekt och inte en array.\par
+\par
+F\'f6r att ta bort anv\'e4ndaren:\par
+DELETE {\f1{\field{\*\fldinst{HYPERLINK https://myapi.com/user/12 }}{\fldrslt{https://myapi.com/user/12\ul0\cf0}}}}\f0\fs22\par
+Samma URL men metoden \'e4r annorluna. Anv\'e4ndare nr 12 tas bort.\par
+\par
+\'c4ndra:\par
+PATCH {\f1{\field{\*\fldinst{HYPERLINK https://myapi.com/user/12 }}{\fldrslt{https://myapi.com/user/12\ul0\cf0}}}}\f0\fs22\par
+\par
+Med POST och PATCH m\'e5ste vi skicka med ny information. Med GET och DELETE beh\'f6ver vi inte skicka med ny information eftersom vi inte ska modifiera. GET \'e4r den enda "s\'e4kra" metoden.\par
+\par
+\b F\'f6r att anv\'e4nda POST i Postman\b0 :\par
+G\'e5 till Body-tabben. Kryssa i radio button \f1 x-www-form-urlencoded\f0 . Man b\'f6r inkludera samma saker.\par
+}
+ 
