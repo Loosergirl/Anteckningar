@@ -146,7 +146,7 @@ Oftast pratar man om API:er som har endpoints (URL:er) d\'e4r man h\'e4mtar data
 \par
 Vi kan t.ex. g\'f6ra en GET-request till ett visst URL f\'f6r att f\'e5 tillbaka information i form av json:\par
 \cf1\f1 GET HTTP/1.1\par
-Host: {{\field{\*\fldinst{HYPERLINK https://myapi.com/users }}{\fldrslt{https://myapi.com/users\ul0\cf0}}}}\f1\fs22\par
+Host: {\cf0{\field{\*\fldinst{HYPERLINK https://myapi.com/users }}{\fldrslt{https://myapi.com/users\ul0\cf0}}}}\f1\fs22\par
 [\par
   \{\par
     "id": "1",\par
@@ -221,5 +221,7 @@ Med POST och PATCH m\'e5ste vi skicka med ny information. Med GET och DELETE beh
 \par
 \b F\'f6r att anv\'e4nda POST i Postman\b0 :\par
 G\'e5 till Body-tabben. Kryssa i radio button \f1 x-www-form-urlencoded\f0 . Man b\'f6r inkludera samma saker.\par
+\par
+Om man anv\'e4nder fel namn p\'e5 en nyckel eller tar dem i fel ordning kommer det inte fungera.\par
 }
  
