@@ -1,0 +1,204 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29 JavaScript 2 - The Return\par
+\b0\fs22 Fokus inom kursen kommer vara:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\f1 .this\f0  och objekt\par
+{\pntext\f2\'B7\tab}Prototyper\par
+{\pntext\f2\'B7\tab}Designm\'f6nster\par
+{\pntext\f2\'B7\tab}AJAX\par
+
+\pard\sl240\slmult1\par
+Tv\'e5 inl\'e4mningsuppgifter. jQuery f\'e5r anv\'e4ndas f\'f6r att l\'f6sa den andra av dem. Men inga h\'e4ftiga ramverk.\par
+\par
+F\'f6rslag: Om n\'e5got ska \'e4ndras ska man l\'e4gga till en issue eller pull request.\par
+\par
+\b\fs28 Kursm\'e5l\b0\fs22\par
+F\'e4rdighet i JavaScript programmering\par
+Grundl\'e4ggande kunskaper om AJAX\par
+F\'f6rst\'e5else f\'f6r hur funktioner exekveras samt f\'f6r kontext i f\'f6rh\'e5llande till exekvering av funktioner.\par
+Grundl\'e4ggande kunskaper om JavaScripts objekt och prototypkedja.\par
+\par
+\b\fs28 JSDOC\b0\fs22\par
+Jesper anv\'e4nder det f\'f6r att autogenerera dokumentation. Han anv\'e4nder det p\'e5 sina funktioner; det talar om vad funktionerna g\'f6r.\par
+\par
+\b\fs28 ES6/E2015\par
+\b0\fs22 Vi kommer b\'f6rja anv\'e4nda nya s\'e4tt att skriva JavaScript p\'e5; ES6-syntax. Det blir snyggare och tydligare, samt ger mindre fel.\par
+\par
+Saker som inkluderas:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\f1 let\par
+{\pntext\f2\'B7\tab}const\par
+{\pntext\f2\'B7\tab}arrow function\par
+{\pntext\f2\'B7\tab}Template Literals\par
+
+\pard\sl240\slmult1\f0\par
+\b Looping\par
+\b0 for-loopen kan oftast ers\'e4ttas med:\par
+\f1 Array.map()\par
+Array.reduce()\par
+Array.filter()\par
+Array.forEach()\par
+\f0\par
+Detta leder till enklare och snyggare kod. Det \'e4r inget krav men bra att kunna.\par
+\par
+\b\fs28 Examination\b0\fs22\par
+Tv\'e5 examinerande inl\'e4mningar. Den f\'f6rsta handlar om designm\'f6nster. T.ex. skapa en Movie Database (IMDB fast f\'f6r oss sj\'e4lva). Fokus p\'e5 att skriva tydlig och fr\'e4sch kod. P\'e5 denna uppgift beh\'f6vs inte egentligen HTML eller CSS.\par
+\par
+Den andra inl\'e4mningen handlar om AJAX; att h\'e4mta data fr\'e5n \'f6ppna API:er. Det beh\'f6vs HTML och CSS men hur snyggt det blir kommer inte bed\'f6mas.\par
+\par
+F\'f6rutom det h\'e4r ska man hela tiden visa att man f\'f6rst\'e5r prototypkedjan. Har man inte lyckats f\'e5 in det i sin kod f\'e5r man p\'e5 n\'e5got s\'e4tt visa att man kan det i alla fall. \par
+\par
+---------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Inbygda typer i JavaScript\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b0\f1\fs22 Number\par
+{\pntext\f2\'B7\tab}String\par
+{\pntext\f2\'B7\tab}Bool\par
+{\pntext\f2\'B7\tab}Object\par
+{\pntext\f2\'B7\tab}null\par
+{\pntext\f2\'B7\tab}undefined\par
+
+\pard\sl240\slmult1\f0\par
+\b\fs28 Falsy values \b0\fs22 (sic)\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\f1 ""\par
+{\pntext\f2\'B7\tab}0, -0, NaN\par
+{\pntext\f2\'B7\tab}null\par
+{\pntext\f2\'B7\tab}undefined\par
+{\pntext\f2\'B7\tab}false\par
+
+\pard\sl240\slmult1\f0 Alla andra v\'e4rden, f\'f6rutom de h\'e4r, \'e4r \f1 true\f0\par
+\par
+\b\fs28 Type Coersion\par
+\b0\fs22 JavaScript \'e4r ett dynamiskt typat spr\'e5k. Det finns bara var och alla v\'e4rden konverteras implicit om man inte s\'e4ger n\'e5got annant. Viktigt \'e4r skillnaden mellan \f1 ===\f0  och \f1 ==\f0 .\par
+\par
+\b\fs28 for\par
+\b0\fs22 Vi har \'e4ven massor av andra loopar i JavaScript men man kan f\'f6rlita sig p\'e5 \f1 for\f0 -loopen.\par
+\cf1\f1 for(var i = 0; i < 10; i++ \{\par
+    console.log(i);\par
+\}\par
+\cf0\f0\par
+\'d6kningen beh\'f6ver inte alltid vara i++ men oftast \'e4r det det.\par
+\par
+\b\fs28 if/else/else if\par
+\cf1\b0\f1\fs22 if (condition \{\par
+\cf2     //Run code\cf1\par
+\}\par
+\cf0\f0\par
+Om ett villkor inte uppfylls kommer koden aldrig n\'e5s. D\'e4rf\'f6r \'e4r det viktigt att t\'e4nka p\'e5 i vilken ordning \f1 if\f0 -satserna l\'e4ggs.\par
+\par
+\b\fs28 Funktioner\b0\fs22\par
+K\'e4nner man att koden \'e4r f\'f6r r\'f6rig p\'e5 vissa st\'e4llen: abstrahera! G\'f6r det till en funktion.\par
+\par
+\b Function declaration\par
+\cf1\b0\f1 function sayHello() \{\par
+    return "Hello!";\par
+\}\par
+\cf0\f0 Funktionen \b\i hoistas\b0\i0 : skjuts upp i scopet och kommer vara tillg\'e4nglig i hela scopet.\par
+\par
+\b Scope\b0\par
+En variabel i en funktion \'e4r inte tillg\'e4nglig utanf\'f6r funktionen men en variabel i global scope \'e4r tillg\'e4nglig \'f6verallt.\par
+\par
+\b Function expression\par
+\cf1\b0\f1 var sayHello = function() \{\par
+    return "Hello!";\par
+\}\par
+\cf0\f0\par
+Vi lagrar en anonym funktion i variabeln sayHello. Den kan anv\'e4ndas som en funktion. Det fungerar som en vanlig funktion men sj\'e4lva funktionen hoistas inte upp.\par
+\par
+\b Funktionernas funktion\par
+\b0 Funktioner ska vara korta. Funktioner ska oftast bara g\'f6ra en grej. Det finns d\'e4remot ingen funktionspolis. Ibland kan man inte, eller har inte tid, att g\'f6ra v\'e4rldens b\'e4sta funktioner.\par
+\par
+\b\fs28 Arrayer\b0\fs22\par
+\cf1\f1 var array = [0, 5, 6, 0, 12];\par
+\cf0\f0\par
+Arrayen kan inneh\'e5lla olika v\'e4rden:\par
+\cf1\f1 var array = [null, true, "string", 0, "0", []];\par
+\cf0\f0\par
+F\'f6rs\'f6k att h\'e5lla arrayen fylld med samma sorts typ.\par
+\par
+\b\fs28 Object\b0\fs22\par
+Objekt \'e4r datastrukturer som anv\'e4nder key/value. Vanligaste s\'e4ttet att skapa objekt \'e4r object literal:\par
+\cf1\f1 var object = \{\par
+    property: value,\par
+    property2: value\par
+\};\par
+\cf0\f0\par
+Ett objekts property value kan vara ett annat objekt eller en array. Allting i JavaScript \'e4r objekt s\'e5 allting kan lagras i ett objekt.\par
+\par
+\b Loopa objekt\b0\par
+\cf1\f1 for (var property in obj) \{\par
+    console.log(property, obj[prop]);\par
+\}\par
+\cf0\f0\par
+Vi kommer \'e5t ett objekts v\'e4rden med dot-notation: \f1 obj.property\f0\par
+\par
+Ett mindre anv\'e4nt alternativ \'e4r bracket notation: \f1 obj[prop]\f0 . Detta \'e4r n\'f6dv\'e4ndigt om man t.ex. har ett bindestreck i egenskapens namn.\par
+\par
+\b Array med objekt\b0\par
+\cf1\f1 var arr = [\par
+    \{ name: "Bobbo"\},\par
+    \{ name: "Kloppsky"\},\par
+    \{ name: "Charles VII"\}\par
+]\par
+\cf0\f0\par
+\b\fs28 DOM-Manipulation\par
+\cf1\b0\f1\fs22 var el = document.getElementById('clicky');\par
+\cf0\f0\par
+\cf1\f1 var tagList = document.getElementsByTagName('li');\par
+\cf0\f0\par
+\cf1\f1 var classes = document.getElementsByClassName('btn-default');\par
+\cf0\f0\par
+\b Skapa element\par
+\cf1\b0\f1 var el = document.createElement('div');\par
+\cf0\f0\par
+Argumentet specificerar vilken typ av element som ska skapas. Funktionen \f1 createElement()\f0  tillh\'f6r \f1 document\f0 .\par
+\par
+\b appendchild() och removechild()\b0\par
+\cf1\f1 parent.appendChild(childElement)\par
+parent.removeChild(childElement)\par
+\cf0\f0\par
+\b innerHTML\par
+\b0\f1 .innerHTML\f0  byter ut allt inneh\'e5ll innanf\'f6r taggarna p\'e5 div:en. \f1 .appendChild\f0  l\'e4gger till ett nytt child innanf\'f6r taggarna p\'e5 div:en.\par
+\par
+Om man ska uppdatera en hel lisa s\'e5 anv\'e4nd \f1 .innerHTML\f0 .\par
+\par
+\b\fs28 Events\b0\fs22\par
+\cf1\f1 element.\par
+    addEventListener('click', function() \{\par
+        console.log('You clicked!');\par
+\});\par
+\cf0\f0\par
+Det kan vara trevligare att ha allting samlat i js-filen. D\'e5 \'e4r det h\'e4r att f\'f6redra.\par
+\par
+\b Alternativ\b0\par
+\cf1\f1 element.onclick = function() \{\par
+    console.log('You clicked!');\par
+\}\par
+\cf0\f0\par
+\cf1\f1 <button onClick="clickFunction()">Click</button>\par
+\cf0\f0\par
+\b Classlist\b0\par
+Vanligaste s\'e4ttet att animera, d\'f6lja/visa, element genom att toggla en klass\par
+\cf1\f1 el.addEventListener('click', function() \{\par
+    div.classList.toggle('visible');\par
+\}\par
+\cf0\f0\par
+\cf1\f1 classList.toggle\cf0\f0  \'e4r en inbygd funktion. Man har en CSS-klass med t.ex. \f1 display: none\f0 . \par
+\par
+Alla:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\cf1\f1 classList.add('class');\cf0\par
+{\pntext\f2\'B7\tab}\cf1 classList.remove('class');\cf0\par
+{\pntext\f2\'B7\tab}\cf1 classList.toggle('class');\cf0\par
+{\pntext\f2\'B7\tab}\cf1 classList.contains();\cf0\par
+
+\pard\sl240\slmult1\f0\par
+-----------------------------------------------------------------------------------------------------------------\par
+\b\fs28\'d6vning: World Stats\par
+\b0\fs22 Loopa igenom en array med information om olika l\'e4nder. Varje land \'e4r ett eget objekt med olika egenskaper. S\'e5lla och sortera!\par
+GitHub: 01_world_stats@javascript2\par
+}
+ 
