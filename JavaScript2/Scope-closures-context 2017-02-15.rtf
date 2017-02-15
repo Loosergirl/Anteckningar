@@ -1,0 +1,196 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29 Scope, Closures & Context\par
+\fs22 Litteratur\b0\par
+You Don't Know JavaScript: Scopes & Closures\par
+- Djupg\'e5ende men nyttig\par
+\par
+Mozilla Developer Network: JavaScript Reference\par
+- Trist men bra\par
+\par
+\b Funktionell programmering\par
+Immutability\b0 : Inte \'e4ndra p\'e5 datastrukturer, bara kopiera. Det g\'e5r att skriva JavaScript p\'e5 detta s\'e4tt men andra spr\'e5k \'e4r helt s\'e5. \par
+\par
+Man bygger p\'e5 fr\'e5n f\'f6reg\'e5ende return. Allt ska vara rena funktioner, inga sidoeffekter. Inget annat ska ske i funktionen; en funktion ska bara g\'f6ra ett steg. Funktionen ska bete sig p\'e5 exakt samma s\'e4tt om man anv\'e4nder den om och om igen.\par
+\par
+\b .map\b0\par
+Bygger p\'e5 \f1 .reduce\f0 . Man mappar om arrayen och f\'e5r en ny array baserad p\'e5 den gamla. \par
+\par
+\cf1\f1 var newArray = countries.map(function(country) \{\par
+    return country.name;\par
+\})\par
+\cf0\f0\par
+eller\par
+\par
+\cf1\f1 var timestwo = numbers.map(function(number) \{\par
+    return number * 2;\par
+\}\par
+console.log(timestwo);\par
+\cf0\f0\par
+\b .filter\b0\par
+Bygger ocks\'e5 p\'e5 .reduce. Om man ska returnera n\'e5got baserat p\'e5 ett viss kriterium. En filtrerad array baserad p\'e5 v\'e5rt villkor.\par
+\par
+\cf1\f1 var newArray = countries.filter(function(country) \{\par
+    return country.population > 5000000;\par
+\}\par
+\cf0\f0\par
+\'c4r det sant kommer objektet returneras, annars inte.\par
+\par
+\b .reduce\b0\par
+Reducerar inneh\'e5llet baserat p\'e5 v\'e5rt villkor. T.ex. returnerar bara ett v\'e4rde.\par
+\par
+Den f\'f6rvirrande delen\par
+Vi kan skicka med flera parametrar till .map-funktionen. Vad de heter spelar ingen roll. Det viktiga \'e4r p\'e5 vilken plats parametrarna ligger; de ska komma i r\'e4tt ordning i parameterlistan.\par
+\par
+countries.map(country, index, array) \{\par
+...\par
+\par
+\f1 country\f0 : V\'e4rdet p\'e5 varje index.\par
+\f1 index\f0 : Varje index helt enkelt\par
+\f1 array\f0 : Sj\'e4lva arrayen vi loopar igenom.\par
+\par
+Det \'e4r inte n\'f6dv\'e4ndigt att inkludera \f1 index\f0  och \f1 array\f0  om man inte beh\'f6ver dem till n\'e5got.\par
+\par
+\cf1\f1 countries.reduce(function(pop, country, index, array)\par
+    return pop+= country.population\par
+\}, 0)\par
+\cf0\f0\par
+\f1 pop\f0 : Det samlade v\'e4rdet efter varje iteration\par
+\f1 country\f0 : V\'e4rdet p\'e5 varje index\par
+\f1 0\f0 : Vi s\'e4ger att startv\'e4rdet ska vara 0.\par
+\par
+Det spelar n\'e4stan aldrig n\'e5gon roll vad du d\'f6per dina parametrar till, bara vilken ordning de \'e4r i.\par
+\par
+\b\fs28 Scopes & closures\par
+\fs22 - Context, hoising & shadowing\b0\par
+\par
+\b Scope\b0\par
+Beroende p\'e5 vilket scope koden ligger i kommer vi ha tillg\'e5ng till olika variabler eller funktioner. Det beror p\'e5 var variablerna deklarerats. Scope best\'e4mmer vad som \'e4r tillg\'e4ngligt var. Vi best\'e4mmer vilket scope vi l\'e4gger koden i; global scope eller en funktions scope. Andra spr\'e5k kan ha flera scopes. Vi ska f\'f6rs\'f6ka undvika att funktioner kan k\'f6ras \'f6verallt och att variabler \'e4r tillg\'e4ngliga \'f6verallt. Ju mer kod man har desto mer lika kan variabler vara och de kan ha samma namn.\par
+\par
+\b\i Principle of least privilege\b0\i0 : "Every program and every privileged user of the system should operate using the least amount of privilege necessary to complete the job."\par
+\par
+\b Runtime\b0\par
+Hur koden v\'e4l k\'f6rs best\'e4ms under \b\i Runtime\b0\i0 , d.v.s. n\'e4r koden k\'f6rs. Hur funktioner k\'f6rs och v\'e4rden konverteras best\'e4ms vid runtime. T.ex. ska v\'e4rdet bli "0" eller 0?\par
+\par
+\b Lexical scope\b0\par
+Det man oftast pratar om n\'e4r man pratar om scope. Det scope en variabel eller funktion ligger i kallas lexical scope. (Lexical scope kan vara global scope eller en funktions scope.) En funktion beh\'f6ver inte n\'f6dv\'e4ndigtvis bara bunden till sitt lexical scope! Ingenting \'e4r strikt bundet till en funktion eller ett objekt. Lexical scope \'e4r det scope n\'e5got befinner sig i f\'f6r tillf\'e4llet.\par
+\par
+Om vi n\'e4stlar n\'e5got kommer det yttre finnas tillg\'e4ngligt f\'f6r det inre men inte tv\'e4rtom.\par
+\par
+\b Context\b0\par
+N\'e4r man pratar om \b\i context\b0\i0  brukar man oftast prata om vad exakt \f1 this\f0  \'e4r. V\'e5ran kod k\'f6rs alltid i browsern/webbl\'e4saren med global scope. F\'f6r det mesta \'e4r \f1 this\f0  global och man refererar till \f1 window\f0 . Men vi kan sj\'e4lva styra \'f6ver vad \f1 this\f0  \'e4r.\par
+\par
+Tumregeln \'e4r att scope \'e4r var variabeln eller funktionen ligger, medan context \'e4r vilket objekt variabeln eller funktionen tillh\'f6r. T.ex. kan \f1 this\f0  bli en knapp. \par
+\par
+Tro inte att \f1 this\f0  refererar till scopet det ligger i. \par
+\par
+Observera: Om en funktion ligger i ett objekt kommer \f1 this\f0  referera till objektet. Men ligger ytterligare funktioner n\'e4stlade i den funktionen kommer \f1 this\f0  i de inre funktionerna referera till window.\par
+\par
+Om man vill att \f1 this\f0  i de inre funktionerna ska referera till objektet kan man anv\'e4nda arrow functions. Den yttre funktionen i objektet kan d\'e4remot inte anv\'e4nda en arrow function p\'e5 detta s\'e4tt f\'f6r d\'e5 kommer \f1 this\f0  referera till window ist\'e4llet.\par
+\par
+Det g\'e5r ocks\'e5 att spara \f1 this\f0  i en variabel f\'f6r att referera till vad v\'e4rdet p\'e5 \f1 this\f0  \'e4r p\'e5 ett visst st\'e4llet\par
+\cf1\f1 var that = this;\cf0\f0\par
+\par
+\b var eller let\par
+\b0 Vi har i princip bara global och function scope i JavaScript. let anv\'e4nds f\'f6r att skapa block-baserade variabler. Vi kan best\'e4mma om ett scope ska skapas.\par
+\par
+\cf1\f1 for(var i = 0; i < 10; i++) \{\par
+    console.log("i exists outside of loop");\par
+\}\par
+\cf0\f0\par
+\f1 var i \f0 tillh\'f6r egentligen inte loopen eftersom det deklareras innan m\'e5svingarna; det \'e4r innan blocket. Med ES6s \cf1\f1 let\cf0\f0  kan vi ist\'e4llet f\'e5 det block-baserat. H\'e4r nedan kan man inte f\'e5 tillg\'e5ng till \f1 i\f0  efter att loopen k\'f6rts klart.\par
+\par
+\cf1\f1 for(let i = 0; i < 10; i++) \{\par
+    console.log("i only exists in loop")\par
+\}\par
+\cf0\f0\par
+\b Block scope\par
+\b0 Med \f1 if/else/else if\f0 , \f1 for/while/do while\f0  eller m\'e5svingarna \f1\{\}\f0  skapas ett scope. Anv\'e4nd \f1 let\f0  s\'e5 mycket som m\'f6jligt. D\'e4remot hoistas inte \f1 let\f0 !\par
+\par
+\b Hoisting\b0\par
+Variabler och function declarations (d\'e5 man anv\'e4nder nyckelordet \f1 function\f0 ) hoistas och l\'e4ggs l\'e4ngst upp i sitt nuvarande scope. Funktioner och variabler blir tillg\'e4ngliga f\'f6r hela scopet. Undantagen \'e4r \f1 let\f0  som inte hoistas och function expression d\'e4r variabeln hoistas men inte funktionen som h\'e4nger ihop med den.\par
+\par
+Function expression:\par
+\cf1\f1 var func = function() \{\}\cf0\par
+\f0\par
+\b Shadowing\b0\par
+N\'e4r en variabel "skuggar" en annan. Om vi har samma namn p\'e5 en \f1 var\f0  i global och en i en funktion kommer funktionen anv\'e4nda den som ligger n\'e4rmast. Allts\'e5 inuti funktionen anv\'e4nds variabeln som ligger i funktionen. Den inre variabeln skuggar den yttre.\par
+\par
+\b const\b0\par
+En variabel vars v\'e4rde aldrig kan \'e4ndras. F\'f6r att f\'f6rtydliga brukar man skriva namnet med stora bokstever. T.ex:\par
+\par
+\cf1\f1 const PI = 3.14;\par
+\cf0\f0\par
+M\'e5nga g\'f6r funktoner till \f1 const\f0  d\'e5 de anv\'e4nder function expression.\par
+\cf1\f1 const sayHello = function() \{\par
+    return "Hello";\par
+\}\par
+\cf0\f0\par
+D\'e5 anger man att funktionen inte ska kunna skrivas \'f6ver. \par
+\par
+F\'f6rs\'f6ker man \'e4nd\'e5 skriva \'f6ver den kommer man f\'e5 ett error. Det g\'e5r d\'e4remot att l\'e4gga till v\'e4rden till ett objekt om objektet \'e4r \f1 const\f0  och samma sak g\'e4ller f\'f6r om det \'e4r en array. Man kan dessutom \'e4ndra v\'e4rden som lagts till. Sj\'e4lva objektet eller arrayen kan d\'e4remot inte bytas ut.\par
+\par
+\b Arrow function =>\b0\par
+Ett nytt s\'e4tt att skriva funktioner i ES6. \par
+\par
+\cf1\f1 var hello = function() \{\par
+    return "Hello";\par
+\};\par
+\cf0\f0\par
+\cf1\f1 var hello = () => \{\par
+    return "Hello";\par
+\};\par
+\cf0\f0\par
+\cf1\f1 var hello = () => "Hello";\par
+\cf0\f0\par
+Det \'e4r n\'e4stan samma sak som en vanlig funktion. Funktionen binds till den nuvarande kontexten \f1 this\f0 . Det hade allts\'e5 inte fungerat att binda \f1 this\f0  till en knapp. Arrow functions \'e4r inte alltid direkta ers\'e4ttare till funktioner men anv\'e4nds ofta ist\'e4llet f\'f6r anonyma funktioner. Arrow functions f\'f6rs\'e4krar sig om att \f1 this\f0  alltid \'e4r detsamma men ibland vill vi att det ska kunna \'e4ndras.\par
+\par
+Om flera parametrar eller ingen parameter alls ska skickas med beh\'f6vs en parantes. Om bara en parameter skickas med kan man ta bort parantesen.\par
+\par
+\b call, apply\b0\par
+Vi kan kalla p\'e5 en funktion som inte \'e4r bunden till ett objekt.\par
+\par
+Om vi har en funktion som ligger i ett objekt pekar \f1 this\f0  p\'e5 objektet. D\'e5 kan man kalla p\'e5 funktioner som inte \'e4r bundna till objekt. \par
+\par
+\cf1\f1 myFunction.call(obj, arguemnts);\par
+\cf0\f0\par
+\cf1\f1 myFunction.apply(obj, [arguments]);\par
+\cf0\f0\par
+Vi kan ha frist\'e5ende funktioner som kallar p\'e5 vilket objekt vi vill. Generella metoder beh\'f6ver inte vara bundna till objekt.\par
+\par
+Skillnaden mellan \f1 .call\f0  och \f1 .apply\f0  \'e4r att det senare tar en array av argument medan \f1 .call\f0  tar argument separerade med komma.\par
+\par
+\b\i Se \'e4ven\b0\i0  Jespers kodexempel. \par
+\par
+\b Closures\b0\par
+Det finns referenser till closures men de \'e4r inte l\'e4ngre tillg\'e4ngliga i koden. I det yttre scopet finns d\'e4remot variabler kvar som referens \'e4ven fast funktionerna k\'f6rts klart. Funktionen "kommer ih\'e5g" variabeln och kan anv\'e4nda den fast\'e4n den \'e4r utom r\'e4ckh\'e5ll f\'f6r resten av koden. En closure skapas automatiskt n\'e4r vi deklarerar en funktion i en annan funktion.\par
+\par
+Oftast anv\'e4nds closures f\'f6r att skapa privata variabler i funktioner eller objekt. D\'e5 kan man styra hur de s\'e4tts och h\'e4mtas. Det g\'e5r att d\'f6lja information s\'e5 att den inte finns tillg\'e4nglig i global scope.\par
+\par
+\b IIFE\b0\par
+Immediately-Invoked Function Expression. En function expression som kallar p\'e5 sig sj\'e4lv. Med en arrow function skrivs det:\par
+\par
+\cf1\f1 (x => x * 10)(2)\par
+\cf0\f0\par
+H\'e4r: x \'e4r parametern och x*10 returneras. Argumentet \'e4r 2 (det som blir x n\'e4r funktionen k\'f6rs). Allts\'e5 f\'e5r man 20.\par
+\par
+Det klassiska s\'e4ttet:\par
+\cf1\f1 var invoked = (function() \{\par
+    return "Hello IIFE!";\par
+\})();\par
+\cf0\f0\par
+IIFE anv\'e4nds ofta f\'f6r att skapa closures:\par
+\cf1\f1 function foo() \{\par
+    var bar = "Private variable";\par
+    return function() \{\par
+        console.log(bar);\par
+    \}\par
+\}\par
+\cf0\f0\par
+\cf1\f1 var innerFunction = foo();\par
+innerFunction();\par
+\cf0\f0\par
+N\'e4r foo k\'f6rts klart finns IIFE-funktionen inte kvar.\par
+}
+ 
