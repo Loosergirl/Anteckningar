@@ -1,0 +1,190 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29 Objekt och prototyper\par
+\fs22 - Inheritance and shared properties\par
+\b0\par
+\b Objektets uppbyggnad\par
+\cf1\b0\f1 let country = \{\par
+    country: "Brunei",\par
+    capital: "Bandar Seri Begawan",\par
+    population: 417200\par
+\}\par
+\cf0\f0\par
+Allting \'e4r objekt. I m\'e5nga fall \'e4r ett objekts egenskaper ocks\'e5 objekt. \par
+\par
+\b Property access\par
+\b0 N\'e4r ska man anv\'e4nda vilken notation? \cf1\f1 .\cf0\f0 -operatorn anv\'e4nds f\'f6r att komma \'e5t en egenskap i ett objekt men kr\'e4ver att man anv\'e4nder ett namn som accepteras av JavaScript. \cf1\f1 [..]\cf0\f0  kan ta n\'e5gon sorts str\'e4ng, i princip vad som helst. Om namn \'e4r skrivna p\'e5 ett d\'e5ligt s\'e4tt kan det vara n\'f6dv\'e4ndigt att anv\'e4nda brackets notation.\par
+\par
+\b Object properties\par
+\b0 Alla objekt beter sig likadant oberoende av inneh\'e5ll. Det g\'e5r alltid att loopa igenom objekt, konvertera till JSON (om det \'e4r v\'e4lformaterat) etc. Det g\'e5r inte att anv\'e4nda array-metoder som t.ex. \cf1\f1 .map\cf0\f0 .\par
+\par
+\b Shared properties\par
+\b0 Varje funktion, objekt och variabel har inneboende egenskaper som \'e4r delade. De \'e4r specifika f\'f6r just funktioner, objekt och variabler. F\'f6r t.ex. str\'e4ngar kan man anv\'e4nda \cf1\f1 .substr()\cf0\f0 . och f\'f6r alla arrayer kan man anv\'e4nder \cf1\f1 .sort()\cf0\f0 . Obserera att de olika inbygda funktionerna f\'f6r arrayer inte kan anv\'e4ndas p\'e5 en HTMLCollection, \'e4ven om det g\'e5r att loopa igenom en HTMLCollection.\par
+\par
+Egentligen kan man dela upp de i primitiva typer, med string, bool, objekt o.s.v. men i slut\'e4ndan \'e4r allt bara objekt.\par
+\par
+\b Mother object\b0\par
+Alla objekt \'e4rver av Object, alla arrayer av Array, nummer av Number, str\'e4ngar av String. Dessutom \'e4rver allt fr\'e5n Object.\par
+\par
+\cf1\f1 let string = "Hello";\cf0\f0\par
+\par
+Vi kan skapa en str\'e4ng (ett primitivt v\'e4rde som \'e4r l\'e4ttare att bearbeta av datorn). Det g\'e5r d\'e4remot \'e4ven att skapa en ny str\'e4ng med hj\'e4lp av str\'e4ng-objektet:\par
+\par
+\cf1\f1 var string = new String("Hello");\cf0\f0\par
+\par
+Det \'e4r n\'e4stan samma sak men vi f\'e5r en object-wrapper runt. Det rekommenderas att man anv\'e4nder det f\'f6rsta, vanliga, s\'e4ttet att skapa str\'e4ngar p\'e5!\par
+\par
+F\'f6r att man ska kunna anv\'e4nda olika operationer p\'e5 en str\'e4ng, t.ex. kolla hur l\'e5ng den \'e4r, beh\'f6ver det vara ett str\'e4ng-objekt. JavaScript \'e4r d\'e4remot ett dynamiskt spr\'e5k som automatiskt konverterar str\'e4ngar till string-objekt n\'e4r vi beh\'f6ver det. Vi beh\'f6ver allts\'e5 inte skapa string-objekt.\par
+\par
+\b .defineProperty()\b0\par
+\cf1\f1 Object.defineProperty(obj, 'property', \{options\});\par
+\cf0\f0\par
+Vi kan tilldela egenskaper till objekt. Vissa saker h\'e4nder d\'e5. F\'f6r varje property som s\'e4tts, s\'e4tts tre v\'e4rden implicit: writable, enumerable och configurable.\par
+\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 writable: G\'e5r v\'e4rdet att skriva \'f6ver?\par
+{\pntext\f2\'B7\tab}enumerable: G\'e5r v\'e4rdet att loopa igenom?\par
+{\pntext\f2\'B7\tab}configurable: G\'e5r det att ta bort eller redigera v\'e4rdet? Har vi sett detta kanske vi m\'e5ste ta bort hela objektet ist\'e4llet f\'f6r att \'e4ndra detta.\par
+
+\pard\sl240\slmult1 configurable\par
+\par
+Exempel:\par
+
+\pard\sl240\slmult1\cf1\f1 Object.defineProperty(obj, 'property', \{\par
+    value: "Hello!",\par
+    enumerable: false,\par
+    writable: false,\par
+    configurable: false\par
+\});\par
+
+\pard\sl240\slmult1\cf0\f0\par
+Vi skriver inte objektnamn som variabelnamnen (allts\'e5 \cf1\f1 String\cf0\f0 , \cf1\f1 Number\f0  \cf0 o.s.v.) f\'f6r d\'e5 kan det bli problem med de properties som redan finns. Undvik namn p\'e5 objekt som liknar de h\'e4r ocks\'e5, t.ex. samma sak fast med liten bokstav f\'f6rst.\par
+\par
+\b\fs28 Prototyper\b0\fs22\par
+Alla objekt har en \f1 .prototype\f0 -egenskap. D\'e4r finns alla funktioner och v\'e4rden som \'e4r kopplade till varje typ av objekt som skapas. Det g\'e5r inte att f\'e5 ut egenskapen \f1 .prototype\f0 . \par
+\par
+Vi kan anv\'e4nda \f1 .sort()\f0  eftersom Array har funktionen \f1 .sort()\f0  i egenskapen \f1 .prototype\f0 . Det g\'e5r att skriva \'f6ver detta s\'e5 att \f1 .sort()\f0  g\'f6r n\'e5got annat. Om man vill kan man kalla p\'e5 .sort() utan att det \'e4r bundet till en viss array:\par
+\par
+\cf1\f1 Array.prototype.sort()\cf0\f0\par
+\par
+Det \'e4r d\'e4remot inte s\'e5 vi anv\'e4nder \f1 .sort()\f0 . F\'f6rst\'e5s kan man skriva in en annan funktion h\'e4r, s\'e5 att \f1 .sort()\f0  inte l\'e4ngre kan anv\'e4ndas.\par
+\par
+\b Prototypal inheritance\b0\par
+Om en metod, funktion eller egenskap inte hittas i ett objekt kommer JS f\'f6rs\'f6ka hitta den egenskapen i ett annat objekt. JS g\'e5r vidare upp\'e5t i prototypkedjan. T.ex. \'e4rver object fr\'e5n moderobjektet \f1 Object\f0  med stort O. Om ett objekt inte hittar en egenskap letar det vidare i sin prototypkedja tills den n\'e5r \f1 null\f0  (d.v.s. det finns inte). Det kan liknas vid hur, om en variabel inte hittas i function scope s\'e5 letar funktionen vidare i global scope.\par
+\par
+\cf1\f1 var a = \{\}\cf0\f0\par
+\par
+H\'e4r: F\'f6rst s\'f6ks \f1 a\f0  igenom, sedan \f1 Object\f0 , till slut \f1 null\f0 . \par
+\par
+\b Skapa objekt av andra objekt\par
+\cf1\b0\f1 var a = \{\};\par
+var b = a;\par
+\cf0\f0\par
+Vi f\'e5r nu samma objekt. De \'e4r l\'e4nkade till varandra och om man \'e4ndrar p\'e5 det ena kommer det andra ocks\'e5 \'e4ndras. B\'e5da \'e4rver av \f1 Object.prototype\f0 . De refererar till samma objekt. Med nyckelordet \f1 new\f0  kan man ist\'e4llet skapa ett nytt objekt som inte \'e4r bundet till det gamla. Detta \'e4r inte arv utan tilldelning. Det kan d\'e4remot h\'e4nda att de \'e4nd\'e5 \'e4r sammanl\'e4nkade eftersom de b\'e5da \'e4r l\'e4nkade till moderobjektet. \par
+\par
+\b Object.prototype\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\cf1\b0\f1 Object.prototype.constructor()\cf0\f0\par
+{\pntext\f2\'B7\tab}\cf1\f1 Object.prototype.hasOwnProperty()\cf0\f0\par
+{\pntext\f2\'B7\tab}\cf1\f1 Object.prototype.isPrototypeOf()\cf0\f0\par
+{\pntext\f2\'B7\tab}\cf1\f1 Object.prototype.toString()\cf0\f0\par
+{\pntext\f2\'B7\tab}M.m. \par
+
+\pard\sl240\slmult1\par
+
+\pard\sl240\slmult1 Det g\'e5r l\'e4tt att f\'e5 fram alla de ovanst\'e5ende i Console i developer tools om man \f1 console.log\f0 :ar ett objekt.\par
+
+\pard\sl240\slmult1\par
+P\'e5 sj\'e4lva objektprototypen kan vi kalla p\'e5 en funktion, t.ex. \f1 Object.create\f0 .\par
+\par
+\cf1\f1 var a = \{ x : 5 \};\par
+var b = Object.create(a);\par
+\cf0\f0\par
+H\'e4r skapar vi ett objekt baserat p\'e5 ett annat, men det \'e4r inte samma objekt trots att de \'e4r l\'e4nkade till varandra. Det nya objekt som skapas med \f1 Object.create\f0  \'e4rver fr\'e5n det andra objektet men f\'e5r inte samma v\'e4rde utan kommer vara tomt. D\'e4remot kan v\'e4rdena i det \'e4ldre objektet fortfarande n\'e5s via det nya objektet eftersom de ligger h\'f6gre upp i prototypkedjan. \par
+\par
+\f1 Object.create\f0  l\'e4nkar samman det nya objektet med det gamla. Det \'e4r arv.\par
+\par
+\b\fs28 Konstruktorfunktioner\b0\fs22\par
+\cf1\f1 function Cat(name, type) \{\par
+    this.name = name;\par
+    this.type = type;\par
+\}\par
+\cf0\f0\par
+En konstruktorfunktion \'e4r en vanlig funktion som skapar objekt. Parametrarna sparas i den nya kontexten. I fallet h\'e4r ovan \'e4r \f1 this\f0  window fr\'e5n. D\'e4rf\'f6r s\'e4ger man vad \f1 this\f0  \'e4r.\par
+\par
+Stor bokstav (h\'e4r: \f1 Cat\f0 ) anv\'e4nds f\'f6r att indikera att det \'e4r en konstruktor.\par
+\par
+Vi skapar ett nytt objekt baserat p\'e5 den h\'e4r funktionen med hj\'e4lp av ordet new:\par
+\cf1\f1 var a = new Cat("Missy", "Burma");\par
+\cf0\f0\par
+Resulterande objekt:\par
+\cf1\f1\{\par
+    name: "Missy",\par
+    type: "Burma"\par
+\}\par
+\cf0\f0\par
+\f1 new\f0  m\'e5ste anv\'e4ndas f\'f6r att ett nytt objekt ska skapas utifr\'e5n funktionen och v\'e4rdena ska bindas till kontexten. En konstruktor \'e4r vilken funktion som helst som kallas p\'e5 med ordet \f1 new\f0  framf\'f6r sig.\par
+\par
+Det g\'e5r att l\'e4gga egenskaper antingen som prototyper eller i konstruktorn. Men prototyper kan \'e5teranv\'e4ndas medan konstruktorn bara kommer g\'e4lla f\'f6r vissa objekt. I m\'e5nga fall kan man d\'e4remot anv\'e4nda vilketsom. \par
+\par
+Ist\'e4llet f\'f6r konstruktor:\par
+\cf1\f1 create: function(name, type) \{\par
+\cf2     // Skapa nytt objekt baserat p\'e5 ett annat\par
+\cf1     var cat = Object.create(this.prototype);\par
+    cat.name = name;\par
+    cat.type = type;\par
+    return cat;\par
+\}\par
+\cf0\f0\par
+Det liknar konstruktorfunktionen.\par
+\par
+\b\i Se \'e4ven\b0\i0  Jespers kod f\'f6r alternativ till prototyp.\par
+\par
+\b Cat.prototype.mjau()\par
+\b0 Vi kan s\'e4tta egna egenskaper p\'e5 objektet. Vi s\'e4tter egenskaper p\'e5 funktionens prototyp.\par
+\par
+\cf1\f1 Cat.prototype.mjau = function() \{\par
+    console.log("Mjau I'm " + this.name);\par
+\}\par
+\cf0\f0\par
+N\'e4r man skriver \f1 this.name\f0  kommer funktionen f\'f6rst\'e5 att det \'e4r just det objektets namn och inte ett generellt namn. Alla kattar som skapas med \f1 new Cat()\f0  kommer kunna mjaua.\par
+\par
+Det g\'e5r att l\'e4gga till ytterligare egenskaper och de beh\'f6ver inte vara funktioner. Det kan vara typer eller andra objekt, t.ex. str\'e4ngar.\par
+\par
+\b New Obj() vs Object.create\b0\par
+\cf1\f1 create new Object() obj\par
+set obj.__proto__to Obj-prototype\par
+return obj;\par
+Object.create( Obj.prototype )\par
+\cf0\f0\par
+N\'e4r man anv\'e4nder \f1 Object.create\f0  skapas inte de ovanst\'e5ende... \par
+\par
+Ist\'e4llet skapas bara de h\'e4r:\par
+\cf1\f1 create new Object() obj\par
+set obj.__proto__to Test.prototype\par
+return obj;\par
+\cf0\f0\par
+Det sker ett mindre steg med \f1 Object.create\f0 .\par
+\par
+\f1 __proto__\f0  \'e4r nytt och \'e4ldre k\'e4llor till information (t.ex. You Don't Know JavaScript) tar inte upp det.\par
+\par
+\b for...in\par
+\b0 N\'e4r man ska leta igenom ett objekt finns for...in f\'f6r att g\'e5 igenom alla properties:\par
+\cf1\f1 for(let prop in obj) \{\par
+    console.log(prop);\par
+\}\par
+\cf0\f0\par
+\f1 for...in\f0  letar \'e4ven igenom prototypkedjan vilket betyder att man kan f\'e5 ett false positive. ES6 har \'e4ven \f1 for...of\f0 .\par
+\par
+F\'f6r att kolla om det verkligen finns i det egna objektet (\f1 b\f0 ) och inte egentligen ligger i ett annat (\f1 a\f0 ) kan man anv\'e4nda \f1 .hasOwnProperty()\f0 :\par
+\par
+\cf1\f1 for (let prop in b) \{\par
+    if(b.hasOwnProperty(prop)) \{\par
+        console.log(prop);\par
+    \}\par
+\}\par
+\cf0\f0\par
+Om det inte finns i \f1 b\f0  kommer inget skrivas ut.\par
+}
+ 

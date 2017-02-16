@@ -78,6 +78,8 @@ Det man oftast pratar om n\'e4r man pratar om scope. Det scope en variabel eller
 \par
 Om vi n\'e4stlar n\'e5got kommer det yttre finnas tillg\'e4ngligt f\'f6r det inre men inte tv\'e4rtom.\par
 \par
+Anv\'e4nder tv\'e5 variabler med samma namn kommer den som ligger n\'e4rmast anv\'e4ndas. T.ex. om man \'e4r inne i en funktion och det finns en variant inuti den funktionen s\'e5 kommer den varianten anv\'e4ndas.\par
+\par
 \b Context\b0\par
 N\'e4r man pratar om \b\i context\b0\i0  brukar man oftast prata om vad exakt \f1 this\f0  \'e4r. V\'e5ran kod k\'f6rs alltid i browsern/webbl\'e4saren med global scope. F\'f6r det mesta \'e4r \f1 this\f0  global och man refererar till \f1 window\f0 . Men vi kan sj\'e4lva styra \'f6ver vad \f1 this\f0  \'e4r.\par
 \par
@@ -106,7 +108,7 @@ Det g\'e5r ocks\'e5 att spara \f1 this\f0  i en variabel f\'f6r att referera til
 \}\par
 \cf0\f0\par
 \b Block scope\par
-\b0 Med \f1 if/else/else if\f0 , \f1 for/while/do while\f0  eller m\'e5svingarna \f1\{\}\f0  skapas ett scope. Anv\'e4nd \f1 let\f0  s\'e5 mycket som m\'f6jligt. D\'e4remot hoistas inte \f1 let\f0 !\par
+\b0 Med \f1 if/else/else if\f0 , \f1 for/while/do while\f0  eller m\'e5svingarna \f1\{\}\f0  skapas ett scope om man anv\'e4nder \f1 let\f0 . Det sker inte om man inte anv\'e4nder \f1 let\f0 . Anv\'e4nd \f1 let\f0  s\'e5 mycket som m\'f6jligt. D\'e4remot hoistas inte \f1 let\f0 !\par
 \par
 \b Hoisting\b0\par
 Variabler och function declarations (d\'e5 man anv\'e4nder nyckelordet \f1 function\f0 ) hoistas och l\'e4ggs l\'e4ngst upp i sitt nuvarande scope. Funktioner och variabler blir tillg\'e4ngliga f\'f6r hela scopet. Undantagen \'e4r \f1 let\f0  som inte hoistas och function expression d\'e4r variabeln hoistas men inte funktionen som h\'e4nger ihop med den.\par
@@ -148,6 +150,15 @@ Det \'e4r n\'e4stan samma sak som en vanlig funktion. Funktionen binds till den 
 \par
 Om flera parametrar eller ingen parameter alls ska skickas med beh\'f6vs en parantes. Om bara en parameter skickas med kan man ta bort parantesen.\par
 \par
+Ibland kan return och paranteser hoppas \'f6ver, ibland inte!\par
+\par
+Arrow function i ett objekt:\par
+\cf1\f1 var obj = \{\par
+    func: () => \{\par
+\par
+    \}\par
+\}\par
+\cf0\f0\par
 \b call, apply\b0\par
 Vi kan kalla p\'e5 en funktion som inte \'e4r bunden till ett objekt.\par
 \par
