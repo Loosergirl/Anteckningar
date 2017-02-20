@@ -50,21 +50,21 @@ Vi kan tilldela egenskaper till objekt. Vissa saker h\'e4nder d\'e5. F\'f6r varj
 \pard\sl240\slmult1 configurable\par
 \par
 Exempel:\par
-
-\pard\sl240\slmult1\cf1\f1 Object.defineProperty(obj, 'property', \{\par
+\cf1\f1 Object.defineProperty(obj, 'property', \{\par
     value: "Hello!",\par
     enumerable: false,\par
     writable: false,\par
     configurable: false\par
 \});\par
-
-\pard\sl240\slmult1\cf0\f0\par
+\cf0\f0\par
 Vi skriver inte objektnamn som variabelnamnen (allts\'e5 \cf1\f1 String\cf0\f0 , \cf1\f1 Number\f0  \cf0 o.s.v.) f\'f6r d\'e5 kan det bli problem med de properties som redan finns. Undvik namn p\'e5 objekt som liknar de h\'e4r ocks\'e5, t.ex. samma sak fast med liten bokstav f\'f6rst.\par
 \par
 \b\fs28 Prototyper\b0\fs22\par
+En prototyp \'e4r en egenskap som inneh\'e5ller gemensamma funktioner och variabler f\'f6r alla objekt du skapar.\par
+\par
 Alla objekt har en \f1 .prototype\f0 -egenskap. D\'e4r finns alla funktioner och v\'e4rden som \'e4r kopplade till varje typ av objekt som skapas. Det g\'e5r inte att f\'e5 ut egenskapen \f1 .prototype\f0 . \par
 \par
-Vi kan anv\'e4nda \f1 .sort()\f0  eftersom Array har funktionen \f1 .sort()\f0  i egenskapen \f1 .prototype\f0 . Det g\'e5r att skriva \'f6ver detta s\'e5 att \f1 .sort()\f0  g\'f6r n\'e5got annat. Om man vill kan man kalla p\'e5 .sort() utan att det \'e4r bundet till en viss array:\par
+Vi kan anv\'e4nda \f1 .sort()\f0  eftersom Array har funktionen \f1 .sort()\f0  i egenskapen \f1 .prototype\f0 . Det g\'e5r att skriva \'f6ver detta s\'e5 att \f1 .sort()\f0  g\'f6r n\'e5got annat. Om man vill kan man kalla p\'e5 \f1 .sort()\f0  utan att det \'e4r bundet till en viss array:\par
 \par
 \cf1\f1 Array.prototype.sort()\cf0\f0\par
 \par
@@ -92,10 +92,8 @@ Vi f\'e5r nu samma objekt. De \'e4r l\'e4nkade till varandra och om man \'e4ndra
 {\pntext\f2\'B7\tab}M.m. \par
 
 \pard\sl240\slmult1\par
-
-\pard\sl240\slmult1 Det g\'e5r l\'e4tt att f\'e5 fram alla de ovanst\'e5ende i Console i developer tools om man \f1 console.log\f0 :ar ett objekt.\par
-
-\pard\sl240\slmult1\par
+Det g\'e5r l\'e4tt att f\'e5 fram alla de ovanst\'e5ende i Console i developer tools om man \f1 console.log\f0 :ar ett objekt.\par
+\par
 P\'e5 sj\'e4lva objektprototypen kan vi kalla p\'e5 en funktion, t.ex. \f1 Object.create\f0 .\par
 \par
 \cf1\f1 var a = \{ x : 5 \};\par
