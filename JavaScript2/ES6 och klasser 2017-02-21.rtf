@@ -1,0 +1,297 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29 ES6 och klasser\b0\fs22\par
+{{\field{\*\fldinst{HYPERLINK http://exploringjs.com/es6/ch_classes.html }}{\fldrslt{http://exploringjs.com/es6/ch_classes.html\ul0\cf0}}}}\f0\fs22\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/lukehoban/es6features }}{\fldrslt{https://github.com/lukehoban/es6features\ul0\cf0}}}}\f0\fs22\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/DrkSephy/es6-cheatsheet }}{\fldrslt{https://github.com/DrkSephy/es6-cheatsheet\ul0\cf0}}}}\f0\fs22\par
+\par
+OoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo\par
+\par
+Vi har redan g\'e5tt igenom arrow functions, \f1 const\f0  och \f1 let\f0 . \par
+\par
+\b\fs28 Template literals\b0\fs22\par
+Template literals eller backticks \'e4r det nyare, l\'e4ttare, s\'e4ttet att skriva str\'e4ngar p\'e5. \f1 $\f0 -tecknet anv\'e4nds. Exempel:\par
+\cf2\f1 var name = "Ronny";\par
+console.log(`Hi, my name is $\{name\}`);\par
+\par
+var a = 5;\par
+var b = 10;\par
+console.log(`$\{a\} + $\{b\} equals $\{a + b\}`);\par
+\cf3 //5 + 10 equals 15\cf2\par
+\cf0\f0\par
+Detta g\'f6r det l\'e4ttare d\'e5 man ska blanda variabler och str\'e4ngar.\par
+\par
+Hur man g\'f6r tecknet \f1 `\f0 : Shift + \f1\'b4\f0\par
+Det \'e4r accenttecknet. Blanda inte ihop det; det finns tv\'e5 accenttecken.\par
+\par
+En annan f\'f6rdel med template literals \'e4r att vi slipper oroa oss f\'f6r att escape:a. Man kan anv\'e4nda citattecken:\par
+\cf2\f1 var text = " \\"double quotes\\"";\par
+var text = `"double quotes"`;\par
+\cf0\f0\par
+Fel:\par
+\cf2\f1 var text = 'I'm a noob';\cf0\f0\par
+\par
+R\'e4tt:\par
+\cf2\f1 var text = `I'm a noob`;\cf0\f0\par
+\par
+Radbrytningar/new line (\f1\\n\f0 ) beh\'e5lls vilket g\'f6r det l\'e4ttare att strukturera html:\par
+\cf2\f1 var html = `\par
+    <ul>\par
+        <li>Wowo this is great</li>\par
+        <li>Awesome</li>\par
+    </ul>`;\par
+\cf0\f0\par
+\par
+\b\fs28 Destructuring\b0\fs22\par
+Strukturera olika saker i sin kod. Mer specifikt, objekt och arrayer.\par
+\par
+\b Utan destructuring\b0 :\par
+\cf2\f1 var obj = \{\par
+    x: 100,\par
+    y: 100\par
+\};\par
+var x = obj.x;\par
+var y = obj.y;\par
+\cf0\f0\par
+\b Med destructuring\b0 :\par
+\cf2\f1 var obj = \{\par
+    x: 100,\par
+    y: 100\par
+\};\par
+var \{ x, y \} = obj;\par
+\cf0\f0\par
+Nu kan man referera till \f1 x\f0  och \f1 y\f0  fast med en annan syntax. \par
+\par
+\b Ett till exempel\b0 :\par
+\cf2\f1 var objectToDestruct = \{\par
+    x: 50,\par
+    y: 55,\par
+    z: 10\par
+\};\par
+\par
+var \{x,y,z) = objectToDestruct;\par
+console.log(x,y,z);\par
+\cf0\f0\par
+Vi sparar in dem i tre olika variabler fast p\'e5 en rad ist\'e4llet f\'f6r flera.\par
+\par
+\b Man kan byta namn ocks\'e5\b0 :\par
+\cf2\f1 var \{x: first,y: second,z: third) = objectToDestruct;\par
+console.log(first, second, third);\par
+\cf0\f0\par
+De fungerar precis som vanliga variabler och kan tilldelas nya v\'e4rden som vanligt, t.ex. \cf2\f1 x = 1000\cf0\f0 .\par
+\par
+\b Med en array ist\'e4llet\b0 :\par
+\cf2\f1 var arrayToDestruct = [6,10,4,2,4,5,5];\par
+var [a] = arrayToDestruct;\par
+console.log(a);\par
+\cf3 //6\cf2\par
+\cf0\f0\par
+I en array har vi inte namn p\'e5 egenskaperna, bara index.\par
+\par
+\b Med var [a, b] f\'e5r vi ut \'e4ven n\'e4sta v\'e4rde\b0 :\par
+\cf2\f1 var [a, b] = arrayToDestruct;\par
+console.log(a, b);\par
+\cf3 //6 10\cf2\par
+\cf0\f0\par
+\b Hoppa \'f6ver vissa v\'e4rden\b0 :\par
+\cf2\f1 var [a,,,,,,c] ) arrayToDestruct;\cf0\f0\par
+\par
+T\'e4nk p\'e5 att det \'e4r viktigt med positionen i arrayen.\par
+\par
+\b\fs28 Rest och spread\b0\fs22\par
+Detta kan anv\'e4ndas i kombination med destructuring. Det anv\'e4nds p\'e5 olika s\'e4tt men ser likadant ut. Vi kan kalla p\'e5 flera argument. Om en funktion inte tar s\'e5 m\'e5nga argument, eller om funktionen inte tar den sorts argument vi vill, kan vi anv\'e4nda detta.\par
+\par
+\b Rest operator\b0\par
+Ser ut som spread operator men skillnaden \'e4r hur \f1 ...\f0  anv\'e4nds. Man s\'e4ger i princip "G\'f6r detta med resten av argumenten".\par
+\cf2\f1 function restFunction(a, b, rest) \{\par
+    console.log(a,b,...rest);\par
+\}\par
+\cf0\f0\par
+Vi vill kanske att en funktion ska kunna ta ytterligare argument men de kanske inte beh\'f6vs. Det blir flexibelt hur m\'e5nga argument som kan skickas med. Restoperatorn anv\'e4nds.\par
+\par
+Ifall argument skickas med kan man anv\'e4nda nyckelordet \f1 arguments\f0  f\'f6r att komma \'e5t dem:\par
+\cf2\f1 function logArgs() \{\par
+    for (var i=0; i < arguments.length; i++) \{\par
+        console.log(arguments[i];\par
+    \}\par
+\}\par
+logArgs("Hej");\par
+\cf0\f0\par
+Med rest-syntaxen kan man g\'f6ra samma sak, men man kan anv\'e4nda vilket namn som helst p\'e5 argumenten som skickas in (de beh\'f6ver inte heta \f1 arguments\f0 ):\par
+\cf2\f1 function logArgsRest(...args) \{\par
+    for(let arg of args) \{\par
+        console.log(arg);\par
+    \}\par
+\}\par
+logArgsRest("Hej p\'e5 dig");\par
+\cf0\f0\par
+Ett till exempel:\par
+\cf2\f1 const max = (...nums) => Math.max(...nums);\par
+console.og(Math.max(...[6,6,8,9,32,0]));\par
+\cf0\f0\par
+Detta skulle inte fungera utan prickarna eftersom en array anv\'e4nds.\par
+\par
+\b Spread operator\b0\par
+Precis som rest-operatorn \'e4r det tre punkter.\par
+\par
+Exempel:\par
+\cf2\f1 var a = [1,5,6,8,2,8];\par
+var b = a;\par
+a.pop();\par
+console.log(a,b);\par
+\cf0\f0\par
+Vi tilldelar det till en ny variabel s\'e5 att det bildas en l\'e4nk. Loggar man ut det kommer samma array visas. Om vi \'e4ndrar p\'e5 den ena array:en kommer den andra ocks\'e5 \'e4ndras.\par
+\par
+Vill man klona den p\'e5 riktigt kan man skriva:\par
+\cf2\f1 var c = [...a];\par
+c.pop();\par
+console.log(a,c);\par
+\cf0\f0\par
+Vi kan sprida ut (spread) v\'e4rdena i \f1 a\f0  och spara i dem i variabeln \f1 c\f0 . Det blir inte en kopia p\'e5 riktigt. V\'e4rdena \'f6verf\'f6rs men det blir ingen referns till den gamla array:en.\par
+\par
+Det h\'e4r kan ocks\'e5 anv\'e4ndas f\'f6r att l\'e4gga ihop tv\'e5 arrayer med varandra.\par
+\par
+\cf2\f1 var a = [1,5,6,8,2,8];\par
+var u = ["hej", "wow"];\par
+var c [...a, ...u];\par
+console.log(c);\par
+\cf0\f0\par
+Alternativt:\par
+\cf2\f1 var a = [1,5,6,8,2,8];\par
+var u = ["hej", ...a, "wow"];\par
+console.log(u);\par
+\cf0\f0\par
+\b\fs28 Default parameters\par
+\cf2\b0\f1\fs22 function add(x = 0, y = 2)\{\par
+    return x + y;\par
+\}\par
+\cf0\f0\par
+\b Se \b0 Jespers kod\par
+\par
+\b\fs28 Klasser\b0\fs22\par
+Klasser \'e4r ett nytt syntaktiskt socker att skriva p\'e5 samma s\'e4tt vi gjort f\'f6rut. Eftersom m\'e5nga \'e4r bekv\'e4ma med att anv\'e4nda klasser har det implementerats.\par
+\par
+\cf2\f1 class Person \{\par
+    constructor(name, age) \{\par
+        this.name = name;\par
+        this.age = age;\par
+    \}\par
+\}\par
+\cf0\f0\par
+Vi l\'e4gger en konstruktor i en klass. Stor bokstav f\'f6r att po\'e4ngtera att det \'e4r en klass. Prototyp-ordet beh\'f6vs inte l\'e4ngre. En klass kan liknas vid Constructor Pattern. Klasser m\'e5ste alltid skrivas med \f1 class\f0  och skapas med \f1 new\f0 .\par
+\cf2\f1 var newPerson = new Person("Ronny, 52);\par
+\cf0\f0\par
+Man kan l\'e4gga till metoder eller egenskaper till klassen:\par
+\cf2\f1 class Person \{\par
+    constructor(name, age) \{\par
+        this.name = name;\par
+        this.age = age;\par
+    \}\par
+    getName() \{\par
+        return this.name;\par
+    \}\par
+    setName(newName) \{\par
+        this.name = newName;\par
+    \}\par
+\}\par
+\cf0\f0\par
+Get och set \'e4r typiskt i m\'e5nga klassbaserade spr\'e5k.\par
+\par
+\b Arv sker med nyckelordet \f1 extends\b0\f0 :\par
+\par
+\cf2\f1 class Person \{\par
+    constructor(name, age) \{\par
+        this.name = name;\par
+        this.age = age;\par
+    \}\par
+    sayName() \{\par
+        console.log(this.name);\par
+    \}\par
+\}\par
+\par
+var Gnurfur = new Person('Gnurfur', 150);\par
+Gnurfur.sayName();\par
+console.log(Gnurfur);\cf0\f0\par
+\cf3\f1 //Vi kan se prototypen d\'e5 vi loggar ut.\cf0\f0\par
+\par
+\cf2\f1 class Teacher extends Person \{\par
+    constructor(name, age, teacher) \{\par
+        \cf3 //Person.call(this, name, age);\cf2\par
+        super(name, age);\par
+        this.teacher = true;\par
+    \}\par
+\}\par
+\par
+var teachy = new Teacher('Jepser', 25);\par
+teachy.sayName();\par
+console.log(teachy);\par
+\cf0\f0\par
+Man anv\'e4nder \f1 super\f0  f\'f6r att kalla p\'e5 n\'e5got i den \'f6vre klassen.\par
+\par
+\b Det g\'e5r \'e4ven att skriva \'f6ver saker i den \'f6vre klassen\b0 :\par
+\cf2\f1 class Teacher extends Person \{\par
+    constructor(name, age, teacher) \{\par
+        super(name, age);\par
+        this.teacher = true;\par
+    \}\par
+    sayName() \{\par
+        super.sayName();\par
+        console.log('NEJ!');\par
+    \}\par
+\}\par
+\cf0\f0\par
+\b\fs28 Object shorthand\b0\fs22\par
+Om vi har den h\'e4r strukturen...\par
+\cf2\f1 var name = "Gnurfur";\par
+var race = "Troll";\par
+\par
+var obj = \{\par
+    name: name,\par
+    race: race\par
+\}\par
+\cf0\f0\par
+...kan vi ha en shorthand:\par
+\cf2\f1 var name = "Gnurfur";\par
+var race = "Troll";\par
+\par
+var obj = \{\par
+    name,\par
+    race\par
+\}\par
+\cf0\f0\par
+\cf2\f1 console.log(obj);\cf0\f0\par
+\par
+\b\fs28 Object.assign\par
+\b0\fs22 Man kan merge:a ihop objekt eller skapa nya objekt.\par
+\par
+\cf2\f1 var baseObject = \{\par
+    x: 100, y: 200\par
+\}\par
+\par
+var objectToMerge = \{\par
+    y: 500, z: 600\par
+\}\par
+\par
+var mergedObject = Object.assign(\{\}, baseObject, objectToMerge);\par
+console.log(mergedObject, baseObject, objectToMerge);\par
+\cf0\f0\par
+Om de har samma propertynamn kommer de skrivas \'f6ver. H\'e4r: Eftersom \f1 y\f0  finns i b\'e5da anv\'e4nds \f1 y\f0  fr\'e5n \f1 objectToMerge\f0 .\par
+\par
+\b Immutability\b0  inneb\'e4r att man inte ska r\'f6ra gamla arrayer utan ist\'e4llet skapa nya.\par
+\par
+*******************************************************************************\par
+\b\fs32 Uppgift\b0\fs22\par
+IMDB fast bara lokalt. Ett eller flera designm\'f6nster ska anv\'e4ndas. Man f\'e5r sj\'e4lv v\'e4lja vilket m\'f6nster man vill anv\'e4nda. Kommentera och motivera varf\'f6r du valt att l\'e4gga upp koden som du gjort.\par
+\par
+\b\i Se\b0\i0  uppgiftsbeskrivningen p\'e5 GitHub och betygskriterier.\par
+\par
+F\'f6rs\'f6k g\'f6ra kompakta, rena, funktioner.\par
+\par
+Det ska bara g\'f6ras lokalt och man beh\'f6ver inte anv\'e4nda Ajax.\par
+\par
+N\'e4sta vecka ska en relativt f\'e4rdig version l\'e4mnas in. Sista inl\'e4mningsdag f\'f6r f\'f6rsta iterationen \'e4r 29/2. Vi f\'e5r sedan kommentarer och en slutgiltig version ska l\'e4mnas in vid kursens slut.\par
+\par
+Det \'e4r eget arbete p\'e5 m\'e5ndag och tisdag n\'e4sta vecka.\par
+}
+ 
