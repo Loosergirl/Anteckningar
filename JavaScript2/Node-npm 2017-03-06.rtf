@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29  Node, npm och byggverktyg\b0\fs22\par
+Detta tillh\'f6r inte kursen s\'e5 vi kommer inte f\'f6rdjupa oss i det s\'e5 mycket. Vi kommer h\'e5lla oss till det som underl\'e4ggar f\'f6r f\'e5r frontend-utveckling. Det finns mer att g\'f6ra med de olika verktygen \'e4n bara frontend. \par
+\par
+Node kan anv\'e4ndas f\'f6r att skapa servrar och mycket mer. Vill man bygga upp n\'e5got enkelt p\'e5 backend-sidan kan man g\'f6ra det.\par
+\par
+\b\fs28 Vad \'e4r Node? \b0\fs22\par
+Ett s\'e4tt att k\'f6ra JavaScript utan att anv\'e4nda browsern. Delvis \'e4r Node en JavaScript runtime. En runtime beh\'f6vs f\'f6r att ett spr\'e5k ska kunna k\'f6ras p\'e5 en dator. Om en runtime st\'f6ds kan koden k\'f6ras oberoende av plattform. T.ex. kan Java k\'f6ras p\'e5 m\'e5nga olika plattformar. Nu kan man k\'f6ra JavaScript p\'e5 olika plattformar via Node. Det beh\'f6ver inte vara hemsidor utan kan vara vad som helst. \par
+\par
+Med andra ord g\'f6r Node vad din webbl\'e4sare kan g\'f6ra med JavaScript fast utan webbl\'e4saren. \par
+\par
+\b Fr\'e5n Nodes hemsida\b0 :\par
+"Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world."\par
+\par
+Node kommer k\'f6ras som vanlig JavaScript. \par
+\par
+\b NPM\b0 : \b N\b0 ode \b P\b0 ackage \b M\b0 anager.\par
+\par
+F\'f6r att k\'f6ra JavaScript finns inte n\'e5got bra GUI. Ist\'e4llet k\'f6r man det fr\'e5n terminalen. Det liknar hur man anv\'e4nder Console i webbl\'e4saren. \par
+\par
+\b Installera node\b0 :\par
+{{\field{\*\fldinst{HYPERLINK https://nodejs.org/ }}{\fldrslt{https://nodejs.org/\ul0\cf0}}}}\f0\fs22\par
+\par
+Det kommer snabbt nya versioner av Node.\par
+\par
+\b Skillnader mellan Node och webbl\'e4sare\par
+\b0 Det finns inget visuellt, som HTML eller CSS. Det \'e4r bara JavaScript. Inte heller finns det n\'e5gon DOM. Det finns ingen index.html som kopplar samman filer. Ist\'e4llet har man m\'e5nga separata filer.\par
+\par
+JavaScript \'e4r ett spr\'e5k som alla andra. npm \'e4r till f\'f6r att ladda ned och hantera moduler. Dessa moduler beh\'f6ver d\'e4remot inte vara JavaScript, \'e4ven om de ofta \'e4r det. Det kan vara vad som helst, till exempel verktyg. Det \'e4r inte n\'f6dv\'e4ndigt att g\'f6ra massor av backend-grejer; vi kan anv\'e4nda andra verktyg genom npm.\par
+\par
+\b Command Line Interface\par
+\b0 N\'e4r man pratar om program brukar de ha GUI eller CLI; Graphical User Interface eller Command Line Interface. Allts\'e5 har man ett grafiskt gr\'e4nssnitt eller ocks\'e5 k\'f6rs programmet fr\'e5n terminalen. Vi kommer anv\'e4nda terminalen n\'e4r vi k\'f6r Node. \par
+\par
+\b Fel och errors\par
+\b0 Det kommer definitivt bli fel och errors n\'e4r ni ska installera saker senare. Som tur \'e4r finns ett omfattande community d\'e4r man kan fr\'e5ga om hj\'e4lp.\par
+\par
+\b Hur man anv\'e4nder Node-terminalen\par
+\b0 Skriv \cf2\f1 node\cf0\f0  f\'f6rst. Skriver man \cf2\f1 node\cf0\f0  mellanslag filnamn k\'f6rs den filen, t.ex. \cf2\f1 node main.js\cf0\f0\par
+\par
+Man anv\'e4nder Node f\'f6r att importera och exportera olika filer ist\'e4llet f\'f6r att l\'e4nka via script i index.html. Man anv\'e4nder \cf2\f1 require\cf0\f0 :\par
+\cf2\f1 var code = require("code.js");\par
+\cf0\f0\par
+H\'e4r tilldelas variabeln kod som importeras fr\'e5n en annan fil. Det \'e4r viktigt att ange att koden man importerar ska exporteras. Oftast importerar vi f\'e4rdiga moduler och paket.\par
+\par
+Kolla version av node och kolla s\'e5 att node fungerar \'f6verhuvud taget.\par
+\cf2\f1 node --version\cf0\f0\par
+\par
+I node indikerar\cf2\f1 ./\cf0\f0  att samma rotmapp anv\'e4nds.\par
+\par
+\cf2\f1 module.exports\cf0\f0  s\'e4ger att vi ska exportera en modul:\par
+\cf2\f1 module.exports = function() \{\par
+    console.log('what');\par
+\}\par
+\cf0\f0\par
+N\'e4r man sedan importerar (om filen heter importfile.js):\par
+\cf2\f1 const stuff = require('./importfile.js');\par
+stuff();\par
+\cf0\f0\par
+Det kan vara b\'e4ttre att l\'e4gga allt i ett objekt och exportera/importera mer samtidigt.\par
+\par
+\b Skapa en server\b0 :\par
+\cf2\f1 var http = require("http");\par
+var server = http.createServer(function(request, response) \{\par
+    response.send('Hello');\par
+    response.end();\par
+\});\par
+server.listen(4000);\par
+\cf0\f0\par
+Detta blir en lokal server. Oftast anv\'e4nder man extra verktyg f\'f6r att skapa en server ist\'e4llet f\'f6r att anv\'e4nde node:s inbyggda serverhantering.\par
+\par
+\b\fs28 NPM\b0\fs22\par
+Det vi ska anv\'e4nda \'e4r npm. "npm is the package manager for JavaScript." Detta f\'e5r man automatiskt med n\'e4r man installerar Node.\par
+\par
+\b Package/Module/Library\par
+\b0 Man har f\'e4rdigpacketerad kod som har en specifik uppgift att utf\'f6ra. Man laddar ned n\'e5got. Ett paket kan vara s\'e5 enkelt som en funktion. Oftast \'e4r det ett objekt med olika funktioner i sig. Moduler bygger oftast p\'e5 andra moduler (det \'e4r dependencies). Varje paket \'e4r ganska litet men de kan bygga p\'e5 varandra.\par
+\par
+\b Moduler\b0\par
+node-moduler \'e4r verktyg som ska underl\'e4gga v\'e5rt kodande. Saker som autoprefixing, minifaction och konvertering av sass kan allt g\'f6ras via node-moduler. Allting k\'f6rs via terminalen, via node.\par
+\par
+\b NPM INIT\par
+\b0 F\'f6r att det ska fungera beh\'f6ver vi g\'f6ra NPM INIT. Vi st\'e5r i node-terminalen och skriver \cf2\f1 npm init\cf0\f0  n\'e4r vi st\'e5r i r\'e4tt mapp, f\'f6r att initialisera ett projekt. Hj\'e4lptext kommer upp n\'e4r man skriver detta. Vissa defalut-inst\'e4llningar anv\'e4nds; man kan trycka enter till dess att man \'e4r klar om man bara vill ha default.\par
+\par
+Vi f\'e5r information om en .json fil som skapas. Filen ska ha koll p\'e5 alla inst\'e4llningar och information om projektet. Filen kommer h\'e5lla koll p\'e5 vad som \'e4r installerat n\'e4r man l\'e4gger till ytterligare moduler senare.\par
+\par
+\f1 "scripts" \f0\'e4r olika saker man bundit till projektet. Det som definierats som \f1 start\f0  kommer k\'f6ras n\'e4r vi k\'f6r det skriptet. S\'e5 n\'e4r man skriver npm start kommer det k\'f6ras. \par
+\par
+Man kan best\'e4mma om det ska vara globalt eller enbart till projektet. F\'f6r att installera n\'e5got globalt skriver man \cf2\f1 npm install -g\cf0\f0  f\'f6ljt av namnet p\'e5 det man vill installera.\par
+\par
+P\'e5 npm.js.com finns allt som kan installeras via node. Till varje enskilt npm-paket finns information om hur det installeras och anv\'e4nds. Varningar under installation \'e4r inget problem, bara error. L\'e4ggs det globalt hamnar det i en node-modul mapp.\par
+\par
+Installerade moduler kan sedan anv\'e4ndas via node-terminaen genom att man skriver kommandon d\'e4r. T.ex. med uglify (tar bort whitespace och kompimerar .js-filer):\par
+\cf2\f1 uglify server.js server.min.js\par
+uglify importfile.js -o import.min.js\par
+uglify -s importfile.js -o import.min.js\par
+\cf0\f0\par
+Det g\'e5r \'e4ven att installera moduler lokalt, till det egna projektet. Man anv\'e4nder flaggan --save-dev f\'f6r att det bara ska anv\'e4ndas under utvecklingsfasen och inte n\'e4r projektet \'e4r klart:\par
+\cf2\f1 npm install --save-dev uglify\par
+\par
+\cf0\f0 Ny information kommer l\'e4ggas till .json-filen som skapades vid init. En ny devDependency l\'e4ggs till; alla som ska vara med och utveckla projektet beh\'f6ver den.\par
+\par
+Man kan \'e4ven spara det som en dependency som ska anv\'e4ndas i produktion. Projektet beh\'f6ver d\'e5 denna dependency n\'e4r projektet k\'f6rs, inte bara under utveckling:\cf2\f1\par
+npm install --save uglify\par
+\cf0\f0\par
+En ny mapp skapas i projektet som heter \cf2 node_modules\cf0  d\'e4r olika installerade saker ligger.\par
+\par
+F\'f6rst\'e5s blir inte kommandon tillg\'e4ngliga globalt om de installeras lokalt utan de hamnar bara i ett projekt. F\'f6r att komma \'e5t det m\'e5ste man referera till det d\'e4r det ligger i sin mapp. Man m\'e5ste st\'e4lla sig i mappen d\'e4r det ligger.\par
+\par
+node_modules kommer bli en stor klump med m\'e5nga filer. Det \'e4r \'e4ven l\'e5nga namn p\'e5 mapparna. Men package.json h\'e5ller koll p\'e5 vad som ska anv\'e4ndas. Tar man bort \cf2 node_modules \cf0 kan man k\'f6ra \cf2\f1 npm install\cf0\f0  varefter allt som st\'e5r i package.json kommer laddas ned och installeras automatiskt. D\'e4rf\'f6r b\'f6r man inte inkludera den stora \cf2 node_modules\cf0  mappen n\'e4r man l\'e4gger upp sitt projekt. Det g\'e5r att specificera vilka versioner av moduler som ska anv\'e4ndas, t.ex. \'e4ldre eller nyare versioner av bootstrap.\par
+\par
+\b\fs28 Byggverktyg\b0\fs22\par
+Byggverktyg \'e4r verktyg som ska hj\'e4lpa oss under utvecklingsprocessen. Sass \'e4r ett exempel. Sass-filer anv\'e4nds bara under utvecklingen; vi konverterar alltid till css. I detta fall anv\'e4nds d\'e4remot Ruby ist\'e4llet f\'f6r node. Ruby \'e4r en k\'f6rmilj\'f6 f\'f6r spr\'e5ket Ruby precis som Node \'e4r det f\'f6r JavaScript. RubyGems \'e4r pakethanteraren f\'f6r Ruby, j\'e4mf\'f6rbar med npm. \par
+\par
+Node har ocks\'e5 en port av sass: \cf2\f1 npm install node-sass\cf0\f0\par
+Detta g\'f6r i princip samma sak.\par
+\par
+\b Flera verktyg - Gulp, Grunt, Brunch, Webpack\par
+\b0 Det finns flera verktyg f\'f6r att g\'f6ra olika saker. Minifiera filer, ladda om webbl\'e4saren vid uppdatering av css/js. Man kan k\'f6ra dem samtidigt. Oftast anv\'e4nder man && (h\'e4r: sass och minifiering samtidigt):\par
+\cf2\f1 sass scss: css && minifier main.js main.min.js\par
+\cf0\f0\par
+Detta kan bli r\'f6rigt om man ska g\'f6ra \'e4nnu fler saker samtidigt. D\'e5 vill vi ha ett verktyg som g\'f6r det \'e5t oss. D\'e5 kan man anv\'e4nda t.ex. \b Gulp\b0  eller n\'e5got annat. Gulp \'e4r en Task Runner som automatiserar uppgifter; ett CLI (Command Line Interface) som installeras via npm och k\'f6rs via node.\par
+\par
+Alternativ till Gulp \'e4r Grunt, Brunch och Webpack. De har liknande anv\'e4ndningsomr\'e5den; det handlar om att paketera filer och automatisera. \par
+\par
+Alla verktyg beh\'f6ver config-filer. Till slut blir det m\'e5nga config-filer. Ju mer komplicerat verktyg, desto mer config beh\'f6vs.\par
+\par
+Enligt Jesper \'e4r Gulp ett verktyg som beh\'f6ver lite config och s\'e4llan kr\'e5nglar p\'e5 l\'e4ttare uppgifter. S\'e5 \'e4r d\'e4remot inte fallet med Webpack.\par
+\par
+Gulp beh\'f6vs b\'e5de globalt och lokalt.\par
+\cf2\f1 npm install -g gulp\cf0\f0\par
+och\par
+\cf2\f1 npm install --save-dev gulp\par
+\cf0\f0\par
+Sedan beh\'f6vs \'e4ven en config:\par
+\cf2\f1 touch Gulpfile.js\par
+\cf0\f0\par
+I denna fil beh\'f6ver man importera Gulp:\par
+\cf2\f1 const gulp = require('gulp');\par
+\cf0\f0\par
+Om ingen s\'f6kv\'e4g specificerats kommer node_modules genoms\'f6kas.\par
+\par
+Man beh\'f6ver ocks\'e5 definiera allt som Gulp ska g\'f6ra. T.ex. \cf2\f1 task\cf0\f0  som ska g\'f6ra en viss uppgift (h\'e4r: default-task:en):\par
+\cf2\f1 gulp.task('default', () => \{\par
+    console.log('Gulp!!!');\par
+\})\par
+\cf0\f0\par
+Det vanliga \'e4r att man vill konvertera eller flytta filer.\par
+\cf2\f1 gulp.task('default', () => \{\par
+    return gulp.src('./importfile.js')\par
+    .pipe(gulp.dest('./dist/'));\par
+\})\par
+\cf0\f0\par
+Man specificerar en input och output-mapp. Man pipe:ar till n\'e5got st\'e4lle. D\'e5 f\'e5r man ange vilken fil som ska skickas och vart den ska. \par
+\par
+\b G\'f6ra n\'e5got mer innan filerna flyttas\par
+\b0 Vill man g\'f6ra n\'e5got mer kan man l\'e4gga till det innan pipe:en.\par
+\par
+Ska man installera ett nytt till\'e4gg till Gulp m\'e5ste det inkluderas l\'e4ngst upp som en \cf2\f1 require\cf0\f0  i config-filen (Gulpfile.js). Det g\'e5r oftast bra att kopiera koden direkt fr\'e5n ett s\'e5dant till\'e4gg och l\'e4gga in i config-filen. \par
+\par
+Oftast finns f\'e4rdiga versioner av Gulpfile.js f\'f6r allt man ska g\'f6ra men man kommer beh\'f6va \'e4ndra p\'e5 den sj\'e4lv.\par
+\par
+Asterisker st\'e5r f\'f6r wildcards, t.ex. \cf2\f1 './sass/**/*.scss'\cf0\f0 .\par
+\par
+\b Mappar i projektet\par
+\b0 Man brukar ha en \cf2 dist\cf0  folder med f\'e4rdiga filer och en \cf2 src\cf0  folder som \'e4r source-mappen. I roten ligger \cf2 gulpfile.js\cf0 ,\cf2  package.json\cf0  o.s.v. Det enda som \'e4r anv\'e4ndbart i det f\'e4rdiga projektet \'e4r \cf2 dist\cf0 -mappen.\par
+}
+ 
