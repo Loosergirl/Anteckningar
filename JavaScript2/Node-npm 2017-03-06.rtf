@@ -115,7 +115,7 @@ Byggverktyg \'e4r verktyg som ska hj\'e4lpa oss under utvecklingsprocessen. Sass
 Node har ocks\'e5 en port av sass: \cf2\f1 npm install node-sass\cf0\f0\par
 Detta g\'f6r i princip samma sak.\par
 \par
-\b Flera verktyg - Gulp, Grunt, Brunch, Webpack\par
+\b\fs28 Gulp\fs22\par
 \b0 Det finns flera verktyg f\'f6r att g\'f6ra olika saker. Minifiera filer, ladda om webbl\'e4saren vid uppdatering av css/js. Man kan k\'f6ra dem samtidigt. Oftast anv\'e4nder man && (h\'e4r: sass och minifiering samtidigt):\par
 \cf2\f1 sass scss: css && minifier main.js main.min.js\par
 \cf0\f0\par
@@ -164,5 +164,27 @@ Asterisker st\'e5r f\'f6r wildcards, t.ex. \cf2\f1 './sass/**/*.scss'\cf0\f0 .\p
 \par
 \b Mappar i projektet\par
 \b0 Man brukar ha en \cf2 dist\cf0  folder med f\'e4rdiga filer och en \cf2 src\cf0  folder som \'e4r source-mappen. I roten ligger \cf2 gulpfile.js\cf0 ,\cf2  package.json\cf0  o.s.v. Det enda som \'e4r anv\'e4ndbart i det f\'e4rdiga projektet \'e4r \cf2 dist\cf0 -mappen.\par
+\par
+\b L\'e4nkade uppgifter\par
+\b0 Man kan l\'e4nk samman tasks som \'e4r beroende av varandra. D\'e5 skriver man dem tillsammans.\par
+\b\i Se\b0\i0  Jespers kod & slide\par
+\par
+\b Gulp-funktioner\par
+\b0 Om man bara skriver gulp k\'f6r gulp sin 'default'-task. Annars kan man ha andra funktioner.\par
+\par
+\b Node_modules\par
+\b0 Alla moduler som ditt projekt anv\'e4nder m\'e5ste vara installerade i node_modules. \par
+\par
+\b G\'f6r alltid\par
+\b0 npm init\par
+npm install --save-dev package_name\par
+Ditt projekt m\'e5ste ha en package.json\par
+N\'e4r du installerat en modul ska du ha en mapp som heter node_modules.\par
+\par
+\b\fs28 Ingen direkt uppgift\par
+\b0\fs22 06_node.md - Information om node och npm.\par
+gulp-boilerplate - Repo med en f\'e4rdig config som kan anv\'e4ndas. Kan du anv\'e4nda detta i ditt projekt?\par
+\par
+\par
 }
  
