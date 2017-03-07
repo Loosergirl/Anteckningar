@@ -1,0 +1,143 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29 jQuery\par
+\b0\fs22 jQuery: Write Less, Do More.\par
+\par
+Alla coola kids s\'e4ger att jQuery \'e4r ute eller att det \'e4r noobigt med jQuery. Det \'e4r vanligt att m\'e5nga b\'f6rjar med jQuery direkt och struntar i JavaScript. Det g\'e5r fortare att l\'e4ra sig att anv\'e4nda det h\'e4r biblioteket. Det kan bli s\'e5 att m\'e5nga f\'f6rlitar sig f\'f6r mycket p\'e5 det h\'e4r biblioteket. \par
+\par
+Det \'e4r okej att anv\'e4nda jQuery men det mesta kan l\'f6sas med vanillaJS. Om man tror att man m\'e5ste anv\'e4nda jQuery f\'f6r att g\'f6ra DOM-manipulation har man fel. Trots allt blir det ju en extra dependency, ytterligare n\'e5got som alltid m\'e5ste laddas in p\'e5 sidan.\par
+\par
+jQuery \'e4r ett bibliotek som funnits l\'e4nge. Det finns fallbacks f\'f6r de flesta webbl\'e4sarna. G\'f6r man n\'e5got nytt i Vanilla finns det en risk att det inte kan implementeras; detta beh\'f6ver man inte t\'e4nka p\'e5 n\'e4r man anv\'e4nder ett s\'e5dant h\'e4r bibliotek.\par
+\par
+Om du har specifika uppgifter som l\'e4ttare kan l\'f6sas med jQuery, anv\'e4nd d\'e5 jQuery. Det \'e4r inte ett d\'e5ligt bibliotek med f\'e5r folk att skriva d\'e5lig kod av n\'e5gon anledning.\par
+\par
+M\'e5nga saker \'e4r snyggare i jQuery \'e4n i vanilla, t.ex. Ajax. \par
+\par
+jQuery \'e4r helt enkelt en samling funktioner som \'e4r wrappers runt vanliga JavaScript-funktioner. Felhantering kan ofta l\'f6sas av biblioteket. Det \'e4r bara en f\'f6rl\'e4ngning av spr\'e5ket. Det finns f\'e4rdiga l\'f6sningar som man kan l\'e5na in. \par
+\par
+jQuery blir ett interface f\'f6r tidigare kod. Det blir i m\'e5nga fall betydligt mindre kod att skriva. T.ex. blir det l\'e4ttare att g\'f6ra animeringar.\par
+\par
+\b\fs28 F\'e5 tag p\'e5 jQuery\b0\fs22\par
+Ladda ned jQuery fr\'e5n {{\field{\*\fldinst{HYPERLINK https://jquery.com/ }}{\fldrslt{https://jquery.com/\ul0\cf0}}}}\f0\fs22\par
+\par
+Oftast vill man ha den minifierade, komprimerade versionen. Man b\'f6r l\'e4nka in jQuery i HTML:en innan man l\'e4gger in sin kod.\par
+\par
+Det g\'e5r ocks\'e5 att l\'e4gga in en cdn och l\'e4nka via internet. Man f\'e5r d\'e5 en l\'e4nk som man bara kan klistra in i sin HTML. Om det \'e4r snabbare eller l\'e5ngsammare med cdn beror p\'e5 vilken server man h\'e4mtar koden fr\'e5n o.s.v. Har man cdn kan det cache:as p\'e5 datorn hos anv\'e4ndare fr\'e5n andra hemsidor som anv\'e4nder samma cdn.\par
+\par
+{{\field{\*\fldinst{HYPERLINK http://api.jquery.com/ }}{\fldrslt{http://api.jquery.com/\ul0\cf0}}}}\f0\fs22  ger information om vad som finns i jQuery.\par
+\par
+\b\fs28 Anv\'e4ndbara funktioner\par
+\i\fs22 Se\b0\i0\par
+{{\field{\*\fldinst{HYPERLINK http://youmightnotneedjquery.com/ }}{\fldrslt{http://youmightnotneedjquery.com/\ul0\cf0}}}}\f0\fs22\par
+\par
+och motsatsen\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/you-dont-need/You-Dont-Need-Javascript }}{\fldrslt{https://github.com/you-dont-need/You-Dont-Need-Javascript\ul0\cf0}}}}\f0\fs22\par
+\b\par
+Selektorer\b0\par
+jQuery underl\'e4ttar n\'e4r man ska plocka ut element med selector shorthand:\par
+\cf2\f1 $('#idSelector');\cf0\f0\par
+\par
+ist\'e4llet f\'f6r\par
+\cf2\f1 document.getElementByID('#idSelector');\par
+\cf0\f0\par
+Detta liknar mer querySelector d\'e5 man kan v\'e4lja n\'e4stlade element:\par
+\cf2\f1 $('#idSelector .classSelector span');\par
+\cf0\f0\par
+Hitta ett visst element av en viss typ med hj\'e4lp av \cf2\f1 .find\cf0\f0 :\par
+\cf2\f1 $('.box') .find('li')\cf0\f0\par
+H\'e4r hittar vi ett \cf2\f1 li\cf0\f0  i \cf2\f1 .box\cf0\f0\par
+\par
+Hitta f\'f6r\'e4lder\par
+\cf2\f1 $('.box').parent()\tab\cf3 // Closest parent\cf2\par
+$('.box').parents()\tab\cf3 // All parents\cf2\par
+$('.box').children()\tab\cf3 // All children\cf0\f0\par
+\par
+\b DOM Traversal\par
+\b0 All DOM-navigering som du kan t\'e4nka p\'e5 finns som en shorthand i jQuery.\par
+\par
+\b\fs28 Ajax\b0\fs22\par
+Man kan vilja ha jQuery f\'f6r att undvika den klunsiga syntaxen hos XMLHttpRequest o.s.v. jQuery har m\'e5nga shorthand-funktioner. Grundformen av jQuery funktionen f\'f6r Ajax \'e4r:\par
+\cf2\f1 $.ajax()\cf0\f0\par
+\par
+I sitt sammanhang:\par
+\cf2\f1 $.ajax(\{\par
+  method: 'GET',\par
+  url: '{{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ',\par
+  success: (response) => \{\par
+    return response;\par
+\}\par
+\})\cf0\f0\par
+\par
+Det \'e4r viktigt att vi har \cf2\f1 success\cf0\f0 -nyckelordet. Efter det kan vi g\'f6ra vad vi ska med response:t och s\'e4ga vad som ska h\'e4nda. Bara d\'e4r vet vi att datan kommit.\par
+\par
+Man kan \'e4ven f\'f6rl\'e4nga lite:\par
+\cf2\f1 $.ajax(\{\par
+  method: 'GET',\par
+  url: '{\cf0{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ',\par
+  success: (response) => \{ return response;\},\par
+  error: (error) => \{ return error \};\par
+\})\cf0\f0\par
+\par
+Vi f\'f6rv\'e4ntar oss att f\'e5 tillbaka json. Man kan beh\'f6va \cf2\f1 contentType\cf0\f0 , s\'e4rskilt om vi ska anv\'e4nda \cf2\f1 POST\cf0\f0  ist\'e4llet. Det beror p\'e5:\par
+\cf2\f1 $.ajax(\{\par
+  method: 'GET',\par
+  url: '{\cf0{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ',\par
+\cf3   //When you send data\par
+\cf2   contentType: 'application/json; charset=utf-8',\par
+  dataType: 'json' \cf3 //What you expect to get\cf2\par
+  success: (response) => \{ return response;\},\par
+  error: (error) => \{ return error \};\par
+\})\cf0\f0\par
+\par
+Ett antal ytterligare egenskaper kan s\'e4ttas men det h\'e4r \'e4r det vi troligast kommer st\'f6ta p\'e5. Alla headers kan t.ex. s\'e4ttas i ett request om servern till\'e5ter det.\par
+\par
+\b $.Ajax() Shorthand\b0\par
+\cf2\f1 $.get()\cf0\f0 : metoden'GET'\par
+\cf2\f1 $.post()\cf0\f0 : metoden 'POST'\par
+\cf2\f1 $.load()\cf0\f0 : anv\'e4nds ofta f\'f6r att ladda in fragment av sidor dynamiskt; HTML chunks\par
+\cf2\f1 $.getJSON()\cf0\f0 : H\'e4mtar json med metoden 'GET'. \cf2\f1 dataType\cf0\f0  s\'e4tts till \cf2\f1 'json'\cf0\f0 .\par
+\par
+\b Callbacks\b0\par
+Samtliga funktioner borde ha en callback. En callback k\'f6rs efter att informationen h\'e4mtats.\par
+\cf2\f1 $.get('http://localhost:3000', (response) => response);\par
+\cf0\f0\par
+Samtliga funktioner borde ocks\'e5 ha n\'e5gon sorts felhantering:\par
+\cf2\f1 error: (error) => return error;\cf0\f0\par
+\par
+Det g\'e5r lika bra att anv\'e4nda vanliga funktioner med funktions-nyckelordet ist\'e4llet f\'f6r arrow-functions.\par
+\par
+Alternativ syntax:\par
+\cf2\f1 $.get('http://localhost:3000')\par
+  .done((response) => response)\par
+  .fail((error) => error)\par
+  .always(() => 'After all this time?')\par
+\cf0\f0\par
+\b Vad ska vi h\'e4mta f\'f6r data?\par
+\b0 N\'e4r vi h\'e4mtar data fr\'e5n ett API vi inte har kontrollen \'f6ver kan det vara bra att testa funktionaliteten.\par
+\par
+H\'e4r \'e4r ett rest-API som vi ska anv\'e4nda.\par
+{{\field{\*\fldinst{HYPERLINK http://fend16.azurewebsides.net/albums }}{\fldrslt{http://fend16.azurewebsides.net/albums\ul0\cf0}}}}\f0\fs22\par
+json retuerneras. \par
+\par
+Utan n\'e5gon databas kan inte information sparas. Det kan delvis l\'f6sas med local storage, d\'e4r informationen lagras i anv\'e4ndarens webbl\'e4sare. Men n\'e4r man sitter och utvecklar kan det vara bra att f\'e5 en uppfattning om hur lagring sker.\par
+\par
+\b json server\par
+\b0 Ett verktyg som skapar en databas och sparar informationen i en .json-fil. Man kommer \'e5t den via localhost. H\'e4r anv\'e4nds GET, POST, PATCH och DELETE som vanligt; det \'e4r ett ReST API.\par
+\par
+Installation sker via npm.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/typicode/json-server }}{\fldrslt{https://github.com/typicode/json-server\ul0\cf0}}}}\f0\fs22\par
+\par
+F\'f6r att f\'e5 upp ett API tar vi npm/Node och skriver:\par
+\cf2\f1 npm install -g json-server\par
+\cf0\f0\par
+Det en json-server beh\'f6ver ha \'e4r en databas i form av en .json-fil. \par
+\par
+\b\i Se\b0\i0  Jespers kod\par
+\par
+Man kan k\'f6ra flera olika servrar lokalt p\'e5 sin dator bara de har olika portar.\par
+\par
+Gl\'f6m inte att det k\'f6rs aynkront. Ajax-anropet kan ta sin lilla tid.  \par
+}
+ 

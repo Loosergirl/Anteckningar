@@ -187,6 +187,13 @@ N\'e4r du installerat en modul ska du ha en mapp som heter node_modules.\par
 \b0\fs22 06_node.md - Information om node och npm.\par
 gulp-boilerplate - Repo med en f\'e4rdig config som kan anv\'e4ndas. Kan du anv\'e4nda detta i ditt projekt?\par
 \par
+\b\fs28 Repetition 7/3\b0\fs22\par
+Det finns en del som skiljer sig i hur Node fungerar j\'e4mf\'f6rt med en webbl\'e4sare. \par
+\par
+Med Node finns inget window-objekt. Moduler skapas fr\'e5n start ist\'e4llet f\'f6r att vi l\'e4gger till namespaces senare. Att l\'e4nka in med \cf2\f1 require\cf0\f0  \'e4r specifikt Node-syntax; man h\'e4mtar ju modulerna fr\'e5n node_modules. Nodes moduler blir automatiskt olika namespaces. \par
+\par
+Om man anv\'e4nder flera .js-filer i browsern kommer de fortfarande ha samma global scope. Med ES6 kan man g\'f6ra olika moduler och namespaces (med \cf2\f1 export\cf0\f0  och \cf2\f1 import\cf0\f0 ), men detta g\'e5r fortfarande inte att anv\'e4nda fullt ut utan vissa verktyg. \par
+\par
 \par
 }
  
