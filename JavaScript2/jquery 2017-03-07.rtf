@@ -33,6 +33,9 @@ Det g\'e5r ocks\'e5 att l\'e4gga in en cdn och l\'e4nka via internet. Man f\'e5r
 \par
 och motsatsen\par
 {{\field{\*\fldinst{HYPERLINK https://github.com/you-dont-need/You-Dont-Need-Javascript }}{\fldrslt{https://github.com/you-dont-need/You-Dont-Need-Javascript\ul0\cf0}}}}\f0\fs22\par
+\par
+Officiellt:\par
+{{\field{\*\fldinst{HYPERLINK https://api.jquery.com/ }}{\fldrslt{https://api.jquery.com/\ul0\cf0}}}}\f0\fs22\par
 \b\par
 Selektorer\b0\par
 jQuery underl\'e4ttar n\'e4r man ska plocka ut element med selector shorthand:\par
@@ -63,7 +66,7 @@ Man kan vilja ha jQuery f\'f6r att undvika den klunsiga syntaxen hos XMLHttpRequ
 I sitt sammanhang:\par
 \cf2\f1 $.ajax(\{\par
   method: 'GET',\par
-  url: '{{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ',\par
+  url: '{\cf0{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ',\par
   success: (response) => \{\par
     return response;\par
 \}\par
@@ -100,7 +103,7 @@ Ett antal ytterligare egenskaper kan s\'e4ttas men det h\'e4r \'e4r det vi troli
 \par
 \b Callbacks\b0\par
 Samtliga funktioner borde ha en callback. En callback k\'f6rs efter att informationen h\'e4mtats.\par
-\cf2\f1 $.get('http://localhost:3000', (response) => response);\par
+\cf2\f1 $.get('{{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ', (response) => response);\par
 \cf0\f0\par
 Samtliga funktioner borde ocks\'e5 ha n\'e5gon sorts felhantering:\par
 \cf2\f1 error: (error) => return error;\cf0\f0\par

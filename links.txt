@@ -1,0 +1,15 @@
+http://caniuse.com/
+
+http://fontawesome.io/cheatsheet/
+
+===VALIDERING===
+https://validator.w3.org/
+http://jsonlint.com/
+https://www.xmlvalidation.com/
+https://developers.google.com/speed/pagespeed/insights/
+
+https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
+
+https://www.npmjs.com/
+
+https://github.com/typicode/json-server

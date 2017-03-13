@@ -1,0 +1,253 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29 ReST API\par
+\b0\fs22 Det \'e4r det vi har anv\'e4nt oss av. Det finns inte n\'e5gon direkt definition av vad ett ReST API \'e4r. Det beror p\'e5 vilket designm\'f6nster eller vilken best practice vi anv\'e4nt oss av. Det \'e4r helt okej att modifiera sitt designm\'f6nster eller g\'f6ra sitt eget ocks\'e5. \par
+\par
+
+\pard\sl240\slmult1\tx7668 De API:n vi pratat om kan vara bundna till flera olika saker. Det \'e4r inte specifikt bundet till HTTP-protokollet. I princip \'e4r ett API bara publika funktioner. Det vi ser ut\'e5t \'e4r bara funktionernas namn. \par
+\par
+\b REST-compliant\par
+\b0 Detta \'e4r n\'e4r man jobbar utifr\'e5n ReST-designprinciper. D\'e5 kan man h\'e4mta och manipulera textuella representationer av webresurser. Man har en representation av resursen. Det ska inte spela n\'e5gon roll hur informationen ser ut bakom. Det ska se likadant ut s\'e5 att man vet hur man ska h\'e4mta resurserna. \par
+\par
+\b Guiden f\'f6r att g\'f6ra ReSt API:er\par
+\b0 "Architectural Styles and the Design of Network-based Software Architectures" av Roy Fielding. Det \'e4r ganska generellt men det finns ett antal principer att f\'f6lja. Det finns egentligen sex riktlinjer som ska f\'f6ljas f\'f6r att n\'e5got ska kallas ett ReST API. Men ReST \'e4r varken en standard eller ett protokoll; det \'e4r bara en person som skrivit en avhandling om det. I slut\'e4ndan spelar det inte s\'e5 stor roll om riktlinjerna f\'f6ljs. Det \'e4r en rekommendation. Men f\'f6ljer man dessa designprinciper f\'e5r man ett bra API som l\'e4tt kan modifieras p\'e5 olika s\'e4tt.\par
+\par
+Med ReSTs arkitekturella stil \'e4r data och funktionalitet resurser och de kommer man \'e5t med Uniform Resource Identifiers (URIs). M\'e5nga API:er kan skicka ut flera format f\'f6r data, b\'e5de json och XML.\par
+\par
+\b Statelessnesss\b0\par
+Man vill att ett API ska vara stateless. G\'f6r man en GET-request till en server kommer bara information skickas utan att servern sparar vem som tagit emot information. G\'f6rs 2-3 requests p\'e5 en g\'e5ng kanske IP:et \'e4r k\'e4nt men anv\'e4ndaren kan inte identifieras. Olika GET-requests \'e4r helt isolerade fr\'e5n varandra. Man kan allts\'e5 inte anv\'e4nda informationen fr\'e5n en GET-request f\'f6r att g\'f6ra en POST-request.\par
+\par
+Andra typer av servrar kan spara anv\'e4ndare. Detta \'e4r d\'e4remot inte standarden. Informationen skickas bara ut och sedan \'e4r det klart. All information som beh\'f6vs f\'f6r att hantera databasen skickas i f\'f6rfr\'e5gan och finns i URL:en. Det ska inte beh\'f6vas n\'e5got specifikt protokoll. Allt sker via URL:en, dess parametrar och headers.\par
+\par
+Kanske om man ska POST:a s\'e5 m\'e5ste man skicka med informationen som ska POST:as. Men det beh\'f6vs fortfarande inte n\'e5gon koppling som h\'e5lls ig\'e5ng. \par
+\par
+\b Representational\b0\par
+En resurs kan identifieras med en URL. Det \'e4r det enda vi beh\'f6ver ha. Anv\'e4ndaren beh\'f6ver inte veta n\'e5got om servern. Formatet som anv\'e4ndaren ser beh\'f6ver inte vara det samma som p\'e5 servern. P\'e5 samma s\'e4tt kan man \'e4ven manipulera informationen och lagra ny information. \par
+\par
+ReST API ska man kunna anv\'e4nda utan att man har n\'e5gon annan information \'e4n det ursprungliga URI:et och en grupp standaridiserade mediatyper. \par
+\par
+T.ex. ska man kunna veta hur man h\'e4mtar alla filmer:\par
+\cf1\f1 GET\par
+{{\field{\*\fldinst{HYPERLINK http://localhost:3000/movies }}{\fldrslt{http://localhost:3000/movies\ul0\cf0}}}}\f1\fs22\par
+\cf0\f0 och hur man f\'e5r en film:\par
+\cf1\f1 GET\par
+{{\field{\*\fldinst{HYPERLINK http://localhost:3000/movies/1 }}{\fldrslt{http://localhost:3000/movies/1\ul0\cf0}}}}\f1\fs22\par
+\cf0\f0\par
+Man har vissa routes f\'f6r att komma till en viss resurs. \par
+\par
+Med den informationen vet vi \'e4ven hur vi skapar och uppdaterar filer.\par
+\cf1\f1 POST\par
+{{\field{\*\fldinst{HYPERLINK http://localhost:3000/movies }}{\fldrslt{http://localhost:3000/movies\ul0\cf0}}}}\f1\fs22\par
+\cf0\f0\par
+\cf1\f1 PATCH\par
+{\cf0{\field{\*\fldinst{HYPERLINK http://localhost:3000/movies/1 }}{\fldrslt{http://localhost:3000/movies/1\ul0\cf0}}}}\f1\fs22\par
+\cf0\f0\par
+Med POST kan man inte ha ett visst id eftersom det man POST:ar inte finns \'e4nnu. Det \'e4r d\'e4remot n\'f6dv\'e4ndigt med PATCH.\par
+\par
+Detta fungerar bra eftersom man l\'e4gger upp sitt API som man ska g\'f6ra.\par
+\par
+Man ska f\'f6rs\'f6ka se till att det g\'e5r att h\'e4mta s\'e5 lite information som m\'f6jligt. \'c4r det m\'e5nga saker som ska h\'e4mtas samtidigt kan man designa API:et s\'e5 att man beh\'f6ver h\'e4mta s\'e5 lite som m\'f6jligt.\par
+\par
+URL queries anv\'e4nds i URL:er. D\'e4r anges f\'f6rutom att vi ska h\'e4mta en viss route ocks\'e5 en viss s\'f6kning. \'c4r ett API kodat r\'e4tt kan man anv\'e4nda URL queries. S\'e5dana queries k\'e4nns l\'e4tt igen i s\'f6kf\'e4lt eftersom \cf1\f1 ?\cf0\f0  anv\'e4nds, f\'f6ljt av ett id. Youtube har \cf1\f1 ?v=\cf0\f0  f\'f6ljt av ett id, Google har \cf1\f1 ?q=\cf0\f0  f\'f6ljt av s\'f6korden.\par
+\par
+Om vi hade en query p\'e5 v\'e5r json-server kanske det skulle se ut s\'e5 h\'e4r:\par
+\cf1\f1 GET /movies?title=seven\par
+\cf0\f0\par
+Movies \'e4r \'e4ndpunkten och man m\'e5ste g\'e5 via den. \par
+\par
+Servern ska kunna filtrera och sortera. F\'f6r att sortera med egenskapen sort:\par
+\cf1\f1 GET /movies?_sort=rating&_order=DESC\par
+\cf0\f0\par
+H\'e4r f\'e5r man tillbaka resultat sorterat efter rating och ordnat fr\'e5n h\'f6gsta till l\'e4gsta (om inte rating \'e4r en array).\par
+\par
+Observera att \cf1\f1 order by\cf0\f0  m\'e5ste vara n\'e5got som det g\'e5r att sortera efter. \par
+\par
+\b API Key\b0\par
+Man beh\'f6ver oftast en unik nyckel s\'e5 att man inte missbrukar API:et. Detta f\'f6r att indikera vem som g\'f6r requesten. Nyckeln beskriver hur mycket man f\'e5r h\'e4mta per dag eller m\'e5nad. Annars skulle man bara kunna g\'f6ra en loop som g\'f6r massor av requests varp\'e5 API:et kraschar. Nyckeln l\'e4gger man in i sin query eller en header. Hur strikt det \'e4r beror p\'e5 vilket API man anv\'e4nder.\par
+\par
+Nycklar kan vara gratis eller ocks\'e5 kan det kr\'e4vas betalning f\'f6r att f\'e5 tillg\'e5ng till dem.\par
+\par
+I en request kanske inte nyckeln heter just key. T.ex. kan den heta \cf1\f1 appid\cf0\f0 . (p\'e5 api.openweathermap.org). Olika parametrar eller argument i en query (id, nyckel o.s.v.) separeras med \cf1\f1 &\cf0\f0 . \par
+\par
+Det kan se v\'e4ldigt olika ut beroende p\'e5 vilket API man anv\'e4nder men oftast \'e4r de s\'e5 h\'e4r lika p.g.a. standardisering. Det finns ingen standard f\'f6r att strukturera API:er man de flesta f\'f6ljer \'e4nd\'e5 samma designprinciper. Vi borde kunna anv\'e4nda de flesta API:er.\par
+\par
+\b\fs36 Sync vs Async JavaScript\par
+\b0\fs22\'c4r det synkroniserat, som det mesta JavaScript \'e4r, eller asynkroniserat? Synkroniserat kan bara en sak g\'f6ras \'e5t g\'e5ngen. \'c4ven om det g\'e5r snabbt sker det i en viss ordning och kod blockerar efterf\'f6ljande kod. Det kan vara bra att inte ha f\'f6r stora funktioner som tar f\'f6r l\'e5ng tid. Det kan vara bra att undvika stora sorteringsjobb, t.ex. bubblesort.\par
+\par
+Asynkront har sina egna problem. T.ex. en k\'f6 kanske r\'f6r sig snabbare \'e4n v\'e4ntat. Det g\'e5r inte att chansa i JavaScript f\'f6r d\'e5 fungerar det inte som det ska. Man m\'e5ste s\'e4kerst\'e4lla att informationen har h\'e4mtats. Om allt \'e4r baserat p\'e5 informationen som h\'e4mtas med en request m\'e5ste man se till att det sker f\'f6rst.\par
+\par
+\b Blocking code\b0\par
+Koden l\'e4ses \i typ\i0  uppifr\'e5n och ned. Om vi t.ex. ska loopa igenom n\'e5got riktigt stort kommer det blockera resterande kod. Ju mer kod man har desto tyngre blir det att ladda in sidan. Med synchronous code kan vi garantera att n\'e5got k\'f6rs men det kan blockeras p\'e5 detta s\'e4tt.\par
+\par
+\b Call stack\par
+\b0 Funktionen pushas in i stacken n\'e4r den kallas p\'e5 och poppas sedan ut n\'e4r vi returnerar. Funktionerna l\'e4ggs till beroende p\'e5 hur de kallas p\'e5 och n\'e4r de \'e4r klara. Om en funktion kallar p\'e5 en annan kommer den inre funktionen hamna \'f6verst i call stack:en och k\'f6ras klart f\'f6rst. I dev tools kan man se vad som egentligen h\'e4nder. \par
+\par
+Med rekursion, n\'e4r en funktion kallar p\'e5 sig sj\'e4lv, l\'e4ggs funktionen p\'e5 call stacken om och om igen. Om man aldrig returnerar n\'e5got eller avbryter det p\'e5 n\'e5got s\'e4tt blir det till slut stack overflow. \par
+\par
+\b Non blocking code\par
+\b0 Ajax och setTimeout() \'e4r exempel p\'e5 funktioner som \'e4r non-blocking. De \'e4r async och blockerar inte call stack. Funktionerna kommer hamna p\'e5 call stacken n\'e5gon g\'e5ng men inte direkt. Ist\'e4llet placeras de i sin egen k\'f6 eller stack som h\'e5ller de asynkrona funktionerna. Det hanteras av n\'e5got som kallas event loop.\par
+\par
+\b Set timeout\par
+\b0 En funktion som tar en annan funktion som argument. Den funktionen k\'f6rs efter ett antal millisekunder, oavsett vad f\'f6r kod som k\'f6rs annars.\par
+\cf1\f1 setTimeout(function() \{\par
+    console.log('Hello from timeout!');\par
+\}, 250);\par
+\cf0\f0\par
+Om man s\'e4tter timeout:en p\'e5 0 kommer den \'e4nd\'e5 lagras async. Den kommer \i minst\i0  k\'f6ras efter 0 millisekunder. Det \'e4r inexakt. I slut\'e4ndan hamnar allt p\'e5 call stack:en.\par
+\par
+\cf3\f1 //loop 6 times\par
+\cf1 for (var i = 1; i <= 5; i++ \{\par
+\cf3     //increase the timeout for each loop\par
+    //and print the value\par
+\cf1     setTimeout(function() \{\par
+        console.log(i);\par
+    \}, i);\par
+\}\par
+\cf0\f0\par
+Vad skrivs ut? Svar:\par
+\cf1\f1 6 6 6 6 6 6\par
+\cf0\f0\par
+for-loopen k\'f6rs synkront och setTimeout() k\'f6rs asynkront. \par
+\par
+L\'f6sning:\par
+\cf1\f1 for (var i = 1; i <= 5; i++ \{\par
+        function(i) \{\par
+            setTimeout(function() \{\par
+            console.log(i);\par
+        \}, i);\par
+    \})(i);\par
+\}\par
+\cf0\f0\par
+Eller s\'e5 kan man strunta i att skapa funktioner i loopar.\par
+\b\i Se \'e4ven\b0\i0  Jespers slide\par
+\par
+Man kan \'e4ven anv\'e4nda \cf1\f1 let\cf0\f0  s\'e5 att ett nytt scope skapas. \cf1\f1 let\cf0\f0  skapar block scope och d\'e5 beh\'e5lls v\'e4rdet f\'f6r varje iteration och \'f6kas.\par
+\par
+\b Event loop\b0\par
+Event loopen kollar f\'f6rst om call stack \'e4r tom eller inte. De asynkrona sakerna l\'e4ggs oftast till n\'e4r allting annat redan k\'f6rts.\par
+\par
+\b\i Se \'e4ven\b0\i0  Jespers slide f\'f6r l\'e4nk till ett klipp om vad en event loop \'e4r.\par
+\par
+Alla ajax requests hamnar p\'e5 event loopen.\par
+\par
+\b Callback hell\b0\par
+N\'e4r man har att g\'f6ra med asynkron JavaScript tenderar det att bli m\'e5nga nestlade funktioner eftersom man ska kalla p\'e5 dem n\'e4r de f\'f6reg\'e5ende k\'f6rts klart. Till slut riskerar man att tappa bort sig i koden. F\'f6r att undvika callback hell kan man separera funktionerna fr\'e5n varandra. Man f\'e5r anv\'e4nda fler namngivna funktioner ist\'e4llet f\'f6r anonyma funktioner.\par
+\par
+\b Promises\b0\par
+En implementation av promises \'e4r fetch(). Man f\'e5r ett mer snyggare uppl\'e4gg av koden. Man kan undvika callback hell med promises.\par
+\par
+Ett promise object anv\'e4nds f\'f6r asynkron hantering. Ett promise representerar ett v\'e4rde som kan vara tillg\'e4ngligt nu, i framtiden eller aldrig. \par
+\par
+Man wrappar in sitt v\'e4rde i ett promise object. Det kan liknas vid ett kvitto p\'e5 att en transaktion skett.\par
+\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1\tx7668\cf1\f1 pending\cf0\f0 : promise \'e4r inte uppfyllt eller avvisat\par
+{\pntext\f2\'B7\tab}\cf1\f1 fulfilled\cf0\f0 : operationen har utf\'f6rts och lyckats\par
+{\pntext\f2\'B7\tab}\cf1\f1 rejected\cf0\f0 : operationen har misslyckats\par
+
+\pard\sl240\slmult1\tx7668\par
+L\'f6ftet s\'e4ger om vi f\'e5tt informationen eller inte.\par
+\par
+Promises finns i JavaScript-spr\'e5ket och \'e4r inte bundet bara till fetch(). En anonym funktion \'e4r parameter. Exempel:\par
+\par
+\cf3\f1 //Create new promise that will resolve after 250ms\par
+\cf1 new Promise(function(resolve, reject) \{\par
+\cf3     //Make async "request"\par
+\cf1     setTimeout(function() \{\par
+\cf3         //Resolve promise after 250ms\par
+\cf1         resolve("Success!");\par
+    \}, 250);\par
+\}\par
+\cf0\f0\par
+eller\par
+\par
+\cf3\f1 //Create new promise that will reject after 250ms\par
+\cf1 new Promise(function(resolve, reject) \{\cf3\par
+\cf1     setTimeout(function() \{\par
+\cf3         //Reject promise after 250ms\par
+\cf1         reject("Rejection your onion");\par
+    \}, 250);\par
+\}\par
+\cf0\f0\par
+Med promises m\'e5ste vi alltid hantera att det blir wrappat i ett promise-objekt:\par
+\par
+\cf1\f1 var promise = new Promise(function(resolve, reject) \{\par
+\cf3     // do async stuff, e.g. Ajax\par
+\par
+\cf1     if (status == 200) \{\par
+        resolve(response);\par
+    \}\par
+    else \{\par
+        reject(Error("So error! So much!"));\par
+    \}\par
+\});\par
+\cf0\f0\par
+F\'f6rst\'e5s kan det som resolve:as fortfarande bli undefined \'e4ven om det lyckats, \'e4ven fast vi hanterat statusen.\par
+\par
+Man m\'e5ste alltid g\'f6ra n\'e5got med l\'f6ftet (skriva ut det, konvertera det, plocka ut information). Vi m\'e5ste anv\'e4nda n\'e5got sorts \cf1\f1 .then\cf0\f0 .\par
+\par
+\cf1\f1 promise.then(function(response) \{\par
+    console.log(response)\par
+    \}, function(error) \{\par
+        console.log(error);\par
+\}\par
+\cf0\f0\par
+fetch returnerar ett promise object.\par
+\cf1\f1 fetch('get.com').then(res => res.json());\par
+\cf0\f0\par
+Vi vill g\'f6ra n\'e5got med det som kommer tillbaka. \cf1\f1 .json()\cf0\f0  \'e4r en metod f\'f6r att konvertera till json.\par
+\par
+Med \cf1\f1 thenable\cf0\f0  m\'e5ste vi plocka v\'e4rdet fr\'e5n objektet om vi ska anv\'e4nda det.\par
+\par
+Vi kan vilja spara det i en variabel:\par
+\par
+\cf1\f1 var p = fetch('get.com').then(res => res.json());\cf0\f0\par
+\par
+Det \'e4r fortfarande ett promise-objekt n\'e4r det returneras. D\'e4r ligger ganska mycket information och f\'f6r att komma \'e5t det man vill \'e5t beh\'f6ver man korrekt notation. Det finns body och headers o.s.v. Vissa delar av informationen \'e4r heller inte tillg\'e4nglig utan att den konverterats.\par
+\par
+Det g\'e5r f\'f6rst\'e5s att anv\'e4nda ett promise vid ett annat tillf\'e4lle. Man beh\'f6ver inte anv\'e4nda ett promise p\'e5 en g\'e5ng:\par
+\cf1\f1 var p = fetch('get.com').then(res => res.json());\cf0\f0\par
+\cf1\f1 p.then(data => console.log(data));\par
+\cf0\f0\par
+J\'e4mf\'f6r med ajax:\par
+$.ajax(\{\par
+    url: "get.com",\par
+    success: (response) => \{response\},\par
+    error: (err) => \{error\}\par
+\})\par
+\par
+H\'e4r hanteras b\'e5de lyckad och misslyckad request.\par
+\par
+\b\i Se \'e4ven\b0\i0  Jespers slide f\'f6r mer kod, alternativ till ovanst\'e5ende, l\'e4nkar\par
+\par
+Error handling liknar jQuery.\par
+\cf1\f1 fetch('get.com')\par
+    .then(res => res.json())\par
+    .catch(error => error);\par
+\cf0\f0\par
+\b Promise.all()\b0\par
+G\'f6r vi flera requests samtidigt, eller har flera olika requests som ska hantera det, och har tv\'e5 promises som ska uppfyllas samtidigt... D\'e5 kan man spara de i tv\'e5 olika variabler.\par
+\par
+\cf1\f1 var a = fetch('get.com/1').then(res => res.json());\par
+var b = fetch('get.com/2').then(res => res.json());\par
+\par
+\cf3 //Med Promise.all kan man resolve:a allt p\'e5 en g\'e5ng:\par
+\cf1 Promise.all([a,b]).then(data => console.log(data);\par
+\cf0\f0\par
+Det blir en array.\par
+\par
+\b\i Se \'e4ven\b0\i0  Jespers slide f\'f6r mer l\'e4nkar\par
+\par
+F\'f6rst\'e5s kan promises kombineras med andra saker, inte bara fetch(). T.ex. kan man ha XMLHttpRequest.\par
+\par
+\b Async/await\par
+\b0 Async/await \'e4r en ny sak 2017 och bygger p\'e5 promises. D\'e5 kan man genast skapa ett promise av en funktion. Syftet \'e4r att g\'f6ra koden mer kompakt. N\'e4r man l\'e4gger till \cf1\f1 async\cf0\f0  framf\'f6r funktionen blir det ett helt nytt promise av funktionen.\par
+\b\i Se \'e4ven\b0\i0  Jespers slide f\'f6r mer l\'e4nkar\par
+\par
+\b\fs32 Inl\'e4mningsuppgiften\b0\fs22\par
+Inl\'e4mningsuppgiften ska anv\'e4nda sig av async och Ajax.\par
+\par
+\b\i Se\b0\i0  GitHub.\par
+}
+ 

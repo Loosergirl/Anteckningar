@@ -1,0 +1,40 @@
+{
+  "movies": [
+    {
+      "id": 0,
+      "title": "The Lobster",
+      "year": 2015,
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "ratings": [
+        8,
+        7,
+        8,
+        6,
+        9,
+        9,
+        10
+      ]
+    },
+    {
+      "title": "Autumn",
+      "year": "2000",
+      "genres": [],
+      "id": 1
+    },
+    {
+      "title": "Hej",
+      "year": "1918",
+      "genres": [],
+      "id": 2
+    },
+    {
+      "title": "Hej",
+      "year": "1918",
+      "genres": [],
+      "id": 3
+    }
+  ]
+}
