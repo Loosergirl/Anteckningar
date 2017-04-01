@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green0\blue255;\red0\green77\blue187;\red102\green102\blue102;\red165\green165\blue165;}
-{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+{\colortbl ;\red0\green77\blue187;\red102\green102\blue102;\red165\green165\blue165;\red0\green0\blue255;}
+{\*\generator Riched20 6.2.9200}\viewkind4\uc1 
 \pard\sl240\slmult1\f0\fs22\lang29 Alla anv\'e4nder Illustrator och Sketch f\'f6r mockupts et.c. Det \'e4r d\'e4remot inte helt on\'f6digt att anv\'e4nda Photoshop eftersom det finns vissa saker som vektorgrafik inte klarar av. Det \'e4r bra att l\'e4ra sig Illustrator eller Sketch ocks\'e5. F\'f6r att presentera mockups finns det saker man kan g\'f6ra, t.ex. l\'e4gga in dem i en bild.\par
 ---------------------------------------------------------------------------------------------------\par
 \b\fs32 SASS\b0\fs22\par
@@ -9,8 +9,12 @@ Syntactically Awesome Style Sheets.\par
 Ingen anv\'e4nder CSS l\'e4ngre. Man anv\'e4nder ett verktyg f\'f6r att konvertera mellan SASS och CSS. Det \'e4r i princip ett helt nytt spr\'e5k.\par
 \par
 \b Installera f\'f6rst\b0\par
-Windows: {{\field{\*\fldinst{HYPERLINK http://rubyinstaller.org/ }}{\fldrslt{http://rubyinstaller.org/\ul0\cf0}}}}\f0\fs22  eller s\'f6k p\'e5 ruby installer.\par
+Windows: http://rubyinstaller.org/ eller s\'f6k p\'e5 ruby installer.\par
 Skriv sedan i terminalen: gem install sass\par
+\par
+Obs! F\'f6r att byta h\'e5rddisk till D, skriv:\par
+\cf1\f1 cd /d X:\\\cf0\f0\par
+d\'e4r X st\'e5r f\'f6r h\'e5rddiskens bokstav.\par
 \par
 Det \'e4r till\'e5tet att anv\'e4nda SASS p\'e5 gruppuppgiften, \'e4ven om vi sa tidigare att vi inte skulle anv\'e4nda n\'e5got ramverk.\par
 \par
@@ -21,7 +25,7 @@ Med SASS f\'e5r vi, i CSS, variabler, funktioner, loopar och if-satser. Dessa ka
 All SASS konverteras till vanlig CSS preprocessor. En bearbetning m\'e5ste ske d\'e5 den konverteras till en f\'e4rdig CSS-fil. D\'e4rf\'f6r \'e4r ruby n\'f6dv\'e4ndigt.\par
 \par
 Hur man skriver i SASS\par
-\cf2\f1 .container \{\par
+\cf1\f1 .container \{\par
     background: hsl(330, 50%, 55%);\par
 \}\par
 \cf0\f0\par
@@ -38,7 +42,7 @@ Index-filen ska ligga i rotmappen. Det beh\'f6vs alltid en index.html. Alla unde
 \par
 \b .scss filer\b0\par
 .scss filer \'e4r bara f\'f6r utvecklares skull. Man l\'e4nkar fortfarande till sin .css-fil. Det \'e4r f\'f6r att g\'f6ra det l\'e4ttare att koda. Vi anv\'e4nder fortfarande\par
-\cf2\f1 <link rel="stylesheet" href="css/main.css">\par
+\cf1\f1 <link rel="stylesheet" href="css/main.css">\par
 \cf0\f0\par
 Vi konverterar alltid till css.\par
 \par
@@ -53,10 +57,10 @@ F\'f6r Linux/Mac:\par
 Byt till korrekt mapp med cd.\par
 \par
 Anv\'e4nd sedan sass-kommandon f\'f6r att konvertera sass-filer. Om mappen heter \f1 scss \f0 och filen heter \f1 main.scss\f0 , filen ska hamna i mappen \f1 css \f0 och heta \f1 main.css\f0 :\par
-\cf2\f1 sass scss/main.scss:css/main.css --watch\par
+\cf1\f1 sass scss/main.scss:css/main.css --watch\par
 \cf0\f0\par
 (Eller, i en annan mapp:\par
-\cf2\f1 sass main.scss:../css/main.css --watch\cf0\f0\par
+\cf1\f1 sass main.scss:../css/main.css --watch\cf0\f0\par
 )\par
 \par
 H\'e4r l\'e4gger vi in en flagga som heter \f1 watch\f0 . Det betyder att vi ska f\'e5 en f\'e4rdig fil. Utan \f1 watch\f0  sker bara en konvertering. \par
@@ -66,8 +70,8 @@ N\'e4r man \'e4ndrar i SASS-filen kommer terminalen skicka in \'e4ndringarna til
 Har man en CSS-fil \'e4r det bara att kopiera och klistra in i en SASS-fil. D\'e5 kan man refaktorera och g\'f6ra den b\'e4ttre.\par
 \par
 \b\fs36 Variabler\b0\fs22\par
-Man kan deklarera variabler genom att anv\'e4nda \cf2\f1 $\cf0\f0 :\par
-\cf2\f1 $primary-color: hsl(330, 50%, 55%);\par
+Man kan deklarera variabler genom att anv\'e4nda \cf1\f1 $\cf0\f0 :\par
+\cf1\f1 $primary-color: hsl(330, 50%, 55%);\par
 \par
 .container \{\par
     background: $primary-color;\par
@@ -76,15 +80,15 @@ Man kan deklarera variabler genom att anv\'e4nda \cf2\f1 $\cf0\f0 :\par
 H\'e4r ovanf\'f6r har vi sparat en f\'e4rg som en variabel. Det kan vara bra om man vill anv\'e4nda f\'e4rgen p\'e5 m\'e5nga olika st\'e4llen.\par
 \par
 \'c4ven andra egenskaper kan sparas:\par
-\cf3\f1 /*i main.scss*/\cf4\par
-\cf2 $full-width: 100%;\par
+\cf2\f1 /*i main.scss*/\cf3\par
+\cf1 $full-width: 100%;\par
 \par
 .container \{\par
     width: $full-width;\par
 \}\par
 \cf0\f0\par
 Vid konvertering byts v\'e4rdena automatiskt. Det g\'e5r att blanda variabler och v\'e4rden:\par
-\cf2\f1 $main-margin: 2rem;\par
+\cf1\f1 $main-margin: 2rem;\par
 \par
 .container \{\par
     main: 0 0 $main-margin $main-margin;\par
@@ -95,29 +99,29 @@ Man kan deklarera f\'e4rger och liknande i b\'f6rjan. Det \'e4r bra om man jobba
 \par
 \b\fs28 Variabler i variabler\b0\fs22\par
 Det g\'e5r att anv\'e4nda operatorer:\f1\par
-\cf2 $main-padding: 2rem;\par
+\cf1 $main-padding: 2rem;\par
 $super-padding: main-padding * 2;\par
 \cf0\f0\par
 \b\fs28 Nesting\b0\fs22\par
 Nesting \'e4r n\'e4r man l\'e4gger n\'e5got i n\'e5got annat. \par
 \par
-\cf2\f1 nav a \{\par
+\cf1\f1 nav a \{\par
     color: #fff;\par
 \}\par
 \cf0\f0\par
 H\'e4r ovanf\'f6r v\'e4ljer vi alla a-element i nav. Detta \'e4r inga konstigheter. Men i scss kan man \'e4ven skriva:\par
-\cf2\f1 nav \{\par
+\cf1\f1 nav \{\par
     a \{\par
         color: #fff;\par
     \}\par
 \}\par
 \cf0\f0\par
-Det g\'e5r att fylla p\'e5 h\'e4r, t.ex. om man har en \cf2\f1 h1\cf0\f0  i nav kan man bara skriva det under \cf2\f1 a\cf0\f0 :et.\par
+Det g\'e5r att fylla p\'e5 h\'e4r, t.ex. om man har en \cf1\f1 h1\cf0\f0  i nav kan man bara skriva det under \cf1\f1 a\cf0\f0 :et.\par
 \par
 \b\fs28 Ampersand (&)\b0\fs22\par
 Om man har n\'e5got man ska styla, kan man nestla det. H\'e4r tar vi f\'f6r\'e4ldern (a) och ers\'e4tter den med &:\par
 \par
-\cf2\f1 a \{\par
+\cf1\f1 a \{\par
     color: marine;\par
     &:hover \{\par
         color: #fff;\par
@@ -125,14 +129,14 @@ Om man har n\'e5got man ska styla, kan man nestla det. H\'e4r tar vi f\'f6r\'e4l
 \}\par
 \cf0\f0\par
 Mer:\par
-\cf2\f1 .box \{\par
+\cf1\f1 .box \{\par
     color: marine;\par
     &-article \{\par
         color: #fff;\par
     \}\par
 \}\par
 \cf0\f0\par
-H\'e4r ovanf\'f6r genereras tv\'e5 olika klasser. \cf2\f1 .box-article\cf0\f0  skapas som en ny klass. \par
+H\'e4r ovanf\'f6r genereras tv\'e5 olika klasser. \cf1\f1 .box-article\cf0\f0  skapas som en ny klass. \par
 \par
 \b\fs28 Nestling f\'f6r att v\'e4lja element\b0\fs22\par
 Det g\'e5r att nestla ned till exakt det element man vill ha, men det \'e4r inte bra. Mycket kod genereras av det. Max tre, kanske fyra, nestlingsniv\'e5er \'e4r v\'e4l okej men det \'e4r b\'e4ttre att undvika att nestla mycket. \par
@@ -142,17 +146,17 @@ Nestling \'e4r bra f\'f6r att komma \'e5t pseudo-element. Det \'e4r f\'f6r utvec
 \b\fs28 Partials\b0\fs22\par
 Sass jobbar med partials. Man kan skapa flera olika filer. Sass underl\'e4tter det. Vi vill fortfarande ha en main.css, men allt beh\'f6ver inte ligga i den. D\'e5 f\'e5r man mer struktur. Om man har fler css filer kunde man f\'f6rut skriva:\par
 \par
-\cf2\f1 <link rel="stylesheet" href="css/main.css">\par
+\cf1\f1 <link rel="stylesheet" href="css/main.css">\par
 <link rel="stylesheet" href="css/shame.css">\par
 \cf0\f0\par
 Detta underl\'e4ttas i scss:\par
-\cf2\f1 @import "shame";\par
+\cf1\f1 @import "shame";\par
 \cf0\f0\par
 Fil\'e4ndelser beh\'f6ver inte inkluderas om det ligger i samma mapp. \par
 \par
 G\'f6r man p\'e5 det h\'f6r s\'e4ttet behver man inte skriva ut links till detta i index.html.\par
 \par
-Partials b\'f6rjar med \cf2\f1 _\cf0\f0 , t.ex. \cf2\f1 _shame.scss\cf0\f0 . Detta beh\'f6ver inte heller skrivas ut vid \cf2\f1 @import\cf0\f0  om det ligger i samma mapp. Anledningen till att understrecket anv\'e4nds \'e4r f\'f6r konverteringssyfte.\par
+Partials b\'f6rjar med \cf1\f1 _\cf0\f0 , t.ex. \cf1\f1 _shame.scss\cf0\f0 . Detta beh\'f6ver inte heller skrivas ut vid \cf1\f1 @import\cf0\f0  om det ligger i samma mapp. Anledningen till att understrecket anv\'e4nds \'e4r f\'f6r konverteringssyfte.\par
 \par
 Om extra scss-filer inte importeras n\'e5gonstans kommer de inte konverteras. Resultatet \'e4r f\'f6rst\'e5s en enda fil i css-form. Det spelar d\'e4remot ingen roll att det blir r\'f6rigt eftersom vi ska komprimera filen s\'e5 att den blir ol\'e4slig. \par
 \par
@@ -162,17 +166,17 @@ Det \'e4r inte meningen att man ska \'e4ndra n\'e5got i css-filen. H\'e5ll koll 
 Kom ih\'e5g: Don't Repeat Yourself, keep it DRY. G\'f6r klasser om m\'f6jligt.\par
 \par
 Mixins och funktioner g\'f6r s\'e5 att man kan \'e5teranv\'e4nda kod som anv\'e4nds ofta. Mixins kan kallas p\'e5 och liknar funktioner. T.ex.:\par
-\cf3\f1 /*I main.scss*/\cf2\par
+\cf2\f1 /*I main.scss*/\cf1\par
 @mixin flex-center() \{\par
     display: flex;\par
     align-items: center;\par
     justify-content: center;\par
 \}\par
 \cf0\f0\par
-Mixin definieras med \cf2\f1 @\cf0\f0  och nyckelordet \cf2\f1 mixin\cf0\f0 , f\'f6ljt av ett unikt namn. Parenteser anv\'e4nds eftersom man kan skicka in v\'e4rden. N\'e4r mixin kallas p\'e5 kommer dess v\'e4rden appliceras p\'e5 elementet.\par
+Mixin definieras med \cf1\f1 @\cf0\f0  och nyckelordet \cf1\f1 mixin\cf0\f0 , f\'f6ljt av ett unikt namn. Parenteser anv\'e4nds eftersom man kan skicka in v\'e4rden. N\'e4r mixin kallas p\'e5 kommer dess v\'e4rden appliceras p\'e5 elementet.\par
 \par
 F\'f6r att anv\'e4nda sin mixin:\par
-\cf2\f1 .container \{\par
+\cf1\f1 .container \{\par
     @include flex-center;\par
 \}\par
 \cf0\f0\par
@@ -181,7 +185,7 @@ Det blir mindre kod att skriva men koden som till sist skrivs ut kommer att finn
 Man vill inte att en mixin ska g\'f6ra allt utan de ska ist\'e4llet dela upp och strukturera koden. \par
 \par
 \b\fs28 Skicka med variabler till mixins\par
-\cf2\b0\f1\fs22 @mixin flex($align) \{\par
+\cf1\b0\f1\fs22 @mixin flex($align) \{\par
     display: flex;\par
     align-items: $align;\par
     justify-content: center;\par
@@ -190,16 +194,16 @@ Man vill inte att en mixin ska g\'f6ra allt utan de ska ist\'e4llet dela upp och
 Det som skickas in ska anv\'e4ndas f\'f6r v\'e4rdet vid $-tecknet.\par
 \par
 Det g\'e5r att skicka med flera variabler och dessutom default-v\'e4rden som kan anv\'e4ndas utifall inget specifikt v\'e4rde skickas in d\'e5 mixin kallas p\'e5:\par
-\cf2\f1 @mixin flex($align: center) \{\par
+\cf1\f1 @mixin flex($align: center) \{\par
     display: flex;\par
     align-items: $align;\par
     justify-content: center;\par
 \}\par
 \cf0\f0\par
-H\'e4r ovanf\'f6r \'e4r default \cf2\f1 center\cf0\f0 .\par
+H\'e4r ovanf\'f6r \'e4r default \cf1\f1 center\cf0\f0 .\par
 \par
 \b\fs28 Flera variabler i samma mixin\b0\fs22\par
-\cf2\f1 @mixin flex($align: center, $justify: center) \{\par
+\cf1\f1 @mixin flex($align: center, $justify: center) \{\par
     display: flex;\par
     align-items: $align;\par
     justify-content: $justify;\par
@@ -209,7 +213,7 @@ Ordningen v\'e4rdena skickas in med spelar roll. Det g\'e5r inte att hoppa \'f6v
 \par
 \b\fs28 Vanligt anv\'e4ndningsomr\'e5de\b0\fs22\par
 Vendor prefix. Webbl\'e4sare har olika s\'e4tt att implementera olika egenskaper. Med prefix p\'e5 olika v\'e4rden kan man f\'e5 specifika beteenden i olika browsers.\par
-\cf2\f1 @mixin border-radius($radius) \{\par
+\cf1\f1 @mixin border-radius($radius) \{\par
     -webkit-border-radius: $radius;\par
     border-radius: $radius;\par
 \}\par
@@ -217,10 +221,10 @@ Vendor prefix. Webbl\'e4sare har olika s\'e4tt att implementera olika egenskaper
 De olika webbl\'e4sarna har olika prefix.\par
 \par
 Prefix f\'f6r olika webbl\'e4sare:\par
-\cf2\f1 -webkit-\cf0\f0 : Chrome och Safari\par
-\cf2\f1 -moz-\cf0\f0 : Firefox\par
-\cf2\f1 -ms-\cf0\f0 : IE\par
-\cf2\f1 -o-\cf0\f0 : Opera\par
+\cf1\f1 -webkit-\cf0\f0 : Chrome och Safari\par
+\cf1\f1 -moz-\cf0\f0 : Firefox\par
+\cf1\f1 -ms-\cf0\f0 : IE\par
+\cf1\f1 -o-\cf0\f0 : Opera\par
 \par
 \b\fs28 Bourbon\b0\fs22\par
 Det finns verktyg f\'f6r sass om man inte vill skriva allting sj\'e4lv. F\'e4rdiga bibliotek med vanliga mixins finns att tillg\'e5; Bourbon.io \'e4r ett s\'e5dant. Det finns \'e4ven andra.\par
@@ -231,12 +235,12 @@ Det \'e4r okej att anv\'e4nda bibliotek f\'f6r mixins f\'f6r inl\'e4mningen.\par
 Det finns o\'e4ndligt mycket. R\'e4kneoperatorer \'e4r +, -, *, / och %. De kan anv\'e4ndas f\'f6r att ber\'e4kna marginaler, bredder, h\'f6jder o.s.v. \par
 \par
 Faktiska funktioner liknar mixins och kan anv\'e4ndas f\'f6r att g\'f6ra ber\'e4kningar. Man kan returnera n\'e5got:\par
-\cf2\f1 @function advancedMath($a, $b) \{\par
+\cf1\f1 @function advancedMath($a, $b) \{\par
     @return $a, $b;\par
 \}\par
 \cf0\f0\par
 \b Lists\b0\par
-\cf2\f1 $colors: red green blue;\par
+\cf1\f1 $colors: red green blue;\par
 \par
 $coors: "red green blue";\par
 \cf0\f0\par
@@ -245,7 +249,7 @@ I det f\'f6rsta fallet blir det tre olika CSS-f\'e4rger. I det andra fallet \'e4
 \b Maps\b0\par
 Detta liknar objekt.\par
 \par
-\cf2\f1 $colors:(\par
+\cf1\f1 $colors:(\par
     "red": #ff0000",\par
     "green": "#00ff00",\par
     "blue": "#0000ff"\par
@@ -254,7 +258,7 @@ Detta liknar objekt.\par
 \b\fs28 if/for/while/each\b0\fs22\par
 Detta kan ocks\'e5 anv\'e4ndas i SASS. T.ex. om man har ett objekt s\'e5 kan dess v\'e4rden g\'e5s igenom med en for-loop eller each-loop.\par
 \par
-\cf2\f1 @mixin color($color) \{\par
+\cf1\f1 @mixin color($color) \{\par
     @if $color == white\{\par
        background: black;\par
     \} @else\{\par

@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
 {\colortbl ;\red0\green0\blue255;\red0\green77\blue187;\red165\green165\blue165;}
-{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+{\*\generator Riched20 6.2.9200}\viewkind4\uc1 
 \pard\sl240\slmult1\b\f0\fs36\lang29 jQuery\par
 \b0\fs22 jQuery: Write Less, Do More.\par
 \par
@@ -20,6 +20,7 @@ jQuery blir ett interface f\'f6r tidigare kod. Det blir i m\'e5nga fall betydlig
 \par
 \b\fs28 F\'e5 tag p\'e5 jQuery\b0\fs22\par
 Ladda ned jQuery fr\'e5n {{\field{\*\fldinst{HYPERLINK https://jquery.com/ }}{\fldrslt{https://jquery.com/\ul0\cf0}}}}\f0\fs22\par
+CDN: {{\field{\*\fldinst{HYPERLINK https://code.jquery.com/ }}{\fldrslt{https://code.jquery.com/\ul0\cf0}}}}\f0\fs22\par
 \par
 Oftast vill man ha den minifierade, komprimerade versionen. Man b\'f6r l\'e4nka in jQuery i HTML:en innan man l\'e4gger in sin kod.\par
 \par
@@ -35,7 +36,7 @@ och motsatsen\par
 {{\field{\*\fldinst{HYPERLINK https://github.com/you-dont-need/You-Dont-Need-Javascript }}{\fldrslt{https://github.com/you-dont-need/You-Dont-Need-Javascript\ul0\cf0}}}}\f0\fs22\par
 \par
 Officiellt:\par
-{{\field{\*\fldinst{HYPERLINK https://api.jquery.com/ }}{\fldrslt{https://api.jquery.com/\ul0\cf0}}}}\f0\fs22\par
+https://api.jquery.com/\par
 \b\par
 Selektorer\b0\par
 jQuery underl\'e4ttar n\'e4r man ska plocka ut element med selector shorthand:\par
@@ -103,7 +104,7 @@ Ett antal ytterligare egenskaper kan s\'e4ttas men det h\'e4r \'e4r det vi troli
 \par
 \b Callbacks\b0\par
 Samtliga funktioner borde ha en callback. En callback k\'f6rs efter att informationen h\'e4mtats.\par
-\cf2\f1 $.get('{{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ', (response) => response);\par
+\cf2\f1 $.get('\cf0 http://localhost:3000\cf2 ', (response) => response);\par
 \cf0\f0\par
 Samtliga funktioner borde ocks\'e5 ha n\'e5gon sorts felhantering:\par
 \cf2\f1 error: (error) => return error;\cf0\f0\par
@@ -111,7 +112,7 @@ Samtliga funktioner borde ocks\'e5 ha n\'e5gon sorts felhantering:\par
 Det g\'e5r lika bra att anv\'e4nda vanliga funktioner med funktions-nyckelordet ist\'e4llet f\'f6r arrow-functions.\par
 \par
 Alternativ syntax:\par
-\cf2\f1 $.get('http://localhost:3000')\par
+\cf2\f1 $.get('{{\field{\*\fldinst{HYPERLINK http://localhost:3000 }}{\fldrslt{http://localhost:3000\ul0\cf0}}}}\f1\fs22 ')\par
   .done((response) => response)\par
   .fail((error) => error)\par
   .always(() => 'After all this time?')\par
