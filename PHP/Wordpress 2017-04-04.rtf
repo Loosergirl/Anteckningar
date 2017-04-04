@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 Wordpress k\'f6rs med PHP-filer. Det syns inte n\'e4r man anv\'e4nder deras tj\'e4nst men om man laddar ned den.  \par
+\par
+Man m\'e5ste alltid logga in p\'e5 Wordpress f\'f6r att komma \'e5t admin-sidan. Standarden f\'f6r att logga in \'e4r sidan wp-login.php (man skriver in det i slutet av adressraden, efter ett snedstreck). Det g\'e5r att flytta p\'e5 den f\'f6r att minska s\'e4kerhetsrisken. Det \'e4r viktigt att man t\'e4nker p\'e5 att det ska vara s\'e4kert n\'e4r man h\'e5ller p\'e5 med PHP och backend!\par
+\par
+\b\fs28 MAMP/WAMP\b0\fs22\par
+Detta g\'f6r det l\'e4ttare eftersom man inte beh\'f6ver g\'f6ra n\'e5gon avancerad setup. Alla delar kommer i samma f\'e4rdiga paket; det \'e4r ett f\'e4rdigt program.  G\'e5r man in i MAMP-mappen s\'e5 kan man se att allt \'e4r f\'e4rdigpaketerat. Allt som beh\'f6vs f\'f6r PHP finns d\'e4r, i olika versioner. Allt som beh\'f6vs f\'f6r att k\'f6ra servern (localhost:en) finns d\'e4r ocks\'e5. Det finns ocks\'e5 en hel del annat sm\'e5tt och gott i MAMP-mappen. \par
+\par
+Om man anv\'e4nder b\'e5de MAMP och sin egen databas kan det bli r\'f6rigt. Det g\'e5r att ha flera servrar ig\'e5ng p\'e5 datorn samtidigt, med olika inneh\'e5ll, s\'e5 att man kan blanda ihop saker. \par
+\par
+G\'e5 in i MAMP-mappen via konsolen/terminalen. G\'e5 in i wordpress-mappen. D\'e4r b\'f6r man kunna starta en egen lokal server:\par
+\cf1\f1 php -S localhost:4000\par
+\cf0\f0 Man skapar en egen server i mappen man st\'e5r i.\par
+\par
+Om MAMP redan k\'f6r n\'e5got p\'e5 en sida f\'e5r man felmeddelande. D\'e5 m\'e5ste man koppla ihop det med databasen (s\'e4kert genom att fixa n\'e5got i terminalen) eller n\'e5gra inst\'e4llningar.\par
+\par
+Det g\'e5r att starta en PHP-server varsomhelst ifr\'e5n egentligen. Men det beh\'f6vs alltid en databas f\'f6r att lagra filer, s\'e5 vi vill ha en SQL-databas.\par
+\par
+Utan MAMP-programmet m\'e5ste man starta allt manuellt via terminalen. \par
+\par
+Allt vi beh\'f6ver f\'f6r att k\'f6ra en Wordpress-verison lokalt \'e4r wordpress zip-filen fr\'e5n wordpress.org. Man kan l\'e4gga in den i sin MAMP-mapp som den \'e4r. \par
+\par
+Vi f\'e5r en index.php ist\'e4llet f\'f6r en index.html och lite annat sm\'e5tt och gott.\par
+\par
+MAMP-mappen st\'e4lls in under MAMPs preferences -> web server. Standarden \'e4r att den ligger i MAMP-mappen i htdocs.  Det kan vara v\'e4rt att l\'e4gga den p\'e5 ett l\'e4tthittat st\'e4lle f\'f6r att det ska bli l\'e4ttare att navigera dit i terminalen.\par
+\par
+P\'e5 MAMP-sidan under localhost \'e4r det informationen under rubriken MySQL som \'e4r viktig.\par
+\par
+Att senare visa upp vad man gjort n\'e4r man beh\'f6ver b\'e5de en databas och egen server blir komplicerat. Det fungerar inte med GitHub pages utan man beh\'f6ver n\'e5got st\'e4lle d\'e4r det fungerar att ladda upp PHP. Det beh\'f6vs sammankoppling med databas och server. Om man beh\'f6ver det kan heroku.com vara ett s\'e4tt, men det blir jobbigt och mycket konfiguration utan en egen server.\par
+\par
+Det kan bli felmeddelanden om man inte l\'e4gger in inneh\'e5ll p\'e5 databasen man skapat. En databas ska vara s\'e4ker s\'e5 vi m\'e5ste sj\'e4lva fixa det.\par
+\par
+G\'e5 in under Tools -> php.MyAdmin och v\'e4ljer New. D\'e4r kan man se databaser som redan finns och skapa nya. Varje databas beh\'f6ver ett namn och ett charset. UTF8 \'e4r standarden. Wordpress anv\'e4nder utf8mb4. Sedan kan man v\'e4lja det spr\'e5k man vill ha. Det kan vara smart att v\'e4lja svenska utifall \'e5, \'e4 och \'f6 beh\'f6vs n\'e5gon g\'e5ng \'e4ven om man sedan skriver p\'e5 engelska.\par
+\par
+N\'e4r man gjort detta kan man g\'e5 tillbaka till f\'f6rstasidan. D\'e5 kommer man in och kan g\'e5 igenom installationsprocessen. I princip \'e4r det bara en wp-config-sample.php som skapas.\par
+\par
+I v\'e5rt fall kommer vi bara skriva att v\'e5r database host \'e4r localhost. \par
+\par
+Run install.\par
+\par
+Sedan f\'e5r man skriva in mer information. F\'f6rst skrev man bara in saker f\'f6r databasen, sedan skriver man in inloggningsinformation. \par
+\par
+Efter detta f\'e5r man logga in. Det \'e4r samma path som tidigare (wp-login.php). \par
+\par
+\b CSS & Teman\b0\par
+En hel del \'e4r f\'f6rdefinierat. Man kan l\'e5ta det vara s\'e5 om man vill. I sin dashboard kan man g\'f6ra en hel del saker. Senare ska vi implementera v\'e5ra egna teman men har man ingen personlighet kan man v\'e4lja det som \'e4r f\'f6rdefinierat. Ju mer avancerat ett tema \'e4r desto mer finns det att modifiera utan att man beh\'f6ver koda. Detta \'e4r skillnaden mellan bra och d\'e5liga teman. Det \'e4r egentligen bara funktioner som l\'e5ter anv\'e4ndaren \'e4ndra p\'e5 saker. Det \'e4r f\'f6rst\'e5s m\'f6jligt att g\'f6ra allt med kod, men det g\'f6r det sv\'e5rt f\'f6r anv\'e4ndare att \'e4ndra p\'e5 sidan. ed wordpress kommer ett antal teman som \'e4r snyggt utarbetade. \par
+\par
+V\'e4ljer man Add new kan man se vilka f\'e4rdiga teman det finns att installera. Tyv\'e4rr \'e4r det inte s\'e4kert att ett tema \'e4r responsivt. D\'e5 kan man f\'f6rst\'e5s skriva sina egna media queries, men man vill ju egentligen inte det.\par
+\par
+Allting bygger p\'e5 att teman \'e4r gratis och det \'e4r open source. Detta medf\'f6r vissa risker och det \'e4r v\'e4rt att vara f\'f6rsiktig. Plugins \'e4r den st\'f6rsta s\'e4kerhetsrisken.\par
+\par
+Det man \'e4r ute efter \'e4r att anv\'e4ndaren ska kunna modifiera sidan. Man kan v\'e4lja en f\'e4rdig blank slate s\'e5 att det passar wordpress uppl\'e4gg \'f6ver hur de strukturerar sina sidor, men man f\'e5r skriva all CSS sj\'e4lv. T.ex. html5 blank wordpress theme eller underscores.\par
+\par
+Alternativt kan man g\'e5 tillbaka och modifiera ett tema som redan finns. Ett problem \'e4r att man kan f\'f6rst\'f6ra temat om man g\'e5r in och modifierar direkt i koden.\par
+\par
+I sin dashboard kan man g\'e5 in under editor. D\'e4r finns alla filer f\'f6r de olika sidorna. Allt \'e4r PHP-filer. Nedanf\'f6r kan man \'e4ndra CSS-filen. Det g\'e5r ocks\'e5 att g\'e5 in i filmappen i sin MAMP-mapp. F\'f6rst\'e5s, ju mer man l\'e4gger till och installerar desto mer inneh\'e5ll f\'e5r man. Det man egentligen vill modifiera ligger under wp-content. Bilder l\'e4ggs under uploads baserat p\'e5 n\'e4r de lagts upp. Olika uppl\'f6sningar inkluderas och wordpress tar hand om besk\'e4rningen.\par
+\par
+Teman l\'e4gger sig i mappar. Har man modifierat n\'e5got hamnar det i temats mapp och det \'e4r l\'e4tt att bara kopiera den mappen om man vill \'f6verf\'f6ra det till en annan dator eller till en server. Filnamnen i temats mapp \'e4r sj\'e4lvf\'f6rklarande. \par
+\par
+Tema-mappen ligger i wp-content.\par
+\par
+\b Plugins\b0\par
+Plugins \'e4r det roligaste men ocks\'e5 det farligaste. Vad man \'e4n t\'e4nk finns det antagligen en plugin till det. Limit Login Attempts kan vara bra. En galleri-plugin med modaler etc. \'e4r f\'f6rmodligen det vanligaste. Heads up f\'f6r antalet installationer, rating och senaste uppdateringens datum. \par
+\par
+Plugins kan man se under plugins->installed plugins.n\par
+\par
+N\'e5got man oftast f\'e5r oavsett vilket tema eller plugins man anv\'e4nder \'e4r en shortcode. Den anv\'e4nds f\'f6r n\'e4r man faktiskt ska l\'e4gga in sin plugin.\par
+\par
+L\'e4gg in shortcode:n ist\'e4llet f\'f6r text, direkt i en post. Vi beh\'f6ver inte bry oss om vad som faktiskt sker.\par
+\par
+Det finns revisionshantering n\'e4r man l\'e4gger en en plugin, under Publish-alternativen.\par
+\par
+V\'e4lj View page-tabben l\'e4ngst up p\'e5 sidan f\'f6r att se resultatet.\par
+\par
+\b R\'e4ttigheter\b0\par
+N\'e4r man ska jobba med Wordpress kan det vara s\'e5 att man inte har skrivr\'e4ttigheter f\'f6r servern. D\'e5 kan man \'e4ndra saker lokalt men det fungerar inte att uppdatera filer p\'e5 servern. Man kan d\'e5 beh\'f6va be om r\'e4ttigheter.\par
+\par
+\b Fork eller child av tema\b0\par
+Om man vill ha kvar det gamla temat kan man g\'f6ra ett child-theme. I tema-mappen kan man skapa en ny mapp (namnet \'e4r inte s\'e5 viktigt). Det finns en inbygd funktion f\'f6r att fylla ut den mappen. I terminalen, st\'e4ll dig i mamp-mappen->[projektnamn]->wp-content->themes->[child-temats namn]\par
+\par
+Skapa nya filer i mappen:\par
+\cf1\f1 touch functions.php style.css\par
+\cf0\f0\par
+G\'e5 in i filerna. \par
+\par
+Wordpress codex har en sida om hur man b\'f6r g\'f6ra sedan:\par
+{{\field{\*\fldinst{HYPERLINK https://codex.wordpress.org/Child_Themes }}{\fldrslt{https://codex.wordpress.org/Child_Themes\ul0\cf0}}}}\f0\fs22\par
+\par
+Fr\'e5n den sidan ska man copy-paste:a men l\'e4nka dem med korrekta namn p\'e5 original-template:n osv.\par
+\par
+CSS:n \'e4r i princip bara en kommentar, men PHP:n \'e4r en funktion som tar information fr\'e5n ett annat st\'e4lle.\par
+\par
+\b JavaScript\b0\par
+F\'f6r att l\'e4nka in JavaScript rekommenderas det att man l\'e4nkar in det i Theme Footer (footer.php) eller Theme Header (header.php), som alltid kommer finnas med p\'e5 alla undersidor i temat.\par
+\par
+\b Tools\b0\par
+Man kan v\'e4lja att importera eller exportera databasen. Resultatet av export \'e4r en .xml-fil. \par
+\par
+XML-filen och temamappen \'e4r det som beh\'f6vs f\'f6r att \'f6verf\'f6ra information n\'e4r man ska \'f6verf\'f6ra sitt arbete.\par
+\par
+Ska man ladda upp p\'e5 en server brukar det finnas ett f\'e4rdigt alternativ f\'f6r att ladda upp saker. XML-filen beh\'f6vs \'e4nd\'e5 vid export och import.\par
+}
+ 
