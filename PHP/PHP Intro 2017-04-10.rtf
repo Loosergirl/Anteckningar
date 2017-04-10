@@ -1,0 +1,264 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29 PHP Intro\b0\fs22\par
+PHP Hypertext Processor\par
+\par
+\b\fs28 Vad \'e4r PHP?\b0\par
+\fs22 Vi har redan varit inne lite p\'e5 vad PHP \'e4r. Det \'e4r ett server-side spr\'e5k som anv\'e4nds t.ex. med Wordpress och Drupal. PHP \'e4r ganska komplicerat vilket \'e4r sk\'e4let till att man oftast f\'e5r PHP-kod levererad till sig i f\'e4rdig form. En elefant \'e4r det officiella djuret f\'f6r PHP. Orsaken \'e4r att bokst\'e4verna ser ut som en elefant (g\'f6r det verkligen det?).\par
+\par
+Fil\'e4ndelsen \'e4r .php, t.ex. index.php. Det g\'e5r att anv\'e4nda HTML inuti PHP. Man kan skapa taggar och \'e4ndra i DOM-tr\'e4det. Det skiljer sig d\'e4remot ganska mycket om man g\'f6r n\'e5got i browsern eller p\'e5 servern. P\'e5 servern kallas det \b server side scripting\b0 . Prestanda skiljer sig beroende p\'e5 vad man v\'e4ljer.\par
+\par
+Det kan bli kr\'e5ngligt. N\'e5got s\'e5 enkelt som att installera ett f\'e4rdigt paket kr\'e4ver \'e4nd\'e5 att man ansluter till en databas. Det kan bli fel som man inte kan fixa sj\'e4lv. \par
+\par
+PHP \'e4r all-purpose. Med PHP kan vi skriva t.ex. CLI-program (command line interface). Det \'e4r inte bara till browsern. \par
+\par
+PHP \'e4r inte servern, PHP k\'f6rs p\'e5 servern. Precis som en browser beh\'f6vs f\'f6r att k\'f6ra JavaScript beh\'f6vs en server f\'f6r att k\'f6ra PHP. Egentligen \'e4r en server bara en dator. D\'e4rav hur localhost anv\'e4nds. Den som g\'e5r till r\'e4tt port kommer f\'e5 inneh\'e5llet levererat. P\'e5 port 80 levereras vanliga internethemsidor. Med s\'e4kra uppkopplingar (https) k\'f6rs internet p\'e5 443, men \'e4ven p\'e5 port 80 i bakgrunden. \par
+\par
+Ett problem n\'e4r vi gjorde API-uppgiften kunde vara att man kunde kalla p\'e5 API:et b\'e5de via s\'e4kra och os\'e4kra anslutningar.\par
+\par
+Servern \'e4r oftast Apache eller NGINX. Det \'e4r ett program f\'f6r att leverera PHP-filer. Programmet s\'e4ger i princip bara vilka filer som ska ligga p\'e5 en viss port. L\'e4r man sig att s\'e4tta upp en server med detta vet man i princip vad man beh\'f6ver.\par
+\par
+Det g\'e5r i princip att leverera vad som helst med Apache/NGINX. Allt vi l\'e4gger i mappen levereras ut. Men PHP beh\'f6ver tolkas ocks\'e5. Man beh\'f6ver v8-motorn som finns i t.ex. Chrome eller Node. Vissa \'e4ldre webbl\'e4sare kan inte tolka detta eftersom tolken inte \'e4r uppdaterad.\par
+\par
+Installerar man MAMP kommer paketet med tolken med. Utan tolken h\'e4nder ingenting eftersom vi inte vet hur vi ska \'f6vers\'e4tta det. Om vi inte har tolken kommer det leveras som HTML eftersom det bara \'e4r kod och det finns HTML i den.\par
+\par
+Det enda som webbl\'e4saren kan fatta \'e4r vissa format: HTML, CSS och JS. Slutprodukten blir alltid HTML \'e4ven om vi skriver i PHP. Allts\'e5 \'e4r inte PHP det som anv\'e4ndaren ser utan det som servern tolkar. J\'e4mf\'f6r det med utvecklingsfiler som t.ex. SASS. En webbl\'e4sare kan inte l\'e4sa en SASS-fil. \par
+\par
+Med PHP \'e4r det inte exakt samma grej. Det \'e4r faktiska filer som kommer levereras och anv\'e4ndas men inte det som anv\'e4ndaren ser. Det \'e4r viktigt att PHP-filerna \'e4r i bra skick eftersom det \'e4r live-filer. \par
+\par
+F\'f6rst\'e5s g\'e5r det snabbt, p\'e5 millisekunder. Med vissa undantag. Stora utr\'e4kningar och tunga script ska g\'f6ras p\'e5 servern. F\'f6r att effektivisera ska mycket av det som ska omvandlas ske p\'e5 servern och sedan skickas vidare. \par
+\par
+\b\fs28 <?PHP ?>\fs22\par
+\b0 Man kan g\'f6ra det mesta som man gjort f\'f6rut. Vet man inte hur n\'e5got ska g\'f6ras kan man fortfarande anv\'e4nda JavaScript, \'e4ven om man inte ska det egentligen. \par
+\par
+\cf1\f1 <h1>This is PHP!</h1>\par
+\cf0\f0\par
+N\'e4r man ska leverera n\'e5got i PHP, i mitten av HTML, anv\'e4nder man dessa taggar:\par
+\cf1\f1 <?php\par
+    echo '<h1>This is PHP</h1>'\par
+?>\par
+\cf0\f0\par
+Echo anv\'e4nds i m\'e5nga funktioner. Man m\'e5ste skicka ut det man skriver.\par
+\par
+\cf1\f1 <h1> <?php echo "This is also PHP!" ?> </h1>\par
+\cf0\f0\par
+Det finns flera variationer av det h\'e4r.\par
+\par
+Utan taggen \cf1\f1 <?php?>\cf0\f0  tolkas det som HTML, innanf\'f6r den som PHP. Det \'e4r viktigt att st\'e4nga taggarna! Om man bara har PHP beh\'f6ver man d\'e4remot inte st\'e4nga taggarna.\par
+\par
+\b\fs28 Exempelkod\b0\fs22\par
+K\'f6r man MAMP ska man starta servrarna och g\'e5 in i sin mapp med projektet i localhost. Den f\'f6rsta fil som beh\'f6vs \'e4r \b index.php\b0 . Det beh\'f6vs egentligen inte n\'e5gon index.html.\par
+\par
+Ibland beh\'f6ver man inte skriva ut hela \cf1\f1 <?php>\cf0\f0  utan det r\'e4cker med \cf1\f1 <?>\cf0\f0 . Men med en \'e4ldre server kommer det beh\'f6vas.\par
+\par
+F\'f6r s\'e4kerhets skull anv\'e4nds alltid semikolon (\cf1\f1 ;\cf0\f0 ). JavaScript kan vara mer f\'f6rl\'e5tande med det.\par
+\par
+Det finns olika s\'e4tt att skriva PHP-kod p\'e5 och p\'e5 internet kommer man s\'e4kert st\'f6ta p\'e5 olika s\'e4tt.\par
+\par
+\b\fs28 Syntax\b0\fs22\par
+Det finns variabler. Det \'e4r dynamiskt typat precis som JavaScript s\'e5 alla variabler definieras som \cf1\f1 var\cf0\f0 .  Ist\'e4llet f\'f6r att skriva var anv\'e4nder man d\'e4remot \cf1\f1 $\cf0\f0 -tecken.\par
+\par
+\cf1\f1 <?php\par
+$name = 'Maria';\par
+$money = 30;\par
+echo $name;\par
+echo $money;\par
+\cf0\f0\par
+H\'e4r skickar \cf1\f1 echo\cf0\f0  ut det som en str\'e4ng.\par
+\par
+Vill man konvertera v\'e4rden (casting):\par
+\cf1\f1 <?php\par
+$money = '30';\tab\tab\tab\cf2 //type: string\cf1\par
+$cash = (int)$money;\tab\tab\cf2 //type: int\cf1\par
+\cf0\f0\par
+\b Casting\b0 :\par
+\cf1\f1 (int), (integer) \cf0\f0 - Cast to integer\par
+\cf1\f1 (bool), (boolean) \cf0\f0 - Cast to boolean\par
+\cf1\f1 (float), (double), (real) \cf0\f0 - Cast to float\par
+\cf1\f1 (string) \cf0\f0 - Cast to string\par
+\cf1\f1 (array)\par
+(object)\par
+(unset) \cf0\f0 - Cast to NULL\par
+\par
+Med en databas vill du begr\'e4nsa hur mycket du f\'e5r lagra. \par
+\par
+Str\'e4ngar castas till float eller in om f\'f6rsta karakt\'e4ren \'e4r en siffra. Annars ignoreras str\'e4ngen.\par
+\par
+\cf1\f1 <?php\par
+$foo = 1 + "Whattdup10";\tab\cf2 // $foo is 1 (int)\cf1\par
+$foo = 1 + "10Waddups";\tab\tab\cf2 // $foo is 11 (int)\cf1\par
+$foo= 1 + "10.5Waddups";\tab\cf2 // $foo is 11.5 (float)\cf1\par
+$foo = "10.5Waddups" + 1;\tab\cf2 //$ foo is 11.5 (float)\cf1\par
+\cf0\f0\par
+Allts\'e5, i PHP s\'e4tter inte \cf1\f1 +\cf0\f0  ihop str\'e4ngar.\par
+\par
+<?php\par
+$foo = 10;\par
+$str = "$foo";\par
+$fst = (string) $foot;\par
+\par
+\b String concatenation\b0\par
+Oftast anv\'e4nder man punkt f\'f6r att l\'e4gga ihop str\'e4ngar:\par
+\cf1\f1 <?php\par
+$first = 'Maria';\par
+$last = 'Kilsved';\par
+$full = $first . $last;\par
+$fullWithBraces = "\{$first\} \{$last\}";\par
+\cf0\f0\par
+Man m\'e5ste inte ha m\'e5svingar i det senare fallet.\par
+\par
+\b\fs28 Quotes\b0\fs22\par
+Det skiljer sig mellan enkla och dubbla citattecken.\par
+\cf1\f1 <?php\par
+$first = 'Maria';\par
+$last = 'Kilsved';\cf0\f0\par
+\cf1\f1 $fullWithBraces = "\{$first\} \{$last\}";\tab\cf2 //Fungerar\cf1\par
+$fullWithBraces = '\{$first\} \{$last\}';\tab\cf2 //Fungerar inte\cf0\f0\par
+\par
+Det kan vara b\'e4st att h\'e5lla sig till dubbla citattecken.\par
+\par
+\b\fs28 Debugging\b0\fs22\par
+Det kan vara ett problem eftersom man inte kan anv\'e4nda console.log. PHP anv\'e4nder inte \cf1 console.log\cf0  eftersom felhanteringen sker p\'e5 servern. Man kan beh\'f6va g\'f6ra en inst\'e4llning f\'f6r att fel ska rapporteras.\par
+\par
+Motsvarigheten till \cf1\f1 console.log();\cf0\f0  i PHP \'e4r  \cf1\f1 var_dump(); \cf0\f0 Med \cf1\f1 echo\cf0\f0  skrivs det bara ut.\cf1\f1\par
+\par
+<?php\par
+$name = 'Maria';\par
+$money = 30;\par
+echo $name;\par
+var_dump($name, $money);\cf0\f0\par
+\par
+Man kan l\'e4gga in i b\'f6rjan av sin fil:\par
+\cf1\f1 <?php\cf0\f0\par
+\cf1\f1 ini_set('display_errors', 1);\par
+ini_set('display_startup_errors', 1);\par
+error_reporting(E_ALL);\par
+?>\par
+\cf0\f0\par
+Stoppa alla skript fr\'e5n att k\'f6ras:\par
+\cf1\f1 <?php\par
+$name = 'Maria';\par
+die(var_dump($name));\cf0\f0\par
+\par
+All kod slutar k\'f6ras efter \cf1\f1 die();\cf0\f0  Funktionen kan anv\'e4ndas f\'f6r att avsluta det mesta.\par
+\par
+Ibland n\'e4r man jobbar med mycket data vill man ta bort den.\par
+\par
+\b\fs28 Arrays\b0\fs22\par
+Det \'e4r en del skillnader men samma t\'e4nk.\par
+\par
+\cf1\f1 <?php\par
+$array = array();\tab\tab\cf2 // Empty array\cf1\par
+$array2 = array("first index, "second index");\tab\cf2 // With values\cf1\par
+\cf0\f0\par
+Kan d\'f6pas till vad som helst.\par
+\par
+\b Efter PHP 5.4\b0\par
+Det flesta servrar k\'f6r f\'f6rmodligen PHP 5.4 eller h\'f6gre. Vi anv\'e4nder f\'f6rmodligen PHP 7.0 eller 7.1. Lite som med ES6 \'e4r det oftast okej att anv\'e4nda men kan st\'e4lla till det p\'e5 \'e4ldre servrar. Det g\'e5r att skriva p\'e5 ett s\'e4tt som liknar JavaScript mer p\'e5 versioner av PHP 5.4 eller h\'f6gre:\par
+\par
+\cf1\f1 <?php\par
+$array = [];\par
+$array2 = array("first index, "second index");\par
+\cf0\f0\par
+Precis som  i JavaScript finns det en uppsj\'f6 av olika array-funktioner, t.ex. \cf1\f1 array_push\cf0\f0 . Observera att man m\'e5ste ange vilken array som ska manipuleras; det fungerar lite annorlunda j\'e4mf\'f6rt med JS. Kolla PHP-dokumentationen p\'e5 \cf1 php.net\cf0 .\par
+\par
+\cf1\f1 <?php\par
+$array = array("koala", "elephant");\par
+array_push($array, "sloth");\par
+\cf0\f0\par
+En shorthand f\'f6r \cf1 array_push\cf0 :\par
+\cf1\f1 <?php\par
+$array = ["koala", "elephant"];\par
+$array[] = "sloth";\par
+\cf0\f0\par
+De flesta funktionerna har inte n\'e5gon shorthand.\par
+\par
+\b\fs28 Associative arrays\b0\fs22\par
+PHPs svar p\'e5 Object. Man lagrar key/value pairs, s\'e4ger att man skapar en array.\par
+\par
+\cf1\f1 <?php\par
+$assoc = array(\par
+    "key => "value"\par
+);\par
+\cf0\f0\par
+\cf1\f1 <?php\par
+$person = array(\par
+    "name" => "Maria",\par
+    "age" => "Infinite"\par
+);\par
+\cf0\f0 asf\par
+\par
+Det separeras med \cf1\f1 =>\cf0\f0  ist\'e4llet f\'f6r \cf1\f1 :\par
+\cf0\f0\par
+Man kan jobba med JSON i PHP ocks\'e5, men s\'e5 h\'e4r f\'e5r vi oftast tillbaka information.\par
+\par
+Det g\'e5r att g\'f6ra arrayer i arrayer precis som i JavaScript.\par
+\par
+\b\fs28 Conditionals\b0\fs22\par
+if/elseif/else/switch/while/dowhile/for\par
+\par
+Detta \'e4r exakt likadant som i JavaScript. Man kan g\'e5 in p\'e5 control structures p\'e5 PHP:s hemsida om man vill.\par
+\par
+N\'e5got som d\'e4remot anv\'e4nds flitigt \'e4r \b foreach\b0 :\par
+\cf1\f1 <?php\par
+$animals = array("Sloth", "Panda");\par
+foreach ($animals as $animal) \{\par
+    echo "<h1>$animal</h1>";\par
+\}\par
+\cf0\f0\par
+H\'e4r st\'e5r det \cf1\f1 $animal\cf0\f0  men man kan kalla det vad man vill.\par
+\par
+Fungerar \'e4ven p\'e5 en associate array:\par
+\cf1\f1 <?php\par
+$panda = array(\par
+    "name" => "Panda",\par
+    "weight" => "3000"\par
+);\par
+\par
+foreach ($panda as $key => $value) \{\par
+    echo "<h6>$key</h6> <p>$value</p>";\par
+\}\par
+\par
+\cf0\b\f0\fs28 Uppl\'e4gg\b0\fs22\par
+Man kan vilja ha flera PHP-taggar i ett dokument. T.ex. ett stycke PHP intuti en div. \par
+\par
+Vill man kan man st\'e4nga sin PHP-tagg mitt inuti en foreach loop. D\'e5 kan man fortfarande anv\'e4nda sitt key och value. Det finns en shorthand f\'f6r att g\'f6ra echo d\'e5.\par
+\par
+Detta fungerar med alla sorters PHP-statements, t.ex. if:\par
+\cf1\f1 <?php if(true) \{ ?>\par
+   <h1>Hej</h1>\par
+<?php \} ?>\par
+\cf0\f0\par
+\b\i Se \'e4ven \b0\i0 Jespers kod p\'e5 GitHub f\'f6r mer av detta.\par
+\par
+\b\fs28 Funktioner\b0\fs22\par
+I princip som i JavaScript.\par
+\cf1\f1 function foo() \{\par
+    echo "Foo!";\par
+\}\par
+\cf0\f0\par
+\cf1\f1 function foo() \{\par
+    return "Foo!";\par
+\}\par
+\cf0\f0\par
+Anonyma funktioner skiljer sig d\'e4remot och det finns inga arrow functions.\par
+\par
+\b\fs28 Scope\b0\fs22\par
+PHP utg\'e5r alltid fr\'e5n att variablerna \'e4r lokala till scopet. Vi har bara function scope. Allting som ligger i global blir inte super-global. Det \'e4rvs inte ned\'e5t; det som ligger utanf\'f6r en funktion finns inte inuti funktionen. Variabler finns bara i det scope de \'e4r deklarerade i.\par
+\par
+Det g\'e5r att komma runt detta med nyckelordet global:\par
+\cf1\f1 $foo;\par
+\par
+function bar() \{\par
+    global $foo;\par
+    echo $foo;\par
+\}\par
+\cf0\f0\par
+Detta \'e4r f\'f6rst\'e5s inte att f\'f6redra.\par
+\cf1\f1\par
+this\f0  \cf0 finns och liknar hur det fungerar i JavaScript.\par
+\par
+\cf1\f1\par
+}
+ 
