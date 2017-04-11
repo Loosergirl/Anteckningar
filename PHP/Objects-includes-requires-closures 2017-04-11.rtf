@@ -1,0 +1,189 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red255\green0\blue0;\red165\green165\blue165;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs28\lang29 Fr\'e5n PHP Pandas\b0\fs22\par
+\b Closures\b0\par
+Closure = Function expression. Om man ska anv\'e4nda en s\'e5dan som ett argument i en annan funktion m\'e5ste man skrive Closure innan variabeln som representerar den. T.ex.\par
+\cf1\f1 function math(\cf2 Closure \cf1 $type, $first, $second) \{\}\cf0\f0 .\par
+\par
+\b Includes\b0\par
+Liknar @import i SASS. Man kan spara sin PHP i flera olika dokument och importera in dem i varandra. Exempel:\par
+\cf1\f1 <?php\par
+include 'welcome.php';\par
+\cf0\f0\par
+Fils\'f6kv\'e4gen m\'e5ste inkluderas. T.ex.\par
+\cf1\f1 include 'foo/bar/baz/welcome.php';\par
+\cf0\f0\par
+Man kan \'e4ven include:a saker i filer som include:as.\par
+\par
+\b Require\b0\par
+Include leder till varningsmeddelande om filen inte finns. \cf1\f1 require\cf0\f0  ger ett fel ist\'e4llet om filen \'e4r absolut n\'f6dv\'e4ndig f\'f6r applikationen. Men om en fil r\'e5kar vara require:ad tv\'e5 g\'e5nger f\'e5r man ett felmeddelande hur man \'e4n g\'f6r. Anv\'e4nd d\'e5 \cf1\f1 require_once\cf0\f0  ist\'e4llet f\'f6r att undvika det problemet.\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Tillbakablick\b0\fs22\par
+\cf1\f1 <? ?>\cf0\f0  kan vara en shorthand f\'f6r \cf1\f1 <?php ?>\cf0\f0  Detta kan d\'e4remot vara avst\'e4ngt p\'e5 m\'e5nga servrar. Alternativet \'e4r \cf1\f1 short_open_tag\cf0\f0 . I MAMP-foldern kan man g\'e5 in och titta om man vill. \'c4r det n\'e5got man vill \'e4ndra kan man fixa det i mappen som heter conf. Hitta den version av PHP du anv\'e4nder och \'f6ppna filen \cf1\f1 php.ini\cf0\f0 . D\'e4r kan man t.ex. \'e4ndra \cf1\f1 short_open_tag\cf0\f0  till \cf1\f1 On\cf0\f0  eller \cf1\f1 Off\cf0\f0 . L\'f6sningar p\'e5 Stack overflow kan f\'f6resl\'e5 att man \'e4ndrar konfigurationer och d\'e5 \'e4r det h\'e4r man g\'e5r in.\par
+\par
+\b\fs28 Konstanter\b0\fs22\par
+\cf1\f1 <?php\par
+define('PI', 3.14159265359);\par
+\cf0\f0\par
+Konstanter i PHP \'e4r striktare \'e4n i JavaScript. Det \'e4r best practice att anv\'e4nda stora bokst\'e4ver f\'f6r konstanters namn.\par
+\par
+\b Key/value\par
+\b0 Man kan definiera associativa arrayer:\par
+\cf1\f1 <?php\par
+$assoc = array(\par
+    "key" => "value"\par
+);\par
+\cf0\f0\par
+Specifikt exempel:\par
+\cf1\f1 <?php\par
+$assoc = array(\par
+    "name" => "Maria",\par
+    "age" => "Infinite"\par
+);\par
+\cf0\f0\par
+\b Foreach\b0\par
+\cf1\f1 <?php\par
+$panda = array(\par
+    "name" => "Panda",\par
+    "weight" => "3000"\par
+);\par
+\par
+foreach ($panda as $key => $value) \{\par
+    \cf3 //Do stuff\cf1\par
+\}\par
+\cf0\f0\par
+\b Ist\'e4llet f\'f6r dot-notation\b0\par
+\cf1\f1 <?php\par
+$panda = array(\par
+    "name" => "Panda",\par
+    "weight" => "3000"\par
+);\par
+\par
+echo $panda['name'];\par
+\cf0\f0\par
+Man kommer \'e5t olika v\'e4rden.\par
+\par
+\b Scopes\b0\par
+Scopes \'e4rvs inte ned\'e5t utan finns bara i det scope de \'e4r deklarerade i. Variabler utanf\'f6r funktioner kommer man inte \'e5t inuti funktionerna.\par
+\par
+Man kan skicka med flera argument \'e4n parametrar, men det \'e4r b\'e4st att ha lika m\'e5nga. \par
+\par
+\b snake_case\b0\par
+Funktioner ska egentligen skrivas i snake_case. Undantaget \'e4r metoder (funktioner i objekt eller klasser) d\'e4r man ska anv\'e4nda camelCase.\par
+\par
+\b\fs28 Closures/anonymous functions\par
+\b0\fs22 Scope:t \'e4r lite annorlunda i PHP och de closures som finns i JavaScript finns inte riktigt i PHP. Det som kallas closures i PHP \'e4r anonyma funktioner i JavaScript.\par
+\par
+Exempel:\par
+\cf1\f1 $name = 'Maria';\par
+\par
+$say = function($name) \{\par
+    echo $name;\par
+\};\par
+\par
+$say($name);\par
+\cf0\f0\par
+Till skillnad fr\'e5n i JavaScript sker allting implicit. I JavaScript skulle ovanst\'e5ende kod fungerat utan en inparameter.\par
+\par
+Funktioner inuti funktioener \'e4r inte lika vanligt i PHP. Det finns inga direkta f\'f6rdelar med det p\'e5 det s\'e4tt det finns i JavaScript.\par
+\par
+\b Typ som en closure\b0\par
+\cf1\f1 $name = 'Maria';\par
+\cf0\f0\par
+\cf1\f1 $say = function() use ($name) \{\par
+    echo $name;\par
+\};\par
+\par
+$say();\par
+\cf0\f0\par
+Man kan skicka med det som \cf1\f1 use\cf0\f0  ist\'e4llet.\par
+\par
+F\'f6rmodligen kommer vi inte ha djupare scope i PHP. \par
+\par
+\b Use case\b0\par
+Man kan anv\'e4nda \b callbacks\b0  i PHP. H\'e4r skickar vi med en funktion som callback som best\'e4mmer hur sorteringen ska g\'e5 till:\par
+\par
+\cf3\f1 //usort is like Array.prototype.sort()\par
+\cf1 $array = usort($array, 'comparator');\par
+\par
+function comparator() \{\par
+    return a - b;\par
+\}\par
+\cf0\f0\par
+PHP k\'e4nner igen att \cf1\f1 comparator\cf0\f0  h\'e4r ovan \'e4r en funktion. Man anger detta genom att anv\'e4nda enkla citattecken (\cf1\f1 '\cf0\f0  och \cf1\f1 '\cf0\f0 ). \par
+\par
+\b\fs28 Coding conventions\b0\fs22\par
+\b PHP-FIG\b0\par
+php-fig.org \'e4r en webbsida d\'e4r man kan l\'e4sa om PHPs best practices, rekommendationer, standarder o.s.v. D\'e4r finns listor \'f6ver saker som kommer implementeras i PHP snart. \par
+\par
+Man ska g\'e4rna ange om koden f\'f6ljer en rekommendation, t.ex. PSR-1. \par
+\par
+\b PHP The Right Way\par
+\b0 PHP The Right Way \'e4r ett alternativ. En standardsida som m\'e5nga utg\'e5r ifr\'e5n. Den h\'e4r sidan \'e4r d\'e4remot ganska tung att l\'e4sa. \par
+\par
+\b PHP Best Practices\b0\par
+Det \'e4r punkt org. \par
+\par
+Det finns \'e4ven valideringsverktyg.\par
+\par
+\b\fs28 Include och require\b0\fs22\par
+Detta \'e4r tv\'e5 s\'e4tt att dela upp dokument i flera delar, liknande hur man g\'f6r i SASS. Include och require liknar varandra.\par
+\par
+Kom ih\'e5g att vi bara har function scope. Alla v\'e5ra sidor tolkas inte under samma global scope. Det \'e4r allts\'e5 okej att dela upp koden i mindre dokument och sedan s\'e4tta ihop dem n\'e4r inneh\'e5llet ska tolkas och levereras. Allt m\'f6jligt kan g\'f6ras i PHP innan vi f\'e5r en f\'e4rdig sida.\par
+\par
+Exempel:\par
+I code.php:\par
+\cf1\f1 <?php\par
+$name = "Maria";\par
+\cf0\f0\par
+I index.php:\par
+\cf1\f1 <?php\par
+include 'code.php';\par
+echo $name;\par
+\cf0\f0\par
+Det kan vara ren HTML som man inkluderar, fast det \'e4r en PHP-fil.\par
+\par
+\b S\'f6kv\'e4gar\b0\par
+I ovanst\'e5ende exempel ligger filerna i samma mapp. Om de inge g\'f6r det m\'e5ste man inkludera s\'f6kv\'e4gen. Generellt vill man g\'e5 upp\'e5t fr\'e5n sin rotmapp och inte backa. \par
+\par
+Exempel p\'e5 att backa:\par
+\cf1\f1 include '../../code.php';\cf0\f0\par
+\par
+MAMP/WAMP/XAMPP borde vara inst\'e4llt p\'e5 att man inte ska s\'f6ka sig upp\'e5t fr\'e5n b\'f6rjan.\par
+\par
+Absoluta s\'f6kv\'e4gar \'e4r heller inte bra. Var servern ska k\'f6ras kan \'e4ndras och d\'e4rmed slutar de att fungera.\par
+\par
+Exempel p\'e5 absolut s\'f6kv\'e4g:\par
+{{\field{\*\fldinst{HYPERLINK file:///Users/jesperorb/php/css/main.css }}{\fldrslt{file:///Users/jesperorb/php/css/main.css\ul0\cf0}}}}\f0\fs22\par
+\par
+Relativa s\'f6kv\'e4gar \'e4r b\'e4ttre.\par
+\par
+\b Require\b0\par
+Require \'e4r samma sak som include fast om filen saknas skapas ett fatal error (\cf1\f1 E_COMPILE_ERROR\cf0\f0 ). Scriptet kommer stoppas. Include d\'e4remot skapar bara en varning (\cf1\f1 E_WARNING\cf0\f0 ) och skriptet kan k\'f6ra \'e4nd\'e5.\par
+\par
+\b require_once och include_once\par
+\b0 Man vill inte att koden inkluderas f\'f6r m\'e5nga g\'e5ner. G\'f6r man det f\'e5r man f\'f6rmodligen ett fel. Med \cf1\f1 require_once\cf0\f0  eller \cf1\f1 include_once\cf0\f0  s\'e4kerst\'e4ller man att koden bara inkluderas en g\'e5ng.\par
+\par
+\cf1\f1 include_once 'code.php';\cf0\f0\par
+\par
+Det \'e4r m\'f6jligt att detta tar l\'e4ngre tid \'e4n enkel \cf1\f1 require\cf0\f0  och \cf1\f1 include\cf0\f0  men det \'e4r bara fr\'e5gan om nanosekunder. Tiden man f\'f6rlorar om n\'e5got \'e4r fel \'e4r d\'e4remot st\'f6rre. \par
+\par
+En alternativ syntax kan vara med paranteser:\par
+\cf1\f1 include_once ('code.php');\cf0\f0\par
+\par
+\b Mer\b0\par
+Det g\'e5r att p\'e5b\'f6rja en tag i ett dokument och st\'e4nga den i ett annat. Det handlar bara om att man inkluderar filerna i r\'e4tt ordning. HTML-head:en beh\'f6vs bara en g\'e5ng.\par
+\par
+Om flera sidor ska ha samma delar kan man inkludera samma filer till dem. Variabler kan anv\'e4ndas s\'e5 att inneh\'e5llet i en fil kan anv\'e4ndas p\'e5 olika s\'e4tt f\'f6r olika sidor. Man kan deklarera variablerna p\'e5 olika s\'e4tt i olika filer. \par
+\par
+Man kan k\'f6ra en loop och inkludera samma fil flera g\'e5nger, s\'e5 att filens kod k\'f6rs flera g\'e5nger. F\'f6rst\'e5s kan variabler ha olika v\'e4rden inuti en loop.\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Uppgift\b0\fs22\par
+Tv\'e5 och tv\'e5, strukturera en sida med hj\'e4lp av include och require. P\'e5 eftermiddagen ska vi j\'e4mf\'f6ra med en annan grupp. N\'e4r man \'e4r n\'f6jd, pusha upp till ett repo p\'e5 GitHub.\par
+\par
+Repot med sidan \'e4r nobel-prize-list.\par
+\par
+\'c4ven tre extra sidor och en navbar ska g\'f6ras.\par
+}
+ 
