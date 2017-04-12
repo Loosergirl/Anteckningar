@@ -43,7 +43,7 @@ Echo anv\'e4nds i m\'e5nga funktioner. Man m\'e5ste skicka ut det man skriver.\p
 \par
 \cf1\f1 <h1> <?php echo "This is also PHP!" ?> </h1>\par
 \cf0\f0\par
-Det finns flera variationer av det h\'e4r.\par
+Det finns flera variationer av det h\'e4r. Ett alternativ till att skriva \cf1\f1 <?php echo\cf0\f0  \'e4r \cf1\f1 <?=\cf0\f0\par
 \par
 Utan taggen \cf1\f1 <?php?>\cf0\f0  tolkas det som HTML, innanf\'f6r den som PHP. Det \'e4r viktigt att st\'e4nga taggarna! Om man bara har PHP beh\'f6ver man d\'e4remot inte st\'e4nga taggarna.\par
 \par
@@ -219,7 +219,12 @@ $panda = array(\par
 foreach ($panda as $key => $value) \{\par
     echo "<h6>$key</h6> <p>$value</p>";\par
 \}\par
-\par
+\cf0\f0\par
+Shortform, bra f\'f6r blandad PHP och HTML:\par
+\cf1\f1 foreach ($animals as $animal) : ?>\par
+    <?php echo "<h1>$animal</h1>"; ?>\par
+<?php endforeach; ?>\cf0\f0\par
+\cf1\f1\par
 \cf0\b\f0\fs28 Uppl\'e4gg\b0\fs22\par
 Man kan vilja ha flera PHP-taggar i ett dokument. T.ex. ett stycke PHP intuti en div. \par
 \par
