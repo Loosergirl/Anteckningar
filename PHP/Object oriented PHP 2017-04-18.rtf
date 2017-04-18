@@ -1,0 +1,263 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29 Object oriented PHP\b0\fs22\par
+JavaScript \'e4r egentligen inte objektorienterat \'e4ven om det g\'e5r att skriva p\'e5 det s\'e4ttet. Vi har ju g\'e5tt igenom olika programmeringsparadigm; JavaScript \'e4r byggt p\'e5 prototyper och deras arv. M\'e5nga spr\'e5k \'e4r objektorienterade och d\'e4r sker inget prototyparv. \par
+\par
+\'c4ven om PHP \'e4r objektorienterat liknar det JavaScript. Idag ska vi anv\'e4nda objekt ist\'e4llet.\par
+\par
+Vad \'e4r ett objekt? Allting \'e4r objekt. I JavaScript \'e4r det bara en samling nycklar och v\'e4rden. Det \'e4r oftast uppbyggt p\'e5 det s\'e4ttet i olika spr\'e5k. \par
+\par
+N\'e4r vi g\'e5r in p\'e5 det h\'e4r f\'e5r vi l\'e4ra oss objektorientering som anv\'e4nds i m\'e5nga andra spr\'e5k. Det kan vara bra om man ska l\'e4ra sig n\'e5got spr\'e5k i backend.\par
+\par
+I JavaScript \'e4r objekt l\'e4nkade till andra objekt, oavsett hur man skapar dem. Det g\'e5r att titta p\'e5 objektet i console.log d\'e4r man kan se hur det ser ut. Allting \'e4r objekt, till och med funktioner \'e4r objekt. Man har d\'e4remot lagt till klasser i ES6 f\'f6r att det ska likna de objektorienterade spr\'e5ken.\par
+\par
+I PHP \'e4r objekt instanserade fr\'e5n klasser. Spr\'e5ket var skapat f\'f6r att vara objektorienterat fr\'e5n b\'f6rjan. Ist\'e4llet f\'f6r att skapa anonyma objekt s\'e4ger man vad det \'e4r f\'f6r slags objekt, t.ex. filmer. J\'e4mf\'f6r hur man anv\'e4nder en konstruktor i JavaScript. Det finns ocks\'e5 modularitet i PHP; man kan skriva generiska, breda, funktioner som kan anv\'e4ndas \'f6verallt och d\'e5 \'e4r det bra att jobba med klasser.\par
+\par
+\b JavaScript: Objekt skapas utifr\'e5n andra objekt\b0 :\par
+\cf1\f1 let elephant = \{\};\par
+let elephant = Object.create(\{\});\par
+\cf0\f0\par
+Allting \'e4r kopplat till \cf1\f1 Object\cf0\f0 . Om det inte vore s\'e5 skulle man inte kunna g\'e5 igenom objekt med en \cf1\f1 for\cf0\f0 -loop.\par
+\par
+\b PHP: Objekt skapas utifr\'e5n classes:\par
+\b0 Detta liknar ES6 klasser.\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+\}\par
+\cf0\f0\par
+Man anv\'e4nder nyckelordet class f\'f6r att visa vad som ska tillh\'f6ra den klassen.\par
+\par
+"I JavaScript skapar man ett hus och kopierar huset. I PHP g\'f6r man en ritning \'f6ver ett hus."\par
+\par
+Det beh\'f6vs alltid en klass f\'f6r att skapa ett nytt objekt i PHP.\par
+\par
+N\'e4r man pratar om objekt kallar man variablerna som ing\'e5r i de objekten f\'f6r \b properties \b0 (egenskaper; alternativt attributes eller fields) och funktionerna kallas \b methods\b0  (metoder).\par
+\par
+\b Klassmetod\b0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  function speak() \{\par
+    echo "ERRRRRUUUH!!!!";\par
+  \}\par
+\}\par
+\cf0\f0\par
+N\'e4r man har metoder eller klasser ska de ligga p\'e5 en ny rad enligt PSR1. Metoder ska skivas med camelCase men funktioner med snake_case.\par
+\par
+Klasser m\'e5ste alltid st\'e4ngas. De ska ligga i separata filer. En fil f\'f6r varje klass. Det kan f\'f6rst\'e5s bli m\'e5nga filer.\par
+\par
+Med JavaScript tillh\'f6r inte n\'e5gon funktion n\'e5got. \'c4ven om en funktion ligger i ett objekt. Men h\'e4r med PHP tillh\'f6r metoderna sina klasser och ska anv\'e4ndas i instanserna av klasserna. \par
+\par
+\b Insantiering (sic.)\b0\par
+Man m\'e5ste skapa ett objekt f\'f6r att kunna anv\'e4nda metoderna i klassen. \par
+\cf1\f1 <?php\par
+$hathi = new Elephant; \tab\cf2 //nyckelordet new\cf1\par
+$hathi->speak();\tab\tab\cf2 //ERRRRRUUUH!!!!\cf1\par
+\cf0\f0\par
+\cf1\f1 ->\cf0\f0  anv\'e4nds f\'f6r att komma \'e5t egenskaper och metoder i objektet ist\'e4llet f\'f6r punktnotation. Funktionen m\'e5ste kallas p\'e5 i relation till objektet. Ett nytt objekt m\'e5ste skapas f\'f6r att man ska kunna komma \'e5t metoden.\par
+\par
+\b Variabler ocks\'e5\b0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  public $name = 'Hathi';\par
+  function speak() \{\par
+    echo "ERRRRRUUUH!!!!";\par
+  \}\par
+\}\par
+\par
+$hathi = new Elephant;\par
+$hathi->name;\par
+\cf0\f0\par
+H\'e4r anv\'e4nds public f\'f6r att variabeln ska vara tillg\'e4nglig. Det \'e4r en accessor. Allting som ligger i klassen beh\'f6ver en accessor och de anger tillg\'e4nglighet.\par
+\par
+Dollartecknet beh\'f6ver inte anv\'e4ndas f\'f6r egenskapen (h\'e4r: \cf1\f1 name\cf0\f0 ).\par
+\par
+Man brukar alltid l\'e4gga variablerna h\'f6gst upp i klassen. Det \'e4r de som \'e4r det viktigaste i klassen; man vill direkt se vilka egenskaper objektet har. Jesper vet inte ens om det fungerar att l\'e4gga dem l\'e4ngre ned.\par
+\par
+\b Konstruktor\b0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  public $name;\tab\tab\tab\cf2 //public property\cf1\par
+  public function __construct($name) \{\par
+    $this->name = $name;\tab\cf2 //Jfr. JS: this.name = name;\cf1\par
+  \}\par
+\}\cf0\f0\par
+\par
+Observera att det \'e4r tv\'e5 understreck innan ordet \cf1\f1 construct\cf0\f0 . Dessutom \'e4r ordet \cf1\f1 construct\cf0\f0  och inte \cf1\f1 constructor\cf0\f0 .\par
+\par
+Den publika egenskapen \cf1\f1 $name\cf0\f0  \'e4r tom och s\'e4tts via konstruktorn n\'e4r objektet skapas.\par
+\par
+En konstruktor m\'e5ste inte ha \cf1\f1 public\cf0\f0 . Skriver man inget blir det automatiskt \cf1\f1 public\cf0\f0 .\par
+\par
+\b N\'e4r man skapar ett objekt som har en konstruktor\b0 :\par
+\cf1\f1 <?php\par
+$hathi = new Elephant('Hathi');\par
+$hathi->name;\tab\tab\tab\tab\cf2 //Hathi\par
+\cf0\f0\par
+Har vi sparat ett visst v\'e4rde till ett objekt kan man komma \'e5t det p\'e5 ovanst\'e5ende s\'e4tt, med en pil ist\'e4llet f\'f6r punktnotation.\par
+\par
+\b ***Se Jespers kodexempel.***\par
+\cf1\f1\par
+\cf0\f0 Kommentarer till Jespers kod\b0 :\par
+En konstruktor kan f\'e5 ett default-v\'e4rde om man ger ett v\'e4rde till den variabeln i klassen utanf\'f6r konstruktorn.\par
+\par
+Inuti en klass kan funktioner f\'f6rst\'e5s kalla p\'e5 andra funktioner. D\'e5 m\'e5ste man referera till dem med \cf1\f1 $this\cf0\f0 , t.ex. \cf1\f1 $this->speak();\cf0\f0  f\'f6r att komma \'e5t funktionen \cf1\f1 speak();\cf0\f0 .\par
+\par
+Eftersom egenskaperna \'e4r \cf1\f1 public\cf0\f0  i det h\'e4r fallet kan man \'e4ndra p\'e5 dem i efterhand n\'e4r man redan skapat en instans av klassen.\par
+\par
+Med flera argument i en konstruktor \'e4r ordningen de st\'e5r i viktig. \par
+\par
+\b\fs28 Private, protected, public\par
+\b0\fs22 Nyckelord kan anv\'e4ndas f\'f6r att s\'e4ga att variabler inte f\'e5r anv\'e4ndas hur som helst. De kan inte kommas \'e5t. Vi ska f\'f6rs\'f6ka att s\'e4tta vissa saker privata. Man vill ha s\'e5 lite \'e5tkomst som m\'f6jligt (principle of least privilege). \par
+\par
+\b Inkapsling\b0\par
+Man l\'e4gger samman saker som h\'f6r ihop till samma objekt f\'f6r att minska antalet globala variabler. Man beh\'f6ver heller inte visa all implementation. Det \'e4r en bra sak f\'f6r den som ska anv\'e4nda koden om man bara beh\'f6ver kalla p\'e5 den utan att beh\'f6va veta hur det g\'e5r till.\par
+\par
+Man g\'f6mmer s\'e5 mycket information som m\'f6jligt. Koden ska inte veta f\'f6r mycket. Detta \'e4r viktigt med backend f\'f6r att minska s\'e4kerhetsrisker. \par
+\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  public $name;\tab\tab\tab\cf2 //public property\cf1\par
+  public function __construct($name) \{\par
+    $this->name = $name;\tab\cf2 //Always public\cf1\par
+  \}\par
+\}\cf0\f0\par
+\par
+Konstruktorn borde alltid vara \cf1\f1 public\cf0\f0 . D\'e4remot kan man g\'f6ra egenskapen till \cf1\f1 private\cf0\f0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  private $name;\tab\tab\tab\cf2 //private property\cf1\par
+  public function __construct($name) \{\par
+    $this->name = $name;\tab\cf2 //Always public\cf1\par
+  \}\par
+\}\cf0\f0\par
+\par
+Nu kan man ha en egenskap variabel som \'e4nd\'e5 kan s\'e4ttas med konstruktorn. Det g\'e5r d\'e4remot inte att \'e4ndra p\'e5 egenskapen p\'e5 n\'e5got annat s\'e4tt. Privata variabler finns egentligen bara inom klassen.\par
+\par
+\b ***Se Jespers kodexempel.***\par
+\b0\par
+\b Kommentarer till Jespers kod\b0 :\par
+Det g\'e5r inte att h\'e4mta eller \'e4ndra en egenskap eller metod som f\'e5tt tillg\'e4ngligheten \cf1\f1 private\cf0\f0 . D\'e4remot kan en s\'e5dan egenskap eller metod fortfarande anv\'e4ndas inuti sin klass.\par
+\par
+\cf1\f1 protected\cf0\f0  \'e4r ungef\'e4r som \cf1\f1 private\cf0\f0 . Men \cf1\f1 protected\cf0\f0  kan anv\'e4ndas av alla klasser som \'e4rver av klassen, t.ex. om det finns en klass \cf1\f1 BabyElephant\cf0\f0  som \'e4rver av \cf1\f1 Elephant\cf0\f0 . \par
+\par
+\b\fs28 Getter/setter\b0\fs22 :\par
+Oftast har man en getter och setter f\'f6r att komma \'e5t variabler. Detta \'e4r funktioner som h\'e4mtar v\'e4rden. \par
+\par
+\b Exempel p\'e5 getter\b0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  private $name;\tab\tab\tab\cf2 //private property\cf1\par
+  public function __construct($name) \{\par
+    $this->name = $name;\tab\cf2 //Always public\cf1\par
+  \}\par
+  public function getName()\{\par
+    return $this->name;\tab\tab\cf2 //Only returns name\cf1\par
+  \}\par
+\}\cf0\f0\par
+\par
+Allt man kan g\'f6ra med en getter \'e4r att h\'e4mta v\'e4rdet.\par
+\par
+Med en getter kan man d\'e4remot inte \'e4ndra p\'e5 variabeln, bara h\'e4mta ut v\'e4rdet.\par
+\par
+\b Setter\b0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  private $name;\tab\tab\tab\cf2 //private property\cf1\par
+  public function __construct($name) \{\par
+    $this->name = $name;\tab\cf2 //Always public\cf1\par
+  \}\par
+  public function setName()\{\par
+    if($name == '')\{\par
+      return 'No empty name!';\par
+    \}\par
+    $this->name = $name;\par
+  \}\par
+\}\par
+\par
+\cf0\f0 Kontrollen f\'f6r om man f\'f6rs\'f6ker s\'e4tta ett tomt v\'e4rde kan man g\'f6ra h\'e4r ocks\'e5. F\'f6rst\'e5s kan man g\'f6ra den kontrollen utanf\'f6r klassen ist\'e4llet om man hellre vill det.\par
+\par
+Det h\'e4r blir ganska irriterande om man har m\'e5nga egenskaper. \par
+\par
+Med en getter och en setter f\'e5r vi mer kontroll \'f6ver vem som kan komma \'e5t v\'e4rdena och hur de kan s\'e4ttas.\par
+\par
+\b ***Se Jespers kodexempel.***\b0\par
+\par
+\b Kommentarer till Jespers kod\b0 :\par
+Det \'e4r okej att d\'f6pa getter- och setter-metoderna till vad som helst. De beh\'f6ver inte heta \cf1\f1 getName\cf0\f0  och \cf1\f1 setName\cf0\f0 .\par
+\par
+Det \'e4r viktigt att kunna det h\'e4r n\'e4r man ska g\'f6ra forms och liknande.\par
+\par
+\b Private-public-protected\par
+\cf1\b0\f1 private\cf0\f0 : bara den egna klassen kan komma \'e5t\par
+\cf1\f1 public\cf0\f0 : alla kan komma \'e5t\par
+\cf1\f1 protected\cf0\f0 : klassen och alla klasser som \'e4rver av klassen kan komma \'e5t (mer om det senare)\par
+\par
+\b\fs28 Man beh\'f6ver inte alltid skapa ett nytt objekt\b0\fs22\par
+Det g\'e5r att komma \'e5t egenskaper som inte tillh\'f6r objekt men som tillh\'f6r klassen. Kanske vill man att en klass ska hantera struktur eller liknande. Och var ska man annars l\'e4gga funktioner som inte \'e4r kopplade till objekt?\par
+\par
+\b Static\b0\par
+Om man inte vill skapa ett nytt objekt men \'e4nd\'e5 komma \'e5t det kan man anv\'e4nda nyckelordet \cf1\f1 static\cf0\f0 . D\'e5 finns inget \cf1\f1 this\cf0\f0 .\par
+\par
+En metod kan vara bunden till sin klass ist\'e4llet f\'f6r till objektet. D\'e5 kan metoden anv\'e4ndas utan att instansiera ett objekt.\par
+\par
+\b "Statiska" metoder i JavaScript\b0 :\par
+\cf1\f1 function foo() \{\};\tab\tab\cf2 //constructor\cf1\par
+Foo.speak = function() \{\tab\cf2 //Not bound to object\cf1\par
+  console.log("Foo!");\par
+\};\par
+\cf0\f0\par
+Och\par
+\cf1\f1 Foot.prototyp.speak = function() \{\par
+  console.log("Foo!");\tab\tab\cf2 //can reference 'this'\cf1\par
+\};\par
+\cf0\f0\par
+\b Med PHP: Nyckelordet \f1 static\b0\f0 :\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  static function speak()\par
+  \{\par
+    echo "ERRUUH!"\par
+  \}\par
+\}\par
+\par
+<?php\par
+Elephant::speak();\tab\tab\cf2 //"ERRUUH!"\cf1\par
+\cf0\f0\par
+H\'e4r kan elefanten tala utan instans.\par
+\par
+Egenskaper kan ocks\'e5 vara statiska:\par
+\cf1\f1 <?php\par
+class Elephant\par
+\{\par
+  static public $name = "Hathi";\par
+\}\cf0\par
+\f0\par
+Men man m\'e5ste anv\'e4nda dollartecknet n\'e4r man ska referera till en statisk egenskap:\par
+\cf1\f1 <?php\par
+Elephant::$name;\tab\tab\cf2 //'Hathi'\cf1\par
+\cf0\f0\par
+\b ***Se Jespers kodexempel.***\b0\par
+\par
+\b Kommentarer till Jespers kod\b0 :\par
+Det g\'e5r att komma \'e5t en egenskap eller metod som \'e4r \cf1\f1 static\cf0\f0  b\'e5de via ett objekt man skapat som en instans av klassen och direkt via klassen. B\'e5da s\'e4tten fungerar.\par
+\par
+En \cf1\f1 static\cf0\f0  egenskap eller metod kan vara \cf1\f1 private\cf0\f0  eller \cf1\f1 public\cf0\f0 . Det spelar ingen roll om man skriver ordet \cf1\f1 static\cf0\f0  f\'f6re eller efter accessorn.\par
+\par
+Klasser kan anv\'e4ndas som moduler f\'f6r att wrappa in saker. Det blir ett s\'e4tt att strukturera kod p\'e5.\par
+\par
+Man kan tillf\'e4lligt instansiera ett objekt och h\'e4mta ut n\'e5got ur det, ist\'e4llet f\'f6r att s\'e4tta \cf1\f1 static\cf0\f0 . Paranteser g\'f6r att objektet inte sparas utan bara skapas tillf\'e4lligt:\par
+\cf1\f1 $hathiName = (new Elephant)->getName();\par
+\cf0\f0\par
+\cf1\f1\par
+}
+ 
