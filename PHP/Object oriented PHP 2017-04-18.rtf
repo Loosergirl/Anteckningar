@@ -258,6 +258,12 @@ Klasser kan anv\'e4ndas som moduler f\'f6r att wrappa in saker. Det blir ett s\'
 Man kan tillf\'e4lligt instansiera ett objekt och h\'e4mta ut n\'e5got ur det, ist\'e4llet f\'f6r att s\'e4tta \cf1\f1 static\cf0\f0 . Paranteser g\'f6r att objektet inte sparas utan bara skapas tillf\'e4lligt:\par
 \cf1\f1 $hathiName = (new Elephant)->getName();\par
 \cf0\f0\par
+\b Ytterligare kommentar\b0 :\par
+F\'f6r att komma \'e5t en statisk egenskap som ligger i en klass, n\'e4r man \'e4r inuti den klassen, anv\'e4nder man samma notation som om man inte vore i klassen.\par
+\par
+F\'f6r att komma \'e5t en statisk egenskap i klassen, enligt Jesper: Anv\'e4nd \cf1\f1 Self\cf0\f0 . T.ex:\par
+\cf1\f1 echo Self::$name;\cf0\f0\par
+\cf1\f1 Self\cf0\f0  refererar till klassen.\par
 \cf1\f1\par
 }
  
