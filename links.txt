@@ -13,3 +13,39 @@ https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
 https://www.npmjs.com/
 
 https://github.com/typicode/json-server
+
+==REKOMMENDATION==
+https://hyper.is/
+
+==FLEXBOX FROGGY FÖR GRID==
+http://cssgridgarden.com/
+
+=="En guide till hur man kopplar sin .se domän från Loopia till sin Github Pages genom Cloudfare."==
+https://github.com/FEND16/custom-domain-cloudfare
+
+==JS BEST PRACTICE==
+https://github.com/ryanmcdermott/clean-code-javascript
+
+==WEB DEVELOPER ROADMAP==
+https://github.com/kamranahmedse/developer-roadmap
+
+==Om fetch inte fungerar i Safari==
+https://github.com/github/fetch
+
+==JS VANILLA LIBRARIES==
+http://www.vanillalist.com/
+
+==HEROKU==
+"Repository med instruktioner om man vill deploya sitt json-API till en gratis hosting service (*Heroku*)"
+https://github.com/jesperorb/json-server-heroku
+
+"Ja, Heroku (samt många andra hosting services) kör automatiskt `npm start` för att starta applikationen. Om man har angett rätt kommando i `npm start`, i det här fallet `node server.js` för att köra koden i `server.js` så borde det inte vara några problem. Det som kan ställa till det är om man inte har rätt *dependencies* i `package.json` eller om man har angivit fel port för servern att köra på."
+
+==SÄTTA UPP LOKALA DOMÄNNAMN==
+https://github.com/typicode/hotel
+
+==NODESCHOOL==
+https://nodeschool.io/sv/
+
+==YOU MIGHT NOT NEED JQUERY - JQUERY och JAVASCRIPT==
+http://youmightnotneedjquery.com/

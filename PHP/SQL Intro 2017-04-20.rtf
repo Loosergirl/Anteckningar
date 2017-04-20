@@ -1,0 +1,200 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red192\green192\blue192;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs28\lang29 SQL: Structured Query Language\b0\fs22\par
+Det \'e4r hyfsat enkelt att l\'e4ra sig syntaxen. Det kan d\'e4remot vara f\'f6rvirrande eftersom det inte bara \'e4r spr\'e5ket man m\'e5ste l\'e4ra sig. Olika system och databaser beh\'f6vs runt omkring. SQL \'e4r heller inte helt universellt f\'f6r olika plattformar och kan finans i olika versioner. Man kan s\'e4ga att SQL \'e4r en ink\'f6rsdrog till de tyngre grejerna.\par
+\par
+\b Query\b0\par
+En query \'e4r en fr\'e5ga. Vi f\'f6rv\'e4ntar oss att f\'e5 tillbaka information. Vi kan ha dem i URL och med ett API har vi en query stream. Ett structured query language \'e4r allts\'e5 ett strukturerat fr\'e5gespr\'e5k. \par
+\par
+\b SQL\b0\par
+SQL \'e4r ett spr\'e5k f\'f6r att h\'e4mta data fr\'e5n databaser p\'e5 ett strukturerat s\'e4tt. Vi vill ha s\'e5 lite data som m\'f6jligt och sorterat p\'e5 ett visst s\'e4tt.\par
+\par
+Det g\'e5r att anv\'e4nda PHP p\'e5 backend sidan f\'f6r att g\'f6ra saker som man skulle ha kunnat ha JavaScript till. D\'e5 g\'e5r det f\'f6rmodligen snabbare s\'e5 man vill g\'f6ra s\'e5 mycket som m\'f6jligt p\'e5 backend-sidan. \par
+\par
+Innan man anv\'e4nder PHP:n m\'e5ste man \'e4nd\'e5 h\'e4mta informationen n\'e5gonstans ifr\'e5n. Det beh\'f6ver inte vara en JSON-server. Med SQL finns inget JSON-objekt eller en JSON-array utan det lagras p\'e5 ett mer strukturerat s\'e4tt. Innan vi n\'e5r PHP-stadiet finns det n\'e5got s\'e4tt som informationen \'e4r lagrad p\'e5. Skriver man det r\'e4tt beh\'f6ver inte PHP-koden g\'f6ra s\'e5 mycket heller och informationen kan levereras \'e4nnu snabbare.\par
+\par
+SQL \'e4r inte bara ett spr\'e5k. Det finns flera olika dialekter, flera olika s\'e4tt att skriva p\'e5. Beroende p\'e5 vilken setup man har f\'e5r man anv\'e4nda olika s\'e5dana dialekter. Vi ska anv\'e4nda MySQL eftersom det \'e4r vanligast. Kan man ett SQL-spr\'e5k \'e4r det l\'e4tt att l\'e4ra sig ett annat.\par
+\par
+Problemet med frontend \'e4r att vi aldrig har prersistent data. Allting lagras bara tillf\'e4lligt. Ingenting \'e4r heller dolt. \'c4ven om man har privata variabler syns dem. Det g\'e5r alltid att kolla upp source och se allt som en person skrivit. Det \'e4r bra men viss data vill vi ha dold. \par
+\par
+M\'e5nga olika sorters data m\'e5ste klaffa innan det kommer fram till frontend-niv\'e5. \par
+\par
+\b Databas\b0\par
+En databas \'e4r en bas med data, en l\'e5da med data. Man har tabeller. T.ex. kanske man sparar id, username och password p\'e5 varje rad i tabellen. Det \'e4r viktigt att t\'e4nka p\'e5 vad man d\'f6per sina kolumner i tabellen till och vad man ska ha i dem.\par
+\par
+Det finns olika regler f\'f6r hur man ska skriva sina tabeller (detta \'e4r tr\'e5kigt).\par
+\par
+Men shit, vad \'e4r det f\'f6r fel p\'e5 json?\par
+Med en JSON-server har vi bara objekt i en array. En del tycker det \'e4r l\'e4ttare att strukturera data p\'e5 detta s\'e4tt. \par
+\cf1\f1 [\par
+  \{\par
+    "id": "42",\par
+    "username": "zero_cool",\par
+    "password" : "alligator1"\par
+  \}\par
+]\par
+\cf0\f0 Det vanligaste \'e4r MongoDB - S\'e5kallad NoSQL. En schemadatabas. Det \'e4r inte lika strukturerat. Det g\'e5r snabbt att l\'e4sa f\'f6r en m\'e4nniska men g\'e5r inte lika snabbt att h\'e4mta och lagra data.\par
+\line\b Relationsdatabas\b0\par
+Relationsdatabaser \'e4r ordnade i relationer, d.v.s. tabeller. De \'f6verlappar f\'f6r att binda ihop data. Vi vill inte bara ha ett Excel-dokument utan har flera. Man refererar runt mellan de olika tabellerna s\'e5 att de blir sammanl\'e4nkade. D\'e5 g\'e5r det riktigt snabbt att h\'e4mta och lagra data. MySQL anv\'e4nder detta.\par
+\par
+ID anv\'e4nds f\'f6r att det kan vara sv\'e5rt att identifiera med hj\'e4lp av t.ex. titel. Stora och sm\'e5 bokst\'e4ver g\'f6r det komplicerat. D\'e4rf\'f6r s\'f6ker man med ID.\par
+\par
+Hur fungerar tabellerna? L\'e4gger man till fler och fler kolulmner med mer information blir det snart dubletter av information och on\'f6dig information. Har man miljoner rader i tabellen blir det v\'e4ldigt mycket extra information f\'f6r varje extra kolumn. D\'e4rf\'f6r brukar man dela upp det i flera olika tabeller och l\'e4nka samman tabellerna med varandra. D\'e5 anv\'e4nder man referenser till andra tabeller, d\'e4r ID:n anv\'e4nds f\'f6r att best\'e4mma rad i de olika tabellerna.\par
+\par
+T.ex. (t\'e4nk dig detta som en tabell)\par
+\cf1  \ul                 \tab\tab\tab\tab\tab\tab\tab  \par
+\ulnone |\highlight2\ul\tab id\tab |\tab title\tab\tab |\tab createdBy\tab\highlight0\ulnone |\highlight2\par
+\highlight0 |\ul\tab 42\tab |\tab How to code\tab |\tab 15\tab\tab\ulnone |\ul\par
+\cf0\ulnone\par
+..och i den andra tabellen\par
+\cf1  \ul                             \tab\tab\tab\tab\tab\tab\tab\tab\tab\tab  \cf0\ulnone\par
+\cf1 |\highlight2\ul\tab id\tab |\tab username\tab |\tab password\tab |\tab email\tab\tab\highlight0\ulnone |\highlight2\par
+\highlight0 |\ul\tab 15\tab |\tab jesperorb\tab |\tab pass123\tab |\tab jesper@orb.se\tab\ulnone |\ul\par
+\cf0\ulnone\par
+Med MongoDB bryr man sig kanske inte om duplicerad information. D\'e5 kan man bara skapa objekt d\'e4r man lagrar ytterligare information.\par
+\par
+\b\fs28 PhpMyAdmin\b0\fs22\par
+F\'f6r att komma \'e5t informationen i databasen beh\'f6ver vi ett spr\'e5k. Vi beh\'f6ver ocks\'e5 ett program som mellanhand. Vi har ju MAMP. D\'e4r finns phpMyAdmin vilket \'e4r st\'e4llet vi ska jobba p\'e5. D\'e4r finns all information om databasen. I sj\'e4lva verket ser det inte lika fint ut i en verklig databas men det \'e4r iallafall de r\'e4tta tabellerna.\par
+\par
+Det beh\'f6ver inte vara phpMyAdmin. Vad man egentligen beh\'f6ver \'e4r ett RDBMS, ett Relational Database Management System. MySQL \'e4r ett s\'e5dant s\'e4tt (som anv\'e4nds av phpMyAdmin). Det \'e4r helt enkelt ett system som hanterar all data. Som hanterar CRUD (Create Read Update Delete).\par
+\par
+Man kan sitta och skriva i terminalen f\'f6r att komma \'e5t databasen. Men det blir sv\'e5rt om man inte kan r\'e4tt kommandon. Ist\'e4llet har vi phpMyAdmin.\par
+\par
+G\'e5 in p\'e5 MAMPs startsida i webbl\'e4saren. D\'e4r finns phpMyAdmin under fliken Tools. \par
+\par
+Det ser ut som om vi f\'e4rdats tillbaka i tiden, men h\'e4r finns allt vi beh\'f6ver.\par
+\par
+I aside:n till v\'e4nster syns alla databaser vi har. Vet du inte vad det \'e4r s\'e5 l\'e5t det vara. L\'e4ngst upp finns d\'e4remot alternativet New d\'e4r man kan skapa en ny databas. Man kan v\'e4lja olika samlingar d\'e4r man kan l\'e4gga tabeller. Collation \'e4r vilket charset man ska anv\'e4nda f\'f6r att lagra informationen. Det rekommenderas att man v\'e4ljer \cf1 utf8_general_ci\cf0 , alternativt swedish.\par
+\par
+Har man inte lagt till n\'e5gon tabell finns det inga n\'e4r databasen \'e4r ny. D\'e5 kan man g\'f6ra sin egen. \par
+\par
+Man f\'e5r massor av f\'e4lt. Det \'e4r i princip de kolumner som man kan l\'e4gga till. \par
+\par
+Man v\'e4ljer vad kolumnen ska heta, vad det ska vara f\'f6r lagringstyp f\'f6r variabeln (t.ex. int). \cf1 varchar\cf0  och \cf1 text\cf0  \'e4r string; \cf1 varchar\cf0  \'e4r kortare \'e4n \cf1 text\cf0 . \par
+\par
+\cf1 Default \cf0 kan anv\'e4ndas f\'f6r att best\'e4mma ett default-v\'e4rde. Om man vill ha ett datum med kan default vara \cf1 current_timestamp\cf0 . \par
+\par
+\cf1 A_I\cf0  \'e4r viktig och st\'e5r f\'f6r auto-increment. Allts\'e5 att den ska automatiskt \'f6ka. F\'f6r ett id \'e4r det bra. \par
+\par
+ID:et b\'f6r markeras med \cf1 primary \cf0 som st\'e5r f\'f6r primary key under alternativet \cf1 Index\cf0 . Det ska ju inte finnas n\'e5gra dubletter av ID:et och det \'e4r via ID:et som tabellraden ska identifieras.\par
+\par
+Knappen \cf1 Preview SQL\cf0  visar vad man egentligen skriver f\'f6r kod. Det g\'e5r att bara best\'e4mma allt med ren kod.\par
+\par
+N\'e4r man skapat en ny tabell kommer den ligga representerad i databasen. Man kan klicka p\'e5 en skapad tabell f\'f6r att se vad det finns f\'f6r kolumner i den. Vid \cf1 Type\cf0  kan du se hur m\'e5nga tecken l\'e5ngt datatypen f\'e5r vara, t.ex. 11 f\'f6r int och 260 f\'f6r varchar. \par
+\par
+De olika flikarna l\'e5ter oss g\'f6ra mer, t.ex. l\'e4gga in v\'e4rden i tabellerna. Pr\'f6var man att l\'e4gga in n\'e5got kan man se s\'e5 att det fungerar som man t\'e4nkt.\par
+\par
+\b CRUD!\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 Insert-tabben \'e4r Create.\par
+{\pntext\f2\'B7\tab}Select: Read\par
+{\pntext\f2\'B7\tab}Update: Update\par
+{\pntext\f2\'B7\tab}Delete: Delete\par
+
+\pard\sl240\slmult1\par
+CRUD finns allts\'e5 under insert-tabben fast vi anv\'e4nder andra nyckelord.\par
+\par
+\b Primary key\b0\par
+Varje rad i en tabell m\'e5ste ha ett unikt id. Det kallas primary key.\par
+\par
+\b\fs28 SQL Queries\b0\fs22\par
+\'c4ven fast vi klickar oss fram m\'e5ste SQL k\'f6ras i bakgrunden med sina queries. \par
+\par
+\b Select \b0\'e4r i princip read. Man anv\'e4nder Select from f\'f6r att h\'e4mta information. Det \'e4r i princip v\'e5r GET-request. \par
+\cf1\f1 SELECT * FROM table;\cf0\f0\par
+\par
+Asterisken betyder att man ska ta allting; alla kolumner. Man kan ocks\'e5 v\'e4lja en viss kolumn:\par
+\cf1\f1 SELECT name FROM table;\cf0\f0\par
+\par
+Ist\'e4llet f\'f6r \cf1\f1 table\cf0\f0  ska man f\'f6rst\'e5s skriva namnet p\'e5 tabellen, om inte tabellen heter table. T.ex.\par
+\cf1\f1 SELECT * FROM `notes`;\cf0\f0\par
+eller\par
+\cf1\f1 SELECT title FROM notes;\cf0\f0\par
+\par
+Vill man skriva det sj\'e4lv kan man g\'f6ra det under SQL-tabben. Fnuttarna \cf1\f1 ``\cf0\f0  \'e4r valfria; det fungerar b\'e5de med dem och utan dem.\par
+\par
+Med flera kolumner samtidigt anv\'e4nds kommatecken:\par
+\cf1\f1 SELECT title, createdBy FROM notes;\par
+\cf0\f0\par
+\b WHERE\b0\par
+F\'f6r att s\'e5lla inneh\'e5llet:\par
+\cf1\f1 SELECT * FROM notes WHERE id = 1;\cf0\f0\par
+\par
+Alla kolumner \'e4r s\'f6kbara:\par
+\cf1\f1 SELECT * FROM notes WHERE title = "My Title";\par
+\cf0\f0\par
+\b Uppdatera fr\'e5n Insert-tabben\par
+\cf1\b0\f1 INSERT INTO `notes` (`title`, `createdBy`) VALUES ("What!", "WoW");\par
+\cf0\f0\par
+\b Uppdatera fr\'e5n Browse-tabben\par
+\b0 Man kan helt enkelt v\'e4lja en cell i tabellen och skriva d\'e4r. Det g\'e5r \'e4ven att ta bort.\par
+\par
+\b SELECT DISTINCT\b0\par
+N\'e4r man vill ta bort dubletter.\par
+\cf1\f1 SELECT DISTINCT name FROM notes;\par
+\cf0\f0 Med det h\'e4r plockas dubletterna ut men tas inte bort.\par
+\par
+\b SELECT AS\b0\par
+Med detta d\'f6per man om en kolumn n\'e4r man h\'e4mtar den. Man \'e4ndrar inte i sj\'e4lva databasen men man kan d\'f6pa om den f\'f6r det h\'e4mtade materialet.\par
+\cf1\f1 SELECT title AS BlogTitle FROM blog;\par
+\cf0\f0\par
+\b Best practice\b0\par
+Notera att man inte beh\'f6ver ha stora bokst\'e4ver p\'e5 \cf1\f1 SELECT\cf0\f0 , \cf1\f1 INSERT\cf0\f0  o.s.v. men det \'e4r best practice.\par
+\par
+Kolumnnamn kan ha konstiga tecken om de omges av backticks (\cf1\f1 `\cf0\f0  och \cf1\f1 `\cf0\f0 ) men det \'e4r inte bra om de har mellanslag i sig.\par
+\par
+\b\fs28 Funktioner\b0\fs22\par
+Dessa kommer upp som f\'f6rslag n\'e4r man skriver SQL.\par
+\par
+\b SELECT COUNT()\b0\par
+Funktion som r\'e4knar antalet rader (rows) i en kolumn. Det som returneras \'e4r en siffra.\par
+\par
+\cf1\f1 SELECT COUNT(*) FROM notes;\par
+\cf0\f0\par
+Man kan anv\'e4nda det i kombination med \cf1\f1 AS\cf0\f0 :\par
+\cf1\f1 SELECT COUNT(*) AS rows FROM notes;\par
+\cf0\f0\par
+\b SELECT SUM()\b0\par
+Summera. Det m\'e5ste vara siffror, annars blir det 0.\par
+\par
+\b SELECT MAX()\b0\par
+St\'f6rsta siffran.\par
+\par
+\b ORDER BY\b0\par
+Man kan sortera direkt i SQL. Antingen \cf1 ASC\cf0 ending eller \cf1 DESC\cf0 ending\par
+\cf1\f1 SELECT * FROM notes ORDER BY name ASC;\par
+\cf0\f0\par
+Det g\'e5r \'e4ven att sortera genom att man klickar p\'e5 kolkumnens namn i browse-tabben.\par
+\par
+\b UPDATE\b0\par
+Om vi ska uppdatera tabeller. Exempel:\par
+\cf1\f1 UPDATE notes SET title = "My New Shiny Title!" WHERE id = 1;\par
+\cf0\f0\par
+\b DELETE\b0\par
+Anv\'e4nds f\'f6r att ta bort allt eller bara vissa rader. Ta bort allt:\par
+\cf1\f1 DELETE FROM notes;\par
+\cf0\f0\par
+\b Conditionals\b0 :\par
+Man kan anv\'e4nda ett condition (\cf1\f1 WHERE\cf0\f0 ) ocks\'e5:\par
+\cf1\f1 DELETE FROM notes where id = 1;\par
+\cf0\f0\par
+\'c4ven mer:\par
+\cf1\f1 DELETE FROM notes WHERE id > 1;\par
+\cf0\f0\par
+Det g\'e5r \'e4ven att g\'f6ra l\'e4ngre if-satser och koppla ihop det:\par
+\cf1\f1 SELECT * FROM notes WHERE id > 5 AND id < 60;\par
+\cf0\f0 eller\par
+\cf1\f1 SELECT * FROM notes WHERE id > 5 OR id < 60;\par
+\cf0\f0\par
+Det g\'e5r bra att bygga p\'e5 fler conditions.\par
+\par
+\b LIKE\b0\par
+N\'e4r man inte vet vad man ska s\'f6ka efter. T.ex. kanske vi inte vet om en titel b\'f6rjar p\'e5 stor eller liten bokstav. \par
+\cf1\f1 SELECT * FROM notes WHERE title LIKE "N%";\cf0\f0\par
+\par
+H\'e4r vet vi att det b\'f6rjar p\'e5 \cf1 N\cf0  men inte resten. Man anv\'e4nder procenttecken som wildcards; som placeholders f\'f6r vad som helst.\par
+\par
+\par
+}
+ 
