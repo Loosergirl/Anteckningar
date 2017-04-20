@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green77\blue187;\red192\green192\blue192;}
+{\colortbl ;\red0\green77\blue187;\red192\green192\blue192;\red165\green165\blue165;}
 {\*\generator Riched20 10.0.14393}\viewkind4\uc1 
 \pard\sl240\slmult1\b\f0\fs28\lang29 SQL: Structured Query Language\b0\fs22\par
 Det \'e4r hyfsat enkelt att l\'e4ra sig syntaxen. Det kan d\'e4remot vara f\'f6rvirrande eftersom det inte bara \'e4r spr\'e5ket man m\'e5ste l\'e4ra sig. Olika system och databaser beh\'f6vs runt omkring. SQL \'e4r heller inte helt universellt f\'f6r olika plattformar och kan finans i olika versioner. Man kan s\'e4ga att SQL \'e4r en ink\'f6rsdrog till de tyngre grejerna.\par
@@ -73,6 +73,8 @@ Man f\'e5r massor av f\'e4lt. Det \'e4r i princip de kolumner som man kan l\'e4g
 \par
 Man v\'e4ljer vad kolumnen ska heta, vad det ska vara f\'f6r lagringstyp f\'f6r variabeln (t.ex. int). \cf1 varchar\cf0  och \cf1 text\cf0  \'e4r string; \cf1 varchar\cf0  \'e4r kortare \'e4n \cf1 text\cf0 . \par
 \par
+\cf1 Length\cf0  f\'e5r maximalt vara maxl\'e4ngden f\'f6r motsvarande v\'e4rdetyp. F\'f6r t.ex. \cf1 date\cf0  m\'e5ste det skrivas i r\'e4tt format. Man kan l\'e4mna vissa av length-alternativen tomma om man vill.\par
+\par
 \cf1 Default \cf0 kan anv\'e4ndas f\'f6r att best\'e4mma ett default-v\'e4rde. Om man vill ha ett datum med kan default vara \cf1 current_timestamp\cf0 . \par
 \par
 \cf1 A_I\cf0  \'e4r viktig och st\'e5r f\'f6r auto-increment. Allts\'e5 att den ska automatiskt \'f6ka. F\'f6r ett id \'e4r det bra. \par
@@ -83,7 +85,7 @@ Knappen \cf1 Preview SQL\cf0  visar vad man egentligen skriver f\'f6r kod. Det g
 \par
 N\'e4r man skapat en ny tabell kommer den ligga representerad i databasen. Man kan klicka p\'e5 en skapad tabell f\'f6r att se vad det finns f\'f6r kolumner i den. Vid \cf1 Type\cf0  kan du se hur m\'e5nga tecken l\'e5ngt datatypen f\'e5r vara, t.ex. 11 f\'f6r int och 260 f\'f6r varchar. \par
 \par
-De olika flikarna l\'e5ter oss g\'f6ra mer, t.ex. l\'e4gga in v\'e4rden i tabellerna. Pr\'f6var man att l\'e4gga in n\'e5got kan man se s\'e5 att det fungerar som man t\'e4nkt.\par
+De olika flikarna l\'e5ter oss g\'f6ra mer, t.ex. l\'e4gga in v\'e4rden i tabellerna via insert. Pr\'f6var man att l\'e4gga in n\'e5got kan man se s\'e5 att det fungerar som man t\'e4nkt. Observera att man m\'e5ste v\'e4lja hur m\'e5nga rows man ska ha \'e5t g\'e5ngen.\par
 \par
 \b CRUD!\b0\par
 
@@ -138,6 +140,10 @@ N\'e4r man vill ta bort dubletter.\par
 \b SELECT AS\b0\par
 Med detta d\'f6per man om en kolumn n\'e4r man h\'e4mtar den. Man \'e4ndrar inte i sj\'e4lva databasen men man kan d\'f6pa om den f\'f6r det h\'e4mtade materialet.\par
 \cf1\f1 SELECT title AS BlogTitle FROM blog;\par
+\cf0\f0\par
+\b CONCAT\b0\par
+L\'e4gg ihop en str\'e4ng med v\'e4rdet p\'e5 varje rad. Exempel (\cf3\f1 Name: animal\cf0\f0 ):\par
+\cf1\f1 SELECT CONCAT("name: ", animal) FROM `animals`;\par
 \cf0\f0\par
 \b Best practice\b0\par
 Notera att man inte beh\'f6ver ha stora bokst\'e4ver p\'e5 \cf1\f1 SELECT\cf0\f0 , \cf1\f1 INSERT\cf0\f0  o.s.v. men det \'e4r best practice.\par
