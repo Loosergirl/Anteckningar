@@ -1,0 +1,138 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29 PDO\b0\fs22\par
+\b PHP Data Object\par
+\b0 Det \'e4r egentligen bara en speciell typ av objekt. D\'e4r har vi f\'f6rinst\'e4llda funktioner och s\'e5 vidare.\par
+\par
+PDO \'e4r numera det korrekta s\'e4ttet att s\'e4kert koppla till databaser via PHP. Tidigare anv\'e4nde man\par
+\cf1\f1 mysql_connect();\cf0\f0\par
+eller\par
+\cf1\f1 mysqli_connect();\cf0\f0\par
+\par
+Detta \'e4r numera borttaget. Exempel p\'e5 MAMPs hemsida kan fortfarande anv\'e4nda det h\'e4r f\'f6r att de \'e4ldre versionerna ska st\'f6djas. Vi kommer d\'e4remot inte anv\'e4nda det.\par
+\par
+\b PDO\b0  beh\'f6ver database source, username, password och eventuellt options. Med options kan man st\'e4lla in vissa default-inst\'e4llningar om man vill.\par
+\par
+Med database source menar man b\'e5de host:en och databasen man ska koppla upp sig till. Man kan se det om man g\'e5r in p\'e5 startsidan i MAMP. Med localhost blir det localhost och dess anv\'e4ndarnamn och l\'f6senord.\par
+\par
+Inuti phpMyAdmin kan man ju se listan \'f6ver databaser. Det \'e4r dem vi kopplar upp oss emot. Databasens namn beh\'f6ver anges med PDO.\par
+\par
+\b Instansiera ett nytt PDO-object\b0 :\par
+\cf1\f1 $pdo = new PDO(\par
+"mysql:host=localhost;dbname=products;charset=utf8",\par
+"root",\par
+"root"\par
+);\par
+\cf0\f0\par
+Allt innanf\'f6r paranteserna \'e4r PDO-objektet. \cf1\f1 mysql\cf0\f0  st\'e5r f\'f6r att det \'e4r just \cf1\f1 mysql\cf0\f0  vi kopplar upp oss mot. host:en definieras, sedan \'e4r \cf1\f1 dbname\cf0\f0  databasens namn. \cf1\f1 charset\cf0\f0  m\'e5ste ocks\'e5 vara med. Vi beh\'f6ver inte specificera general eller swedish eller liknande; det r\'e4cker med utf8.\par
+\par
+Det f\'f6rsta \cf1\f1 root\cf0\f0  h\'e4r st\'e5r f\'f6r username och det andra f\'f6r password.\par
+\par
+Eftersom det \'e4r instansierat ligger all informationen i objektet, allts\'e5 \cf1\f1 $pdo\cf0\f0 . \par
+\par
+\b Options\b0\par
+Options att skicka med till PDO som sista argument:\par
+\cf1\f1 $options = [\par
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,\par
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,\par
+  PDO::ATTR_EMULATE_PREPARES   => false\par
+];\par
+\cf0\f0\par
+Detta g\'f6r att det fungerar b\'e4ttre. F\'f6r det f\'f6rsta printas det ut fler error-meddelanden. Vi vi f\'e5 alla errors vi kan. Vi s\'e4tter att vi ska h\'e4mta en associative array. D\'e5 beh\'f6ver vi inte skriva det n\'e4r vi h\'e4mtar. De sista har n\'e5got med prepare statements att g\'f6ra?\par
+\par
+\b Vanliga fel\par
+\b0 F\'f6rv\'e4nta er att det kommer bli fel n\'e5gonstans. Vanliga fel \'e4r adressen (det ska vara localhost eller 127.0.0.1). Testa att ange portnummer. Det ska ocks\'e5 vara r\'e4tt l\'f6senord och anv\'e4ndarnamn och man m\'e5ste ange charset.\par
+\par
+\b L\'e4gg till i b\'f6rjan av filen\b0\par
+\cf1\f1 ini_set('display_errors', 1);\par
+ini_set('display_startup_errors', 1);\par
+error_reporting(E_ALL);\par
+\cf0\f0\par
+Detta l\'e5ter en se vad det \'e4r f\'f6r fel.\par
+\par
+\b PDO-objektet\par
+\b0 PDO-objektet \'e4r som ett vanligt objekt. Det kan anv\'e4ndas f\'f6r att g\'f6ra olika saker:\par
+\cf1\f1 $myObj -> myFunction();\par
+\cf0\f0\par
+D\'e4remot finns det inbyggda funktioner som t.ex. \cf1\f1 prepare()\cf0\f0 . \par
+\par
+\b\fs28 Prepare\b0\fs22\par
+Med prepare skriver vi v\'e5ra SQL-statements:\par
+\cf1\f1 $statement = $pdo -> prepare("SELECT * FROM pc");\par
+\cf0\f0\par
+H\'e4r kan man skriva allt vi gjort tidigare i phpMyAdmin.\par
+\par
+\b ***\i Se \'e4ven Jespers kod\i0 .***\par
+\b0\par
+Vi kan formatera tabellen som vi vill. Typiskt sett g\'f6r man konvertering till ett JSON-objekt genom PHP. \par
+\par
+Eftersom det \'e4r en str\'e4ng man matar in i \cf1\f1 prepare()\cf0\f0  kan man anv\'e4nda variabler och dylikt f\'f6r att modifiera den.\par
+\par
+N\'e4r man bara sparar \cf1\f1 $statement\cf0\f0  p\'e5 det h\'e4r s\'e4ttet har vi faktiskt inte gjort query:n. \par
+\par
+Ett problem med PHP \'e4r om man inte filtrerar informationen som kan l\'e4ggas in med insert eller update. Databasen kan f\'f6rst\'f6ras om man inte filtrerar inkommande information. Det \'e4r viktigt att man utg\'e5r ifr\'e5n att anv\'e4ndaren vill f\'f6rst\'f6ra saker. Med \cf1\f1 prepare()\cf0\f0  kan d\'e4remot ingen skadlig kod komma in.\par
+\par
+D\'e4remot g\'e5r det f\'f6r en anv\'e4ndare att manipulera ett statement s\'e5 att den f\'e5r ut information den egentligen inte ska ha tillg\'e5ng till.\par
+\par
+N\'e4r ett statment f\'f6rberetts m\'e5ste det utf\'f6ras:\par
+\cf1\f1 $statement -> execute();\par
+\cf0\f0\par
+Efter detta kommer \cf1\f1 $statement\cf0\f0  inneh\'e5lla all information vi h\'e4mtat. Oftast \'e4r det m\'e5nga rader och vi m\'e5ste loopa igenom det. Formen \'e4r n\'e5got som PHP kan hantera.\par
+\par
+\cf1\f1 execute()\cf0\f0  kan ocks\'e5 ta en array som argument. T.ex. kan man \'e4ndra ett v\'e4rde n\'e4r query:n k\'f6rs:\par
+\cf1\f1 $statement -> execute([\par
+  ":speed" => $speed\par
+]);\par
+\cf0\f0\par
+Detta om man anv\'e4nt en variabel tidigare i sin prepare(). \par
+\par
+\b ***\i Se Jespers kod\i0 .***\par
+\b0\par
+\b fetch() \b0 och \b fetchAll()\b0\par
+H\'e4mta informationen i ett statment:\par
+\cf1\f1 $data = $statement -> fetchAll;\par
+\cf0\f0\par
+\cf1\f1 fetchAll()\cf0\f0  h\'e4mtar alla medan \cf1\f1 fetch()\cf0\f0  bara h\'e4mtar det f\'f6rsta.\par
+\par
+Det kan bli mer strukturerat i en associative array:\par
+\cf1\f1 $data = $statement -> fetchAll(PDO::FETCH_ASSOC);\par
+\cf0\f0\par
+Kom ih\'e5g: Prickarna indikerar statiska funktioner. \par
+\par
+Det \'e4r inte n\'f6dv\'e4ndigt att g\'f6ra det till en associative array om man har lagt till det redan som en option.\par
+\par
+\b ***\i Se Jespers kod\i0 .***\b0\par
+\b Kommentarer till Jespers kod\b0 :\par
+F\'f6r att kunna se vad som h\'e4nt n\'e4r man lagt in n\'e5got eller \'e4ndrat n\'e5got i sina SQL-tabeller kan man titta i phpMyAdmin.\par
+\par
+F\'f6r att kunna uppdatera, l\'e4gga till och ta bort n\'e5got m\'e5ste man skicka med data f\'f6r det i sin SQL-str\'e4ng.\par
+\par
+\cf1\f1 bindParam\cf0\f0  \'e4r ett alternativ till att skicka in informationen i \cf1\f1 execute()\cf0\f0 . D\'e5 kan man best\'e4mma parametrar i f\'f6rv\'e4g. Man kan anv\'e4nda den syntaxen om man tycker den \'e4r tydligare. \b\i Se \'e4ven\b0\i0  den officiella php-dokumentationen ang\'e5ende detta.\par
+\par
+Man kan f\'f6rst\'e5s skriva i sin PHP hur det ska se ut p\'e5 webbsidan. D\'e5 kan man v\'e4lja att inte ta med allt, precis som man kunde tidigare i SQL-query:n.\par
+\par
+\b\fs32 Superglobals\b0\fs22\par
+I PHP finns superglobals. De \'e4r inte bara globala, utan super-globala. Dessa ska vi anv\'e4nda f\'f6r att h\'e4mta olika information, fr\'e4mst med \cf1\f1 GET\cf0\f0  och \cf1\f1 POST\cf0\f0 . Varje request innah\'e5ller mer data \'e4n bara URL:n. Teta och se vad de egentligen inneh\'e5ller genom att \cf1\f1 var_dump\cf0\f0 :a dessa i index.php:\par
+\cf1\f1 $_POST\par
+$_GET\par
+$_SERVER\par
+\cf0\f0\par
+Oavsett vilken sida man g\'e5r till finns de h\'e4r variablerna.\par
+\par
+\cf1\f1 $_SERVER\cf0\f0  ger massor information om servern. \cf1\f1 $_POST\f0  \cf0 och \cf1\f1 $_GET\f0  \cf0 ger information om metadata o.s.v; de \'e4r tomma om man inte har n\'e5gon query.\par
+\par
+Om man har en query i sin URL, efter ett \cf1\f1 ?\cf0\f0 , kommer det hamna i \cf1\f1 $_GET\cf0\f0 . \par
+\par
+\b Forms\b0\par
+F\'f6r att skicka information till servern anv\'e4nder man \cf1\f1 <form>\cf0\f0 . D\'e4r \'e4r \cf1\f1 action\cf0\f0 -attributet servern man ska skicka det till och \cf1\f1 method\cf0\f0 -attributet metoden (t.ex. \cf1\f1 GET\cf0\f0 /\cf1\f1 POST\cf0\f0 ).\par
+\par
+Inuti formen \'e4r det viktigt vad olika input-f\'e4lt har f\'f6r \cf1\f1 name\cf0\f0 -attribut. Det \'e4r de som s\'e4ger vad det \'e4r f\'f6r n\'e5got vi ska anv\'e4nda det till och synkroniserar med de olika variablerna.\par
+\par
+I \cf1\f1 action\cf0\f0 -attributet kan man l\'e4gga ett php-dokument med vad som ska h\'e4nda. T.ex. att skriva ut n\'e5got eller k\'f6ra ett statement.\par
+\par
+\b ***\i Se Jespers kod\i0 .***\b0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+}
+ 
