@@ -53,13 +53,13 @@ Detta l\'e5ter en se vad det \'e4r f\'f6r fel.\par
 \par
 \b PDO-objektet\par
 \b0 PDO-objektet \'e4r som ett vanligt objekt. Det kan anv\'e4ndas f\'f6r att g\'f6ra olika saker:\par
-\cf1\f1 $myObj -> myFunction();\par
+\cf1\f1 $myObj->myFunction();\par
 \cf0\f0\par
 D\'e4remot finns det inbyggda funktioner som t.ex. \cf1\f1 prepare()\cf0\f0 . \par
 \par
 \b\fs28 Prepare\b0\fs22\par
 Med prepare skriver vi v\'e5ra SQL-statements:\par
-\cf1\f1 $statement = $pdo -> prepare("SELECT * FROM pc");\par
+\cf1\f1 $statement = $pdo->prepare("SELECT * FROM pc");\par
 \cf0\f0\par
 H\'e4r kan man skriva allt vi gjort tidigare i phpMyAdmin.\par
 \par
@@ -76,12 +76,12 @@ Ett problem med PHP \'e4r om man inte filtrerar informationen som kan l\'e4ggas 
 D\'e4remot g\'e5r det f\'f6r en anv\'e4ndare att manipulera ett statement s\'e5 att den f\'e5r ut information den egentligen inte ska ha tillg\'e5ng till.\par
 \par
 N\'e4r ett statment f\'f6rberetts m\'e5ste det utf\'f6ras:\par
-\cf1\f1 $statement -> execute();\par
+\cf1\f1 $statement->execute();\par
 \cf0\f0\par
 Efter detta kommer \cf1\f1 $statement\cf0\f0  inneh\'e5lla all information vi h\'e4mtat. Oftast \'e4r det m\'e5nga rader och vi m\'e5ste loopa igenom det. Formen \'e4r n\'e5got som PHP kan hantera.\par
 \par
 \cf1\f1 execute()\cf0\f0  kan ocks\'e5 ta en array som argument. T.ex. kan man \'e4ndra ett v\'e4rde n\'e4r query:n k\'f6rs:\par
-\cf1\f1 $statement -> execute([\par
+\cf1\f1 $statement->execute([\par
   ":speed" => $speed\par
 ]);\par
 \cf0\f0\par
@@ -91,12 +91,12 @@ Detta om man anv\'e4nt en variabel tidigare i sin prepare(). \par
 \b0\par
 \b fetch() \b0 och \b fetchAll()\b0\par
 H\'e4mta informationen i ett statment:\par
-\cf1\f1 $data = $statement -> fetchAll;\par
+\cf1\f1 $data = $statement->fetchAll;\par
 \cf0\f0\par
 \cf1\f1 fetchAll()\cf0\f0  h\'e4mtar alla medan \cf1\f1 fetch()\cf0\f0  bara h\'e4mtar det f\'f6rsta.\par
 \par
 Det kan bli mer strukturerat i en associative array:\par
-\cf1\f1 $data = $statement -> fetchAll(PDO::FETCH_ASSOC);\par
+\cf1\f1 $data = $statement->fetchAll(PDO::FETCH_ASSOC);\par
 \cf0\f0\par
 Kom ih\'e5g: Prickarna indikerar statiska funktioner. \par
 \par
@@ -132,7 +132,10 @@ Inuti formen \'e4r det viktigt vad olika input-f\'e4lt har f\'f6r \cf1\f1 name\c
 I \cf1\f1 action\cf0\f0 -attributet kan man l\'e4gga ett php-dokument med vad som ska h\'e4nda. T.ex. att skriva ut n\'e5got eller k\'f6ra ett statement.\par
 \par
 \b ***\i Se Jespers kod\i0 .***\b0\par
--------------------------------------------------------------------------------------------------------------------\par
+\par
+\b\fs28 Pretty print\b0\fs22\par
+\cf1\f1 highlight_string("<?php\\n\\$data =\\n" . var_export($data, true) . ";\\n?>");\par
+\cf0\f0 -------------------------------------------------------------------------------------------------------------------\par
 \par
 }
  
