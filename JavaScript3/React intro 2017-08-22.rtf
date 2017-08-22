@@ -1,0 +1,247 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 React r\'f6r sig mot att man ska g\'f6ra allt med JavaScript, inklusive CSS och HTML. Man g\'f6r en \f1 <div>\f0  d\'e4r allting ska l\'e4ggas. Naturligtvis med ett id s\'e5 att man kan anv\'e4nda \f1 getElementById\f0 . Det \'e4r b\'e4ttre att g\'f6ra s\'e5 \'e4n att l\'e4gga det i \f1 <body>\f0 .\par
+\par
+Vi kan g\'f6ra en funktion f\'f6r varje del av sidan, t.ex. headern. Med template literals (` och `) kan man l\'e4tt l\'e4gga in fler element. Sedan kan vi bara l\'e4tta in funktionen som innerHTML, t.ex.\par
+\f1 rootElement.innerHTML = header();\par
+\f0\par
+\b En mer generell funktion som tar argument\b0 :\par
+\f1 function render(node, html)\{\par
+  node.innerHTML = html();\par
+\}\par
+\f0\par
+\f1 render(rootElement, header());\par
+\f0\par
+Alternativt kan vi anv\'e4nda en generell app ist\'e4llet f\'f6r header:\par
+\f1 function App() \{\par
+  return `\par
+    <h1>\par
+      Hej!\par
+    </h1>\par
+  `\par
+\}\par
+\f0\par
+\b Kom ih\'e5g: Skicka vidare parametrar med vanilla JavaScript\b0 :\par
+\f1 function header(title)\par
+  return `\par
+    <h1>\par
+      $\{title\}\par
+    </h1>\par
+  \'b4\par
+\}\par
+\par
+function App(title)\par
+  return `\par
+    <div>\par
+      $\{header(title)\}\par
+      $\{header("Inte React")\}\par
+    </div>\par
+\f0     `\par
+\}\par
+\par
+Ju mer dynamisk bearbetning som m\'e5ste ske, desto viktigare blir det med ett s\'e4tt att extrahera allt. Det g\'e5r att ha event listeners som kallar p\'e5 funktionerna om och om igen s\'e5 att vi f\'e5r nya v\'e4rden. Men vi g\'e5r vidare till React.\par
+\par
+\b\fs36 React\b0\fs22\par
+React \'e4r ett bibliotek f\'f6r att bygga anv\'e4ndergr\'e4nssnitt (UI). Det \'e4r skapat av Facebook med syftet att skapa snabba gr\'e4nssnitt. Att skriva ut en \f1 <div>\f0  med m\'e5nga underelement om och om igen \'e4r kr\'e4vande via JavaScript. React \'e4r bara VIEW; det bryr sig inte om n\'e5got annat. Det finns inte s\'e5 mycket inbyggt. Den minsta versionen \'e4r bara 3kb. \par
+\par
+Kom ih\'e5g: Model-View-Controller. \par
+\par
+Vi kommer anv\'e4nda mycket ren JavaScript. De inbygda funktionerna \f1 map\f0 , \f1 filter\f0  och \f1 reduce\f0  kommer anv\'e4ndas. \par
+\par
+React och liknande bibliotek anv\'e4nder Virtual DOM. En ny DOM skapas d\'e4r man kollar f\'f6rst om n\'e5got beh\'f6ver uppdateras. Detta f\'f6r att undvika kostsamma DOM-uppdateringar.\par
+\par
+`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4\par
+\b\fs28 React components\par
+\b0\fs22 Komponenter \'e4r ungef\'e4r funktioner som returnerar HTML. Man ska bygga sitt gr\'e4nssnitt av sm\'e5 komponenter som kan \'e5teranv\'e4ndas p\'e5 olika delar p\'e5 sidan. Komponenterna \'e4r antingen ES6-classes eller funktioner. Exempel:\par
+\f1 class App extends React.Component \{\par
+  render() \{\par
+    return(\par
+      <div>\par
+        <h1>Hej!</h1>\par
+      </div>\par
+    );\par
+  \}\par
+\}\par
+\f0\par
+Varje komponent m\'e5ste returnera ett element. Det minsta som beh\'f6vs \'e4r en \f1 render()\f0  funktion som renderar HTML. H\'e4r ovan \'e4r elementet en \f1 <div>\f0 . Det \'e4r okej om flera element ligger innuti elementet men det m\'e5ste finnas ett omslutande element. \par
+\par
+Observera att det som returneras \'e4r en funktion, inte HTML. JSX \'e4r JavaScript f\'f6rkl\'e4tt till HTML.\par
+\par
+Komponenter b\'f6rjar med stor bokstav. Det signalerar att det \'e4r komponenter och inget annat.\par
+\par
+Vad h\'e4nder egentligen?\par
+\par
+\f1 return(\par
+  <div>\par
+  </div>\par
+);\par
+\f0\par
+Man kallar p\'e5 en funktion som returnerar en <div>.\par
+\par
+\f1 React.createElement(\par
+  'div',\tab //type of element\par
+  null\tab //no children\par
+);\par
+\f0\par
+\par
+\b Installera react\b0\par
+{{\field{\*\fldinst{HYPERLINK https://facebook.github.io/react/docs/installation.html }}{\fldrslt{https://facebook.github.io/react/docs/installation.html\ul0\cf0}}}}\f0\fs22\par
+\par
+Anv\'e4nd npm och f\'f6lj instruktionerna. Det kan ta lite tid att installera. F\'f6r att starta om localhost:en vid ett senare tillf\'e4lle skriv bara \f1 npm start\f0  igen.\par
+\par
+F\'f6rutom App.js finns andra filer. De importeras och exporteras in i varandra. \par
+\par
+I App.js designar man sina komponenter. Varje komponent kan vara bara ett element. Man kan l\'e4gga sin nya komponent i samma fil om man vill. T.ex.\par
+\f1 class Header extends Component \{\par
+  render() \{\par
+    return(\par
+      <header className="header">\par
+        <h1>Hej header!</h1>\par
+      </header>\par
+    );\par
+  \}\par
+\}\f0\par
+\par
+Kalla p\'e5 en annan komponent i sin komponent:\par
+\f1 <Header />\f0\par
+Detta \'e4r en funktion.\par
+\par
+F\'f6r att React ska kunna k\'f6ras m\'e5ste den anv\'e4ndas p\'e5 ett element. Det g\'f6rs i index.js. En ny instans av klassen skapas. Som sagt var; ist\'e4llet f\'f6r att kalla p\'e5 en funktion skriver man <App />. Det g\'e5r \'e4ven att skriva p\'e5 ett liknande s\'e4tt som en <div>-tagg. Om det inte ska vara n\'e5got i taggen anv\'e4nder man d\'e4remot snedstreck och st\'e4nger taggen p\'e5 en g\'e5ng.\par
+\par
+Under public/index.html kan vi se vad vi kan g\'f6ra. Oftast anv\'e4nds bara <root>-elementet som ink\'f6rsport f\'f6r React.\par
+\par
+Det kan vara bra att g\'f6ra en ny mapp till sina komponenter. T.ex. en components-mapp i src-mappen. Filerna kan d\'f6pas till vad komponenterna heter. Det \'e4r meningen att det ska vara sm\'e5 filer som bara \'e4r n\'e5gra rader l\'e5nga. F\'f6rst\'e5s m\'e5ste man exportera filen genom webpacks \f1 export default\f0 . I varje fil m\'e5ste dessutom React importeras:\par
+\f1 import React, \{ Component \} from 'react';\par
+\f0\par
+Varje fil ska allts\'e5 bara skapa en komponent och exportera den.\par
+\par
+N\'e4r man sedan ska anv\'e4nda filen m\'e5ste man importera den. T.ex.\par
+\f1 import Header from './components/Header.js';\par
+\f0\par
+Med sm\'e5, generella, komponenter blir det enkelt att bygga upp sin applikation med bara ett f\'e5tal komponenter.\par
+\par
+CSS hittar man i App.css. Det g\'e5r \'e4ven att style:a inline ocks\'e5:\par
+\f1 render()\{\par
+    return(\par
+        <div style=\{styles\}>\par
+            <h1> Hey! </h1>\par
+        </div>\par
+    );\par
+\}\par
+\par
+const styles = \{\par
+    backgroundColor: "teal",\par
+    color: "lightsalmon"\par
+\}\f0\par
+\par
+Observera att med <style> p\'e5 det h\'e4r s\'e4ttet \'e4r det ett objekt som anv\'e4nds som v\'e4rde och inte en str\'e4ng. Om man ska skriva objektet inline m\'e5ste man g\'f6ra s\'e5 h\'e4r:\par
+\f1 render()\{\par
+    return(\par
+        <div style=\{\{backgroundColor: "teal", color: \par
+         "lightsalmon"\}\}>\par
+            <h1> Hey! </h1>\par
+        </div>\par
+    );\par
+\}\par
+\f0\par
+Observera dubbla m\'e5svingar.\par
+\par
+Man kan b\'e4st ordna upp bland modulerna genom att anv\'e4nda klasser. I React m\'e5ste man anv\'e4nda \f1 className\f0  ist\'e4llet f\'f6r \f1 class\f0 .\par
+\par
+`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4`'\'b4\par
+\b\fs32 Props\b0\fs22\par
+Props liknar argument som vi skickar in i v\'e5ra komponenter. De \'e4r dem inputs som accepteras av komponenterna. Vi kanske ska skicka ned informationen till komponenter som ligger l\'e4ngre ned i kedjan.\par
+\par
+Alla komponenter har tillg\'e5ng till \f1 props\f0 . Props \'e4r som konstanter och f\'e5r inte \'e4ndras. De kan d\'e4remot \'e4ndras uppifr\'e5n, fr\'e5n komponenter h\'f6gre upp i kedjan. Klasserna finns tillg\'e4ngliga i \f1 this.props\f0 .\par
+\par
+Exempel d\'e4r prop har anv\'e4nts:\par
+\f1 render() \{\par
+  return (\par
+    <div>\par
+      <Header propName="propValue" />\par
+    </div>\par
+  )\par
+\}\par
+\f0\par
+Skriv ut \f1 this.props\f0 :\par
+\f1 console.log(this.props);\par
+\f0\par
+Man kan s\'e4tta flera props p\'e5 en komponent. Det \'e4r on\'f6digt att ta med en prop d\'e4r den inte beh\'f6vs.\par
+\par
+Prop:en kommer heta det man d\'f6pt den till. Namnet kan vara vad som helst:\par
+\f1 render() \{\par
+  return (\par
+    <h1> \{this.props.propName === "propValue" \} </h1>\par
+  )\par
+\}\par
+\f0\par
+Inom m\'e5svingarna \f1\{\f0  och \f1\}\f0  \'e4r det JavaScript.\par
+\par
+Flera props kan anv\'e4ndas:\par
+\f1 class App extends Component \{\par
+  render() \{\par
+    return (\par
+      <div className="App">\par
+        <Header name="Maria" value=\{ 5 \} valueString="5" />\par
+      </div>\par
+    );\par
+  \}\par
+\}\par
+\f0\par
+Det g\'e5r \'e4ven att g\'f6ra en variabel innan return och anv\'e4nda den:\par
+\f1 class App extends Component \{\par
+  render() \{\par
+  const a = 5;\par
+    return (\par
+      <div className="App">\par
+        <Header name="Maria" value=\{ a \} valueString="5" />\par
+      </div>\par
+    );\par
+  \}\par
+\}\par
+\f0\par
+Man m\'e5ste d\'e4remot deklarera variabeln innan return.\par
+\par
+Med React kan man \'e4ven skicka med ett helt objekt:\par
+\f1 class App extends Component \{\par
+  render() \{\par
+  const obj = \{\par
+    stuff: "Hej",\par
+    stuff2:"Hello"\par
+  \}\par
+    return (\par
+      <div className="App">\par
+        <Header name="Maria" \{...obj\}\par
+      </div>\par
+    );\par
+  \}\par
+\}\par
+\f0\par
+\par
+\b Spread props\b0\par
+Spread operator eller spread syntax. \par
+\f1 render() \{\par
+  let obj = \{\par
+    prop1: "value1",\par
+    prop2: "value2\par
+\}\par
+  return (\par
+    <div>\par
+      <List \{...obj\}\par
+    </div>\par
+  )\par
+\}\par
+\f0\par
+\i Se \'e4ven\i0  Jespers slide och kod, jag missade lite...\par
+\par
+\b Conditional rendering\b0\par
+Oftast vill man rendera olika inneh\'e5ll beroende p\'e5 olika v\'e4rden. D\'e5 kan man anv\'e4nda \f1 if\f0  och \f1 else\f0 . Man kan g\'f6ra ber\'e4kningar innan \f1 return\f0 . F\'f6rst\'e5s kan man ha flera olika return innuti if-satsen beroende p\'e5 vad utr\'e4kningarna blir. \par
+\par
+Exempel med f\'f6rkortning av if-sats:\par
+\f1 let value = this.props.name === "maria" ? "Yay!" : "Nay!"\par
+\f0\par
+\b Inte st\'e4nga taggar\b0 :\par
+Man kan anv\'e4nda tv\'e5 taggar p\'e5 vanligt s\'e4tt ist\'e4llet f\'f6r att omedelbart st\'e4nga en tagg. D\'e5 kan man skriva n\'e5got mellan dem. N\'e4r flera props anv\'e4nds blir det mellan taggarna children och kan n\'e5s som children.\par
+}
+ 

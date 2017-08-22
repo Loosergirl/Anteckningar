@@ -1,0 +1,170 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29 npm, class, modules, import & export\par
+\b0\fs22 Det \'e4r bra att l\'e4sa igenom dokumentationen innan lektionen...\par
+\par
+\b React\b0\par
+Man kanske inte bara klarar sig med React. T.ex. redux kan vara ett bra bibliotek att komplettera med. Vi kommer d\'e4remot inte g\'e5 igenom det.\par
+\par
+Det finns hur mycket information som helst om React p\'e5 internet. N\'e5gra l\'e4nkar ligger p\'e5 GitHub, t.ex. awesome-react. Det g\'e5r inte att bara anv\'e4nda React, man m\'e5ste ha n\'e5got mer som t.ex. PHP.\par
+\par
+Facebook har varit lite fula n\'e4r de skapar React. De har sagt att React \'e4r open source men lagt in en klausul: De har fortfarande r\'e4tt att st\'e4nga ned en om man g\'f6r n\'e5got som inkr\'e4ktar p\'e5 deras omr\'e5de.\par
+\par
+Kursens fokus ligger p\'e5 React f\'f6r det \'e4r inne nu. Biblioteken g\'f6r att vi inte beh\'f6ver skriva lika mycket kod.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://facebook.github.io/react }}{\fldrslt{https://facebook.github.io/react\ul0\cf0}}}}\f0\fs22\par
+\par
+Det \'e4r bra att l\'e4sa dokumentation. Det \'e4r bra att \'f6va p\'e5 att l\'e4sa dokumentation f\'f6r vi kommer g\'f6ra det mycket senare. Att bara g\'e5 p\'e5 en tutorial och kolla p\'e5 videos kan leda till att man missar mycket.\par
+\par
+React \'e4r bara ett bibliotek f\'f6r att skapa grafiska gr\'e4nssnitt (user interfaces). React \'e4r bara just det och kan kombineras med mycket annat. Vi beh\'f6ver n\'e5gon slags hantering av data; en databas. React \'e4r bara View, inte Controller eller Model.\par
+\par
+\b Examination\b0\par
+Vi ska bygga en webbapplikation med React och databasen firebase. Firebase \'e4r en tj\'e4nst skapad av Google. Vi ska inte g\'f6ra backend men \'e4nd\'e5 h\'e5lla p\'e5 lite med backend-delen. Det kommer likna vad vi gjort tidigare. \par
+\par
+\b Firebase\b0\par
+{{\field{\*\fldinst{HYPERLINK https://firebase.google.com }}{\fldrslt{https://firebase.google.com\ul0\cf0}}}}\f0\fs22\par
+\par
+Med firebase ska vi hantera informationen. Det skiljer sig fr\'e5n MySQL men det finns motsvarande. Vi har ett stort objekt ist\'e4llet f\'f6r relationella databaser. Backend kommer bara vara massor av objekt. Vi f\'e5r tillbaka json och det g\'f6r det l\'e4ttare att jobba med data.\par
+\par
+F\'f6rhoppningsvis kommer vi ha en applikation d\'e4r man kan logga in med Facebook i slut\'e4ndan.\par
+\par
+\b Webpack\b0\par
+Vi kommer inte examineras p\'e5 Webpack. Det liknar Gulp. Alla React-applikationer anv\'e4nder Webpack ist\'e4llet f\'f6r Gulp eller Grunt. Vi beh\'f6ver inte konfigurara s\'e5 mycket men det \'e4r viktigt att fortfarande veta vad som h\'e4nder. Ibland kan man beh\'f6va fixa n\'e5got. Vi kommer tillbaka till Webpack i slutet av kursen.\par
+\par
+Webpack till\'e5ter oss att anv\'e4nda m\'e5nga olika fil\'e4ndelser. Vi kan ha komplex filstruktur med beroenden mellan filerna. Moduler som packeteras tillsammans. Vi m\'e5ste sj\'e4lva ange hur filerna ska separeras fr\'e5n varandra, annars kommer allt tolkas som JavaScript.\par
+ \par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+\b Node\par
+\b0 T.ex.\par
+\f1 echo "console.log('Hello')" > hej.js\par
+\f0\par
+\b npm \b0 anv\'e4nds n\'e4r vi vill installera n\'e5got specifikt. Med webbpack ska vi anv\'e4nda \par
+\f1 npm install --save-dev webpack\par
+\f0 Gl\'f6m inte \f1 npm init\f0  f\'f6r mappen f\'f6rst.\par
+\par
+Med webpack installerat som en dev dependency kommer detta synas i package.json.\par
+\par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+\b\fs28 Mer Webpack\b0\fs22\par
+Oftast d\'f6per man sin JavaScript fil till bundle.js. \par
+\par
+Man skapar en fil som heter webpack.config.js \par
+\par
+Eftersom webpack bara f\'f6rst\'e5r JavaScript anv\'e4nder man det. Det finns f\'e4rdiga mallar, men om man g\'f6r det mest grundl\'e4ggande har man en input och en output. Det g\'f6rs i ett config-objekt. Olika egenskaper f\'f6rv\'e4ntas vara inkluderade, d.v.s entry och output.\par
+\par
+\f1 const config = \{\par
+  entry: \{\par
+    app: './app.js'\par
+  \},\par
+  output: \{\par
+    filename: 'bundle.js'\par
+  \}\par
+\}\par
+\par
+module.exports = config;\par
+\f0\par
+H\'e4r ska filen \f1 app.js\f0  anv\'e4ndas. \f1 ./\f0  refererar till mappen vi st\'e5r i. Som output namnger vi vad den nya filen f\'f6r packetering ska heta. F\'f6r att node ska f\'f6rst\'e5 m\'e5ste filen exporteras.\par
+\par
+I terminalen kan man skriva bara webpack f\'f6r att f\'e5 ut information.\par
+\par
+F\'f6r att importera ist\'e4llet f\'f6r exportera en fil:\par
+\f1 const myModule = require('./myModule.js');\par
+\f0\par
+Gl\'f6m inte att skriva webpack i node igen.\par
+\par
+Genom att anv\'e4nda nyckelorder \f1 default\f0 , allts\'e5 \f1 export default\f0 , kommer just det alltid exporteras. Det f\'e5r bara finnas en default-funktion i varje fil.\par
+\par
+F\'f6r att en funktion ska kunna anv\'e4ndas i en annan fil:\par
+\f1 export function sayHey() \{\par
+\tab console.log('Hey');\par
+\}\par
+\f0\par
+N\'e4r det ska importeras i filen det ska anv\'e4ndas i:\par
+\f1 import \{ sayHey \} from './helpers.js';\par
+\f0\par
+Man kan importera flera saker. Om det inte \'e4r \f1 default\f0  m\'e5ste man anv\'e4nda m\'e5svingar runt omkring. H\'e4r under importeras en \f1 default\f0  och en annan funktion:\par
+\f1 import sayHey, \{ a, b \} from './helpers.js';\par
+\f0\par
+Det g\'e5r \'e4ven att exportera en funktion i slutet av dokumentet.\par
+\par
+I grunden \'e4r det bara import och export vi vill anv\'e4nda fr\'e5n webpack. Men det finns andra saker man kan g\'f6ra ocks\'e5.\par
+\par
+\b G\'f6r flera bundle-filer som skiljer sig \'e5t\b0 :\par
+\f1 const config = \{\par
+  entry: \{\par
+    app: './app.js'\par
+    helpers: './helpers.js'\par
+  \},\par
+  output: \{\par
+    filename: '[name].bundle.js'\par
+  \}\par
+\}\par
+\par
+module.exports = config;\par
+\f0\par
+Utav det h\'e4r kommer en app.bundle.js och en helpers.bundle.js skapas.\par
+\par
+Man kan \'e4ven best\'e4mma fils\'f6kv\'e4g f\'f6r sitt output genom att skriva \f1 path\f0  f\'f6rst:\par
+\f1 path: build,\par
+filename: '[name].bundle.js'\par
+\f0\par
+H\'e4r hamnar filen i en mapp som heter build.\par
+\par
+\b Importera CSS i JavaScript-filen\b0 :\par
+Allt som inte \'e4r JavaScript m\'e5ste ha en regel f\'f6r att laddas in.\par
+\par
+\i Se \'e4ven\i0  Webpacks dokumentation.\par
+\par
+\f1 const config = \{\par
+  entry: \{\par
+    app: './app.js'\par
+    helpers: './helpers.js'\par
+  \},\par
+  output: \{\par
+    filename: '[name].bundle.js'\par
+  \},\par
+  module: \{\par
+    rules:[\par
+      \{\par
+        test: /\\.css$/,\par
+        use: [\par
+          'style-loader',\par
+          'css-loader'\par
+        ]\par
+      \}\par
+    ]\par
+  \}\par
+\}\par
+\par
+module.exports = config;\par
+\f0\par
+Allt vi beh\'f6ver g\'f6ra med css kan g\'f6ras i samma veva.\par
+\par
+Om n\'e5got ska anv\'e4ndas i konverteringen installerar man det med npm. T.ex.\par
+\f1 npm install --save-dev style-loader css-loader\par
+\f0 H\'e4r installeras b\'e5da style-loader och css-loader p\'e5 en rad.\par
+\par
+\b Importera en css-fil i JavaScript\b0 :\par
+\f1 import './style.css';\par
+\f0\par
+Skriv detta i en JavaScript-fil.\par
+\par
+F\'f6rst\'e5s kan man \'e4ven l\'e4gga in CSS-filen i html-filerna.\par
+\par
+\b Plugins\b0 :\par
+Installera din plugin med npm. Sedan m\'e5ste man anv\'e4nd require...\par
+\f1 const HtmlWebpackPlugin = require('html-webpack-plugin');\par
+\f0\par
+...och en array av plugins\par
+\f1 plugins: [\par
+  new HtmlWebpackPlugin();\par
+]\par
+\f0\par
+F\'f6r varje plugin finns information om vad man beh\'f6ver g\'f6ra f\'f6r att installera.\par
+\par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+\b\fs28 React\b0\fs22\par
+Vi f\'e5r en f\'e4rdig konfiguration. Den \'e4r begr\'e4nsad. Vill man s\'e4tta sig in i det m\'e5ste man g\'f6ra sin egen webpack.config. Webpack k\'f6rs i bakgrunden.\par
+}
+ 
