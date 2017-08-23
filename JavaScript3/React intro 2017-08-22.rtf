@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
-{\colortbl ;\red0\green0\blue255;}
+{\colortbl ;\red0\green0\blue255;\red165\green165\blue165;}
 {\*\generator Riched20 10.0.14393}\viewkind4\uc1 
 \pard\sl240\slmult1\f0\fs22\lang29 React r\'f6r sig mot att man ska g\'f6ra allt med JavaScript, inklusive CSS och HTML. Man g\'f6r en \f1 <div>\f0  d\'e4r allting ska l\'e4ggas. Naturligtvis med ett id s\'e5 att man kan anv\'e4nda \f1 getElementById\f0 . Det \'e4r b\'e4ttre att g\'f6ra s\'e5 \'e4n att l\'e4gga det i \f1 <body>\f0 .\par
 \par
@@ -243,5 +243,28 @@ Exempel med f\'f6rkortning av if-sats:\par
 \f0\par
 \b Inte st\'e4nga taggar\b0 :\par
 Man kan anv\'e4nda tv\'e5 taggar p\'e5 vanligt s\'e4tt ist\'e4llet f\'f6r att omedelbart st\'e4nga en tagg. D\'e5 kan man skriva n\'e5got mellan dem. N\'e4r flera props anv\'e4nds blir det mellan taggarna children och kan n\'e5s som children.\par
+\par
+\f1 class App extends React.Component\{\par
+    render()\{\par
+        return(\par
+            <div>\par
+                <Button> Click me! </Button>\par
+            </div>\par
+        );\par
+    \}\par
+\}\par
+\par
+class Button extends React.Component\{\par
+    render()\{\par
+        return(\par
+            <button>\par
+                \{ this.props.children \}  \cf2 //"Click me!"\cf0\par
+            </button>\par
+        );\par
+    \}\par
+\}\par
+\f0\par
+\par
+\par
 }
  

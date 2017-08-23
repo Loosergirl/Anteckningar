@@ -1,0 +1,152 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 Jesper rekommederar till\'e4gget React Developer Tools for webbl\'e4saren. Det g\'f6r det l\'e4ttare att inspektera n\'e4r React anv\'e4nds. En ny flik som heter React kommer fram. D\'e4r kan man \i ungef\'e4rligen \i0 inspektera hur React \'e4r skrivet. Klickar man p\'e5 en komponent kan man se Props. \par
+\par
+Wappalyzer kan anv\'e4ndas f\'f6r att analysera webbsidor. D\'e5 kan man f\'e5 upp mer information om hur en viss sida gjorts. Ramverk, server, o.s.v.\par
+{{\field{\*\fldinst{HYPERLINK https://wappalyzer.com/ }}{\fldrslt{https://wappalyzer.com/\ul0\cf0}}}}\f0\fs22\par
+\par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+Kom ih\'e5g att kommentarer inte kan skrivas innuti \f1 render()\f0 . Ska man g\'f6ra det m\'e5ste man g\'f6ra det inom m\'e5svingarna d\'e4r det \'e4r JavaScript.\par
+\par
+\f1 props\f0  \'e4r \i immutable\i0 . Det betyder att de inte ska \'e4ndras av komponenter utan bara skickas ned\'e5t. Man \'e4ndrar \b state \b0 ist\'e4llet.\par
+\par
+\b\fs32 State\b0\fs22\par
+Varje class-komponent har b\'e5de state och props. Props f\'e5r inte \'e4ndras men state f\'e5r \'e4ndras hela tiden. Det kan vara sv\'e5rt att h\'e5lla koll p\'e5 state n\'e4r det \'e4r m\'e5nga saker som ska \'e4ndras s\'e5 det finns vissa regler f\'f6r det.\par
+\par
+State och props \'e4r bara objekt. Komponenter \'e4r bara funktioner. State och props \'e4r argument till komponenterna som best\'e4mmer hur gr\'e4nssnittet ska se ut vid ett visst tillf\'e4lle. Fast egentligen \'e4r props de enda argumenten (vi kommer se det senare).\par
+\par
+Varje g\'e5ng state \'e4ndras kallas \f1 render()\f0  p\'e5 automatiskt. Det \'e4r tack vare Reacts virtual DOM. \par
+\par
+State ska skickas ned till underkomponenter och bli till props. Fl\'f6det ska bara g\'e5 \'e5t ett h\'e5ll f\'f6r att h\'e5lla det enkelt. Gr\'e4nssnittet uppdateras varje g\'e5ng state och props \'e4ndras. \par
+\par
+\b Det l\'e4ttatste s\'e4ttet \'e4r att skriva state som en class property\b0 :\par
+\f1 class App extends Component \{\par
+  state = \{\par
+    name: "Steffe"\par
+  \}\par
+  render() \{\par
+    return <h1> \{ this.state.name \}</h1>;\par
+  \}\par
+\}\par
+\f0\par
+\f1 state\f0  \'e4r ett nyckelord f\'f6r React. Man b\'f6r undvika att namnge n\'e5got annat som state eller props n\'e4r man anv\'e4nder React.\par
+\par
+State \'e4ndras genom this.setState(\{\})\par
+\f1 class App extends Component \{\par
+  state = \{\par
+    name: "Steffe"\par
+  \}\par
+  changeState = () => \{\par
+    this.setState(\{ name: 'Steffe' \})\par
+  \}\par
+  render() \{\par
+    return <h1> \{ this.state.name \}</h1>;\par
+  \}\par
+\}\par
+\f0\par
+\f1 this\f0  anv\'e4nds f\'f6r att det tillh\'f6r komponenten. \f1 setState\f0  \'e4ndrar bara p\'e5 de v\'e4rden som skickas in. Finns flera states kommer bara de \'e4ndras som anges.\par
+\par
+N\'e4r man ska skriva en egen funktion som h\'f6r till komponenten \'e4r det viktigt att anv\'e4nda en arrow function. Det \'e4r f\'f6r att d\'e5 binds \f1 this\f0  p\'e5 r\'e4tt s\'e4tt.\par
+\par
+F\'f6r att state ska kunna \'e4ndras m\'e5ste vi kalla p\'e5 funktionen.\par
+\par
+\b Jespers kodexempel\b0 :\par
+\f1 class App extends Component \{\par
+  state = \{\par
+    name: "Steffe"\par
+  \}\par
+  changeState = () => \{\par
+    this.setState(\{ name: 'Steffe' \})\par
+  \}\par
+  handleInput = ( event ) => \{\par
+  this.setState(\{ input: event.target.value \})\par
+  \}\par
+  render() \{\par
+    return <div>\par
+      <Header> \{this.state.name\} </Header>\par
+      <h1> \{ this.state.name \}</h1>;\par
+      <h1> \{ this.state.input \}</h1>;\par
+      <button onClick=\{this.changeState\}> Click me </button>\par
+      <input type="text" value=\{this.state.input\} \par
+      onChange=\{this.handleInput\} />\par
+    </div>\par
+  \}\par
+\}\par
+\f0\par
+Vill man \'e4ndra flera v\'e4rden \'e4r det bara att l\'e4gga in dem i \f1 state\f0 -objektet. Om man inte anger det i funktionen som \'e4ndrar state kommer det d\'e4remot inte \'e4ndras.\par
+\par
+Det g\'e5r emot id\'e9n med React att anv\'e4nda id n\'e4r man ska \'e4ndra p\'e5 n\'e5got. D\'e4rf\'f6r g\'f6r man n\'e5got i stil med \f1 handleInput\f0 -funktionen h\'e4r ovanf\'f6r.\par
+\par
+Om man ska skicka med n\'e5got till ett event, annat \'e4n anv\'e4ndarens input, m\'e5ste man g\'f6ra det till en anonym funktion. Annars kommer funktionen kallas p\'e5 ist\'e4llet f\'f6r att det blir en referens till funktionen. Samma sak g\'e4ller i vanlig JavaScript. Det blir mycket \f1 this\f0 .\par
+\par
+Man kan f\'f6rkorta \f1 event.target.value\f0  till \f1 e.target.value\f0 .\par
+\par
+Konstruktor som alternativ:\par
+\f1 constructor() \{\par
+  this.state = \{\par
+    name: 'Maria'\par
+  \}\par
+\}\par
+\f0\par
+Tidigare var man tvungen att skriva annorlunda f\'f6r att en funktion skulle kunna bindas till en komponent. Man var tvungen att av\'e4nda \f1 bind\f0 . Nu har man ersatt det med en enkel pil i en arrow function, tack vare Babel.\par
+\par
+\b Toggling\b0 :\par
+\f1 toggleStuff = () => \{\par
+  this.setState(\{ click: !this.state.click \});\par
+\}\par
+\f0\par
+Det som klicka inte \'e4r f\'f6r stunden \'e4r vad det kommer \'e4ndras till. Man kan \'e4ven skriva i \f1 render\f0 :\par
+\f1 let value = this.state.click ? "Clicked true" : "Clicked false"\par
+\f0\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+\b\fs28 Stateless components\par
+\b0\fs22 ES6 klasser \'e4r bra f\'f6r komponenter p\'e5 topp niv\'e5 som ska h\'e5lla state och logik.\par
+\par
+Komponenter som inte har n\'e5got state kan f\'f6renklas mycket. De flesta s\'e5dana klasser \'e4r inte alls komplicerade:\par
+\f1 function Header(props) \{\par
+  <h1> \{props.name\} </h1>\par
+\}\par
+\f0\par
+Det blrir bara en enkel funktion. Komponenter som bara \'e4r enkla funktioner har inte tillg\'e5ng till \f1 this\f0  men kan g\'f6ra det mesta som andra komponenter. S\'e5dana h\'e4r funktioner kan fortfarande vara interaktiva och ta emot events ovanifr\'e5n. Den h\'e4r sortens komponent g\'e5r snabbare att rendera ut.\par
+\par
+En kompakt ES6-variant:\par
+\f1 const Header = props => <h1> \{props.name\} </h1>\par
+\f0\par
+eller\par
+\f1 import React from 'react';\par
+const Header = (\{ name \}) => <h1> \{ name \} </h1>\par
+export default Header;\par
+\f0\par
+Vi beh\'f6ver inte ens anv\'e4nda \f1 props.name\f0  utan kan n\'f6ja oss med \f1 name\f0 .\par
+\par
+F\'f6rst\'e5s m\'e5ste man skriva ut \f1 props\f0  som en parameter f\'f6r att det ska g\'e5 att anv\'e4nda det h\'e4r.\par
+\par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+\b\fs28 Skapa inneh\'e5ll dynamiskt\b0\fs22\par
+Hantera listor i react. Vi returnerar ett JSX-element ist\'e4llet f\'f6r en lista. Vanliga for-loopar fungerar fortfarande, men \f1 map()\f0 , \f1 reduce()\f0  och \f1 filter()\f0  \'e4r b\'e4ttre f\'f6r att loopa igenom listor. Har man inte koll p\'e5 \f1 map()\f0  kan man skapa en array d\'e4r alla element lagras och rendera ut det elemetet.\par
+\par
+\b\fs28 React keys\b0\fs22\par
+N\'e4r vi skapar inneh\'e5ll f\'f6r arrayer f\'f6rv\'e4ntar sig React kunna identifiera varje element. Man m\'e5ste ha en nyckel p\'e5 varje element. Det \'e4r bara en property man m\'e5ste s\'e4tta varje g\'e5ng:\par
+\f1 let elements = array.map( (item, index) => \{\par
+  return <li key=\{index\} > \{item\} </li>;\par
+\});\par
+\f0\par
+Ett till exempel:\par
+\f1 render() \{\par
+const animals = ["Cat", "Dog", "other"]\par
+\par
+let list = [];\par
+for(let animal of animals \{\par
+  list.push(\par
+    <li key=\{ animal \}> \{ animals[animal] \}</li>\par
+  );\par
+\}\par
+\f0\par
+Ibland \'e4r det inte optimalt att l\'e4gga n\'e5got s\'e5dant h\'e4r i \f1 render\f0 ; det blir tungt.\par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+CodeSandbox ger en del f\'e4rdigt om man inte orkar fixa f\'f6rinst\'e4llningar med React.\par
+\par
+Man kan anv\'e4nda Issues under JavaScript 3 p\'e5 GitHub f\'f6r att st\'e4lla fr\'e5gor till Jesper eller om man har kodproblem.\par
+\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\'b4'`\par
+}
+ 
