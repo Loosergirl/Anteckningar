@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
 {\colortbl ;\red0\green0\blue255;}
-{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
 \pard\sl240\slmult1\f0\fs22\lang29 Jesper rekommederar till\'e4gget React Developer Tools for webbl\'e4saren. Det g\'f6r det l\'e4ttare att inspektera n\'e4r React anv\'e4nds. En ny flik som heter React kommer fram. D\'e4r kan man \i ungef\'e4rligen \i0 inspektera hur React \'e4r skrivet. Klickar man p\'e5 en komponent kan man se Props. \par
 \par
 Wappalyzer kan anv\'e4ndas f\'f6r att analysera webbsidor. D\'e5 kan man f\'e5 upp mer information om hur en viss sida gjorts. Ramverk, server, o.s.v.\par
@@ -79,6 +79,17 @@ Vill man \'e4ndra flera v\'e4rden \'e4r det bara att l\'e4gga in dem i \f1 state
 Det g\'e5r emot id\'e9n med React att anv\'e4nda id n\'e4r man ska \'e4ndra p\'e5 n\'e5got. D\'e4rf\'f6r g\'f6r man n\'e5got i stil med \f1 handleInput\f0 -funktionen h\'e4r ovanf\'f6r.\par
 \par
 Om man ska skicka med n\'e5got till ett event, annat \'e4n anv\'e4ndarens input, m\'e5ste man g\'f6ra det till en anonym funktion. Annars kommer funktionen kallas p\'e5 ist\'e4llet f\'f6r att det blir en referens till funktionen. Samma sak g\'e4ller i vanlig JavaScript. Det blir mycket \f1 this\f0 .\par
+\par
+Anpassa uppdateringen s\'e5 att flera input-f\'e4lt kan anv\'e4ndas:\par
+Funktion...\par
+\f1 handleInput = ( event ) => \{\par
+  this.setState(\{ [e.target.name]: e.target.value \})\par
+\}\f0\par
+...och input-f\'e4lt:\par
+\f1 <input type="text" name="username" onChange=\{this.handleInput\} />\par
+<input type="text" name="password" onChange=\{this.handleInput\} />\par
+\f0 Det \'e4r n\'f6dv\'e4ndigt att namnge input-f\'e4lten.\par
+\par
 \par
 Man kan f\'f6rkorta \f1 event.target.value\f0  till \f1 e.target.value\f0 .\par
 \par
