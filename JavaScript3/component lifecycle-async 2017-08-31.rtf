@@ -1,0 +1,180 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red255\green0\blue0;\red247\green150\blue70;\red255\green255\blue0;\red0\green176\blue80;\red155\green0\blue211;\red0\green0\blue255;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 F\'f6r det mesta kommer det vara samma struktur som det vi gjort tidigare. \cf1\f1 state\cf0\f0  \'e4r det som inneh\'e5ller allt. Allt ska spottas ut i \cf1\f1 render()\cf0\f0 . \par
+\par
+\cf1\f1 state\cf0\f0  m\'e5ste ligga h\'f6gt upp. Alla underkomponenter m\'e5ste ha tillg\'e5ng till det. Varf\'f6r kan man d\'e5 inte l\'e4gga det \'f6verst i App? Man f\'e5r g\'f6ra det. Vill man att alla komponenter ska kunna komma \'e5t det kan man l\'e4gga det d\'e4r. Om andra komponenter inte beh\'f6ver ha tillg\'e5ng till \cf1\f1 state\f0  \cf0 beh\'f6ver man inte l\'e4gga det i App. Det blir inte s\'e5 snyggt om man har l\'e5nga kedjor med underkomponenter och \cf1\f1 state\f0  \cf0 m\'e5ste skickas ned genom flera komponenter d\'e4r det inte beh\'f6vs. Det kan vara smart att l\'e4gga \f1 state\f0  s\'e5 n\'e4ra de komponenter som delar tillst\'e5ndet som m\'f6jligt.\par
+\par
+T\'e4nk p\'e5 att om fler saker ska g\'f6ras ska de ha egna funktioner. En sak p\'e5 funktion.\par
+\par
+Input-f\'e4ltet fr\'e5n g\'e5rdagens uppgift:\par
+\par
+\cf1\f1 handleChange = (e) => \{\par
+  this.setState( input: e.target.value \{\});\par
+\}\par
+\par
+onSubmit = (e) => \{\par
+    if(e.key = "Enter") \{\par
+    console.log('He hey!');\par
+  \}\par
+\}\par
+\cf0\f0\par
+\cf1\f1 render() \{\par
+  return (\par
+    <div className="App">\par
+    <Header title=\{this.state.name\} />\par
+    <input type ="text"\par
+    onChange=\{this.handleChange\}\par
+    onKeyDown=\{this.onSubmit\}\par
+    value=\{this.state.name\} />\par
+</div>\par
+  );\par
+\}\par
+\cf0\f0\par
+N\'e4r man beh\'f6ver lagra n\'e5got g\'f6r man ett nytt \cf1\f1 state\cf0\f0 . Eftersom tv\'e5 saker ska ske ska det vara tv\'e5 events.\par
+\par
+Det kan bli sv\'e5rt att h\'e5lla koll p\'e5 vad som finns i \cf1\f1 state\cf0\f0 . F\'f6rst\'e5s kan man logga ut det. \par
+\par
+Egentligen ska man jobba immutable. D\'e5 g\'f6r man konstanter, \cf1\f1 const\cf0\f0 . F\'f6rs\'f6ker man g\'f6ra en ny tilldelning p\'e5 konstanten f\'e5r man ett felmeddelande. \par
+\par
+\b Obs! \b0\par
+Se Jespers l\'f6sningsf\'f6rslag till g\'e5rdagens uppgift.\par
+\par
+Genom att binda \cf1\f1 state\cf0\f0 :t till input-f\'e4ltet kommer de rensas samtidigt.\par
+\par
+\par
+-\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\par
+\par
+\b\fs32 React + Async\par
+\b0\fs22 Det \'e4r GET, POST, PATCH, DELETE o.s.v. som sker i bakgrunden. Det vanliga s\'e4ttet att sk\'f6ta det p\'e5 \'e4r promises. "\i The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never\i0 ."\par
+\par
+React klagar p\'e5 n\'e4r man f\'f6rs\'f6ker g\'f6ra saker med v\'e4rden som inte finns. Det kan bli problem n\'e4r man f\'f6rs\'f6ker g\'f6ra API. \par
+\par
+\cf1\f1 fetch()\cf0\f0  anv\'e4nder promises i bakgrunden. N\'e4r vi anv\'e4nder \cf1\f1 fetch()\cf0\f0  anv\'e4nder vi alltid ett promise. Tyv\'e4rr st\'f6djer inte alla browsers \cf1\f1 fetch()\cf0\f0  men create React app har det inbygt.\par
+\par
+Ett promise har tre states: pending, fulfilled och rejected.\par
+\par
+\cf1\f1 $.ajax(\{\par
+  url: "{{\field{\*\fldinst{HYPERLINK https://url-example.com }}{\fldrslt{https://url-example.com\ul0\cf0}}}}\f1\fs22 ",\par
+  success: function(response) \{\par
+    console.log(response);\par
+  \},\par
+  error: function(error) \{\par
+    console.log(error);\par
+  \}\par
+\})\par
+\cf0\f0\par
+Ovanst\'e5ende hanterar b\'e5de lyckad och misslyckad request. \cf1\f1 $.get\cf0\f0  \'e4r en alternativ syntax, men detta \'e4r mer som lyssnare man s\'e4tter p\'e5 funktionen.\par
+\par
+Ett promise f\'f6ljs alltid av ett \cf1\f1 .then\cf0\f0 . \par
+\cf1\f1 fetch('https://get.com')\par
+  .then(function() \{\par
+    console.log("Oki!");\par
+  \}\par
+\});\par
+\cf0\f0\par
+\cf1\f1 .then\cf0\f0  tar alltid en funktion som argument, antingen en namngiven eller anonym.\par
+\par
+Man ska alltid ha error-hantering, annars blir det IG!\par
+\cf1\f1 fetch('https://get.com')\par
+  .then(function() \{\par
+    console.log("Oki!");\par
+  \})\par
+  .catch(function() \{\par
+  console.log("Noes!")\par
+\});\par
+\cf0\f0\par
+Det som returneras fr\'e5n \cf1\f1 fetch()\cf0\f0  \'e4r alltid ett promise. Bara man l\'e4r sig hur det ser ut kan man anv\'e4nda n\'e4stan likadan kod hela tiden. F\'f6rst\'e5s m\'e5ste man plocka ut JSON om det \'e4r JSON. Man anv\'e4nder \cf1\f1 JSON.parse()\cf0\f0  eller den kortare \cf1\f1 .json()\cf0\f0  om det \'e4r JSON.\par
+\par
+\cf1\f1 fetch("https://example.com")\tab\tab\tab\cf8 //Promise\cf1\par
+  .then(response => response.json())\tab\cf8 // Promise\cf1\par
+  .then(data => console.log(data));\tab\tab\cf8 //json to process\par
+\cf1   .catch(error => console.log(error));\par
+\cf0\f0\par
+Man kan ha hur m\'e5nga \cf1\f1 .then\cf0\f0  som helst, men det kanske inte \'e4r s\'e5 bra att ha f\'f6r m\'e5nga.\par
+\par
+Fet version:\par
+\cf1\f1 fetch("https://example.com")\par
+  .then(function(response) \{\par
+    return response.json()\par
+  \})\par
+  .then(function(data) \{\par
+  console.log(data);\par
+\})\par
+  .catch(function(error) \{\par
+    console.log(error)\par
+\});\par
+\cf0\f0\par
+\b\fs32 Samma sak i React\par
+\b0\fs22 Vi har inte tillg\'e5ng till \cf1\f1 this\cf0\f0  \'f6verallt. Vi vill lagra i \cf1\f1 state\cf0\f0 ; det blir v\'e5r f\'f6rvaring f\'f6r variabler. Kom ih\'e5g: \'c4ndringar i \cf1\f1 state\cf0\f0  triggar alltid en uppdatering p\'e5 sidan. Ju minalla dre \cf1\f1 state\cf0\f0  man har desto mindre uppdateringar sker.\par
+\par
+\cf1\f1 const Module = function() \{\par
+  let state = \{\par
+    data: []\tab\tab\tab\tab\tab\tab\cf8 //"Global state"\cf1\par
+\}\par
+\par
+getDataFromApi = () => \{\par
+  fetch("https://example.com")\par
+  .then(response => response.json())\par
+    .then(json => \{\par
+      this.setState(\{data : json \});\tab\tab\cf8 //set global state\cf1\par
+    \})\par
+  \}\par
+\}\par
+\cf0\f0\par
+Vi kan bara s\'e4tta \cf1\f1 state\cf0\f0 :t n\'e4r allting \'e4r klart. Utifr\'e5n \cf1\f1 state\cf0\f0 :t renderar vi sedan ut inneh\'e5llet.\par
+\par
+Obs! \par
+N\'e4r man map:ar ut et ES6 element beh\'f6ver man key eller index:\par
+\cf1\f1 const list = this.state.data.map( item => \par
+  <div key=\{item.id\}>\{ item.name \} </div>\par
+);\par
+\cf0\f0\par
+eller\par
+\cf1\f1 const list = this.state.data.map( item => \par
+  <div key=\{index\}>\{ item.name \} </div>\par
+);\par
+\cf0\f0\par
+-\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\par
+\b\fs32 Component Lifecycle\b0\fs22\par
+Funktioner har inte denna lifecycle men klasser kan det. Det finns fler funktioner f\'f6rutom \cf1\f1 render()\cf0\f0  som kan anv\'e4ndas. De andra funktionerna skrivs inte ut men k\'f6rs \'e4nd\'e5 vid olika steg av processen. Skriver man ut dem kan man anv\'e4nda dem. Beh\'f6ver man inte en funktion s\'e5 skriv inte ut den.\par
+\par
+Den mest anv\'e4ndbara av de h\'e4r funktionerna \'e4r \cf1\f1 componentDidMount()\cf0\f0 . Det \'e4r bara den vi kommer g\'e5 in p\'e5.\par
+\par
+En komponent monteras, renderas, uppdateras; och n\'e4r den inte ska finnas l\'e4ngre avmonteras den. En komponent har en livscykel; den lever och d\'f6r. Speciella funktioner k\'f6rs vid olika tidpunker under livsspannet.\par
+\par
+\cf1\f1 componentDidMount() \{\par
+\cf0\f0   \cf1\f1 fetch("https://example.com")\par
+  .then(response => response.json())\par
+  .then(data => \{\par
+      this.setState(\{items : data \});\par
+  \});\cf0\f0\par
+\cf1\f1\}\cf0\f0\par
+\par
+Struktur:\par
+\cf1\f1 class App extends Component \{\cf0\f0\par
+\cf1\f1   state = \{\}\par
+\par
+  componentDidMount() \{\}\par
+  myOwnSuperMethod = () => \{  \}\par
+  render() \{\}\par
+\}\par
+\cf0\f0\par
+Man beh\'f6ver ingen pil f\'f6r \cf1\f1 componentDidMount()\cf0\f0  eftersom det \'e4r Reacts egen inbygda metod.\par
+\par
+Genom \cf1\f1 componentDidMount()\cf0\f0  kan vi kontrollera att komponenten finns. Man b\'f6r inte kalla p\'e5 en \cf1\f1 fetch()\cf0\f0 -funktion i konstruktorn f\'f6r d\'e5 kan det g\'e5 fel. Med \cf1\f1 componentDidMount()\cf0\f0  g\'e5r det bra.\par
+\par
+G\'f6r alltid nya \cf1\f1 state\cf0\f0 s f\'f6r att h\'e5lla datan.\par
+\par
+F\'e5nga ett fel i state:\par
+\cf1\f1 .catch(error => \{\par
+  this.setState(\{error: error\})\par
+\}\par
+\cf0\f0\par
+-\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\par
+G\'e5 in p\'e5 Jespers GitHub f\'f6r att se olika s\'e4tt att h\'e4mta fr\'e5n space-launches API: moon.js, hyperapp, React, React Native och Vue. Man kan se i src-mappen att de liknar varandra.\par
+-\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\cf6 0\cf0 -\cf2 0\cf0 -\cf3 0\cf0 -\cf4 0\cf0 -\cf5 0\cf0 -\cf1 0\cf0 -\par
+\par
+Det finns nya \'f6vningar p\'e5 GitHub. Man kan \'e4ven g\'f6ra gamla \'f6vningar om man inte k\'e4nner sig s\'e4ker p\'e5 dem.\par
+}
+ 

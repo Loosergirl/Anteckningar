@@ -1,0 +1,161 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red255\green255\blue255;\red255\green0\blue0;\red255\green255\blue0;\red0\green255\blue0;\red0\green255\blue255;\red0\green0\blue255;\red128\green0\blue128;\red0\green77\blue187;\red155\green0\blue211;}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 N\'e4r formul\'e4r och inputf\'e4lt \'e4r i React anv\'e4nder vi dem p\'e5 Reacts s\'e4tt. \par
+\par
+Vi f\'e5r mycket state att hantera eftersom m\'e5nga saker ska sparas. \par
+\par
+En controlled component \'e4r den sorts input f\'e4lt g\'e5tt igenom tidigare med React. Man kan ocks\'e5 l\'f6sa det utan React med hj\'e4lp av DOM:en.\par
+\par
+    \cf1\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\cf0\highlight0     \par
+\par
+\b\fs28 Uncontrolled Component\b0\par
+\fs22 Om man inte l\'e4gger in en onChange eller liknande kommer man f\'e5 ett felmeddelande p\'e5 det. Man anv\'e4nder ett annat fl\'f6de. React har inte koll p\'e5 en uncontrolled component. Man kan fortfarande h\'e4mta ut elementet med \cf8\f1 getElementById()\cf0\f0  som i Vanilla; det g\'e5r fortfarande att skriva s\'e5 i React. Nackdelen \'e4r att det inte blir lika effektivt som React vill ha det. Alla element kan d\'e4remot kommas \'e5t p\'e5 det h\'e4r s\'e4ttet.\par
+\par
+    \cf1\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\cf0\highlight0     \par
+\par
+\b\fs28 Refs\b0\fs22\par
+F\'f6r att komma \'e5t ett element med React ist\'e4llet kan man anv\'e4nda refs. Det \'e4r d\'e4remot n\'e5got att undvika. React har sv\'e5rare att hantera det. Det lagras p\'e5 ett annat s\'e4tt. \cf8\f1 state\cf0\f0  \'e4r b\'e4ttre. En del f\'f6retag har styleguides d\'e4r refs inte \'e4r till\'e5tna. Alla uncontrolled components anv\'e4nder refs. \cf8\f1 onChange\cf0\f0  m\'e5ste l\'e4ggas till till varje input f\'e4lt vi m\'e5ste kontrollera.\par
+\par
+\cf8\f1 <input\par
+  ref=\{\cf9 node \cf8 => \{this.\cf9 input \cf8 = \cf9 node\cf8 ;\}\}\par
+  type="text" />\par
+\cf0\f0\par
+Node och input \'e4r bara namn som angivits vid det h\'e4r tillf\'e4llet. Vad som helst kan anv\'e4ndas. Noden kommer lagras som vad man d\'f6per den till; h\'e4r \'e4r det \cf8\f1 this.input\cf0\f0 .\par
+\par
+\'c4ven om den h\'e4r koden ser mindre ut blir det jobbigare i l\'e4ngden.\par
+\par
+\i Se \'e4ven\i0  Jespers kod.\par
+\par
+En f\'f6rdel med att anv\'e4nda refs \'e4r att man kan g\'f6ra lite andra saker, t.ex. fokusera inputf\'e4ltet.\par
+\par
+\par
+    \cf1\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\cf0\highlight0     \par
+\par
+\b\fs28 Input\b0\fs22\par
+Det finns massor av olika inputs. Vi har h\'e5llt p\'e5 med text input f\'f6rut.\par
+\par
+\b Checkbox\b0\par
+\cf8\f1 <input\par
+  type="checkbox"\par
+  checked=\{this.state.checked\}\par
+  onChange=\{this.onChange\} />\par
+\par
+onChange = e => \{\par
+  this.setState(\{ checked: e.target.checked\});\par
+\}\par
+\cf0\f0\par
+\cf8\f1 e.target.checked\cf0\f0  ist\'e4llet f\'f6r \cf8\f1 value\cf0\f0 . Event:et kan skrivas antingen \cf8\f1 e\cf0\f0  eller \cf8\f1 event\cf0\f0 .\par
+\par
+\b Select\b0\par
+\cf8\f1 <select value=\{this.state.value\}\par
+    onChange=\{this.onChange\}>\par
+  <option value="Steffe!">Steffe</option>\par
+  <option value="Inte Steffe!">Inte Steffe!</option>\par
+</select>\par
+\cf0\f0\par
+Statets value avg\'f6r vad n\'e5gon valt i listan. Det g\'e5r att loopa n\'e4r man tar fram options ist\'e4llet f\'f6r att h\'e5rdkoda det. Man beh\'f6ver inte referera till state i options utan det r\'e4cker med om man g\'f6r det i select.\par
+\par
+\b Form\b0\par
+\cf8\f1 <form onSubmit=\{this.onSubmit\}>\par
+  <input\par
+    type="text"\par
+    name="value"\par
+    value="\{this.state.value\}\par
+    onChange=\{this.onChange\} />\par
+</form>\par
+\cf0\f0\par
+Formen \'e4r inst\'e4lld p\'e5 att skicka vidare php eller n\'e5got; p\'e5 n\'e5got s\'e4tt skicka det till backend-delen. D\'e4rf\'f6r m\'e5ste man anv\'e4nda prevent default. Formul\'e4ret ska egentligen bara ta det i statet och skicka vidare det.\par
+\par
+Detta \'e4r controlled components.\par
+\par
+\b Formul\'e4ret m\'e5ste stoppas fr\'e5n att skickas iv\'e4g\b0\par
+\cf8\f1 onSubmit = (e) => \{\par
+  e.preventDefault();\par
+  console.log(this.state.value);\par
+\}\par
+\cf0\f0\par
+Informationen som ska skickas iv\'e4g \'e4r redan lagrad i state:t. Det \'e4r bara att plocka ut dem och anv\'e4nda dem n\'e4r vi ska anv\'e4nda dem. Vi beh\'f6ver d\'e4rf\'f6r inte referera till \cf8\f1 this.state.value\cf0\f0  eller liknande.\par
+\par
+N\'e5got man vanligen brukar g\'f6ra \'e4r ge feedback direkt n\'e4r anv\'e4ndaren f\'f6rs\'f6ker fylla i ett login-formul\'e4r, t.ex. s\'e4ga till n\'e4r ett l\'f6senord \'e4r f\'f6r kort.\par
+\par
+\i Se \'e4ven\i0  Jespers kodexempel.\par
+\par
+\par
+    \cf1\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\cf0\highlight0     \par
+\par
+\b\fs28 Uppgift\b0\fs22\par
+Implementera en LoginForm tillsammans. P\'e5 eftermiddagen ska vi ut\'f6ka g\'e5rdagens kod och loginformul\'e4ret.\par
+\par
+    \cf1\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\cf0\highlight0     \par
+\par
+\b\fs28 React Bootstrap\b0\fs22\par
+Det finns Bootstrap f\'f6r React. Man kan installera via npm. Tyv\'e4rr \'e4r inte dokumentationen s\'e5 bra.\par
+\par
+Till en b\'f6rjan vill vi nog bara anv\'e4nda vanliga Bootstrap. Man kan bara l\'e4gga in den cdn:n i index.html. \par
+\par
+\b\fs28 Kodanpassning\b0\fs22\par
+Bootstrap har f\'e4rdig kod f\'f6r att g\'f6ra formul\'e4r. Kopiera och klistra in men kom ih\'e5g att st\'e4nga alla element. Man m\'e5ste \'e4ven \'e4ndra p\'e5 en del fake-HTML eftersom det egentligen \'e4r JavaScript. \cf8\f1 class\cf0\f0  m\'e5ste blir \cf8\f1 className\cf0\f0 ; \cf8\f1 for\cf0\f0  m\'e5ste blir \cf8\f1 htmlFor\cf0\f0 . \par
+\par
+Sedan m\'e5ste man g\'f6ra om det s\'e5 att det blir kontrollerat. Vi beh\'f6ver inte l\'e4gga till \cf8\f1 id\cf0\f0 :n eftersom vi inte ska h\'e4mta ut element med det men \cf8\f1 name\cf0\f0  \'e4r n\'f6dv\'e4ndigt. \par
+\par
+De f\'f6r\'e4ndringar som ska lyssnas p\'e5 beh\'f6vs ocks\'e5. Som tidigare, \cf8\f1 onChange=\{this.onChange\}\cf0\f0 . Value som \cf8\f1 value=\{this.state.username\}\cf0\f0  eller vad det \'e4n annars motsvarar f\'f6r state; det \'e4r f\'f6r att lagra det i state varje g\'e5ng det uppdateras.\par
+\par
+Gl\'f6m inte att l\'e4gga till \cf8\f1 state\cf0\f0 . G\'f6r man inte det blir det \cf8\f1 undefined\cf0\f0  och man kan f\'e5 fel.\par
+\par
+\b Submit-knapp\b0\par
+\cf8\f1 <input type="submit" value="Login" />\par
+\cf0\f0\par
+\b onChange\par
+\cf8\b0\f1 onChange = (e) => \{\par
+  this.setState(\{ [e.target.name] : e.target.value\})\par
+\}\par
+\cf0\f0\par
+Den h\'e4r \cf8\f1 onChange\cf0\f0 -funktionen fungerar f\'f6r alla input f\'e4lt. \cf8 onChange\cf0  triggas vid varje tangenttryckning. \par
+\par
+\cf8\f1 name\cf0\f0 , \cf8\f1 onChange\cf0\f0  och \cf8\f1 value\cf0\f0  \'e4r det viktiga.\par
+\par
+\b onSubmit\par
+\b0 Vi vill inte att sidan ska laddas om med en ny query vilket \'e4r vad so h\'e4nder utan en onSubmit-funktion. D\'e4rf\'f6r beh\'f6ver vi \'e5terigen f\'f6rhindra default:\par
+\par
+\cf8\f1 onSubmit = (e) => \{\par
+  e.preventDefault();\par
+\}\par
+\cf0\f0\par
+Kontrollera att funktionen k\'f6rs med \cf8\f1 console.log()\cf0\f0 . \par
+\par
+H\'e4r kan man ocks\'e5 kontrollera s\'e5 att \cf8\f1 state\cf0\f0 :t \'e4r i den form man vill att det ska vara. T.ex. kontrollera s\'e5 att det inte bara \'e4r en tom str\'e4ng:\par
+\cf8\f1 if(this.state.username && this.state.password \{\par
+  this.setState(\{ error: false \})\par
+\}\par
+else \{\par
+  this.setState(\{ error: true \});\par
+\}\cf0\f0\par
+\par
+Vad som ska visas p\'e5 sidan sedan best\'e4ms av \cf8\f1 render()\cf0\f0 .\par
+\par
+\b Felmeddelanden\b0\par
+Bootstrap ger mer formatering f\'f6r "defining states". D\'e5 kan man skriva ut meddelanden om anv\'e4ndaren inte angivit r\'e4tt format. S\'e4ger man inget annat kommer texten alltid visas. D\'e4rf\'f6r b\'f6r man g\'f6ra en if-sats f\'f6r om den ska finnas eller inte. Ex:\par
+\cf8\f1\{this.state.error && <div className="form-control-feedback">Error! You failed</div>\}\par
+\cf0\f0\par
+Vi l\'e4gger in en if-sats mitt i fake-HTML:en. Man kan \'e4ven l\'e4gga det utanf\'f6r \cf8\f1 return()\cf0\f0  men inuti \cf8\f1 render()\cf0\f0 :\par
+\cf8\f1 const errorMessage = this.state.error ? <p> Error </p> : '';\par
+\cf0\f0\par
+\b Rendera ut CSS\b0\par
+Man kan \'e4ven rendera ut CSS. L\'e4ttaste s\'e4ttet att \'e4ndra CSS \'e4r att l\'e4gga till en klass. T.ex. kan man skriva utanf\'f6r return():\par
+\cf8\f1 const hasError = this.state.error ? 'has-danger' : '';\par
+\cf0\f0\par
+H\'e4r lagrar vi en ny CSS-klass om det finns ett fel men ingenting annars. D\'e5 \'e4r det bara att l\'e4gga p\'e5 den d\'e4r vi vill anv\'e4nda den:\par
+\cf8\f1 <div className=\{`form-group $\{hasError\}`\}\par
+\cf0\f0\par
+D\'e4rmed l\'e4ggs v\'e4rdet p\'e5 \cf8\f1 hasError\cf0\f0  till som en klass.\par
+\par
+V\'e4lj vilket s\'e4tt du tycker \'e4r l\'e4ttast att jobba med.\par
+\par
+\b\fs28 Snippets\b0\fs22\par
+Kolla i din texteditor f\'f6r hur man g\'f6r snippets. D\'e4r kan man l\'e4gga in f\'e4rdiggjord kod. Det \'e4r bra eftersom man kommer anv\'e4nda samma struktur hela tiden n\'e4r man kodar i React.\par
+\par
+    \cf1\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\highlight2 o\highlight3 o\highlight4 o\highlight5 o\highlight6 o\highlight7 o\cf0\highlight0     \par
+\par
+}
+ 
