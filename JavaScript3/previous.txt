@@ -1,0 +1,206 @@
+===PASS 3===
+import React, { Component } from 'react';
+//import logo from './logo.svg';
+import './App.css';
+import InputField from'./components/InputField.js';
+import Button from './components/Button.js';
+/*import Header from './components/Header.js';
+import Content from './components/Content.js';
+import Paragraph from './components/Paragraph.js';
+import Button from './components/Button.js';*/
+
+class App extends Component{
+	state = {
+		name: "Maria",
+		input: "",
+		nr: 0
+	}
+
+	handleChange = (event) => {
+		this.setState({input: event.target.value})
+	}
+	
+	countUp = () => {
+		let nummer = this.state.nr;
+		nummer++;
+		this.setState({ nr: nummer });
+	}
+    
+	render(){
+        return(
+            <div>
+				<InputField onChange={this.handleChange} input={this.state.input}/>
+				<Button onClick={ this.countUp }>++</Button>
+				<p>{ this.state.nr }</p>
+
+            </div>
+        );
+    }
+}
+
+export default App;
+
+===PASS 3 EXTRA===
+import React, { Component } from 'react';
+//import logo from './logo.svg';
+import './App.css';
+import InputField from'./components/InputField.js';
+import Button from './components/Button.js';
+import Mall from './components/Mall.js';
+/*import Header from './components/Header.js';
+import Content from './components/Content.js';
+import Paragraph from './components/Paragraph.js';
+import Button from './components/Button.js';*/
+
+class App extends Component{
+	state = {
+		name: "Maria",
+		input: "",
+		nr: 0,
+		products: [
+			{
+				name: "Foo",
+				price: 1,
+				id: 1
+			},
+			{
+				name: "Poo",
+				price: 1.5,
+				id: 2
+			},
+			{
+				name: "Pancake",
+				price: 100,
+				id: 3
+			}			
+		],
+		cart: []
+	}
+
+	handleChange = (event) => {
+		this.setState({input: event.target.value})
+	}
+	
+	countUp = () => {
+		let nummer = this.state.nr;
+		nummer++;
+		this.setState({ nr: nummer });
+	}
+	
+	addToCart = () => {
+		let cart = this.state.cart;
+		/*Add to cart*/
+		cart.push();
+		this.setState({ cart: cart })
+	}
+    
+	render(){
+        return(
+            <div>
+				<InputField onChange={this.handleChange} input={this.state.input}/>
+				<Button onClick={ this.countUp }>++</Button>
+				<p>{ this.state.nr }</p>
+				<Mall products={ this.state.products } addToCart={ this.addToCart }/>
+
+            </div>
+        );
+    }
+}
+
+export default App;
+
+===PASS 5===
+
+class App extends Component{
+	state = {
+		data: []
+	}
+
+	componentDidMount() {
+		fetch("https://fend-api.herokuapp.com/movies?_limit=20")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					data: data
+				});
+				console.log(this.state.data);
+			});
+	}
+    
+	render(){
+
+		let list = this.state.data.map((item, index) => {
+			return <li key={index}><Card title={ item.title } grade={ item.ratings } poster={ item.posterurl } /></li>;
+		});
+		
+		
+        return(
+            <ul>
+				{ list }
+            </ul>
+        );
+    }
+}
+
+export default App;
+
+===PASS 5 UPPG. 3===
+import React, { Component } from 'react';
+import './App.css';
+import InputField from'./components/InputField.js';
+import Button from './components/Button.js';
+
+class App extends Component{
+	state = {
+		data: [],
+		error: '',
+		searchTerm: ''
+	}
+
+	componentDidMount() {
+		this.getDataFromApi();
+	}
+
+	getDataFromApi = () => {
+		fetch("https://fend-api.herokuapp.com/movies?_limit=20")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					data: data
+				});
+				console.log(this.state.data);
+			})
+			
+			.catch(error => {
+			this.setState({ error:error })
+		})
+	}
+	
+	onChange = (e) => {
+		this.setState({[e.target.name] : e.target.value});
+	}
+    
+	render(){
+		
+		const { searchTerm, data } = this.state; 
+		
+		
+		const list = data.map((item, index) => {
+      if(searchTerm){
+        return item.title.includes(searchTerm) ? <div key={index}>{item.title} </div> : ''
+      }else{
+        return <div key={index}>{item.name} </div>
+      }
+    });
+		
+		
+        return(
+            <ul>
+				{ list }
+				<input type="text" name="searchTerm" onChange={this.onChange} value={this.state.searchTerm} />
+            </ul>
+        );
+    }
+}
+
+export default App;
