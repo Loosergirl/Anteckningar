@@ -1,0 +1,150 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red0\green176\blue80;\red165\green165\blue165;\red0\green0\blue255;\red255\green255\blue0;}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs22\lang29 Repetition\b0\par
+N\'e4r vi g\'f6r n\'e5gon action i v\'e5rt gr\'e4nssnitt ska anv\'e4ndaren f\'e5 n\'e5got tillbaka. Till exempel, beroende p\'e5 om anv\'e4ndaren f\'e5r ett felmeddelande eller inte. Vi vill ha kontrollerade komponenter. Det \'e4r vanligt att vi vill f\'e5 tillbaka informationen om det blir fel.\par
+\par
+Det \'e4r egentligen bara olika variationer av hur vi kan anv\'e4nda tillst\'e5ndet i React. Mycket handlar om att best\'e4mma n\'e4r \cf1\f1 render\cf0\f0  ska kallas p\'e5. Oftast \'e4r det bara if-satser.\par
+\par
+Det blir l\'e4tt p\'e5 inl\'e4mningsuppgiften att bara kopiera vad n\'e5gon annan redan gjort.\par
+\par
+F\'f6r att en annan klass ska ha tillg\'e5ng till \cf1\f1 state\cf0\f0 :t \'e4r det b\'e4st att l\'e4gga \cf1\f1 state\cf0\f0 :t l\'e4ngst upp. Men det finns ett annat s\'e4tt att h\'e4mta upp \cf1\f1 state\cf0\f0 :t som vi ska g\'e5 in p\'e5.\par
+\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\par
+\b Effektiv if-sats\b0 :\par
+\cf1\f1 this.state.thing && <div> Hello </div>\par
+\cf0\f0\par
+\'c4r v\'e4rdet som st\'e5r h\'e4r sant eller falskt? Om det f\'f6re \cf1\f1 &&\cf0\f0  finns (d.v.s. \'e4r \cf1\f1 true\cf0\f0 ) skrivs det efter ut. Annars h\'e4nder ingenting.\par
+\par
+\b Vad man f\'e5r skriva ut\par
+\b0 Det g\'e5r att skriva ut en array fr\'e5n state direkt p\'e5 sidan via render. Det g\'e5r d\'e4remot inte att skriva ut ett objekt p\'e5 det s\'e4ttet. D\'e4remot kan man skriva ut vad som st\'e5r inuti objektet genom punktnotation.\par
+\par
+\b\fs28 Komposition och Reacts fl\'f6de - viktigt att kunna.\par
+\b0\fs22 I m\'e5nga spr\'e5k skapar vi objekt utifr\'e5n klasser. Man \'e4rver fr\'e5n n\'e5got ovanf\'f6r. Det \'e4r ett fl\'f6de d\'e4r man \'e4rver informationen ned\'e5t. T.ex. kan det finnas olika sorters anv\'e4ndare. I JavaScript anv\'e4nder vi \cf1\f1 extends\cf0\f0 .\par
+\par
+React anv\'e4nder sig av klasser men man skriver aldrig mer \'e4n att det \cf1\f1 extends Component\cf0\f0 . Vi beh\'f6ver aldrig \cf1\f1 extend\cf0\f0 :a utan bara l\'e4gga ihop olika saker. Vad vi d\'e4remot beh\'f6ver kunna \'e4r att skapa \cf1\f1 class\cf0\f0  och \cf1\f1 function\cf0\f0  komponenter. Med en enklare applikation beh\'f6vs inte s\'e5 m\'e5nga klasser.\par
+\par
+Vi vill kunna lyfta upp state och skicka ned det.\par
+\par
+Vi vill ocks\'e5 kunna skapa arrayer av komponenter. Det ska vara ett gr\'e4nssnitt och inte bara ren data. \cf1\f1 map\cf0\f0  och \cf1\f1 filter\cf0\f0  \'e4r bra att anv\'e4nda. Med objekt tvingas vi d\'e4remot anv\'e4nda klassiska loopar.\par
+\par
+Controlled Components m\'e5ste vi ocks\'e5 kunna.\par
+\par
+Till sist beh\'f6ver vi kunna skicka \cf1\f1 state\cf0\f0  upp ist\'e4llet f\'f6r ned. \par
+\par
+F\'f6rst\'e5s finns det massor av andra saker. React \'e4r ett stort bibliotek med m\'e5nga avancerade koncept. Men de beh\'f6ver vi inte anv\'e4nda s\'e5 mycket.\par
+\par
+\b\fs28 Lyfta upp state\par
+\b0\fs22 Om vi kan lyfta upp state s\'e5 g\'f6r vi det. G\'e5r det inte f\'e5r man anv\'e4nda andra l\'f6sningar.\par
+\par
+Det g\'e5r att skicka ned state via props i flera steg. \'c4ven om en komponent inte anv\'e4nder state:t kan det skickas ned till en underkomponent via den. Oftast har man den strukturen.\par
+\par
+Man vet inte exakt vad \cf1\f1 state\cf0\f0  \'e4r i alla l\'e4gen och det kan bli ober\'e4kneligt, eftersom det \'e4r async. Flera olika \cf1\f1 state\cf0\f0 :s kan skilja sig \'e5t.\par
+\par
+Det g\'e5r att skicka upp \cf1\f1 state\cf0\f0 :t via en funktion. Det blir extra kn\'f6ligt om \cf1\f1 state\cf0\f0 :t ska g\'e5 upp till toppkomponenten och sedan ned\'e5t igen till en annan underkomponent \'e4n den d\'e4r \cf1\f1 state\cf0\f0 :t skapats. Man kan l\'e4tt tappa bort var \cf1\f1 state\cf0\f0 :t \'e4r n\'e5gonstans om man g\'f6r p\'e5 det s\'e4ttet.\par
+\par
+\cf1\f1 function Card(props) \{\par
+  return(\par
+    <div key=\{props.id\}>\par
+      <button\par
+      onClick=\{\cf2 ()\cf1 props.onClick\cf2 (props.title)\cf1\}>\par
+        Rate Title\par
+      </button>\par
+    </div>\par
+  );\par
+\}\cf0\f0\par
+\par
+\cf1\f1 onClick\cf0\f0  kommer uppifr\'e5n och s\'e4tter state:t l\'e4ngre upp. Vi blir tvungna att skicka med v\'e4rdet vi vill ha upp som ett argument. \cf2 Gr\'f6nt\cf0  = vad som beh\'f6vs f\'f6r att man ska skicka med det. Det r\'e4cker inte med att man bara skriver en parentes och skriver argumentet i den, f\'f6r d\'e5 kommer funktionen k\'f6ras p\'e5 en g\'e5ng och inte vid klick.\par
+\par
+I detta fall skickar vi g\'e4rna upp v\'e4rdet. Komponenten kan d\'e5 forts\'e4tta att vara stateless. V\'e4rdet som skickas upp anv\'e4nds f\'f6r att \'e4ndra \cf1\f1 state\cf0\f0  men tillh\'f6r inte sj\'e4lv \cf1\f1 state\cf0\f0 .\par
+\par
+Alternativ med en funktion i underkomponenten:\par
+\par
+\cf1\f1 function Card(props) \{\par
+\par
+  function localClick(title) \{\par
+    \cf3 //Do more stuff, then call props.onClick\par
+\cf1     props.onClick(title)\par
+  \}\par
+  return(\par
+    <button\par
+      onClick=\{\cf2 ()\cf1  \cf2 => \{localCLick(props.title)\}\cf1\}>\par
+        Rate Title\par
+    </button>\par
+  );\par
+\}\cf0\f0\par
+\par
+I komponenten d\'e4r \cf1\f1 state\cf0\f0 :t ska s\'e4ttas vill vi ha en funktion som s\'e4tter \cf1\f1 state\cf0\f0 :t. T.ex. om \cf1\f1 state\cf0\f0 :t \'e4r \cf1\f1 username\cf0\f0 :\par
+\par
+\cf1\f1 onSubmit = (usernameFromBelow) => \{\par
+  this.setState(\{ username: usernameFromBelow \})\par
+\}\par
+\cf0\f0\par
+N\'e4r man anv\'e4nt en funktion som en props:\par
+\cf1\f1 this.props.onSubmitFromAbove(this.state.username);\par
+\cf0\f0\par
+\b\i Se \'e4ven\b0\i0  Jespers kod (f\'f6r b\'e4ttre sammanhang).\par
+\par
+\b\fs28 Composition\b0\fs22\par
+Hur vi s\'e4tter ihop komponenterna till en st\'f6rre helhet. Med klasser \'e4rver vi. D\'e5 man skriver \cf1\f1 App extends Component\cf0\f0  \'e4rver det och kan g\'f6ra allt som \cf1\f1 Component\cf0\f0  kan. Men det \'e4r enda g\'e5ngen d\'e5 man kan anv\'e4nda arv i React.\par
+\par
+Ingen komponent \'e4r egentligen f\'f6r liten men det kan bli larvigt om de \'e4r f\'f6r sm\'e5. T\'e4nk inte att det blir f\'f6r m\'e5nga filer. Om det inte ligger i en enskild fil ligger det ju i en stor fil ist\'e4llet.\par
+\par
+\b\fs28 Higher Order Component (HOC)\b0\fs22\par
+En term som anv\'e4nds hela tiden i React. Det \'e4r en komponent som tar en komponent som ett argument och returnerar en ny komponent. Det blir lite annorlunda struktur.\par
+\par
+\b\fs28 Higher Order Function\par
+\b0\fs22 Term som anv\'e4nds hela tiden i React. En funktion som tar en annan funktion som argument och/eller returnerar en funktion. Med andra ord har funktionen en callback. Exempel \'e4r \cf1\f1 map()\cf0\f0  och \cf1\f1 filter()\cf0\f0 . Ett till exempel:\par
+\par
+\cf1\f1 import Button from './Button';\par
+import makePrimary from './makePrimary';\par
+\par
+function LoginForm(props) \{\par
+  const PrimaryButton = makePrimary(Button);\par
+  return (<PrimaryButton title="Click me!" />);\par
+\}\par
+\cf0\f0\par
+Det finns andra s\'e4tt att g\'f6ra det p\'e5:\par
+\cf1\f1 function Button(props) \{\par
+  const buttonType = props.primary ? "btn btn-primary" : "btn";\par
+\par
+  return <button onClick=\{props.onClick\} className=\{buttonType\}>\par
+  \{props.title\}\par
+\}\par
+<Button primary />\par
+\cf0\f0\par
+F\'f6r att bara kolla om det \'e4r sant eller falskt kan man bara referera till v\'e4rdet. Finns det med blir det sant; finns det inte med blir det falskt. Man kan \'e4ven skriva:\par
+\cf1\f1 <Button primary=\{true\} />\par
+\cf0\f0\par
+Med ett React-anpassat CSS-ramverk kommer man f\'f6rmodligen skriva p\'e5 det h\'e4r s\'e4ttet.\par
+\par
+\b\fs28 Skicka vidare props\b0\fs22\par
+F\'f6r att props ska kunna f\'f6lja med i flera steg (inte bara fr\'e5n en komponent till en annan utan fr\'e5n en komponent, via en annan, och till en tredje) m\'e5ste man skicka med dem flera g\'e5nger. Man kan anv\'e4nda spread och skicka ned alla props tillsammans som en array:\par
+\par
+\cf1\f1 function PrimaryButton(props) \{\par
+  return <Button2 \{...props\} className="btn-primary" />\par
+\}\par
+\cf0\f0\par
+Detta \'e4r inte riktigt en Higher Order Component.\par
+\par
+\b\fs28 Animering\b0\fs22\par
+Om vi vill l\'e4gga till m\'e5nga transitions och animations kan man anv\'e4nda react-transition-group:\par
+{{\field{\*\fldinst{HYPERLINK https://reactcommunity.org/react-transition-group/ }}{\fldrslt{https://reactcommunity.org/react-transition-group/\ul0\cf0}}}}\f0\fs22\par
+\par
+Extra JavaScript beh\'f6vs.\par
+\par
+Det kan vara b\'e4ttre att h\'e5lla sig till CSS som vi gjort hittills ist\'e4llet.\par
+\par
+\par
+--------------------------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\highlight5\par
+}
+ 
