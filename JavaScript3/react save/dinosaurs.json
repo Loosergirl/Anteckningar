@@ -1,0 +1,64 @@
+{
+	"dinosaurs": {
+		"triceratops" : {
+			"name" : "Triceratops",
+			"description" : "The Cretaceous version of the black rhino. The horns make great wall ornaments.",
+			"picture" : "http://images.dinosaurpictures.org/Triceratops_liveDB_d5c2.jpg"
+		},
+		"t-rex" : {
+			"name" : "T-rex",
+			"description" : "It's tiny arms can't reach anything, anywhere.",
+			"picture" : "http://images.dinosaurpictures.org/dinosaurs-tyrannosaurus_00336745_13a8.jpg"
+		},
+		"brontosaurus" : {
+			"name" : "Brontosaurus",
+			"description" : "The Brontosaurus never existed. It was an Apatosaurus all along!",
+			"picture" : "http://images.dinosaurpictures.org/apatosaurus_1_6a5c.jpg"
+		},
+		"velociraptor" : {
+			"name" : "Velociraptor",
+			"description" : "Vulnerable to being controlled by Chris Pratt.",
+			"picture" : "http://images.dinosaurpictures.org/Velociraptor-dinosaurs-23564955-817-734_5c51.jpg"
+		},
+		"pterodactyl" : {
+			"name" : "Pterodactyl",
+			"description" : "This isn't actually a dinosaur. It's a pterosaur.",
+			"picture" : "http://images.dinosaurpictures.org/3_pterodactyl_63be.jpg"
+		},
+		"stegosaurus" : {
+			"name" : "Stegosaurus",
+			"description" : "This guy has back problems.",
+			"picture" : "http://images.dinosaurpictures.org/stegosaurusNT1_532c.jpg"
+		},
+		"archaeopteryx" : {
+			"name" : "Archaeopteryx",
+			"description" : "It's a bird!",
+			"picture" : "http://images.dinosaurpictures.org/archaeopteryx_2_fbd3.jpg"
+		},
+		"dilophosaurus" : {
+			"name" : "Dilophosaurus",
+			"description" : "The tumor on the head is a sure sign Dilosphosaurus is going down.",
+			"picture" : "http://images.dinosaurpictures.org/127544_Dilophosaurus_Pose_2_000.jpg0c59dae3-f8e3-48a4-a5d4-da8ff572cef3Original_eb0a.jpg"
+		},
+		"spinosaurus" : {
+			"name" : "Spinosaurus",
+			"description" : "This one will just sail away.",
+			"picture" : "http://images.dinosaurpictures.org/spinosaurus_1_118f.jpg"
+		},
+		"dragon" : {
+			"name" : "Dragon",
+			"description" : "This creature didn't even exist in the first place.",
+			"picture" : "https://vignette1.wikia.nocookie.net/seraphina/images/b/b2/Dragonseraphina.jpg/revision/latest?cb=20160103194957"
+		},
+		"godzilla" : {
+			"name" : "Godzilla",
+			"description" : "Ruun!",
+			"picture" : "https://filmfork-cdn.s3.amazonaws.com/content/Godzilla%20-%209.gif"
+		},
+		"dinosaurbykesha" : {
+			"name" : "Dinosaur by Kesha",
+			"description" : "D-I-N-O-S-A, You are a dinosaur",
+			"picture" : "https://vignette2.wikia.nocookie.net/keha/images/6/6a/Ke_ha_DINOSAUR_by_other_covers.png/revision/latest?cb=20130427230535"
+		}
+	}
+}

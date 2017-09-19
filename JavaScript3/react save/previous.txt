@@ -1,0 +1,488 @@
+===PASS 3===
+import React, { Component } from 'react';
+//import logo from './logo.svg';
+import './App.css';
+import InputField from'./components/InputField.js';
+import Button from './components/Button.js';
+/*import Header from './components/Header.js';
+import Content from './components/Content.js';
+import Paragraph from './components/Paragraph.js';
+import Button from './components/Button.js';*/
+
+class App extends Component{
+	state = {
+		name: "Maria",
+		input: "",
+		nr: 0
+	}
+
+	handleChange = (event) => {
+		this.setState({input: event.target.value})
+	}
+	
+	countUp = () => {
+		let nummer = this.state.nr;
+		nummer++;
+		this.setState({ nr: nummer });
+	}
+    
+	render(){
+        return(
+            <div>
+				<InputField onChange={this.handleChange} input={this.state.input}/>
+				<Button onClick={ this.countUp }>++</Button>
+				<p>{ this.state.nr }</p>
+
+            </div>
+        );
+    }
+}
+
+export default App;
+
+===PASS 3 EXTRA===
+import React, { Component } from 'react';
+//import logo from './logo.svg';
+import './App.css';
+import InputField from'./components/InputField.js';
+import Button from './components/Button.js';
+import Mall from './components/Mall.js';
+/*import Header from './components/Header.js';
+import Content from './components/Content.js';
+import Paragraph from './components/Paragraph.js';
+import Button from './components/Button.js';*/
+
+class App extends Component{
+	state = {
+		name: "Maria",
+		input: "",
+		nr: 0,
+		products: [
+			{
+				name: "Foo",
+				price: 1,
+				id: 1
+			},
+			{
+				name: "Poo",
+				price: 1.5,
+				id: 2
+			},
+			{
+				name: "Pancake",
+				price: 100,
+				id: 3
+			}			
+		],
+		cart: []
+	}
+
+	handleChange = (event) => {
+		this.setState({input: event.target.value})
+	}
+	
+	countUp = () => {
+		let nummer = this.state.nr;
+		nummer++;
+		this.setState({ nr: nummer });
+	}
+	
+	addToCart = () => {
+		let cart = this.state.cart;
+		/*Add to cart*/
+		cart.push();
+		this.setState({ cart: cart })
+	}
+    
+	render(){
+        return(
+            <div>
+				<InputField onChange={this.handleChange} input={this.state.input}/>
+				<Button onClick={ this.countUp }>++</Button>
+				<p>{ this.state.nr }</p>
+				<Mall products={ this.state.products } addToCart={ this.addToCart }/>
+
+            </div>
+        );
+    }
+}
+
+export default App;
+
+===PASS 5===
+
+class App extends Component{
+	state = {
+		data: []
+	}
+
+	componentDidMount() {
+		fetch("https://fend-api.herokuapp.com/movies?_limit=20")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					data: data
+				});
+				console.log(this.state.data);
+			});
+	}
+    
+	render(){
+
+		let list = this.state.data.map((item, index) => {
+			return <li key={index}><Card title={ item.title } grade={ item.ratings } poster={ item.posterurl } /></li>;
+		});
+		
+		
+        return(
+            <ul>
+				{ list }
+            </ul>
+        );
+    }
+}
+
+export default App;
+
+===PASS 5 UPPG. 3===
+import React, { Component } from 'react';
+import './App.css';
+import InputField from'./components/InputField.js';
+import Button from './components/Button.js';
+
+class App extends Component{
+	state = {
+		data: [],
+		error: '',
+		searchTerm: ''
+	}
+
+	componentDidMount() {
+		this.getDataFromApi();
+	}
+
+	getDataFromApi = () => {
+		fetch("https://fend-api.herokuapp.com/movies?_limit=20")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					data: data
+				});
+				console.log(this.state.data);
+			})
+			
+			.catch(error => {
+			this.setState({ error:error })
+		})
+	}
+	
+	onChange = (e) => {
+		this.setState({[e.target.name] : e.target.value});
+	}
+    
+	render(){
+		
+		const { searchTerm, data } = this.state; 
+		
+		
+		const list = data.map((item, index) => {
+      if(searchTerm){
+        return item.title.includes(searchTerm) ? <div key={index}>{item.title} </div> : ''
+      }else{
+        return <div key={index}>{item.name} </div>
+      }
+    });
+		
+		
+        return(
+            <ul>
+				{ list }
+				<input type="text" name="searchTerm" onChange={this.onChange} value={this.state.searchTerm} />
+            </ul>
+        );
+    }
+}
+
+export default App;
+
+===PASS 6 UPPG 2===
+import React, { Component } from 'react';
+import './App.css';
+import Select from './components/Select.js';
+
+class App extends Component{
+	state = {
+		data: [],
+		error: false,
+		searchTerm: '',
+		genre: ''
+	}
+
+	componentDidMount() {
+		this.getDataFromApi();
+	}
+
+	getDataFromApi = () => {
+		fetch("https://fend-api.herokuapp.com/movies?_limit=20")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					data: data
+				});
+				console.log(this.state.data);
+			})
+			
+			.catch(error => {
+			this.setState({ error:error })
+		})
+	}
+	
+	onChange = (e) => {
+		this.setState({[e.target.name] : e.target.value});
+	}
+	
+	isGenre = (genre, index) => {
+		return 
+	}
+    
+	render(){
+		
+		const { searchTerm, data } = this.state; 
+		
+		
+		const list = data.map((item, index) => {
+      if(searchTerm){
+        return item.title.includes(searchTerm) ? <div key={index}>{item.title} </div> : ''
+      }else{
+        return <div key={index}>{item.name} </div>
+      }
+    });
+		
+		const list2 = data.filter((isGenre) => {
+		
+	  });
+		
+		
+        return(
+            <ul>
+				{ list }
+				<input type="text" name="searchTerm" onChange={this.onChange} value={this.state.searchTerm} />
+				<Select name="genre" value={ this.state.genre } onChange={ this.onChange } />
+            </ul>
+        );
+    }
+}
+
+export default App;
+
+===PROP TYPES PASS ???===
+import React, { Component } from 'react';
+import firebase from './firebase';
+import PropTypes from 'prop-types';
+import './App.css';
+import List from './components/Proptypescontext.js';
+import Stringlist from './components/Stringlist.js';
+
+class App extends Component{
+    
+	render(){
+	
+	var array = [
+		{
+			item: "cat",
+			id: 1
+		},
+		{
+			item: "dog",
+			id: 2
+		}
+	];
+		
+	var array2 = [
+		{
+			animal: "rabbit",
+			name: "Minny"
+		},
+		{
+			animal: "dog",
+			name: "Fluffy"
+		}
+	];
+		
+		
+        return(
+			<div>Hej
+				<List data={array} />
+				<Stringlist data={array2} isVisible={true}/>
+			</div>
+			
+        );
+    }
+}
+
+export default App;
+
+===FIREBASE INTRO===
+import React, { Component } from 'react';
+import firebase from './firebase';
+import './App.css';
+
+class App extends Component{
+	state ={
+        todos: [],
+        todoValue: ''
+    }
+
+	toArray = (firebaseObject) => {
+  		var array = [];
+  		for(let item in firebaseObject) {
+			array.push({ key: item, value: firebaseObject[item] })
+		}
+		return array;
+	}
+
+	//ON
+    componentDidMount(){
+        firebase.database().ref(`todos`).on('value', (snapshot) => {
+            const todos = this.toArray(snapshot.val());
+            this.setState({ todos: todos })
+        })
+    }
+    
+	//PUSH
+    addTodo = (e) => {
+       e.preventDefault();
+       const objectToPush = {
+          name: this.state.todoValue,
+          completed: false
+       }
+       firebase.database().ref(`todos`).push(objectToPush)
+        .then(()=> { console.log('Pushed!') })
+        .catch(error => { console.log('You messed up', error) })
+    }
+
+	//REMOVE
+    removeTodo = (key) => {
+        firebase.database().ref(`todos/${key}`).remove()
+            .then(()=> {console.log('Removed!')})
+            .catch(error => {console.log('You messed up', error)})
+    }
+
+	//SET
+    toggleCompleted = (todo) => {
+        firebase.database().ref(`todos/${todo.key}/completed`)
+            .set(!todo.value.completed);
+    }
+
+    onChange = (e) => this.setState({[e.target.name]: e.target.value})
+
+    
+	render(){
+		const list = this.state.todos.map(todo => 
+            <div key={todo.key}>
+                <p>{todo.value.name}</p>
+                <button onClick={() => {this.removeTodo(todo.key)}}> Remove </button>
+                <button onClick={() => {this.toggleCompleted(todo)}}> Done </button>
+            </div>
+)
+	
+        return (
+            <div>
+                <form onSubmit={this.addTodo}>
+                    <input 
+                        type="text" 
+                        value={this.state.todoValue} 
+                        onChange={this.onChange} 
+                        name="todoValue"/>
+                    <input type="submit" value="Add Todo" />
+                </form>
+                { list }
+            </div>
+        )
+    }
+}
+
+export default App;
+
+===FIREBASE 2 - UNFINISHED===
+import React, { Component } from 'react';
+import firebase from './firebase';
+import './App.css';
+
+class App extends Component{
+
+	toArray = (firebaseObject) => {
+  		var array = [];
+  		for(let item in firebaseObject) {
+			array.push({ key: item, value: firebaseObject[item] })
+		}
+		return array;
+	}
+
+	//OLDEST FIRST
+	oldestFirst = () => {
+		firebase.database()
+			.ref("employees")
+			.orderByChild("born")
+			.on("value", (snapshot) => {
+				return(snapshot.val());
+		});
+	}
+	
+	//TEN YOUNGEST ONLY
+	tenYoungestOnly = () => {
+		firebase.database()
+			.ref("employees")
+			.orderByChild("born")
+			.limitToLast(10)
+			.on("value", (snapshot) => {
+				return (snapshot.val());
+		})
+	}
+	
+	//RANGE: "Sortera så att de som är födda mellan 1985 och 1995 visas"
+	ageRange = () => {
+		firebase.database()
+			.ref("employees")
+			.orderByChild("born")
+			.startAt("1985-01-01")
+			.endAt("1995-12-31")
+			.on("value", (snapshot) => {
+				return (snapshot.val());
+		})
+	}
+	
+	//"Sortera efter alla personer som har Customer som job description"
+	customerOnly = () => {
+		firebase.database()
+			.ref("employees")
+			.orderByChild("jobDescription")
+			.equalTo("Customer")
+			.on("value", (snapshot) => {
+				return (snapshot.val());
+		})
+	}
+    
+	//"Sortera efter de som har mindre än 300 på sitt bankkonto" - amountOnBank
+	poorOnly = () => {
+		firebase.database()
+			.ref("employees")
+			.orderByChild("amountOnBank")
+			.endAt("300")
+			.on("value", (snapshot) => {
+				return (snapshot.val());
+		})
+	}
+	
+	render(){
+
+		
+        return (
+            <div>
+				{this.toArray(poorOnly)}
+            </div>
+        )
+    }
+}
+
+export default App;
