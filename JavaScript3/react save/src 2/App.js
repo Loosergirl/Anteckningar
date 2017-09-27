@@ -12,6 +12,7 @@ class App extends Component {
     email: "",
     password: "",
     user: "",
+	dinosaurs: ""
   };
 
   componentDidMount(){

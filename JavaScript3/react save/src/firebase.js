@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyA67QGcsfsqSfXbCTCgDPxD3zBl9maHc1Q",
-    authDomain: "beginner-project-aac39.firebaseapp.com",
-    databaseURL: "https://beginner-project-aac39.firebaseio.com",
-    projectId: "beginner-project-aac39",
-    storageBucket: "beginner-project-aac39.appspot.com",
-    messagingSenderId: "146881789533"
+    apiKey: "AIzaSyDclASvo-Y_6ijnfVoE_EvqwFEr0QtjZ6w",
+    authDomain: "dinosaurs-650d2.firebaseapp.com",
+    databaseURL: "https://dinosaurs-650d2.firebaseio.com",
+    projectId: "dinosaurs-650d2",
+    storageBucket: "dinosaurs-650d2.appspot.com",
+    messagingSenderId: "188270579614"
 };
 
 firebase.initializeApp(config);
