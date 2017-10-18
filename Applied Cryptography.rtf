@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs32\lang29 Protocol Building Blocks\par
+\fs22 Protocol\b0 : "A series of steps, involving two or more parties, designed to accomplish as task." There is a sequence from start to finish. A \b cryptographic protocol \b0 uses cryptography. It should not be possible to do more or learn more than what is specified in the protocol.\par
+\par
+Intelligent muffin toasters...\par
+\par
+\b Arbitrator\b0 : Disinterested third party used to complete a protocol. Has no vested interest in the protocol.\par
+\par
+Alice, Bob, Carol, Dave -> Protocol participants\par
+Eve - Eavesdropper\par
+Mallory - Malicious active attacker\par
+Trent - Trusted arbitrator\par
+Walter - Warden\par
+Peggy - Prover\par
+Victor - Verifier\par
+\par
+Arbitrated protocol, Adjudicated protocol (when there has been a dispute, the parties present evidence to an adjudicator), Self-enforcing protocol (perfect scenario where cheating is detected immediately). \par
+\par
+\b Internet disadvantages of an arbitrator\b0 :\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 No face leads to less trust.\par
+{\pntext\f1\'B7\tab}Cost of maintaining an arbitrator.\par
+{\pntext\f1\'B7\tab}Delay in the arbitrated protocol.\par
+{\pntext\f1\'B7\tab}Acts as a bottleneck in large-scale implementations.\par
+{\pntext\f1\'B7\tab}A vulnerable point for anyone trying to subvert the network.\par
+
+\pard\sl240\slmult1\par
+\b Subprotocols\b0\par
+Arbitrated protocols may be divided into two types. One which is non-arbitrated, and another which is; the latter is only executed when there is a dispute.\par
+\par
+\b Passive attack\b0 : Someone eavesdrop on some or all of the protocol. Difficult to detect; therefore prevention is used.\par
+\b Active attack\b0 : An attacker alters the protocol. \par
+\par
+\b Cheater\b0 : An attacker who lies during protocol and doesn't follow it.\par
+\b Passive cheater\b0 : Follows the protocol, but tries to obtain more information than intended.\par
+\b Active cheater\b0 : Disrupts the protocol.\par
+\par
+"A good cryptosystem is one in which all the security is inherent in knowledge of the key and none is inherent in knowledge of the algorithm."\par
+\par
+\b Problems with symmetric cryptosystems\b0 :\par
+Keys must be distributed in secret. A daunting task for encryption systems spanning the world.\par
+Keys may be compromised.\par
+The total number of keys increases rapidly as the number of users increases. With \i n\i0  users \i n\i0 (\i n\i0  -1)/2 keys are necessary.\par
+\par
+\b One-way function\b0 : Easy to compute, but hard to reverse. \i x\i0  easily gives \i f\i0 (\i x\i0 ), but it's hard to find \i x\i0  with only \i f\i0 (x).\par
+\b Tropdoor one-way function\b0 : When a function has a secret trapdoor. It is easy to compute \i f\i0 (\i x\i0 ) given \i x\i0 , but hard to compute \i x\i0  given \i f\i0 (\i x\i0 ). Some secret information, \i y\i0 , allows easy computation of \i f\i0 (\i x\i0 ).\par
+\par
+\b Hash function\b0 : Takes a variable-length string and converts it into a fixed-length string called a hash value.\par
+\b One-way hash function\b0 : The hash function works in one direction. It is easy to compute a hash value but hard to generate the pre-image. Its security is its one-wayness.\par
+\b Collision free\b0 : When it is hard to generate two pre-images with the same hash value. Good one-way hash functions are this.\par
+\par
+\b Message authentification code (MAC)\b0 : Also known as data authentification code (DAC). A one-way hash function coupled with a key. Only someone with the key can verify the hash value.\par
+\par
+\b Public-key cryptography\b0 : One public key, one private key. It would be hard to deduce the private key from the public key. Thus the public key allows encryption but not decryption. Only the private key allows decryption. Based on the trapdoor one-way functions. Eavesdroppers only see the key to encrypt, not decrypt.\par
+\par
+Two downsides of public-key algorithms are (1) low speed, and (2) vulnerability to chosen-plaintext attacks. Public-key algorithms are used to encrypt keys, while symmetric algorithms are used for messages.\par
+\par
+\b Session keys\b0 : Most practical implementation of public-key cryptography. They are used with symmetric algorithms to secure message traffic. This is sometimes called \b hybrid cryptosystem\b0 .\par
+\par
+\b Digitial signature\b0 : There are public key algorithms that can be used for digital signatures. Sometimes, as in RSA, either the public or private key can be used for encryption. Otherwise, as with DSA, a separate algorithm is used for digital signatures that cannot be used for encryption. Timestamps are included so the digital signatures cannot be resused. \par
+\par
+One-way hash functions may be signed instead of a document to save time.\par
+\par
+Signing is sometimes called \b encrypting with a private key\b0 , while verification is sometimes called \b decrypting with a public key\b0 . This is only true for RSA. In the book, referred to as \i S\sub K\nosupersub\i0 (\i M\i0 ) and \i V\sub K\nosupersub\i0 (\i M\i0 ) respectively.\par
+\par
+For more people to sign the same document, they would either sign one copy each or they would sign each others signatures.\par
+\par
+\b Key certification authority or key distribution center (KDC)\b0 : When a trusted third party signs each public key stored in his database using his own private key.\par
+\par
+\b Random number generation\par
+\b0 Standard random number generators are not random enough to be used in cryptography.\par
+\par
+\b Pseudo-random-sequence generator\b0 : The best a computer can produce concerning random. A sequence period should be long enough so that a finite sequence of reasonable length is not periodic. Short, periodic, sequences should be as indistinquishable as possible from random sequences. However, every pseudo-random-sequence generator will produce weird correlations and strange results if used in a certain way. This can be used by a cryptanalyst to attack the system.\par
+\par
+\b Cryptographically secure pseudo-random\b0 : It must be unpredictable to have this property. It must be computationally infeasible to predict. Sequences should not be compressible unless you know the key.\par
+\par
+\b Real random\b0 : It is said to be this if it cannot be reliably reproduced.\par
+\par
+\b\fs32 Basic Protocols\b0\par
+\b\fs22 Man-in-the-middle  attack\b0 : When a hacker intercepts communication between two parties and substitutes the public keys with his own.\par
+\par
+\b Interlock protocol\b0 : Used to foil the man-in-the-middle attack. Messages are broken into parts and sent separately. Part of the message is useless and cannot be decrypted. \par
+\par
+Digital signatures from the KDC may also be used to prevent the man-in-the-middle attack.\par
+\par
+\b\fs32 Key Length\b0\fs22\par
+\b Brute-force attack\b0 : Trying every possible key. A form of known-plaintext attack. For a block cipher, Only possible with a block of ciphertext and the corresponding plaintext.\par
+\par
+The longer the key length, the longer it would take to find it using a brute-force attack. \par
+\par
+The two parameters determining the speed of a brute-force attack are the number of keys to be tested and the speed of each test. Parallell processors speed it up.\par
+\par
+Breaking 56-bit keys are within the budgets of most large companies and criminal organizations. Military budgets of industrialized nations can afford to break 64-bit keys. 80-bit keys are currently impossible to break, but this will change in 30 years. It may be wise to insist on a 112-bit key to account for unexpected breakthroughs.\par
+\par
+\b Mips-years\b0 : Computing power is measured in mips-years. A one million-instruction-per-second (mis) computer running for one year, or 3*10\super 13\nosupersub  instructions.\par
+\par
+\b General number field sieve\b0 : Used to factor large numbers. The \b special number field sieve \b0 is used to factor numbers not generally used for cryptography; this is faster.\par
+\par
+\b\fs32 Key Management\b0\fs22\par
+It is important that the issuer of keys is a trusted party, not a scammer. Otherwise, no hacking is necessary for the key manager to read all messages. Keeping keys secret is also an issue. Bribes make the people responsible sell keys to outsiders.\par
+\par
+Commercial products may simply use DES and nothing else, making such mistakes as storing the key together with the encrypted material.\par
+}
+ 

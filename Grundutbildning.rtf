@@ -1,0 +1,76 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs28\lang29 Grundutbildning\b0\fs22\par
+Vad \'e4r produkten och vad g\'f6r man p\'e5 Primekey?\par
+Fackklubb: Ol\'e4mpligt beteende b\'f6r rapporteras.\par
+\par
+\b Kryptografi \b0 - Konsten att h\'e5lla saker hemliga.\par
+Cesarskiffer - N\'e4r man byter en bokstav mot en annan.\par
+Alla substitutionsskiffer \'e4r l\'e4gga att bryta. \'c4ven om man byter ut mot l\'e5nga grupper av bokst\'e4ver. Det sista substititionsskiffret vad Enigma.\par
+Idag har vi mer komplexa skiffer. De bygger p\'e5 komplexa matrixoperationer eller stora tal. \par
+\par
+Vi har tv\'e5 vanliga sorters skiffer:\par
+\b Symmetriska krypto \b0 har samma nyckel p\'e5 b\'e5da sidor; en nyckel som kan b\'e5de kryptera och dekryptera. De \'e4r snabba men nycklarna m\'e5ste bytas p\'e5 n\'e5got s\'e4tt. Personer m\'e5ste tr\'e4ffas i verkligheten och byta nycklar eller liknande. Relativt s\'e4kra.\par
+\par
+\b Asymmetriska skiffer \b0 har tv\'e5 olika nycklar. En f\'f6r den som skickar och en f\'f6r den som tar emot. Den ena nyckeln \'e4r publik och den andra \'e4r privat. De flesta varianterna bygger p\'e5 matematiska funktioner som \'e4r enkla \'e5t det ena h\'e5llet men inte \'e5t det andra. A och B blir till talet C; det \'e4r en snabb operation. Men har man B och C tar det o\'e4ndligt l\'e4nge att hitta A. Att testa alla varianter kallas f\'f6r \i bootforce attack\i0 .\par
+\par
+RSA 20 48 \'e4r ett skiffer. Det best\'e5r av 20 st 48-bits. Det \'e4r gigantiska tal vilket g\'f6r det n\'e4stan om\'f6jligt att hitta det. Nya kvant-datorer kan kanske l\'f6sa det. Storleken p\'e5 nycklarna \'f6kar hela tiden d\'e5 datorerna blir snabbare.\par
+\par
+I det verkliga livet anv\'e4nder man b\'e5de symmetriska och asymmetriska skiffer.\par
+\par
+Det spelar ingen roll om alla publikt har sina egna krypteringar om det bara \'e4r en person som kan l\'e4sa.\par
+\par
+\b Hash-funktion\b0 : Tar ett antal inv\'e4rden och konverterar till andra v\'e4rden. Det kan vara bra n\'e4r man ska sortera saker. En kryptografisk hash \'e4r en hash d\'e4r det bara \'e4r ett visst indata som kan leda till ett annat visst resultat. Bara A, B och C kommer leda till D; modifierar man minsta lilla leder det till ett annat svar.\par
+\par
+Det finns oftast hash-funktioner n\'e4r man laddar ned programvara. D\'e5 kan man sj\'e4lv k\'f6ra hash:en. \par
+\par
+Generellt n\'e4r man pratar s\'e4kerhet \'e4r algoritmerna inte hemliga. Man l\'e5ter folk veta vilken algoritm man anv\'e4nt. Det \'e4r meningsl\'f6st att h\'e5lla algoritmen hemlig. \par
+\par
+MD5 \'e4r en gammal funktion som anses kn\'e4ckt. Det \'e4r SHA1 ocks\'e5. SHA2 och SHA256 \'e4r inte det. \par
+\par
+\b Signering\par
+\b0 Med en privat nyckel kan man \'e4ven signera. "Man g\'f6r ett avtryck av den privata nyckeln." De med den publika nyckeln kan inte dekryptera men de kan verifiera att personen verkligen \'e4ger den privata nyckeln.\par
+\par
+\b I verkligheten\b0\par
+Hemsidor k\'f6r HTTPS d\'e4r S st\'e5r f\'f6r secure. En "tunnel" mellan anv\'e4ndaren och hemsidan existerar, kallad TLS, d\'e4r krypterad information skickas. Om n\'e5gon tar sig in i TLS och l\'e4ser inneh\'e5llet ska det vara krypterat.\par
+\par
+Hemsidan och anv\'e4ndaren ska dela en symmetrisk nyckel. F\'f6r att undvika det har hemsidan en publik nyckel och en privat. Anv\'e4ndaren h\'e4mtar den publika nyckeln och genererar en symmetrisk nyckel. Den symmetriska l\'e5s via den publika och skickas sedan tillbaka. Med hj\'e4lp av den privata nyckeln kan hemsidan l\'e5sa upp det och en gemensam connection skapas.\par
+\par
+Ett problem finns. Hur kan anv\'e4ndaren veta att det som f\'f6rst skickas \'e4r hemsidans publika nyckel? \par
+\par
+Det som beh\'f6vs \'e4r en tredje part som kan verifiera den publika nyckeln. Den tredje parten kalls \i trusted third party\i0 . Det kan \'e4ven kallas en Certificate Authority (CA).\par
+\par
+Vilka som \'e4r trusted third parties kan man se i webbl\'e4saren under hantera certifikat. De olika webbl\'e4sarna har olika listor. \par
+\par
+CA:t skickar tillbaka ett certifikat. D\'e4r finns en hash och den publika nyckeln samt adressen det g\'e4ller f\'f6r. Browsern ser om man f\'e5r r\'e4tt publik nyckel via hash:et. \'c4r nyckeln utbytt kommer inte hash:en st\'e4mma. \par
+\par
+Certifikatet \'e4r ocks\'e5 signerat f\'f6r att undivka att det ska vara falskt. CA:en har ocks\'e5 egna nycklar. En publik och en privat nyckel. Den publika nyckeln finns i ett certifikat kallat \i root cert\i0 . Det \'e4r sj\'e4lvsignerat; signerat av den privata nyckeln. Man hamnar i ett l\'e4ge d\'e4r man m\'e5ste lita p\'e5 n\'e5gon. Trust = Security + Faith. Vi litar p\'e5 att vi laddat ned browsern fr\'e5n r\'e4tt k\'e4lla.\par
+\par
+N\'e4r man tittar p\'e5 certifikatet fr\'e5n CA finns den publika nyckeln d\'e4r. I browsen finns alla root-cert fr\'e5n alla certificate authorities som \'e4r godk\'e4nda. \par
+\par
+Det viktiga \'e4r att vi har ett sj\'e4lvsignerat certifikat med en privat och en publik nyckel. Vi har sedan ett till certifikat signerat av det f\'f6reg\'e5ende certifikatets privata nyckel. Det kan g\'e5 i flera steg. Typiskt s\'e4tt \'e4r det tre steg; RootCA, SubCA och End User (hemsidan). Det \'e4r en \i certificate chain\i0 . En textfil kan h\'e5lla alla tre certifikat i sig. \par
+\par
+Skulle n\'e5got h\'e4nda med den privata nyckeln i RootCA, t.ex. att n\'e5gon skulle stj\'e4la den... RootCA:n \'e4r typiskt s\'e4tt inte ansluten till internet. Det \'e4r servrar som \'e4r EMP-skyddade och skyddade av fysiska vakter, enmansslussar och s\'e5 vidare. D\'e4rf\'f6r har man en SubCA som \'e4r online. Med tillg\'e4nglighet \'f6kar risk. Om den blir komprimerad \'e4r det bara att byta ut den. Ungef\'e4r var 3:e \'e5r sker n\'e5got. \par
+\par
+Man kan ha flera SubCAs f\'f6r att undvika detta.\par
+\par
+------------------------\par
+\par
+Ordet CA anv\'e4nds i tv\'e5 olika sammanhang. Det ena \'e4r f\'f6r mjukvaran och det andra \'e4r f\'f6r f\'f6retagsverksamheten.\par
+\par
+Primekey g\'f6r CA-mjukvara. EJBCA. Det var ursprungligen helt open source, men nu \'e4r n\'e5gra delar inte det. M\'e5nga kunder anv\'e4nder bara open source versionen. Men primekey tar betalt f\'f6r t.ex. passversionen.\par
+-----------------------------------\par
+\par
+S\'e4g att vi har ett f\'f6retag, FooCA. De g\'f6r RootCA. RootCA \'e4r viktig och st\'e5r avst\'e4ngd d\'e5 den inte anv\'e4nds. Sedan har FooCA \'e4ven en CA som signeras av RootCA. Medan det \'e4r brandv\'e4ggar runt om kring CA:n \'e4r den online och det finns en tunnel in till den. Saker f\'e5r komma ut men inte in.\par
+\par
+Tv\'e5 till funktioner finns efter CA:n, i den s\'e5 kallade DMZ (Demilitarized Zone) utanf\'f6r den tjocka brandv\'e4ggen. Den ena \'e4r VA. Det st\'e5r f\'f6r Verification Authority. D\'e4r kollar man om certifikatet fortfarande \'e4r giltigt. Det \'e4r dem som kontaktas om CA:n inte g\'e4ller l\'e4ngre. Protokoll som kallas OCSP anv\'e4nds mellan VA:n och anv\'e4ndaren. Efter en viss tid g\'e5r tiden ut under VA:n och man m\'e5ste f\'f6rnya.\par
+\par
+Vid sidan om VA:n finns RA:n. Det \'e4r en proxy f\'f6r CA:n, en Registration Authority. Det \'e4r CA:ns ansikte ut\'e5t. Det \'e4r dit anv\'e4ndaren ansluter sig. Det kan vara en hemsida p\'e5 n\'e4tet d\'e4r man f\'e5r skicka in sin nyckel eller ett fysiskt kontor d\'e4r man visar upp legitimation. Det viktiga att notera \'e4r att CA:n ligger bakom en brandv\'e4gg p\'e5 s\'e4kert st\'e4lle.\par
+\par
+Primekey levererar fortfarande bara mjukvara och h\'f6r inte till n\'e5got av det h\'e4r. Det h\'e4r \'e4r bara den generella strukturen f\'f6r PKI i v\'e4rlden.\par
+\par
+Produkten EJBCA kan agera som alla de h\'e4r rollerna p\'e5 samma maskin eller olika. Den kan svara p\'e5 OCSP fr\'e5gor direkt och agera som RA. Man kan ocks\'e5 delegera ut de olika uppgifterna till olika maskiner. Kunder kan ha ganska m\'e5nga servrar; klustrar av CA:s. De har oftast stora klustrar av VA:s och RA:s.\par
+\par
+Olika EJBCA-versioner kan agera olika beroende p\'e5 vilka roller de har.\par
+}
+ 
