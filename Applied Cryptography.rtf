@@ -101,5 +101,117 @@ Breaking 56-bit keys are within the budgets of most large companies and criminal
 It is important that the issuer of keys is a trusted party, not a scammer. Otherwise, no hacking is necessary for the key manager to read all messages. Keeping keys secret is also an issue. Bribes make the people responsible sell keys to outsiders.\par
 \par
 Commercial products may simply use DES and nothing else, making such mistakes as storing the key together with the encrypted material.\par
+\par
+The key generation process must have a cryptographycally strong process.\par
+\par
+Users will choose weak passwords. A \b dictionary attack \b0 tries the obvious keys first, continuing with the gradually less obvious ones. Tricks to improve password security may be taken into consideration, such as replacing letters with numbers. This type of attack is more powerful when used against a file of keys. Good keys are random-bit strings.\par
+\par
+\b Pass phrases\b0 : Using an entire phrase instead of a word as a password then convert that phrase into random keys with a one-way hash function.\par
+\par
+\b Nonlinear keyspace\b0 : When not all keys are equally strong. The opposite is linear/flat keyspace. The easiest way to create this is to create the key as two parts; if it gets a fixed string it uses the key normally, while it uses a weaker algorithm if not.\par
+\par
+\b Key-Encryption Keys\b0 : Used to encrypt other keys for distribution. Has to be distributed manually. Cumbersome in large networks as the total number of keys has to be \i n\i0 (\i n\i0 -1)/2.\par
+\b Data Keys\b0 : Used to encrypt message traffic.\par
+\par
+An other alternative is to split the key into different parts and send them over different channels.\par
+\par
+If someone controlled all the network around a user, that person could easily be deceived by a different public key from that someone. However, it is still difficult to substitute one key for another. Various forms of verification can be used, such as a voice over telephone, or a one-way hash function.\par
+\par
+Because keys may be garbled in transition, error detection and correction is necessary.\par
+\par
+\b Verification block\b0 : A naive method to verify if a key is the correct symmetric decryption key. It is a known header to the plaintext message before encryption. An eavesdropper would then receive a known plaintext to help cryptanalyze the system. It is better to precalculate the checksum for each key.\par
+\par
+During encryption, the operating system may suspend the process and write everything to disk, including the unencrypted key. It is impossible to tell when the key would be overwritten, if ever. Encryption may be set to high priority to avoid interruption. Special hardware can be used to bypass the remaining risk. Sometimes session keys are used for this.\par
+\par
+To control how session keys are used, a \b Control Vector\b0  may be attached to specify the uses and restrictions of a key. The CV is then hashed and XORed with a master key, with the result being used as an encryption key for the session key. The session key is recovered by hashing the CV and XORing it with the master key.\par
+\par
+\b Key updating\b0 : Since it is a pain to change a key daily, a new key is generated from the old key instead. \par
+\par
+If a user wants to encrypt files and access them at a later date, the key must be stored somehow. A new key may be generated from a user input using a key-crunching technique. Or, the key may be stored in a magnetic stripe card, a ROM chip (\b ROM key\b0 ), or smart card. The key is then useable without the user being able to compromise it.\par
+\par
+\b Key escrow\b0 : To prevent employee keys from disappearing when said employees leave, the company collect the keys and either physically lock them up or encrypt them with a master key.\par
+\par
+A secret-sharing protocol is better to avoid the employee keys from being misused by the security officer. New keys are then split into pieces, encrypted, and sent to different company officers. Alternatively, the employee may encrypt the new key with the company public keys and store them on her harddrive.\par
+\par
+A compromised key of a symmetric cryptosystem must be changed. If it is a private key, it is vital the news of the compromise propagates quickly through the network. Databases with public keys must be immediately notified, lest some suspicious person encrypts a message in the compromised key. A timestamp can be used to see which messages are suspect. Biometrics, limits on what can be done with a key, time delays, and countersigning may reduce the problem.\par
+\par
+The longer a key is used, the greater the chance that it will be compromised. Longer use also means a greater loss if it is compromised, as the key will have been used for more things. It is also easier to cryptoanalyze with more material.\par
+\par
+\b Public key certificate\b0 : Someone's public key, signed by a trustworthy person (a CA). Used o thwart attempts to substitute one key for another.\par
+\par
+\b Introducers\b0 : Other users of a system who sign their friends' public keys. Must be sure a key belongs to the correct person to prevent substitution of keys by outsiders.\par
+\par
+\b\fs32 Mathematical Background\b0\fs22\par
+\b Entropy and Uncertainty\par
+\b0 Information theory defines the amount of information in a message as the minimum number of bits needed to encode all possible meanings of that message, assuming all messages are equally likely. For example, the week uses 3 bits:\par
+000 = Sunday; 001 = Monday; 010 = Tuesday; 011 = Wednesday; 100 = Thursday; 101 = Friday; 110 = Saturday; 111 is unused.\par
+\par
+The amount of information in a message \i M\i0  is measured by the entropy of the message, \i H\i0 (\i M\i0 ). For sex, it is 1 bit, and for the week it is slightly less than 3. Usually, the entropy of a message  measured in bits is log\sub 2\nosupersub  \i n\i0 , with \i n\i0  being the number of possible meanings. This assumes each meaning is equally likely. \par
+\par
+The entropy of a message also measures its uncertainty. If the ciphertext block "QHP*5M" is either "male" or "female", the uncertainty of the message will be 1. Only one bit needs to be learned to recover the message.\par
+\par
+\b Rate of a language\b0\par
+For a given language, the rate of the language is\par
+\i r\i0  = \i H\i0 (\i M\i0 )/\i N\i0\par
+where \i N\i0  is the length of the message.\par
+\par
+The \b absolute rate\b0  of a language is the maximum number of bits that can be coded in each character, given each character sequence is equally likely. If there are \i L\i0  characters in a language, the absolute rate is:\par
+\i R\i0  = log\sub 2\nosupersub  \i L\i0\par
+\par
+The \b redundancy\b0  of a language, denoted \i D\i0 , is defined as\par
+\i D\i0  = \i R\i0  - \i r\i0\par
+\par
+\b Security of a cryptosystem\b0\par
+The goal of a cryptoanalyst is to determine the key \i K\i0 , the plaintext \i P\i0 , or both. However, he may be satisfied with some probabilistic information about \i P\i0 . Usually, the cryptoanalyst has some probabilistic information about \i P\i0  even before analysis, because the language used is probably known, with its associated redundancy. One can guess if a message begins with a greeting.\par
+\par
+\b Perfect secrecy \b0 may be obtained if the number of possible keys is at least as large as the number of possible messages. Thus the key must be at least as long as the message itself, and no key can be reused.\par
+\par
+The entropy of a cryptosystem is a measure of the size of the keyspace, K. Approximated as:\par
+\i H\i0 (\i K\i0 ) = log\sub 2\nosupersub  \i K\i0\par
+\par
+The greater the entropy, the harder it is to break the system.\par
+\par
+\b Unicity distance\b0\par
+For a message of length \i n\i0 , the number of different keys that will decifer a cipher-text message to some intelligible plaintext in the same language as the original plaintext is given the formula:\par
+2\super\i H\i0 (\i K\i0 ) - \i nD\nosupersub\i0  - 1\par
+\par
+The unicity distance, \i U\i0 , is an approximation of the amount of ciphertext such that the sum of the real information (entropy) in the corresponding plaintext plus the entropy of the encryption key equals the number of ciphertext bits used. iphertexts longer than this distance are reasonably certain to only  have on meaningful decryption. With shorter ciphertexts there is likely to be multiple, equally valid, decryptions. Therefore, there is security in this since an opponent won't be able to choose the correct one.\par
+\par
+For most symmetric cryptosystems, the unicity distance becomes\par
+\i U\i0  = \i H\i0 (\i K\i0 )/\i D\i0\par
+\par
+The unicity distance is inversely proportional to the redundancy.\par
+\par
+A cryptosystem with infinite unicity distance has ideal secrecy. This isn't necessarily a perfect cryptosystem.\par
+\par
+Most literature on applying information theory to cryptoanalysis remains classified.\par
+\par
+\b Confusion and diffusion\b0\par
+Confusion obscures the relationship between the plaintext and the ciphertext. Substitution is the simplest way, such as the Caesar Cipher where every letter is replaced with another.\par
+\par
+Diffusion dissipates the redundancy of the plaintext by spreading it out over the ciphertext. The simplest way to do this is transposition/permutation, where the letters are rearranged.\par
+\par
+\b Complexity theory\b0\par
+The methodology for analyzing \b computational complexity\b0  of cryptographic techniques and algorithms. Algorithms and techniques are compared and their securty is determined.\par
+\par
+\b Complexity of algorithms\b0\par
+Determined by the computational power needed for execution. \i T\i0  for \b time complexity \b0 and \i S\i0  for \b space complexity \b0 (memory requirement); both are expressed as functions of \i n\i0 , where \i n\i0  is the size of the input. Computational complexity is expressed by the order of magnitude of the computational complexity (\i O\i0 ). Grows as \i n\i0  grows larger.\par
+\par
+An algorithm is \b constant\b0  if its complexity is independent of \i n\i0 , i.e. \i O\i0 (1). It is \b linear\b0  if its time complexity is \i O\i0 (\i n\i0 ). Algorithms may be quadratic, cubic, etc. They are then \b polynomial\b0 ; their complexity is \i O\i0 (\i n\super m\nosupersub\i0 ) where \i m\i0  is a constant. Algorithms with a polynomial time complexity are called \b polynomial-time\b0  algorithms.\par
+\par
+Algorithms whose complexities are \i O\i0 (\i t\super f\i0 (\i n\i0 )\nosupersub ), where \i t\i0  is a constant greater than 1 and \i f\i0 (\i n\i0 ) is a polynomial function of \i n\i0 , are called \b exponential\b0 . The subset of exponential algorithms with \i O\i0 (\i c\super f\i0 (\i n\i0 )\nosupersub ) complexity, where \i c\i0  is a constant and \i f\i0 (\i n\i0 ) is more than constant but less than linear, are called \b superpolynomial\b0 . The strongest statements that can be made are of the form "all known cracking algorithms for this cryptosystem are of superpolynomial-time complexity".\par
+\par
+As \i n\i0  grows, the time complexity of an algorithm can make an enormous difference in whether the algorithm is practical. \par
+\par
+\b Complexity of problems\b0\par
+Problems may also be classified by complexity theory. How much time and space would be required to solve the hardest instance of a problem on a \b Turing machine \b0 (a theoretical computer).\par
+\par
+Problems solvable with polynomial-time algorithms are \b tractable\b0 . Problems that cannot be solved in polynomial time are \b intractable\b0 ; calculating their solution quickly becomes infeasible. Problems that can only be solved with superpolynomial algorithms are computationally intractable, even for small \i n\i0 . Problems that are unsolvable by an algorithm are \b undecidable\b0 .\par
+\par
+Problems can be divided into complexity classes depending on their solutions. The \b P\b0  class consists of problems solvable in polynomial time. \b NP\b0  are all problems solvable in polynomial time only on a nondeterministic Turing machine: a variant of a Turing machine that can make guesses. NP includes P.\par
+\par
+Many symmetric algorithms and all public key algorithms can be cracked in nondeterministic polynomial time.\par
+\par
+@241\par
 }
  
