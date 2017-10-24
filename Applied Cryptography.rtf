@@ -146,7 +146,11 @@ The longer a key is used, the greater the chance that it will be compromised. Lo
 \b0 Information theory defines the amount of information in a message as the minimum number of bits needed to encode all possible meanings of that message, assuming all messages are equally likely. For example, the week uses 3 bits:\par
 000 = Sunday; 001 = Monday; 010 = Tuesday; 011 = Wednesday; 100 = Thursday; 101 = Friday; 110 = Saturday; 111 is unused.\par
 \par
-The amount of information in a message \i M\i0  is measured by the entropy of the message, \i H\i0 (\i M\i0 ). For sex, it is 1 bit, and for the week it is slightly less than 3. Usually, the entropy of a message  measured in bits is log\sub 2\nosupersub  \i n\i0 , with \i n\i0  being the number of possible meanings. This assumes each meaning is equally likely. \par
+1 bit - 2 options\par
+2 bit - 4 options\par
+3 bit - 8 options\par
+\par
+The amount of information in a message \i M\i0  is measured by the entropy of the message, \i H\i0 (\i M\i0 ). For gender, it is 1 bit, and for the week it is slightly less than 3. Usually, the entropy of a message  measured in bits is log\sub 2\nosupersub  \i n\i0 , with \i n\i0  being the number of possible meanings. This assumes each meaning is equally likely. \par
 \par
 The entropy of a message also measures its uncertainty. If the ciphertext block "QHP*5M" is either "male" or "female", the uncertainty of the message will be 1. Only one bit needs to be learned to recover the message.\par
 \par
