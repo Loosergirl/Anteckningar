@@ -51,11 +51,38 @@
     \'c5 jag gl\'f6mde att skriva det men den h\'e4r dagen hade vi ett sprint-m\'f6te och ett standup-m\'f6te ocks\'e5.\par
 \par
 9/11: Jag f\'f6rs\'f6kte skriva i loggboken direkt p\'e5 morgonen men fick ett felmeddelande...\par
-    P\'e5 f\'f6rmiddagen rotade jag runt is .jsp-koden. Jag la till flera klasser. P\'e5 eftermiddagen fr\'e5gade jag om hur man skulle kompilera koden. Det visade sig att man m\'e5ste skriva kommandon i terminalen f\'f6r att g\'f6ra det. Resultatet av kompileringen blev massor av fel. Oscar hj\'e4lpte mig och det visade sig att om man delar upp JSP-kod p\'e5 flera rader kommer det inte fungera. Man m\'e5ste skriva allt p\'e5 en rad. Jag hade f\'f6rst\'e5s n\'e5gra vanliga sm\'e5fel ocks\'e5. \par
+    P\'e5 f\'f6rmiddagen rotade jag runt is .jsp-koden. Jag la till flera klasser. Sedan s\'f6kte jag igenom CSS:en och plockade ut alla f\'e4rger. F\'e5 f\'e4rger \'e5teranv\'e4ndes men det var i alla fall inte lika illa som p\'e5 RA-sidan.\par
+    P\'e5 eftermiddagen fr\'e5gade jag om hur man skulle kompilera koden. Det visade sig att man m\'e5ste skriva kommandon i terminalen f\'f6r att g\'f6ra det och kompileringen tar ett antal minuter. Resultatet av kompileringen blev massor av fel. Oscar hj\'e4lpte mig och det visade sig att om man delar upp JSP-kod p\'e5 flera rader kommer det inte fungera. Man m\'e5ste skriva allt p\'e5 en rad. Jag hade f\'f6rst\'e5s n\'e5gra vanliga sm\'e5fel ocks\'e5. \par
     Efter det lade sig menyn jag gjort v\'e4ldigt konstigt p\'e5 sidan. Den hamnade till v\'e4nster p\'e5 samma st\'e4lle som den gamla, fula, menyn. Jag bad Oscar om hj\'e4lp igen och det visade sig att hela JSP-dokumentet l\'e4ggs in i en <frame> p\'e5 sidan. Och det <frame>-elementet ligger alltid till v\'e4nster. F\'f6r att f\'e5 det att fungera som det ska m\'e5ste man antingen flytta runt och anpassa olika <frame>-element eller anv\'e4nda ny, modern, kod som inte fanns p\'e5 den tiden man gjorde sidan fr\'e5n b\'f6rjan. Det f\'f6rsta alternativet var mycket b\'f6kigt och d\'e4rf\'f6r visade Oscar mig hur man ska skriva f\'f6r att importera olika dokument i varandra n\'e4r man skriver JSP-kod.\par
 \par
 10/11: Jag vet inte vad jag ska g\'f6ra eftersom ingen \'e4r inne p\'e5 kontoret p\'e5 fredagar. F\'f6rmodligen m\'e5ste jag planera i f\'f6rv\'e4g vad jag ska g\'f6ra n\'e4sta fredag f\'f6r att undvika den h\'e4r situationen.\par
 \par
 13/11: Jag kom pl\'f6tsligt ih\'e5g att jag ska p\'e5 en intervju idag f\'f6r n\'e4sta praktikperiod. D\'e4rf\'f6r m\'e5ste jag g\'e5 vid lunchtid. Hmm, f\'f6rmodligen skulle jag inte kunna ta mig tillbaka till kontoret f\'f6r\'e4n vid tretiden. \'c4r det v\'e4rt det att komma tillbaka?\par
+    Det g\'e5r fortfarande inte att l\'e4gga in n\'e5got i loggboken p\'e5 Learnpoint. Jag f\'e5r fortfarande ett felmeddelande. Det verkar vara av typ 500 s\'e5 det \'e4r inget jag kan g\'f6ra n\'e5got \'e5t. Jag mailade runt till support, Eva och Yaty om det.\par
+    Jag f\'f6rs\'f6kte f\'e5 till tabellerna p\'e5 f\'f6rsta sidan. \'c4ven om jag \'e4ndrade i CSS:n kunde jag inte g\'f6ra vissa saker p\'e5 sidan. Det fungerade d\'e4remot om jag anv\'e4nde !important. Jag hittade JSP-filer d\'e4r tabellerna l\'e4ggs in fr\'e5n b\'f6rjan. D\'e4r hade n\'e5gon \'e4ven lagt in style som skrev \'f6ver CSS:n hela tiden. Inte s\'e5 konstigt att det inte fungerade. S\'e5 jag tog bort allt det. Det blev n\'e5got fel p\'e5 tabellen d\'e5 och f\'f6r att undvika det hade jag kvar en width: 100% i JSP-filen. Det tog en massa tid att kompilera men till slut blev tabellerna p\'e5 f\'f6rsta sidan bra. Nu g\'e4ller det bara att f\'e5 till det p\'e5 alla de andra sidorna; d\'e4r har JSP-koden fortfarande style.\par
+\par
+14/11: Jag fick svar fr\'e5n IT-supporten men de verkar inte kunna g\'f6ra n\'e5got \'e5t Learnpoint. \par
+    Under st\'f6rre delen av dagen \'e4gnade jag mig \'e5t att byta ut CSS som inte sett ut som jag ville. Jag gick igenom Admin-sidorna en efter en. H\'e4r och var beh\'f6vdes marginaler, texten var f\'f6r liten, knapparna var fortfarande gr\'e5 och s\'e5 vidare.\par
+    P\'e5 senare delen av eftermiddagen kom jag fram till en punkt n\'e4r jag helt enkelt beh\'f6vde g\'e5 in i JSP-koden. De har anv\'e4nt <frame>-element som f\'f6rst\'f6r sidlayouten. De m\'e5ste bort. Fr\'e5gan \'e4r hur. Jag fr\'e5gade om hj\'e4lp men vi kom inte l\'e4ngre \'e4n att prata om det.\par
+\par
+15/11: Det k\'e4nns som om jag \'e4r p\'e5 v\'e4g att bli f\'f6rkyld. Vi f\'e5r hoppas att jag klarar mig.\par
+    Jag gjorde om ett av <frame>-elementen till en <iframe> och tog bort de andra. Det tog ett bra tag att g\'f6ra det och jag pr\'f6vade mig fram med olika l\'f6sningar. Felmeddelanden kom upp eftersom ett antal saker inkluderades dubbelt. Det \'e4r inte bra att det ligger kvar en <iframe> men jag vet inte hur jag ska g\'f6ra f\'f6r att f\'e5 bort den sista. Sedan b\'f6rjade jag \'e4ndra p\'e5 headern eftersom den nu inte ligger i en <frame> l\'e4ngre. Den gamla CSS:n f\'f6r headern kan inte anv\'e4ndas. Jag tycker dessutom att den borde vara mindre. \par
+    Jag har tagit bort mina FontAwesome ikoner eftersom de inte l\'e4nkats in. CSS:n fr\'e5n FontAwesome kommer in men inte sj\'e4lva ikonerna. Jag f\'e5r in fa-klassen men inte de specifika klasserna f\'f6r varje specifik ikon.\par
+    Vi hade ett sprint-m\'f6te. De andra utvecklarna s\'e4ger att det skulle ta \'f6ver en vecka att ta bort det sista <iframe> elementet. \par
+    Sedan f\'f6rs\'f6kte jag l\'e4gga till en container-<div> p\'e5 alla sidor. Det gick inte s\'e5 bra eftersom jag inte vet var alla sidor ligger i det gigantiska EJBCA-projektet. Jag r\'e5kade ocks\'e5 l\'e4gga in <div>:en i vad som visade sig vara en tabell och var tvungen att ta bort den. Efter det tittade jag p\'e5 hur man skulle f\'e5 det att g\'e5 att scroll:a i en <iframe>. Resultatet blev ett monster med tre scrollbars vid sidan. Urk. Jag fick bort en scrollbar s\'e5 nu \'e4r tv\'e5 kvar. Jag f\'f6rs\'f6kte f\'e5 till <footer>n ocks\'e5 men med dubbla scrollbars gick det inte.\par
+    Sist p\'e5 dagen gick jag igenom alla sidor och antecknade vad som beh\'f6vde g\'f6ras mer.\par
+\par
+16/11: Jag hade uppdaterat Adobe Cloud tidigare och d\'e5 fungerade inte licensen. Idag laddade jag ned de \'e4ldre versionerna. Det hj\'e4lpte inte.\par
+    Jag gick igenom punkterna p\'e5 g\'e5rdagens att-g\'f6ra lista. Sedan kompilerade jag och tittade p\'e5 sidan. D\'e4refter gjorde jag en ny att-g\'f6ra lista och b\'f6rjade om. S\'e5 h\'f6ll det p\'e5 hela dagen, jag vet inte hur m\'e5nga g\'e5nger.Vi\par
+\par
+17/11: Nada.\par
+\par
+20/11: Riktigt f\'f6rkyld, funderar p\'e5 att g\'e5 hem tidigare.\par
+    Precis som f\'f6rra veckan gick jag igenom alla sidor och noterade vilka problem det fanns. Sedan gick jag igenom dem och r\'e4ttade till dem, kompilerade om och b\'f6rjade om p\'e5 nytt. Vid dagens slut har jag blivit ganska n\'f6jd men ikoner fungerar fortfarande inte som de ska. Jag f\'f6rs\'f6ker minimera JavaScript s\'e5 det g\'f6r det sv\'e5rare. <iframe>-problemet kvarst\'e5r ocks\'e5 men CSS:n b\'f6rjar bli klar \'f6verlag.\par
+\par
+21/11: Jag var lika f\'f6rkyld den h\'e4r dagen. Efter ig\'e5r best\'e4mde jag mig f\'f6r att vara hemma och ta det lugnt ist\'e4llet. Jag jobbade inte alls den h\'e4r dagen.\par
+\par
+22/11: Fortfarande f\'f6rkyld men \'e4r inne p\'e5 kontoret igen. F\'f6rst p\'e5 morgonen f\'f6rs\'f6kte jag f\'e5 Photoshop att fungera via l\'e4nken p\'e5 Slack men jag kunde inte logga in. \par
+    Uppdaterade Ubuntu.\par
 }
  
