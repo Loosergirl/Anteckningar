@@ -1,0 +1,315 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 JSP is an old view technology and widely used in combination with JSF 1.x. Facelets (by some people overgeneralized as XHTML) is the successor of JSP and introduced as default view technology of JSF 2.x at end of 2009. When you were seeing JSPs, you were perhaps reading outdated books, tutorials or resources targeted on JSF 1.x. You should generally ignore them when developing with JSF 2.x and head to resources targeted on JSF 2.x, otherwise you may end up in confusion because many things are done differently in JSF 2.x on Facelets.\par
+\par
+.jsp files are generally used for JSF views defined using JavaServer Pages. .xhtml files are generally used for JSF views defined using Facelets.\par
+\par
+(stack overflow)\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+The great thing about Facelets vs. JSP as a view technology for JSF is that facelets respect the entire jsf lifecycle whereas with JSP you have the two lifecycles competing (JSF vs. JSP).\par
+\par
+With JSP, you may be tempted to use other tag libraries (like JSTL) which may not behave as you are expecting due to the differences in the lifecycle. Some of the JSTL tags have been converted to facelet tags, but even then there are generally suitable pure JSF replacements for them (like ui:repeat in place of c:foreach)\par
+\par
+If you are doing JSF 2.0, use facelets and you'll never look back.\par
+\par
+(stack overflow)\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://www.javaworld.com/article/2073098/java-web-development/getting-around-jsf--the-role-of-jsp.html }}{\fldrslt{https://www.javaworld.com/article/2073098/java-web-development/getting-around-jsf--the-role-of-jsp.html\ul0\cf0}}}}\f0\fs22\par
+\par
+JSF - JavaServer Faces\par
+JavaServer Pages\par
+\par
+JSF is integrated with JSP using custom tags. Libraries of custom tags are used; they are included in the JSF JARs.\par
+\par
+\b URI\tab\tab\tab\tab Name\tab Common prefix\tab Description\par
+\b0\par
+{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f0\fs22\tab Core\tab f\tab\tab\tab Contains tags that are independent of a particular render kit (like <f:view>, <validator>, and so on)\par
+\par
+{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f0\fs22\tab HTML\tab h\tab\tab\tab Contains tags for all of the standard components and the HTML render kit\par
+\par
+One of JSP's key features is the ability to integrate content from multiple JSPs into a single page. This is often used for fun tasks like including a header or a footer. JSP supports two types of includes: dynamic and static. \par
+\par
+Dynamic includes (performed with the <jsp:include> tag or the JSTL <c:import> tag) access a resource at runtime. \par
+\par
+Static includes integrate the resource at translation time\f1\emdash when the page is morphed into Java code and compiled.\f0\lang1053  Changes made to the included content generally aren't automatically noticed by calling pages because they already have their own copy of the content. \par
+\par
+JSF works with both types of JSP includes. For dynamic includes, there are two requirements:\par
+\par
+Included pages must be enclosed in a JSF <f:subview> core tag. This tag can either be in the included page or around the include statement.\par
+All template text and non-JSF tags inside included pages should be enclosed with the JSF <f:verbatimgt; core tag.\par
+\par
+\b Snippet example\b0 :\par
+\cf2\f2  <f:view>\par
+...\par
+<jsp:include page="foo.jsp"/>\par
+...\par
+</f:view>\par
+\cf0\f0\par
+\b Foo.jsp\b0 :\par
+\cf2\f2  <f:subview>\par
+   <h:outputText value="heyah!"/>\par
+   ...\par
+      <f:verbatim>\par
+      <b>Template text.</b>\par
+      <customtag:dothis/>\par
+   </f:verbatim>\par
+</f:subview>\par
+\cf0\f0\par
+\par
+As you can see, the entire included page is enclosed in an <f:subview> tag, and all non-JSF tags and template text are enclosed in an <f:verbatim> tag. Alternatively, we could move the <f:subview> tag into the first page, around the <jsp:include> tag.\par
+\par
+Using a static include is much simpler. There are no restrictions\f1\emdash you don't even have to use the <f:subview> tag.\par
+\par
+\par
+Note: Whenever you nest a JSF tag inside a non-JSF custom tag, you must assign the JSF tag a component identifier.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://www.javaworld.com/article/2073098/java-web-development/getting-around-jsf--the-role-of-jsp.html }}{\fldrslt{https://www.javaworld.com/article/2073098/java-web-development/getting-around-jsf--the-role-of-jsp.html\ul0\cf0}}}}\f1\fs22\par
+\par
+\f0 -------------------------------------------------------------------------------------------------------------------\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/ }}{\fldrslt{https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/\ul0\cf0}}}}\f0\fs22\par
+\par
+First, JSF 2 provides a generic foundation for integrating view declaration languages into the JSF runtime environment. The ViewDeclarationLanguage API defines the contract through the JSF runtime interacts view declaration language implementations in order to complete tasks such as building up the component tree. This contract allows framework authors to define their own view declaration languages and integrate these with JSF in a standard way.\par
+\par
+Second, JSF introduces the first standard non-JSP view declaration language: Facelets!\par
+\par
+While Facelets is a new focus for the JSF specification, JSP support is still available for those users who are not ready to make the jump to a new view definition technology. Note, however, that the JSP side of the JSF specification is basically standing still. None of the new features that involve new tags (composite components, system events, Ajax, etc\'85) are exposed through JSP.\par
+\par
+\b\fs28 How to Implement a Custom Component \fs22\par
+\b0 Let\rquote s take a quick look at how to implement a custom component in \b JSF 1.x\b0 : Just implement your UIComponent subclass, and\'85 done! Oh,wait\'85 you might want to move your markup rendering code into a Renderer. Oh, and don\rquote t forget to register your component and renderer in a faces-config.xml file. Er\'85 then you just need to implement your JSP tag. Oh, and don\rquote t forget that tld!\par
+\par
+\b JSF 2 \b0 greatly simplifies custom component development with the introduction of the \ldblquote composite component\rdblquote  feature. This feature allows a custom component to be implemented with a single file \f1\endash  no Java code required.\par
+\par
+\cf2\f2 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\par
+"{{\field{\*\fldinst{HYPERLINK http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd }}{\fldrslt{http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\ul0\cf0}}}}\f2\fs22 ">\par
+<html xmlns="http://www.w3.org/1999/xhtml"\par
+      xmlns:h="http://java.sun.com/jsf/html"\par
+      xmlns:composite="http://java.sun.com/jsf/composite">\par
+<head>\par
+<title>My First Composite Component</title>\par
+</head>\par
+<body>\par
+ \par
+<composite:interface>\par
+    <composite:attribute name="who"/>\par
+</composite:interface>\par
+ \par
+<composite:implementation>\par
+    <h:outputText value="Hello, #\{cc.attrs.who\}!"/>\par
+</composite:implementation>\par
+ \par
+</body>\par
+\cf0\f0\par
+The composite component is defined via an XML file containing XHTML contents plus elements from the \ldblquote {{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/composite&#8221 }}{\fldrslt{http://java.sun.com/jsf/composite&#8221\ul0\cf0}}}}\f0\fs22 ; namespace.\par
+\par
+The <composite:interface> element contains metadata that describes the characteristics of component, such as supported attributes, facets and attach points for event listeners. The <composite:implementation> element contains the markup that is substituted for the composite component when it is referenced by a consuming page.\par
+\par
+To make the composite component available for use, we simply drop this file into a \ldblquote resources\rdblquote  directory. The tag name for the composite component is derived from the file name. The tag namespace is based on the location of the composite component within the resources directory.\par
+\par
+If we dump the above code in a \ldblquote Hello.xhtml\rdblquote  file inside of a \ldblquote resources/greet\rdblquote  directory, we end up with the following:\par
+\par
+Tag name: hello\par
+Tag namespace: {{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/composite/greet }}{\fldrslt{http://java.sun.com/jsf/composite/greet\ul0\cf0}}}}\f0\fs22\par
+\par
+We can then reference our new component as follows:\par
+\par
+\cf2\f2 <html xmlns="http://www.w3.org/1999/xhtml"\par
+      xmlns:h="http://java.sun.com/jsf/html"\par
+      xmlns:greet="http://java.sun.com/jsf/composite/greet">\par
+ \par
+  <!-- Snip -->\par
+ \par
+  <greet:hello who="World"/>\par
+ \par
+</html>\par
+\cf0\f0\par
+\b\fs28 Ajax\b0\fs22\par
+Starting on the client, JSF 2 exposes a new JavaScript API, jsf.ajax.request(), that issues an Ajax request back to the current view.\par
+\par
+Once the request enters the Faces lifecycle, the state of the Ajax request is captured via the PartialViewContext. This object provides access to information such as which components are targeted for processing/rendering. The PartialViewContext\rquote s processPartial() method uses this information to perform partial subtree processing/rendering.\par
+\par
+<f:ajax>\par
+\par
+The jsf.ajax.request() JavaScript API is a primitive that is primarily targeted for use by frameworks as well as by the JSF implementation itself. JSF 2 also includes a declarative approach that is intended to be more convenient for page authors. This approach leverages the new <f:ajax> tag.\par
+\par
+Instead of manually coding the JavaScript for the Ajax request call:\par
+\cf2\f2 <h:commandButton onclick="jsf.ajax.request(this,event,\{render:'foo'\});return false;"/>\par
+\cf0\f0\par
+Page authors can declaratively specify the same behavior:\par
+\par
+\cf2\f2 <h:commandButton">\par
+  <f:ajax render="foo"/>\par
+</h:commandButton>\par
+\cf0\f0\par
+\b\fs28 State Saving\b0\par
+\fs22 For component developers, the issue is that implementing saveState and restoreState methods is tedious and error prone.\par
+\par
+JSF 2.0 addresses these issues with the introduction of a new \ldblquote partial\rdblquote  state saving mechanism.\par
+\par
+The key concept is that saving the entire state of the component tree is redundant, since the component tree can always be restored to its initial state by re-executing the view (ie. by re-executing Facelet handlers to re-create the component tree).\par
+\par
+If we use the view definition to restore the component tree to its initial state, then the only state that needs to be saved is state that has been modified since the view was initially created. And since in most cases the number of components that are modified after component tree creation is small, the size of this delta state is typically much smaller than the full component tree state.\par
+\par
+A requirement for the delta/partial state saving approach is that component implementations must know when their initial state has been fully configured. JSF 2 introduces the PartialStateHolder contract to help with this requirement. The PartialStateHolder\rquote s markInitialState() method is called to notify the implementing component that its intial state has been established. Only modifications that occur after this notification need to be saved.\par
+\par
+A second API has been introduced to help component implementations manage their state: StateHelper. The StateHelper provides storage for component state (such as attributes, listeners, etc\'85) and relieves the component author from having to provide custom saveState and restoreState implementations.\par
+\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/ }}{\fldrslt{https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/\ul0\cf0}}}}\f0\fs22\par
+\par
+\b\fs28 System Events\b0\fs22\par
+\b JSF 1.x \b0 includes two event delivery mechanisms. FacesEvents are delivered to FacesListeners in response to user interaction, such as editing an input component, or activating a command component. PhaseEvents are delivered to PhaseListeners at the beginning and end of each phase in the Faces lifecycle. These solutions do not include notification of other interesting events that occur during the processing of a Faces request.\par
+\par
+\b JSF 2\b0\rquote s system events provide the ability to deliver SystemEvents to SystemEventListeners at arbitrary points during the request processing lifecycle. System events fall into two categories: global system events and component system events.\par
+\par
+Global system events are delivered in response to application-wide activities, for example Application initialization/destruction. Listeners for these events are registered via a call to Application.subscribeToEvent().\par
+\par
+Component system events are specific to individual component instances. For example, a component system event is delivered each time a component has been added to the view, or rendered, or validated. Component system event listeners are typically registered via a call to UIComponent.subscribeToEvent(). However, component system events also bubble up to the Application, where they are re-delivered to Application-level listeners. This allows global monitoring of component-related events.\par
+\par
+Both global and component system events are fired by calling Application.publishEvent().\par
+\par
+// System Events Class: Provides access to system event notifications. This class cannot be inherited. //\par
+\par
+In order to simplify listener registration for component-specific events, JSF also provides a declarative listener registration solution via the <f:event> tag. To register a listener declaratively, simply place the <f:event> tag inside of the target component. For example:\par
+\par
+\cf2\f2 <h:inputText>\par
+  <f:event type="preValidate" listener="#\{bean.doSomePreValidation\}"/>\par
+</h:inputText>\par
+\cf0\f0\par
+This registers the method located at #\{bean.doSomePreValidation\} as a pre-validation listener for the parent inputText component.\par
+\par
+By providing notification of all sorts of activities that previously went undetected, system events open up many possibilities for page authors, component authors, framework authors and also for the JSF implementation itself!\par
+\par
+\b\fs36 Navigation\b0\fs22\par
+\b\fs28 Implicit Navigation\b0\fs22\par
+\par
+In \b JSF 1.x\b0 , even the most trivial navigation cases required an entry in faces-config.xml. For example, when navigating from page1 to page2 in response to a \ldblquote success\rdblquote  outcome on a command component in page1 required the following XML boilerplate code:\par
+\par
+\cf2\f2 <navigation-rule>\par
+  <from-view-id>/page1.xhtml</from-view-id>\par
+  <navigation-case>\par
+    <from-outcome>success</from-outcome>\par
+    <to-view-id>/page2.xhtml</to-view-id>\par
+  </navigation-case>\par
+</navigation-rule>\par
+\cf0\f0\par
+\b JSF 2.0\b0  introduces a simplification that reduces navigation-related grunge code: implicit navigation. If no matching navigation case is found after checking all available rules, the navigation handler checks to see whether the action outcome corresponds to a view id. If a view matching the action outcome is found, an implicit navigation to the matching view occurs.\par
+\par
+\b\fs28 Conditional Navigation\par
+\b0\fs22 Another enhancement to the navigation subsystem is the addition of conditional navigation cases. The conditional navigation feature allows navigation cases to specify a pre-condition that must be met in order for the navigation case to be accepted. The pre-condition is specified as an EL expression using the new <if> configuration element:\par
+\par
+\cf2\f2 <navigation-case>\par
+  <from-outcome>success</from-outcome>\par
+  <to-view-id>/page2.xhtml</to-view-id>\par
+ \par
+  <!-- Only accept this case if the following condition is true -->\par
+  <if>#\{foo.someCondition\}</if>\par
+ \par
+</navigation-case>\par
+\cf0\f0\par
+Instead of requiring a managed bean or business layer object return a navigation-centric outcome value, we can now use EL to interact with arbitrary properties/methods on these objects, freeing these objects from awareness of the JSF navigation system.\par
+\par
+\b\fs28 Preemptive Navigation\par
+\b0\fs22 The \b JSF 1.x \b0 navigation system is a black box. The only entry point, NavigationHandler.handleNavigation(), simply evaluates the navigation rules and causes a navigation to occur, without giving any insight into how the navigation target is determined.\par
+\par
+\b JSF 2.0 \b0 provides more transparent view of the navigation system. The new ConfigurableNavigationHandler API provides access to metadata describing the available navigation rules/cases. In particular, the getNavigationCase method allows clients to ask the ConfigurableNavigationHandler to determine which navigation case matches a particular outcome and from action. With this new contract, it is possible to \ldblquote preemptively\rdblquote  evaluate navigation rules and retrieve the resulting target view id and URL.\par
+\par
+\b\fs28 GET\b0\fs22\par
+It\rquote s not so much that JSF 1.x does not provide any support for GET request handling\'85 after all, there are some low-level primitives (like PhaseListeners) available. However, there is no denying that GET requests are a second-class citizen in earlier versions of the JSF specification. JSF 2.0 introduces several features that tackle this shortcoming.\par
+\par
+\b View Parameters\par
+\b0 The JSF 1.x specification goes to great lengths to provide a robust lifecycle for processing of values arriving from the client via Http requests. Values are pulled from the request, converted from strings to the proper target type, validated against application-specified constraints and finally, pushed into the model. Very powerful.\par
+\par
+Of course, there is one caveat: all of this processing only applies to values arriving on POST requests. If the same value arrives via a GET request, well\'85 tough luck! Or, well, maybe write a PhaseListener to manually process the request. Oh, and good luck reusing your converter/validator implementations to process those values!\par
+\par
+JSF 2 brings some sanity to this situation with the introduction of \ldblquote view parameters\rdblquote . View parameters provide a simple, declarative way to map incoming request parameter values to any EL-reachable location. These mappings are specified using the new <f:viewParam> component, which lives in the (also new) <f:metadata> section of the view, eg:\par
+\par
+\cf2\f2 <f:metadata>\par
+  <f:viewParam name="foo" value="#\{bean.foo\}"/>\par
+</f:metadata>\par
+\cf0\f0\par
+The above sample specifies that the value of the request parameter with the name \ldblquote foo\rdblquote  will automatically be picked off of the request and pushed into the property at #\{bean.foo\}. So if we receive a GET request as follows:\par
+\par
+page1.jspx?foo=bar\par
+\par
+The value #\{bean.foo\} property will be set to \ldblquote bar\rdblquote  when JSF starts processing the request. No more need to manually code this sort of mapping in a PhaseListener. \par
+\par
+But wait, there is more\'85 The <f:viewParam> component happens to be an EditableValueHolder, which means that view parameters can participate in conversion/validation. You can attach any converter/validator to an <f:viewParam> component , just as you would with, say, <f:inputText>. No more need to write custom conversion/validation logic specifically for GET processing.\par
+\par
+\b\fs28 PreRender View Event\b0\fs22\par
+View parameters bring to GET requests much of the JSF request processing lifecycle that was formerly reserved for POSTs: request parameter decoding, type conversion, validation and model updates. But view parameters stop short of one last important step: invoking application-defined listeners. For this, system events come to the rescue.\par
+\par
+JSF 2 includes a PreRenderViewEvent that is fired after view parameters have finished processing, but before the view is rendered. The pre-render view listener can be registered using the <f:event> tag, eg:\par
+\par
+\cf2\f2 <f:metadata>\par
+  <f:viewParam name="foo" value="#\{bean.foo\}"/>\par
+  <f:event type="preRenderView" listener="#\{bean.doSomething\}"/>\par
+</f:metadata>\par
+\cf0\f0\par
+This listener might be used to load data or set up context that is required prior to rendering. In addition, the listener may choose to programmatically navigate away from the requested view in the event that some pre-condition is not met (eg. the user does not have access to the requested page).\par
+\par
+With the addition of view parameters and the pre-render view event, the GET request processing lifecycle is finally on par with the rich lifecycle provided for POSTs.\par
+\par
+\b\fs28 <h:link>/<h:button>\par
+\b0\fs22 Looking at the JSF 1.x components, <h:commandButton> and <h:commandLink> do not fit the bill as these components are form/POST-centric. <h:outputLink> works, but has the drawback that it requires manual construction of the destination URL.\par
+\par
+JSF 2 includes two new components that simplify GET-centric navigation: <h:link> and <h:button>. With these components, the page author no longer needs to hand code the destination URL. These components leverage the JSF navigation system to determine the appropriate destination. Instead of explicitly specifying the URL, users specify the desired logical outcome, eg:\par
+\par
+\cf2\f2 <h:link outcome="success"/>\par
+\cf0\f0\par
+Preemptive navigation is used to translate this logical outcome into a physical destination. At render time, the navigation system is consulted to map the outcome to a target view id, which is then transparently converted into the destination URL. This frees the page author from having to worry about manual URL construction.\par
+\par
+Note that the URL construction process is not solely based on the target view id. The <h:link> and <h:button> components also integrate nicely with view parameters. By specifying the includeViewParams attribute, eg:\par
+\par
+\cf2\f2 <h:link outcome="success" includeViewParams="true">\par
+\cf0\f0\par
+The view parameters specified by the destination view are taken into account when building up the URL \f1\endash  ie. an inverse mapping of the view parameters is applied. Each view parameter value is extracted from the location specified by its EL expression, converted to a string, and added to the query string under the view parameter\rquote s name.\par
+\f0\par
+In addition, page authors may manually insert query parameters using the <f:param> tag, eg:\par
+\par
+\cf2\f2 <h:link outcome="success">\par
+  <f:param name="foo" value="bar"/>\par
+</h:link>\par
+\cf0\f0\par
+And of course, the key benefit of this solution: the resulting URLs are bookmarkable!\par
+\par
+\b\fs36 Scopes\b0\fs22\par
+\b\fs28 View Scope\par
+\b0\fs22 View scope is one of two new scopes introduced in JSF 2 that fall into the category of \ldblquote longer than request, shorter than session\rdblquote  scopes. As the name implies, state that is placed into view scope is preserved until the user finishes interaction with the current view.\par
+\par
+View scope state can be accessed programmatically via UIViewRoot.getViewMap(). EL access is available via the #\{viewScope\} implicit object.\par
+\par
+\b\fs28 Flash Scope\par
+\b0\fs22 Flash scope provides a short-lived conversation. State that is placed into flash scope is propagated across a single view transition, including surviving redirects, and is cleaned up before moving on to yet another view. \par
+\par
+Flash scope state can be accessed programmatically via the ExternalContext.getFlash() API. EL access is available via the #\{flash\} implicit object.\par
+\par
+\b\fs28 Custom Scopes\par
+\b0\fs22 JSF 2 also provides a small enhancement to the managed bean system to allow faces-config.xml authors to place managed beans into custom scopes. The trick is that custom scopes are specified via an EL expression rather than a keyword, eg:\par
+\par
+\cf2\f2 <managed-bean>\par
+  <managed-bean-name>foo</managed-bean-name>\par
+  <managed-bean-class>com.foo.Foo</managed-bean-class>\par
+  <managed-bean-scope>#\{someCustomScope\}</managed-bean-scope>\par
+</managed-bean>\par
+\cf0\f0\par
+The EL expression identifies the location of a map that holds the properties for the scope. When it is time to instantiate a custom-scoped managed bean, the managed bean system automatically pushes the new instance into the map under the specified name.\par
+\par
+@configuration\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+}
+ 

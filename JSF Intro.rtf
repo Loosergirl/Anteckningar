@@ -1,0 +1,502 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil Calibri;}{\f3\fnil\fcharset0 Cambria Math;}{\f4\fnil\fcharset0 Consolas;}{\f5\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green176\blue80;\red0\green77\blue187;\red0\green0\blue255;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.16299}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 JavaServer Faces (JSF) is a MVC web framework that simplifies the construction of User Interfaces (UI) for server-based applications using reusable UI components in a page. JSF provides a facility to connect UI widgets with data sources and to server-side event handlers. The JSF specification defines a set of standard UI components and provides an Application Programming Interface (API) for developing components. JSF enables the reuse and extension of the existing standard UI components.\par
+\par
+JSF facilitates Web application development by \f1\u8722?\f0\par
+
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Providing reusable UI components\par
+{\pntext\f5\'B7\tab}Making easy data transfer between UI components\par
+{\pntext\f5\'B7\tab}Managing UI state across multiple server requests\par
+{\pntext\f5\'B7\tab}Enabling implementation of custom components\par
+{\pntext\f5\'B7\tab}Wiring client-side event to server-side application code\par
+
+\pard\sl240\slmult1\par
+\par
+\lang29 JSF provides \f1\u8722?\f0\par
+
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Core library\par
+{\pntext\f5\'B7\tab}A set of base UI components - standard HTML input elements\par
+{\pntext\f5\'B7\tab}Extension of the base UI components to create additional UI component libraries or to extend existing components\par
+{\pntext\f5\'B7\tab}Multiple rendering capabilities that enable JSF UI components to render themselves differently depending on the client types\lang29\par
+
+\pard\sl240\slmult1\par
+
+\pard\li720\sl240\slmult1\cf1 // Varf\'f6r anv\'e4nda JSF? Varf\'f6r inte bara HTML? //\par
+
+\pard\sl240\slmult1\cf0\par
+JSF is based on the \b MVC \b0 pattern:\par
+Model: Carries Data and login\par
+View: Shows User Interface\tab\par
+Controller: Handles processing of an application.\par
+\par
+JSF application is similar to any other Java technology-based web application; it runs in a Java servlet container, and contains \f1\u8722?\f0\par
+
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 JavaBeans components as models containing application-specific functionality and data\par
+{\pntext\f5\'B7\tab}A custom tag library for representing event handlers and validators\par
+{\pntext\f5\'B7\tab}A custom tag library for rendering UI components\par
+{\pntext\f5\'B7\tab}UI components represented as stateful objects on the server\par
+{\pntext\f5\'B7\tab}Server-side helper classes\par
+{\pntext\f5\'B7\tab}Validators, event handlers, and navigation handlers\par
+{\pntext\f5\'B7\tab}Application configuration resource file for configuring application resources\par
+
+\pard\sl240\slmult1\lang29\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b Servlet\b0\par
+...the user/client can only request static webpage from the server. This is not good enough, if the user wants to read the web page based on his input. The basic idea of Servlet container is using Java to dynamically generate the web page on the server side. So servlet container is essentially a part of a web server that interacts with the servlets.\par
+\par
+Servlet is an interface defined in javax.servlet package. It declares three essential methods for the life cycle of a servlet \f2\endash  init(), service(), and destroy(). They are implemented by every servlet(defined in SDK or self-defined) and are invoked at specific times by the server.\par
+\par
+
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 The init() method is invoked during initialization stage of the servlet life cycle. It is passed an object implementing the javax.servlet.ServletConfig interface, which allows the servlet to access initialization parameters from the web application.\par
+{\pntext\f5\'B7\tab}The service() method is invoked upon each request after its initialization. Each request is serviced in its own separate thread. The web container calls the service() method of the servlet for every request. The service() method determines the kind of request being made and dispatches it to an appropriate method to handle the request.\par
+{\pntext\f5\'B7\tab}The destroy() method is invoked when the servlet object should be destroyed. It releases the resources being held.\f0\par
+
+\pard\sl240\slmult1\par
+Like any Java program, the servlet runs within a JVM. To handle the complexity of HTTP requests, the servlet container comes in. The servlet container is responsible for servlets\rquote  creation, execution and destruction.\par
+\par
+How Servlet container and web server process a request?\par
+
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Web server receives HTTP request\par
+{\pntext\f5\'B7\tab}Web server forwards the request to servlet container\par
+{\pntext\f5\'B7\tab}The servlet is dynamically retrieved and loaded into the address space of the container, if it is not in the container.\par
+{\pntext\f5\'B7\tab}The container invokes the init() method of the servlet for initialization(invoked once when the servlet is loaded first time)\par
+{\pntext\f5\'B7\tab}The container invokes the service() method of the servlet to process the HTTP request, i.e., read data in the request and formulate a response. The servlet remains in the container\rquote s address space and can process other HTTP requests.\par
+{\pntext\f5\'B7\tab}Web server return the dynamically generated results to the correct location\par
+
+\pard\sl240\slmult1 -------------------------------------------------------------------------------------------------------------------I understood, I think, that a "Bean" is a Java class with properties and getters/setters. As much as I understand, it is the equivalent of a C struct. Is that true?\par
+\par
+Also, is there a real syntactic difference between a bean and a regular class? Is there any special definition or an interface?\par
+\par
+Basically, why is there a term for this?\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+The JSF puts the View in MVC on the server.\par
+\par
+JSF application life cycle consists of six phases which are as follows \f1\u8722?\f0\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Restore view phase\par
+{\pntext\f0 2.\tab}Apply request values phase; process events\par
+{\pntext\f0 3.\tab}Process validations phase; process events\par
+{\pntext\f0 4.\tab}Update model values phase; process events\par
+{\pntext\f0 5.\tab}Invoke application phase; process events\par
+{\pntext\f0 6.\tab}Render response phase\par
+
+\pard\sl240\slmult1\par
+\b Phase\f3  \f0 1\f3 : \f0 Restore\f3  \f0 view\par
+\b0 JSF\f3  \f0 begins\f3  \f0 the\f3  \f0 restore\f3  \f0 view\f3  \f0 phase\f3  \f0 as\f3  \f0 soon\f3  \f0 as\f3  \f0 a\f3  \f0 link\f3  \f0 or\f3  \f0 a\f3  \f0 button\f3  \f0 is\f3  \f0 clicked\f3  \f0 and\f3  \f0 JSF\f3  \f0 receives\f3  \f0 a\f3  \f0 request\f3 .\f0\par
+\par
+During\f3  \f0 this\f3  \f0 phase\f3 , \f0 JSF\f3  \f0 builds\f3  \f0 the\f3  \f0 view\f3 , \f0 wires\f3  \f0 event\f3  \f0 handlers\f3  \f0 and\f3  \f0 validators\f3  \f0 to\f3  \f0 UI\f3  \f0 components\f3  \f0 and\f3  \f0 saves\f3  \f0 the\f3  \f0 view\f3  \f0 in\f3  \f0 the\f3  \f0 FacesContext\f3  \f0 instance\f3 . \f0 The\f3  \f0 FacesContext\f3  \f0 instance\f3  \f0 will\f3  \f0 now\f3  \f0 contain\f3  \f0 all\f3  \f0 the\f3  \f0 information\f3  \f0 required\f3  \f0 to\f3  \f0 process\f3  \f0 a\f3  \f0 request\f3 .\f0\par
+\par
+\b Phase\f3  \f0 2\f3 : \f0 Apply\f3  \f0 request\f3  \f0 values\par
+\b0 After\f3  \f0 the\f3  \f0 component\f3  \f0 tree\f3  \f0 is\f3  \f0 created\f3 /\f0 restored\f3 , \f0 each\f3  \f0 component\f3  \f0 in\f3  \f0 the\f3  \f0 component\f3  \f0 tree\f3  \f0 uses\f3  \f0 the\f3  \f0 decode\f3  \f0 method\f3  \f0 to\f3  \f0 extract\f3  \f0 its\f3  \f0 new\f3  \f0 value\f3  \f0 from\f3  \f0 the\f3  \f0 request\f3  \f0 parameters\f3 . \f0 Component\f3  \f0 stores\f3  \f0 this\f3  \f0 value\f3 . \f0 If\f3  \f0 the\f3  \f0 conversion\f3  \f0 fails\f3 , \f0 an\f3  \f0 error\f3  \f0 message\f3  \f0 is\f3  \f0 generated\f3  \f0 and\f3  \f0 queued\f3  \f0 on\f3  \f0 FacesContext\f3 . \f0 This\f3  \f0 message\f3  \f0 will\f3  \f0 be\f3  \f0 displayed\f3  \f0 during\f3  \f0 the\f3  \f0 render\f3  \f0 response\f3  \f0 phase\f3 , \f0 along\f3  \f0 with\f3  \f0 any\f3  \f0 validation\f3  \f0 errors\f3 .\f0\par
+\par
+If\f3  \f0 any\f3  \f0 decode\f3  \f0 methods\f3  \f0 event\f3  \f0 listeners\f3  \f0 called\f3  \f0 renderResponse\f3  \f0 on\f3  \f0 the\f3  \f0 current\f3  \f0 FacesContext\f3  \f0 instance\f3 , \f0 the\f3  \f0 JSF\f3  \f0 moves\f3  \f0 to\f3  \f0 the\f3  \f0 render\f3  \f0 response\f3  \f0 phase\f3 .\f0\par
+\par
+
+\pard\sl240\slmult1\b Phase\f3  \f0 3\f3 : \f0 Process\f3  \f0 validation\par
+\b0 During\f3  \f0 this\f3  \f0 phase\f3 , \f0 JSF\f3  \f0 processes\f3  \f0 all\f3  \f0 validators\f3  \f0 registered\f3  \f0 on\f3  \f0 the\f3  \f0 component\f3  \f0 tree\f3 . \f0 It\f3  \f0 examines\f3  \f0 the\f3  \f0 component\f3  \f0 attribute\f3  \f0 rules\f3  \f0 for\f3  \f0 the\f3  \f0 validation\f3  \f0 and\f3  \f0 compares\f3  \f0 these\f3  \f0 rules\f3  \f0 to\f3  \f0 the\f3  \f0 local\f3  \f0 value\f3  \f0 stored\f3  \f0 for\f3  \f0 the\f3  \f0 component\f3 .\f0\par
+\par
+If\f3  \f0 the\f3  \f0 local\f3  \f0 value\f3  \f0 is\f3  \f0 invalid\f3 , \f0 JSF\f3  \f0 adds\f3  \f0 an\f3  \f0 error\f3  \f0 message\f3  \f0 to\f3  \f0 the\f3  \f0 FacesContext\f3  \f0 instance\f3 , \f0 and\f3  \f0 the\f3  \f0 life\f3  \f0 cycle\f3  \f0 advances\f3  \f0 to\f3  \f0 the\f3  \f0 render\f3  \f0 response\f3  \f0 phase\f3  \f0 and\f3  \f0 displays\f3  \f0 the\f3  \f0 same\f3  \f0 page\f3  \f0 again\f3  \f0 with\f3  \f0 the\f3  \f0 error\f3  \f0 message\f3 .\f0\par
+\par
+\b Phase\f3  \f0 4\f3 : \f0 Update\f3  \f0 model\f3  \f0 values\par
+\b0 After\f3  \f0 the\f3  \f0 JSF\f3  \f0 checks\f3  \f0 that\f3  \f0 the\f3  \f0 data\f3  \f0 is\f3  \f0 valid\f3 , \f0 it\f3  \f0 walks\f3  \f0 over\f3  \f0 the\f3  \f0 component\f3  \f0 tree\f3  \f0 and\f3  \f0 sets\f3  \f0 the\f3  \f0 corresponding\f3  \f0 server\f3 -\f0 side\f3  \f0 object\f3  \f0 properties\f3  \f0 to\f3  \f0 the\f3  \f0 components'\f3  \f0 local\f3  \f0 values\f3 . \f0 JSF\f3  \f0 will\f3  \f0 update\f3  \f0 the\f3  \f0 bean\f3  \f0 properties\f3  \f0 corresponding\f3  \f0 to\f3  \f0 the\f3  \f0 input\f3  \f0 component's\f3  \f0 value\f3  \f0 attribute\f3 .\f0\par
+\par
+If\f3  \f0 any\f3  \f0 updateModels\f3  \f0 methods\f3  \f0 called\f3  \f0 renderResponse\f3  \f0 on\f3  \f0 the\f3  \f0 current\f3  \f0 FacesContext\f3  \f0 instance\f3 , \f0 JSF\f3  \f0 moves\f3  \f0 to\f3  \f0 the\f3  \f0 render\f3  \f0 response\f3  \f0 phase\f3 .\f0\par
+\par
+\b Phase\f3  \f0 5\f3 : \f0 Invoke\f3  \f0 application\par
+\b0 During\f3  \f0 this\f3  \f0 phase\f3 , \f0 JSF\f3  \f0 handles\f3  \f0 any\f3  \f0 application\f3 -\f0 level\f3  \f0 events\f3 , \f0 such\f3  \f0 as\f3  \f0 submitting\f3  \f0 a\f3  \f0 form\f3 /\f0 linking\f3  \f0 to\f3  \f0 another\f3  \f0 page\f3 .\f0\par
+\par
+\lang29 Phase 6: Render response\par
+During this phase, JSF asks container/application server to render the page if the application is using JSP pages. For initial request, the components represented on the page will be added to the component tree as JSP container executes the page. If this is not an initial request, the component tree is already built so components need not be added again. In either case, the components will render themselves as the JSP container/Application server traverses the tags in the page.\par
+\par
+After the content of the view is rendered, the response state is saved so that subsequent requests can access it and it is available to the restore view phase.\par
+\par
+\b JSF Page\par
+\b0 A JSF page should be an xhtml file.\par
+\par
+\b\fs28 JSF - Managed Beans\par
+\b0\fs22 Managed Bean is a regular Java Bean class registered with JSF. In other words, Managed Beans is a Java bean managed by JSF framework. Managed bean contains the getter and setter methods, business logic, or even a backing bean (a bean contains all the HTML form value).\par
+\par
+Managed beans works as Model for UI component. Managed Bean can be accessed from JSF page.\par
+\par
+In \b JSF 1.2\b0 , a managed bean had to register it in JSF configuration file such as facesconfig.xml. From \b JSF 2.0 \b0 onwards, managed beans can be easily registered using annotations. This approach keeps beans and its registration at one place hence it becomes easier to manage.\par
+\par
+\b Using XML Configuration\par
+\cf2\b0\f4 <managed-bean>\par
+   <managed-bean-name>helloWorld</managed-bean-name>\par
+   <managed-bean-class>com.tutorialspoint.test.HelloWorld</managed-bean-class>\par
+   <managed-bean-scope>request</managed-bean-scope>\par
+</managed-bean> \par
+\par
+<managed-bean>\par
+   <managed-bean-name>message</managed-bean-name>\par
+   <managed-bean-class>com.tutorialspoint.test.Message</managed-bean-class>\par
+   <managed-bean-scope>request</managed-bean-scope>\par
+</managed-bean> \par
+\cf0\f0\par
+\b Using Annotation\par
+\cf2\b0\f4 @ManagedBean(name = "helloWorld", eager = true)\par
+@RequestScoped\par
+public class HelloWorld \{\par
+   @ManagedProperty(value = "#\{message\}")\par
+   private Message message;\par
+   ...\par
+\}\par
+\cf0\f0\par
+@ManagedBean marks a bean to be a managed bean with the name specified in name attribute. If the name attribute is not specified, then the managed bean name will default to class name portion of the fully qualified class name. In our case, it would be helloWorld.\par
+\par
+Another important attribute is \b eager\b0 . If eager = "true" then managed bean is created before it is requested for the first time otherwise "\b lazy\b0 " initialization is used in which bean will be created only when it is requested.\par
+\par
+\b Scope Annotations\par
+\b0 Scope annotations set the scope into which the managed bean will be placed. If the scope is not specified, then bean will default to request scope.\par
+\par
+Scopes:\par
+{{\field{\*\fldinst{HYPERLINK https://www.tutorialspoint.com/jsf/jsf_managed_beans.htm }}{\fldrslt{https://www.tutorialspoint.com/jsf/jsf_managed_beans.htm\ul0\cf0}}}}\f0\fs22\par
+\par
+\b @ManagedProperty Annotation\par
+\b0 JSF is a simple static Dependency Injection (DI) framework. Using @ManagedProperty annotation, a managed bean's property can be injected in another managed bean.\par
+\par
+***\par
+\par
+Files are linked into each other like: \f4 @ManagedProperty(value = "#\{message\}")\f0  into .java and \f4 #\{helloWorld.message\}\f0  into .xhtml.\par
+\par
+***\par
+\par
+\b\fs28 JSF - Page Navigation\par
+\b0\fs22 Navigation rules are those rules provided by JSF Framework that describes which view is to be shown when a button or a link is clicked.\par
+\par
+Navigation rules can be defined in JSF configuration file named faces-config.xml. They can be defined in managed beans.\par
+\par
+Navigation rules can contain conditions based on which the resulted view can be shown. JSF 2.0 provides implicit navigation as well in which there is no need to define navigation rules as such.\par
+\par
+\b Implicit Navigation\par
+\b0 JSF 2.0 provides auto view page resolver mechanism named implicit navigation. In this case, you only need to put view name in action attribute and JSF will search the correct view page automatically in the deployed application.\par
+\par
+\b Auto Navigation in JSF Page\par
+\b0 Set view name in action attribute of any JSF UI Component.\par
+\par
+\cf2\f4 <h:form>\par
+   <h3>Using JSF outcome</h3>\par
+   <h:commandButton action = "page2" value = "Page2" />\par
+</h:form>\par
+\cf0\f0\par
+Here, when Page2 button is clicked, JSF will resolve the view name, page2 as page2.xhtml extension, and find the corresponding view file page2.xhtml in the current directory.\par
+\par
+\b Auto Navigation in Managed Bean\par
+\b0 Define a method in managed bean to return a view name.\par
+\par
+\cf2\f4 @ManagedBean(name = "navigationController", eager = true)\par
+@RequestScoped\par
+\par
+public class NavigationController implements Serializable \{\par
+   public String moveToPage1() \{\par
+      return "page1";\par
+   \}\par
+\}\par
+\cf0\f0\par
+Get view name in action attribute of any JSF UI Component using managed bean.\par
+\par
+\cf2\f4 <h:form> \par
+   <h3> Using Managed Bean</h3>  \par
+   <h:commandButton action = "#\{navigationController.moveToPage1\}" \par
+   value = "Page1" /glt; \par
+</h:form> \par
+\cf0\f0\par
+Here, when Page1 button is clicked, JSF will resolve the view name, page1 as page1.xhtml extension, and find the corresponding view file page1.xhtml in the current directory.\par
+\par
+Conditional Navigation\par
+Using managed bean, we can very easily control the navigation. Look at the following code in a managed bean.\par
+\par
+\cf2\f4 @ManagedBean(name = "navigationController", eager = true)\par
+@RequestScoped\par
+\cf0\f0\par
+\cf2\f4 public class NavigationController implements Serializable \{\par
+   //this managed property will read value from request parameter pageId\par
+   @ManagedProperty(value = "#\{param.pageId\}")\par
+   private String pageId;\par
+\par
+\cf4    //condional navigation based on pageId\par
+   //if pageId is 1 show page1.xhtml,\par
+   //if pageId is 2 show page2.xhtml\par
+   //else show home.xhtml\par
+\cf2    \par
+   public String showPage() \{\par
+      if(pageId == null) \{\par
+         return "home";\par
+      \}\par
+      \par
+      if(pageId.equals("1")) \{\par
+         return "page1";\par
+      \}else if(pageId.equals("2")) \{\par
+         return "page2";\par
+      \}else \{\par
+         return "home";\par
+      \}\par
+   \}\par
+\}\par
+\cf0\f0\par
+Pass pageId as a request parameter in JSF UI Component.\par
+\par
+\cf2\f4 <h:form>\par
+   <h:commandLink action = "#\{navigationController.showPage\}" value = "Page1">\par
+      <f:param name = "pageId" value = "1" />\par
+   </h:commandLink>\par
+   <h:commandLink action = "#\{navigationController.showPage\}" value = "Page2">\par
+      <f:param name = "pageId" value = "2" />\par
+   </h:commandLink>\par
+   <h:commandLink action = "#\{navigationController.showPage\}" value = "Home">\par
+      <f:param name = "pageId" value = "3" />\par
+   </h:commandLink>\par
+</h:form>\par
+\cf0\f0\par
+\par
+Here, when "Page1" button is clicked:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 JSF will create a request with parameter pageId = 1\par
+{\pntext\f0 2.\tab}Then JSF will pass this parameter to managed property pageId of navigationController\par
+{\pntext\f0 3.\tab}Now navigationController.showPage() is called which will return view as page1 after checking the pageId\par
+{\pntext\f0 4.\tab}JSF will resolve the view name, page1 as page1.xhtml extension\par
+{\pntext\f0 5.\tab}Find the corresponding view file page1.xhtml in the current directory\par
+
+\pard\sl240\slmult1\par
+\b Resolving Navigation Based on from-action\par
+\b0 JSF provides navigation resolution option even if managed bean different methods returns the same view name.\par
+\par
+Look at the following code in a managed bean.\par
+\par
+\cf2\f4 public String processPage1() \{ \par
+   return "page"; \par
+\} \par
+public String processPage2() \{ \par
+   return "page"; \par
+\} \par
+\cf0\f0\par
+To resolve views, define the following navigation rules in faces-config.xml\par
+\par
+\cf2\f4 <navigation-rule> \par
+   <from-view-id>home.xhtml</from-view-id> \par
+   \par
+   <navigation-case> \par
+      <from-action>#\{navigationController.processPage1\}</from-action> \par
+      <from-outcome>page</from-outcome> \par
+      <to-view-id>page1.jsf</to-view-id> \par
+   </navigation-case> \par
+   \par
+   <navigation-case> \par
+      <from-action>#\{navigationController.processPage2\}</from-action> \par
+      <from-outcome>page</from-outcome> \par
+      <to-view-id>page2.jsf</to-view-id> \par
+   </navigation-case> \par
+\par
+</navigation-rule> \par
+\cf0\f0\par
+Here, when Page1 button is clicked:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 navigationController.processPage1() is called which will return view as page\par
+{\pntext\f0 2.\tab}JSF will resolve the view name, page1 as view name is page and from-action in faces-config is navigationController.processPage1\par
+{\pntext\f0 3.\tab}Find the corresponding view file page1.xhtml in the current directory\par
+
+\pard\sl240\slmult1\par
+\b Forward vs Redirect\par
+\b0 JSF by default performs a server page forward while navigating to another page and the URL of the application does not change.\par
+\par
+To enable the page redirection, append faces-redirect=true at the end of the view name.\par
+\par
+\cf2\f4 <h:form>\par
+   <h3>Forward</h3>\par
+   <h:commandButton action = "page1" value = "Page1" />\par
+   <h3>Redirect</h3>\par
+   <h:commandButton action = "page1?faces-redirect = true" value = "Page1" />\par
+</h:form>\par
+\cf0\f0\par
+\b More and examples\b0 :\par
+{{\field{\*\fldinst{HYPERLINK https://www.tutorialspoint.com/jsf/jsf_page_navigation.htm }}{\fldrslt{https://www.tutorialspoint.com/jsf/jsf_page_navigation.htm\ul0\cf0}}}}\f0\fs22\par
+\par
+\b\fs36 JSF - Basic Tags\par
+\b0\fs22 For these tags you need to use the following namespaces of URI in html node:\par
+\cf2\f4 <html \par
+   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
+   xmlns:h = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 " \par
+>\par
+\cf0\f0\par
+1\tab h:inputText\par
+Renders a HTML input of type="text", text box.\par
+\par
+2\tab h:inputSecret\par
+Renders a HTML input of type="password", text box.\par
+\par
+3\tab h:inputTextarea\par
+Renders a HTML textarea field.\par
+\par
+4\tab h:inputHidden\par
+Renders a HTML input of type="hidden".\par
+\par
+5\tab h:selectBooleanCheckbox\par
+Renders a single HTML check box.\par
+\par
+6\tab h:selectManyCheckbox\par
+Renders a group of HTML check boxes.\par
+\par
+7\tab h:selectOneRadio\par
+Renders a single HTML radio button.\par
+\par
+8\tab h:selectOneListbox\par
+Renders a HTML single list box.\par
+\par
+9\tab h:selectManyListbox\par
+Renders a HTML multiple list box.\par
+\par
+10\tab h:selectOneMenu\par
+Renders a HTML combo box.\par
+\par
+11\tab h:outputText\par
+Renders a HTML text.\par
+\par
+12\tab h:outputFormat\par
+Renders a HTML text. It accepts parameters.\par
+\par
+13\tab h:graphicImage\par
+Renders an image.\par
+\par
+14\tab h:outputStylesheet\par
+Includes a CSS style sheet in HTML output.\par
+\par
+15\tab h:outputScript\par
+Includes a script in HTML output.\par
+\par
+16\tab h:commandButton\par
+Renders a HTML input of type="submit" button.\par
+\par
+17\tab h:Link\par
+Renders a HTML anchor.\par
+\par
+18\tab h:commandLink\par
+Renders a HTML anchor.\par
+\par
+19\tab h:outputLink\par
+Renders a HTML anchor.\par
+\par
+20\tab h:panelGrid\par
+Renders an HTML Table in form of grid.\par
+\par
+21\tab h:message\par
+Renders message for a JSF UI Component.\par
+\par
+22\tab h:messages\par
+Renders all message for JSF UI Components.\par
+\par
+23\tab f:param\par
+Pass parameters to JSF UI Component.\par
+\par
+24\tab f:attribute\par
+Pass attribute to a JSF UI Component.\par
+\par
+25\tab f:setPropertyActionListener\par
+Sets value of a managed bean's property.\par
+\par
+\b\fs36 JSF Facelet Tags\par
+\b0\fs22 JSF provides special tags to create common layout for a web application called facelets tags. These tags provide flexibility to manage common parts of multiple pages at one place.\par
+\par
+For these tags, you need to use the following namespaces of URI in html node:\par
+\cf2\f4 <html  \par
+   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "  \par
+   xmlns:ui = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/facelets }}{\fldrslt{http://java.sun.com/jsf/facelets\ul0\cf0}}}}\f4\fs22 "  \par
+>\par
+\cf0\f0\par
+1\tab Templates\par
+We'll demonstrate how to use templates using the following tags\par
+\par
+\f4 <ui:insert>\par
+<ui:define>\par
+<ui:include>\par
+<ui:composition>\par
+\f0\par
+2\tab Parameters\par
+We'll demonstrate how to pass parameters to a template file using the following tag\par
+\par
+\f4 <ui:param>\par
+\f0\par
+3\tab Custom\par
+\par
+We'll demonstrate how to create custom tags\par
+\par
+4\tab Remove\par
+We'll demonstrate capability to remove JSF code from generated HTML page\par
+\par
+\b\fs32 JSF Convertor Tags\par
+\b0\fs22 JSF provides inbuilt convertors to convert its UI component's data to object used in a managed bean and vice versa. For example, these tags can convert a text into date object and can validate the format of input as well.\par
+\par
+For these tags, you need to use the following namespaces of URI in html node:\par
+\cf2\f4 <html \par
+   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
+   xmlns:f = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "  \par
+>\par
+\cf0\f0\par
+1\tab f:convertNumber\par
+Converts a String into a Number of desired format\par
+\par
+2\tab f:convertDateTime\par
+Converts a String into a Date of desired format\par
+\par
+3\tab Custom Convertor\par
+Creating a custom convertor\par
+\par
+\b\fs32 Validator Tags\b0\fs22\par
+\cf2\f4 <html \par
+   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
+   xmlns:f = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "  \par
+>\par
+\cf0\f0\par
+1\tab f:validateLength\par
+Validates the length of a string\par
+\par
+2\tab f:validateLongRange\par
+Validates the range of a numeric value\par
+\par
+3\tab f:validateDoubleRange\par
+Validates the range of a float value\par
+\par
+4\tab f:validateRegex\par
+Validates JSF component with a given regular expression\par
+\par
+5\tab Custom Validator\par
+Creates a custom validator\par
+\par
+\b\fs28 DataTable\par
+\b0\fs22 JSF provides a rich control named DataTable to render and format html tables. DataTable can iterate over a collection or array of values to display data. DataTable provides attributes to modify its data in an easy way.\par
+\par
+Required:\par
+\cf2\f4 <html \par
+   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "   \par
+   xmlns:h = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 ">\par
+</html>\par
+\cf0\f0\par
+1\tab Display DataTable\par
+How to display a dataTable\par
+\par
+2\tab Add data\par
+How to add a new row in a dataTable\par
+\par
+3\tab Edit data\par
+How to edit a row in a dataTable\par
+\par
+4\tab Delete data\par
+How to delete a row in dataTable\par
+\par
+5\tab Using DataModel\par
+Use DataModel to display row numbers in a dataTable\par
+\par
+\par
+\par
+\par
+@https://www.tutorialspoint.com/jsf/jsf_composite_components.htm\f1\par
+}
+ 
