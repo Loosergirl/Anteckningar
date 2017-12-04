@@ -1,7 +1,16 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil Calibri;}{\f3\fnil\fcharset0 Cambria Math;}{\f4\fnil\fcharset0 Consolas;}{\f5\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green176\blue80;\red0\green77\blue187;\red0\green0\blue255;\red165\green165\blue165;}
+{\colortbl ;\red0\green0\blue255;\red0\green176\blue80;\red0\green77\blue187;\red165\green165\blue165;}
 {\*\generator Riched20 10.0.16299}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
-\pard\sl240\slmult1\f0\fs22\lang29 JavaServer Faces (JSF) is a MVC web framework that simplifies the construction of User Interfaces (UI) for server-based applications using reusable UI components in a page. JSF provides a facility to connect UI widgets with data sources and to server-side event handlers. The JSF specification defines a set of standard UI components and provides an Application Programming Interface (API) for developing components. JSF enables the reuse and extension of the existing standard UI components.\par
+\pard\sl240\slmult1\f0\fs22\lang29 h\par
+{{\field{\*\fldinst{HYPERLINK https://docs.oracle.com/javaee/5/javaserverfaces/1.2/docs/tlddocs/h/tld-summary.html }}{\fldrslt{https://docs.oracle.com/javaee/5/javaserverfaces/1.2/docs/tlddocs/h/tld-summary.html\ul0\cf0}}}}\f0\fs22\par
+\par
+f\par
+{{\field{\*\fldinst{HYPERLINK https://docs.oracle.com/javaee/5/javaserverfaces/1.2/docs/tlddocs/f/tld-summary.html }}{\fldrslt{https://docs.oracle.com/javaee/5/javaserverfaces/1.2/docs/tlddocs/f/tld-summary.html\ul0\cf0}}}}\f0\fs22\par
+\par
+c\par
+{{\field{\*\fldinst{HYPERLINK https://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/c/tld-summary.html }}{\fldrslt{https://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/c/tld-summary.html\ul0\cf0}}}}\f0\fs22\par
+\par
+JavaServer Faces (JSF) is a MVC web framework that simplifies the construction of User Interfaces (UI) for server-based applications using reusable UI components in a page. JSF provides a facility to connect UI widgets with data sources and to server-side event handlers. The JSF specification defines a set of standard UI components and provides an Application Programming Interface (API) for developing components. JSF enables the reuse and extension of the existing standard UI components.\par
 \par
 JSF facilitates Web application development by \f1\u8722?\f0\par
 
@@ -22,7 +31,7 @@ JSF facilitates Web application development by \f1\u8722?\f0\par
 
 \pard\sl240\slmult1\par
 
-\pard\li720\sl240\slmult1\cf1 // Varf\'f6r anv\'e4nda JSF? Varf\'f6r inte bara HTML? //\par
+\pard\li720\sl240\slmult1\cf2 // Varf\'f6r anv\'e4nda JSF? Varf\'f6r inte bara HTML? //\par
 
 \pard\sl240\slmult1\cf0\par
 JSF is based on the \b MVC \b0 pattern:\par
@@ -96,8 +105,7 @@ During\f3  \f0 this\f3  \f0 phase\f3 , \f0 JSF\f3  \f0 builds\f3  \f0 the\f3  \f
 \par
 If\f3  \f0 any\f3  \f0 decode\f3  \f0 methods\f3  \f0 event\f3  \f0 listeners\f3  \f0 called\f3  \f0 renderResponse\f3  \f0 on\f3  \f0 the\f3  \f0 current\f3  \f0 FacesContext\f3  \f0 instance\f3 , \f0 the\f3  \f0 JSF\f3  \f0 moves\f3  \f0 to\f3  \f0 the\f3  \f0 render\f3  \f0 response\f3  \f0 phase\f3 .\f0\par
 \par
-
-\pard\sl240\slmult1\b Phase\f3  \f0 3\f3 : \f0 Process\f3  \f0 validation\par
+\b Phase\f3  \f0 3\f3 : \f0 Process\f3  \f0 validation\par
 \b0 During\f3  \f0 this\f3  \f0 phase\f3 , \f0 JSF\f3  \f0 processes\f3  \f0 all\f3  \f0 validators\f3  \f0 registered\f3  \f0 on\f3  \f0 the\f3  \f0 component\f3  \f0 tree\f3 . \f0 It\f3  \f0 examines\f3  \f0 the\f3  \f0 component\f3  \f0 attribute\f3  \f0 rules\f3  \f0 for\f3  \f0 the\f3  \f0 validation\f3  \f0 and\f3  \f0 compares\f3  \f0 these\f3  \f0 rules\f3  \f0 to\f3  \f0 the\f3  \f0 local\f3  \f0 value\f3  \f0 stored\f3  \f0 for\f3  \f0 the\f3  \f0 component\f3 .\f0\par
 \par
 If\f3  \f0 the\f3  \f0 local\f3  \f0 value\f3  \f0 is\f3  \f0 invalid\f3 , \f0 JSF\f3  \f0 adds\f3  \f0 an\f3  \f0 error\f3  \f0 message\f3  \f0 to\f3  \f0 the\f3  \f0 FacesContext\f3  \f0 instance\f3 , \f0 and\f3  \f0 the\f3  \f0 life\f3  \f0 cycle\f3  \f0 advances\f3  \f0 to\f3  \f0 the\f3  \f0 render\f3  \f0 response\f3  \f0 phase\f3  \f0 and\f3  \f0 displays\f3  \f0 the\f3  \f0 same\f3  \f0 page\f3  \f0 again\f3  \f0 with\f3  \f0 the\f3  \f0 error\f3  \f0 message\f3 .\f0\par
@@ -126,7 +134,7 @@ Managed beans works as Model for UI component. Managed Bean can be accessed from
 In \b JSF 1.2\b0 , a managed bean had to register it in JSF configuration file such as facesconfig.xml. From \b JSF 2.0 \b0 onwards, managed beans can be easily registered using annotations. This approach keeps beans and its registration at one place hence it becomes easier to manage.\par
 \par
 \b Using XML Configuration\par
-\cf2\b0\f4 <managed-bean>\par
+\cf3\b0\f4 <managed-bean>\par
    <managed-bean-name>helloWorld</managed-bean-name>\par
    <managed-bean-class>com.tutorialspoint.test.HelloWorld</managed-bean-class>\par
    <managed-bean-scope>request</managed-bean-scope>\par
@@ -139,7 +147,7 @@ In \b JSF 1.2\b0 , a managed bean had to register it in JSF configuration file s
 </managed-bean> \par
 \cf0\f0\par
 \b Using Annotation\par
-\cf2\b0\f4 @ManagedBean(name = "helloWorld", eager = true)\par
+\cf3\b0\f4 @ManagedBean(name = "helloWorld", eager = true)\par
 @RequestScoped\par
 public class HelloWorld \{\par
    @ManagedProperty(value = "#\{message\}")\par
@@ -179,7 +187,7 @@ Navigation rules can contain conditions based on which the resulted view can be 
 \b Auto Navigation in JSF Page\par
 \b0 Set view name in action attribute of any JSF UI Component.\par
 \par
-\cf2\f4 <h:form>\par
+\cf3\f4 <h:form>\par
    <h3>Using JSF outcome</h3>\par
    <h:commandButton action = "page2" value = "Page2" />\par
 </h:form>\par
@@ -189,7 +197,7 @@ Here, when Page2 button is clicked, JSF will resolve the view name, page2 as pag
 \b Auto Navigation in Managed Bean\par
 \b0 Define a method in managed bean to return a view name.\par
 \par
-\cf2\f4 @ManagedBean(name = "navigationController", eager = true)\par
+\cf3\f4 @ManagedBean(name = "navigationController", eager = true)\par
 @RequestScoped\par
 \par
 public class NavigationController implements Serializable \{\par
@@ -200,7 +208,7 @@ public class NavigationController implements Serializable \{\par
 \cf0\f0\par
 Get view name in action attribute of any JSF UI Component using managed bean.\par
 \par
-\cf2\f4 <h:form> \par
+\cf3\f4 <h:form> \par
    <h3> Using Managed Bean</h3>  \par
    <h:commandButton action = "#\{navigationController.moveToPage1\}" \par
    value = "Page1" /glt; \par
@@ -211,10 +219,10 @@ Here, when Page1 button is clicked, JSF will resolve the view name, page1 as pag
 Conditional Navigation\par
 Using managed bean, we can very easily control the navigation. Look at the following code in a managed bean.\par
 \par
-\cf2\f4 @ManagedBean(name = "navigationController", eager = true)\par
+\cf3\f4 @ManagedBean(name = "navigationController", eager = true)\par
 @RequestScoped\par
 \cf0\f0\par
-\cf2\f4 public class NavigationController implements Serializable \{\par
+\cf3\f4 public class NavigationController implements Serializable \{\par
    //this managed property will read value from request parameter pageId\par
    @ManagedProperty(value = "#\{param.pageId\}")\par
    private String pageId;\par
@@ -223,7 +231,7 @@ Using managed bean, we can very easily control the navigation. Look at the follo
    //if pageId is 1 show page1.xhtml,\par
    //if pageId is 2 show page2.xhtml\par
    //else show home.xhtml\par
-\cf2    \par
+\cf3    \par
    public String showPage() \{\par
       if(pageId == null) \{\par
          return "home";\par
@@ -241,7 +249,7 @@ Using managed bean, we can very easily control the navigation. Look at the follo
 \cf0\f0\par
 Pass pageId as a request parameter in JSF UI Component.\par
 \par
-\cf2\f4 <h:form>\par
+\cf3\f4 <h:form>\par
    <h:commandLink action = "#\{navigationController.showPage\}" value = "Page1">\par
       <f:param name = "pageId" value = "1" />\par
    </h:commandLink>\par
@@ -270,7 +278,7 @@ Here, when "Page1" button is clicked:\par
 \par
 Look at the following code in a managed bean.\par
 \par
-\cf2\f4 public String processPage1() \{ \par
+\cf3\f4 public String processPage1() \{ \par
    return "page"; \par
 \} \par
 public String processPage2() \{ \par
@@ -279,7 +287,7 @@ public String processPage2() \{ \par
 \cf0\f0\par
 To resolve views, define the following navigation rules in faces-config.xml\par
 \par
-\cf2\f4 <navigation-rule> \par
+\cf3\f4 <navigation-rule> \par
    <from-view-id>home.xhtml</from-view-id> \par
    \par
    <navigation-case> \par
@@ -310,7 +318,7 @@ Here, when Page1 button is clicked:\par
 \par
 To enable the page redirection, append faces-redirect=true at the end of the view name.\par
 \par
-\cf2\f4 <h:form>\par
+\cf3\f4 <h:form>\par
    <h3>Forward</h3>\par
    <h:commandButton action = "page1" value = "Page1" />\par
    <h3>Redirect</h3>\par
@@ -322,9 +330,9 @@ To enable the page redirection, append faces-redirect=true at the end of the vie
 \par
 \b\fs36 JSF - Basic Tags\par
 \b0\fs22 For these tags you need to use the following namespaces of URI in html node:\par
-\cf2\f4 <html \par
-   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
-   xmlns:h = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 " \par
+\cf3\f4 <html \par
+   xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
+   xmlns:h = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 " \par
 >\par
 \cf0\f0\par
 1\tab h:inputText\par
@@ -406,9 +414,9 @@ Sets value of a managed bean's property.\par
 \b0\fs22 JSF provides special tags to create common layout for a web application called facelets tags. These tags provide flexibility to manage common parts of multiple pages at one place.\par
 \par
 For these tags, you need to use the following namespaces of URI in html node:\par
-\cf2\f4 <html  \par
-   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "  \par
-   xmlns:ui = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/facelets }}{\fldrslt{http://java.sun.com/jsf/facelets\ul0\cf0}}}}\f4\fs22 "  \par
+\cf3\f4 <html  \par
+   xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "  \par
+   xmlns:ui = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/facelets }}{\fldrslt{http://java.sun.com/jsf/facelets\ul0\cf0}}}}\f4\fs22 "  \par
 >\par
 \cf0\f0\par
 1\tab Templates\par
@@ -435,9 +443,9 @@ We'll demonstrate capability to remove JSF code from generated HTML page\par
 \b0\fs22 JSF provides inbuilt convertors to convert its UI component's data to object used in a managed bean and vice versa. For example, these tags can convert a text into date object and can validate the format of input as well.\par
 \par
 For these tags, you need to use the following namespaces of URI in html node:\par
-\cf2\f4 <html \par
-   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
-   xmlns:f = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "  \par
+\cf3\f4 <html \par
+   xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
+   xmlns:f = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "  \par
 >\par
 \cf0\f0\par
 1\tab f:convertNumber\par
@@ -450,9 +458,9 @@ Converts a String into a Date of desired format\par
 Creating a custom convertor\par
 \par
 \b\fs32 Validator Tags\b0\fs22\par
-\cf2\f4 <html \par
-   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
-   xmlns:f = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "  \par
+\cf3\f4 <html \par
+   xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 " \par
+   xmlns:f = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "  \par
 >\par
 \cf0\f0\par
 1\tab f:validateLength\par
@@ -474,9 +482,9 @@ Creates a custom validator\par
 \b0\fs22 JSF provides a rich control named DataTable to render and format html tables. DataTable can iterate over a collection or array of values to display data. DataTable provides attributes to modify its data in an easy way.\par
 \par
 Required:\par
-\cf2\f4 <html \par
-   xmlns = "{{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "   \par
-   xmlns:h = "{{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 ">\par
+\cf3\f4 <html \par
+   xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "   \par
+   xmlns:h = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 ">\par
 </html>\par
 \cf0\f0\par
 1\tab Display DataTable\par
@@ -494,9 +502,177 @@ How to delete a row in dataTable\par
 5\tab Using DataModel\par
 Use DataModel to display row numbers in a dataTable\par
 \par
+\b\fs36 Composite Components\par
+\b0\fs22 Defining a custom component in JSF is a two-step process.\par
+\par
+\b 1a\b0\par
+Create a resources folder.\par
+\par
+Create a xhtml file in resources folder with a composite namespace.\par
+\par
+Use composite namespace in html header.\par
+\par
+\cf3\f4 <html xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "   \par
+   xmlns:h = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 "\par
+   xmlns:f = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/core }}{\fldrslt{http://java.sun.com/jsf/core\ul0\cf0}}}}\f4\fs22 "\par
+   xmlns:composite = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/composite }}{\fldrslt{http://java.sun.com/jsf/composite\ul0\cf0}}}}\f4\fs22 "\par
+   >\par
+...\par
+</html>\par
+\cf0\f0\par
+\b 1b\b0\tab\par
+Use composite tags composite:interface, composite:attribute and composite:implementation, to define content of the composite component. Use cc.attrs in composite:implementation to get variable defined using composite:attribute in composite:interface.\par
+\par
+1\tab\par
+composite:interface\par
+\par
+Declares configurable values to be used in composite:implementation.\par
+\par
+2\tab\par
+composite:attribute\par
+\par
+Configuration values are declared using this tag.\par
+\par
+3\tab\par
+composite:implementation\par
+\par
+Declares JSF component. Can access the configurable values defined in composite:interface using #\{cc.attrs.attribute-name\} expression.\par
+\par
+\cf3\f4 <composite:interface>\par
+   <composite:attribute name = "usernameLabel" />\par
+   <composite:attribute name = "usernameValue" />\par
+</composite:interface>\par
+\par
+<composite:implementation>\par
+<h:form>\par
+   #\{cc.attrs.usernameLabel\} : \par
+   <h:inputText id = "username" value = "#\{cc.attrs.usernameValue\}" />\par
+</h:form>\par
+\cf0\f0\par
+\par
+\b 2a\b0\tab Create a xhtml file and use custom component's namespace. Namespace will the {{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/<folder-name> }}{\fldrslt{http://java.sun.com/jsf/<folder-name>\ul0\cf0}}}}\f0\fs22  where folder-name is folder in resources directory containing the custom component\par
+\par
+\cf3\f4 <html xmlns = "{\cf0{\field{\*\fldinst{HYPERLINK http://www.w3.org/1999/xhtml }}{\fldrslt{http://www.w3.org/1999/xhtml\ul0\cf0}}}}\f4\fs22 "   \par
+   xmlns:h = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/html }}{\fldrslt{http://java.sun.com/jsf/html\ul0\cf0}}}}\f4\fs22 "\par
+   xmlns:ui = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/facelets }}{\fldrslt{http://java.sun.com/jsf/facelets\ul0\cf0}}}}\f4\fs22 ">\par
+   xmlns:tp = "{\cf0{\field{\*\fldinst{HYPERLINK http://java.sun.com/jsf/composite/tutorialspoint }}{\fldrslt{http://java.sun.com/jsf/composite/tutorialspoint\ul0\cf0}}}}\f4\fs22 ">\par
+\cf0\f0\par
+\b 2b\b0\tab Use the custom component as normal JSF tags (here: loginComponent)\par
+\par
+\cf3\f4 <h:form>\par
+   <tp:loginComponent \par
+      usernameLabel = "Enter User Name: " \par
+      usernameValue = "#\{userData.name\}" />\par
+</h:form>\par
+\cf0\f0\par
+\b\fs36 Ajax\b0\fs22\par
+\cf3\f4 <f:ajax execute = "input-component-name" render = "output-component-name" />\par
+\cf0\f0\par
+\b Tag Attributes\par
+\b0 1\tab\par
+disabled\par
+\par
+If true, the Ajax behavior will be applied to any parent or child components. If false, the Ajax behavior will be disabled.\par
+\par
+2\tab\par
+Event\par
+\par
+The event that will invoke Ajax requests, for example "click", "change", "blur", "keypress", etc.\par
+\par
+3\tab\par
+Execute\par
+\par
+A space-separated list of IDs for components that should be included in the Ajax request.\par
+\par
+4\tab\par
+Immediate\par
+\par
+If "true" behavior events generated from this behavior are broadcast during Apply Request Values phase. Otherwise, the events will be broadcast during Invoke Applications phase.\par
+\par
+5\tab\par
+Listener\par
+\par
+An EL expression for a method in a backing bean to be called during the Ajax request.\par
+\par
+6\tab\par
+Onerror\par
+\par
+The name of a JavaScript callback function that will be invoked if there is an error during the Ajax request.\par
+\par
+7\tab\par
+Onevent\par
+\par
+The name of a JavaScript callback function that will be invoked to handle UI events.\par
+\par
+8\tab\par
+Render\par
+\par
+A space-separated list of IDs for components that will be updated after an Ajax request.\par
+\par
+\b\fs36 Event Handling\par
+\b0\fs22 When a user clicks a JSF button or link or changes any value in the text field, JSF UI component fires an event, which will be handled by the application code. To handle such an event, an event handler is to be registered in the application code or managed bean.\par
+\par
+When a UI component checks that a user event has occured, it creates an instance of the corresponding event class and adds it to an event list. Then, Component fires the event, i.e., checks the list of listeners for that event and calls the event notification method on each listener or handler.\par
+\par
+JSF also provide system level event handlers, which can be used to perform some tasks when the application starts or is stopping.\par
+\par
+1\tab valueChangeListener\par
+Value change events get fired when the user make changes in input components.\par
+\par
+2\tab actionListener\par
+Action events get fired when the user clicks a button or link component.\par
+\par
+3\tab Application Events\par
+Events firing during JSF lifecycle: PostConstructApplicationEvent, PreDestroyApplicationEvent , PreRenderViewEvent.\par
+\par
+\b\i See also {\b0\i0{\field{\*\fldinst{HYPERLINK https://www.tutorialspoint.com/jsf/jsf_event_handling.htm }}{\fldrslt{https://www.tutorialspoint.com/jsf/jsf_event_handling.htm\ul0\cf0}}}}\b0\i0\f0\fs22\par
+\par
+\b\fs32 Expression Language\par
+\b0\fs22 JSF provides a rich expression language. We can write normal operations using #\{operation-expression\} notation.\par
+\par
+Example, in *.xhtml:\par
+\cf3\f4 <h:outputText value = "#\{userData.createTime\}"/>\par
+\cf0\f0\par
+\b\fs32 Internationalization\par
+\b0\fs22 Internationalization is a technique in which status messages, GUI component labels, currency, date are not hardcoded in the program. Instead, they are stored outside the source code in resource bundles and retrieved dynamically. JSF provides a very convenient way to handle resource bundle.\par
+\par
+\b Step 1\b0 : Define properties files\par
+Create properties file for each locale. Name should be in <file-name>_<locale>.properties format.\par
+\par
+Default locale can be omitted in file name.\par
+\par
+Example:\par
+\b messages.properties\b0\par
+greeting = Hello World!\par
+\par
+\b messages_fr.properties\par
+\b0 greeting = Bonjour tout le monde!\par
 \par
 \par
+\b Step 2\b0 : Update faces-config.xml\par
 \par
-@https://www.tutorialspoint.com/jsf/jsf_composite_components.htm\f1\par
+\b faces-config.xml\par
+\cf3\b0\f4 <application>\par
+   <locale-config>\par
+      <default-locale>en</default-locale>\par
+      <supported-locale>fr</supported-locale>\par
+   </locale-config>\par
+   \par
+   <resource-bundle>\par
+      <base-name>com.tutorialspoint.messages</base-name>\par
+      <var>msg</var>\par
+   </resource-bundle>\par
+</application>\par
+\cf0\f0\par
+\b Step 3\b0 : Use resource-bundle var\par
+\par
+\b home.xhtml\par
+\cf3\b0\f4 <h:outputText value = "#\{msg['greeting']\}" />\par
+\cf0\f0\par
+\par
+\b\fs28 Links\b0\fs22\par
+{{\field{\*\fldinst{HYPERLINK http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html }}{\fldrslt{http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html\ul0\cf0}}}}\f0\fs22\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://docs.oracle.com/javase/tutorial/index.html }}{\fldrslt{https://docs.oracle.com/javase/tutorial/index.html\ul0\cf0}}}}\f0\fs22\par
 }
  
