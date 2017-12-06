@@ -1,0 +1,126 @@
+   <navigation-rule>
+      <from-view-id>adminmenu.xhtml</from-view-id>
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processCafunctions}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/cafunctions.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processEditcertificateprofiles}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/editcertificateprofiles/editcertificateprofiles.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processCertificationauthorities}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/editcas/editcas.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processCryptotokens}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/cryptotoken/cryptotokens.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processEditpublishers}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/editpublishers/editpublishers.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processEditvalidators}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processAddendentity}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ra/addendentity.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processEditendentityprofiles}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ra/editendentityprofiles/editendentityprofiles.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processListendentities}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ra/listendentities.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      <navigation-case>
+         <from-action>#{navigationController.processEdituserdatasources}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ra/edituserdatasources/edituserdatasources.jsp</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+      
+      <navigation-case>
+         <from-action>#{navigationController.processCaactivation}</from-action>
+         <from-outcome>page</from-outcome>
+         <to-view-id>/ca/caactivation.jsf</to-view-id>
+    <redirect include-view-params="true"></redirect>
+      </navigation-case>
+   </navigation-rule>

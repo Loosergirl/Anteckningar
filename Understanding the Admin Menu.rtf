@@ -1,0 +1,190 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Consolas;}{\f1\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\cf1\f0\fs22\lang29 @page import=""\cf0\f1\tab Imports variables and functions from outside which are used in this document.\par
+\par
+\b JavaBean\b0\tab\tab A standard. All properites are private, using getters/setters. There is a public no-argument constructor. Serializable is implemented. "Serializability of a class is enabled by the class implementing the java.io.Serializable interface. Classes that do not implement this interface will not have any of their state serialized or deserialized. All subtypes of a serializable class are themselves serializable. The serialization interface has no methods or fields and serves only to identify the semantics of being serializable." I.e. serializable objects can be written to streams. There is no syntactic difference between a JavaBean and another class -- a class defines a JavaBean if it follows the standards. There is a term for it because the standard allows libraries to programmatically do things with class instances you define in a predefined way. \par
+\par
+\cf1\f0 jsp:useBean\cf0\f1\tab\tab Used to locate or instantiate a bean class. \par
+\par
+\cf1\f0 final String\cf0\f1\tab A string that can't be modified after it has been created.\par
+\par
+\cf1\f0 GlobalConfiguration.java\cf0\f1\tab A class of Java code, containing configuration parameters. Version, file paths are defined here.\par
+\par
+\cf1\f0 ejbcawebbean.getBaseUrl()\cf0\f1\tab Function call from the bean.\par
+\par
+\cf1\f0 ejbcawebbean.isAuthorizedNoLogSilent(MAIN_RESOURCE)\cf0\f1\tab The current administrator is the parameter.\par
+\par
+---------------------------------------------------------------------------------------------------------------------------\par
+Scriptlets (those PHP-like <% %> things) are part of JSP which is deprecated since JSF 2.0 in favor of its successor Facelets (XHTML). Facelets doesn't support any alternative to scriptlets anymore. Java code belongs in fullworthy Java classes. Just prepare the model (some Javabean class) in the controller (a JSF backing bean class) and use taglibs and EL (Expression Language, those #\{\} things) to access the model in the view.\par
+\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\par
+\b In the head of template.xhtml\b0 :\par
+\cf1\f0         <title dir="ltr"><h:outputText value="#\{web.ejbcaTitle\}"/></title>\par
+        <link rel="stylesheet" type="text/css" href="#\{web.ejbcaWebBean.baseUrl\}/#\{web.ejbcaWebBean.cssFile\}"/>\par
+        <script type="text/javascript" src="#\{facesContext.externalContext.context.contextPath\}/ejbcajslib.js"></script>\par
+        <link rel="shortcut icon" type="image/png" href="#\{facesContext.externalContext.context.contextPath\}/images/favicon.png"/>\par
+\cf0\f1\par
+web. and facesContext.\par
+\par
+\b In upgrade.xhtml\b0 :\par
+\cf1\f0 <h1><h:outputText value="#\{web.text.UPGRADE_TITLE\}"/></h1>\par
+\cf0\f1\par
+\cf1\f0 <h:outputText styleClass="alert" rendered="#\{!upgradeBean.authorizedToUpgrade\}" value="#\{web.text.UPGRADE_ERR_UNAUTH\}"/>\par
+\cf0\f1\par
+\cf1\f0 <h:outputLabel styleClass="titles" value="#\{web.text.UPGRADE_VERSION_NEWEST\}"/>\par
+\cf0\f1\par
+\cf1\f0 value="#\{web.text.UPGRADE_STATUS_CLUSTER\}"\par
+\cf0\f1\par
+\cf1\f0 value="#\{logEvent.level\}"\par
+\cf0\f1\par
+\b certfificateValidity.xhtml\b0 :\par
+\cf1\f0 value="#\{web.ejbcaWebBean.getHelpReference('/adminguide.html#Common%20Key%20Validator%20Settings')\}"\cf0\f1\par
+\par
+\cf1\f0 value="#\{validatorBean.validator.notBeforeCondition\}"\par
+\cf0\f1\par
+\b faces-config.xml\par
+\cf1\b0\f0   <managed-bean>\par
+    <managed-bean-name>web</managed-bean-name>\par
+    <managed-bean-class>org.ejbca.ui.web.admin.configuration.EjbcaJSFHelper</managed-bean-class>\par
+    <managed-bean-scope>session</managed-bean-scope>\par
+  </managed-bean>\par
+\par
+\par
+\par
+  <navigation-rule>\par
+    <from-view-id>/ca/editvalidators/editvalidators.xhtml</from-view-id>\par
+    <navigation-case>\par
+      <from-action>#\{validatorsBean.actionEdit\}</from-action>\par
+      <from-outcome>edit</from-outcome>\par
+      <to-view-id>/ca/editvalidators/editvalidator.xhtml</to-view-id>\par
+      <redirect include-view-params="true"></redirect>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-outcome>view</from-outcome>\par
+      <to-view-id>/ca/editvalidators/editvalidator.xhtml</to-view-id>\par
+      <redirect include-view-params="true"></redirect>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-action>#\{validatorsBean.#\{validatorsBean.actionRenameConfirm\}\}</from-action>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-action>#\{validatorsBean.#\{validatorsBean.actionDeleteConfirm\}\}</from-action>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-action>#\{validatorsBean.#\{validatorsBean.actionAddFromTemplateConfirm\}\}</from-action>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+  </navigation-rule>\par
+  <navigation-rule>\par
+    <from-view-id>/ca/editvalidators/editvalidator.xhtml</from-view-id>\par
+    <navigation-case>\par
+      <from-outcome>done</from-outcome>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+  </navigation-rule>\par
+\cf0\f1\par
+\b\fs28 My Navigation Rule\b0\fs22 :\par
+\par
+   <navigation-rule>\par
+      <from-view-id>home.xhtml</from-view-id>\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /ca/caactivation.jsf\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /ca/cafunctions.jsp\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /ca/editcertificateprofiles/editcertificateprofiles.jsf\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /ca/editcas/editcas.jsp\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /cryptotoken/cryptotokens.jsf\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /ca/editpublishers/editpublishers.jsp\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+      <navigation-case>\par
+         <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+         <from-outcome>page</from-outcome>\par
+         <to-view-id>\cf1\f0 /ca/editvalidators/editvalidators.xhtml\cf0\f1 </to-view-id>\par
+\cf1\f0     <redirect include-view-params="true"></redirect>\cf0\f1\par
+      </navigation-case>\par
+\par
+   </navigation-rule>\par
+\par
+\par
+\cf1\f0   <navigation-rule>\par
+    <from-view-id>/adminmenu_noframe.xhtml</from-view-id>\par
+    <navigation-case>\par
+      <from-action>#\{navigationController.processCaactivation\}</from-action>\par
+      <from-outcome>page</from-outcome>\par
+      <to-view-id>/ca/caactivation.jsf</to-view-id>\par
+      <redirect include-view-params="true"></redirect>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-outcome>page</from-outcome>\par
+      <to-view-id>/ca/cafunctions.jsp</to-view-id>\par
+      <redirect include-view-params="true"></redirect>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-action></from-action>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-action>#\{validatorsBean.#\{validatorsBean.actionDeleteConfirm\}\}</from-action>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+    <navigation-case>\par
+      <from-action>#\{validatorsBean.#\{validatorsBean.actionAddFromTemplateConfirm\}\}</from-action>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+  </navigation-rule>\par
+  <navigation-rule>\par
+    <from-view-id>/ca/editvalidators/editvalidator.xhtml</from-view-id>\par
+    <navigation-case>\par
+      <from-outcome>done</from-outcome>\par
+      <to-view-id>/ca/editvalidators/editvalidators.xhtml</to-view-id>\par
+    </navigation-case>\par
+  </navigation-rule>\par
+\cf0\f1\par
+\par
+\par
+<navigation-rule>\par
+</navigation-rule>\par
+\par
+\par
+\par
+\par
+\par
+}
+ 
