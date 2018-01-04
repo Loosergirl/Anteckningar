@@ -1,0 +1,211 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green255\blue255;\red0\green77\blue187;\red165\green165\blue165;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs36\lang29 Testing\b0\fs22\par
+Vi vill uppt\'e4cka buggar i tid. Testning \'e4r ett av s\'e4tten att g\'f6ra det. Vi skriver kod som testar redan i f\'f6rv\'e4g. Vi k\'f6r olika testfall. Vi k\'f6r in v\'e4rden och kollar s\'e5 att det vi f\'e5r tillbaka det vi f\'f6rv\'e4ntar oss.\par
+\par
+\b Olika sorters buggar\b0 :\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 User interface - Fungerar UI:et som det ska? Har stilar applicerats?\par
+{\pntext\f2\'B7\tab}Business Logic - T.ex. vi vill ha en array men fick tillbaka en str\'e4ng.\par
+{\pntext\f2\'B7\tab}Tillg\'e4nglighet - T.ex. testa om det fungerar f\'f6r m\'e4nniskor med nedsatt syn.\par
+{\pntext\f2\'B7\tab}S\'e4kerhet - T.ex. l\'f6senordet visas p\'e5 profilsidan.\par
+{\pntext\f2\'B7\tab}Integration - Hur olika delar interagerar tillsammans, inte bara varje del var och f\'f6rsig.\par
+{\pntext\f2\'B7\tab}m.m.\par
+
+\pard\sl240\slmult1\par
+\b Hur f\'f6rhindrar vi buggar?\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 Statisk typing: T.ex. Flow eller TypeScript. D\'e5 f\'e5r vi definiera variablernas typer.\par
+{\pntext\f2\'B7\tab}Linting: T.ex. ESLint. \par
+{\pntext\f2\'B7\tab}Testing\par
+
+\pard\sl240\slmult1\par
+\b Tre huvudsakliga tester\b0 :\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 Unit Test: G\'e5r fort och \'e4r enkelt att s\'e4tta upp. Test f\'f6r sm\'e5 delar och komponenter.\par
+{\pntext\f2\'B7\tab}Integration Test: Integrerar komponenten med systemet som den ska? Fler saker testas samtidigt. \par
+{\pntext\f2\'B7\tab}End to End Test: Irriterande att g\'f6ra utan verktyg. Man testar inte funktionerna utan med en simulerad anv\'e4ndare. Man bryr sig inte om \i hur\i0  det fungerar utan bara att det g\'f6r det. T.ex. testa att logga in. Man vill bara g\'f6ra s\'e5dana h\'e4r test p\'e5 de viktigaste sakerna eftersom s\'e5dana h\'e4r test tar mer tid att g\'f6ra.\par
+
+\pard\sl240\slmult1\par
+Ju st\'f6rre test, desto l\'e4ngre tid tar de. Desto mer s\'e4llan ska man k\'f6ra dem.\par
+\par
+\b\fs28 Unit Testing\fs22\par
+\b0 Ta den minsta enheten av testbar kod. Isolera den och testa om den fungerar och returnerar det v\'e4rde du f\'f6rv\'e4ntar det. Koden f\'f6rv\'e4ntas returnera samma output av likadan input. F\'f6r att Unit Testing ska vara p\'e5litlig ska inte gamla states eller gammal kod ligga kvar. \par
+\par
+Funktioner ska bara g\'f6ra en sak var. D\'e5 blir det l\'e4ttare att testa.\par
+\par
+Det enda vi beh\'f6ver ha i alla testramverk \'e4r att se om n\'e5got \'e4r sant eller falskt. I Node finns inbygda testfunktioner i from av \highlight1\f1 assert\highlight0\f0 :\par
+\par
+\cf2\f1 function assert(value) \{\par
+    return value ? "Pass" : "Fail";\par
+\}\par
+\cf0\f0\par
+\par
+\cf2\f1 assert(add(1,1) === 2);\tab\tab\cf3 //Returns "Pass"\cf0\f0\par
+\par
+\par
+Med en bugg i koden kommer vi omedelbart f\'e5 veta det:\par
+\par
+\cf2\f1 function add(a, b) \{\par
+    return a + b + 1;\par
+\}\par
+\cf0\f0\par
+\par
+\cf2\f1 assert(add(1,1) === 2);\tab\tab\cf3 //Returns "Fail"\cf2\par
+\cf0\f0\par
+I det h\'e4r fallet f\'f6ljs inte l\'e4ngre det f\'f6rv\'e4ntade beteendet och implementationen \'e4r fel.\par
+\par
+\b\fs28 Testramverk\b0\fs22\par
+Det spelar ingen roll vilket testramverk man v\'e4ljer. Funktionaliteten \'e4r den samma d\'e4r true eller false returneras. \par
+\par
+\b Test framework\par
+\b0 Ramverk f\'f6r att k\'f6ra flera olika tester automatiserat.\par
+Standardisera testandet\par
+Inbygda funktioner f\'f6r de vanligaste senarion som ska testas. \par
+\par
+\b Jest\b0\par
+F\'f6ljer med Create React App och \'e4r integrerat med React. \par
+\par
+Grunden i varje test \'e4r en str\'e4ng som ger en callback:\par
+\par
+\cf2\f1 const sum = require('./sum');\par
+\par
+test('adds 1 + 2 to equal 3', () => \{\par
+    expect(sum(1, 2)).toBe(3);\par
+\});\par
+\cf0\f0\par
+Vi anv\'e4nder funktion expect f\'f6r att vi f\'f6rv\'e4ntar oss att n\'e5got ska returneras.\par
+\par
+Vissa andra ramverk anv\'e4nder en funktion som heter \cf2\f1 it\cf0\f0  ist\'e4llet f\'f6r \cf2 test\cf0 . \par
+\par
+\b Jasmine\b0\par
+Utg\'e5r ifr\'e5n att man ska testa vanlig JavaScript.\par
+\par
+\b Mocha\par
+\b0 Inbygt i andra ramverk. Inte s\'e5 mycket finns med och man f\'e5r sj\'e4lv best\'e4mma hur man ska skriva sin kod.\par
+\par
+\b Chai \b0\'e4r en variant av Mocha. \par
+\par
+Syntaxen skiljer sig \'e5t mellan de olika ramverken.\par
+\par
+\b\fs36 Jest\b0\fs22\par
+\b Installera Jest\b0 :\par
+Vi l\'e4gger in jest med npm. Jest dyker upp som en dependency i package.json.\par
+\par
+Jest \'e4r egentligen inst\'e4llt p\'e5 att k\'f6ra bara en g\'e5ng. Vill vi ha en watch-funktion kan man l\'e4gga till det under \cf2\f1 "script"\cf0\f0\par
+\par
+\cf2\f1 "scripts" : \{\par
+  "test" : "jest",\par
+  "test:watch" : "jest --watchAll"\par
+\}\par
+\cf0\f0\par
+F\'f6r att Jest ska uppt\'e4cka filer kan man d\'f6pa dem med ett speciellt m\'f6nster. Man d\'f6per mappen till \cf2\f1 __tests__ \cf0\f0 Man kan ocks\'e5 d\'f6pa filen till \cf2\f1 sum.test.js\cf0\f0  (f\'f6r filen \cf2\f1 sum.js\cf0\f0 ) men det \'e4r inte n\'f6dv\'e4ndligt.\par
+\par
+De olika verktygen brukar \'e4nd\'e5 k\'e4nna igen vad som \'e4r testfiler. Det som \'e4r testkod \'e4r egentligen JavaScript ocks\'e5.\par
+\par
+K\'f6r sedan kommandot \cf2\f1 npm test:watch\cf0\f0  i npm f\'f6r att testa. (H\'e4r hade Jesper problem eftersom paket saknades till projektet. Det fungerade f\'f6r vissa av oss men inte f\'f6r andra.)\par
+\par
+\b Skriv i testfilen\b0 :\par
+\cf2\f1 const add = require('../src/sum');\par
+\cf0\f0\par
+\cf2\f1 test('description', () =>  \{\par
+  \par
+\})\par
+\cf0\f0\par
+...N\'e4r filen som ska testas heter sum.js.\par
+\par
+Om testet \'e4r tomt kommer det returnera \cf2\f1 PASS\cf0\f0 . Det g\'f6r s\'e5 att v\'e5r kod kan k\'f6ras.\par
+\par
+\b TDD - Test Driven Development\par
+\b0 Vi kan jobba utefter TDD - Test Driven Development. D\'e5 testar man innan man ens utvecklar. Man skriver tester medan man kodar, redan fr\'e5n b\'f6rjan. F\'f6rst ska man g\'f6ra ett FAIL-test. Sedan ska man f\'e5 det att PASS:a. D\'e4refter f\'f6rb\'e4ttrar man testet (refaktorerar) och b\'f6rjar om.\par
+\par
+Allts\'e5:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li360\sl240\slmult1 Skriv test.\par
+{\pntext\f0 2.\tab}F\'e5 ett test att misslyckas.\par
+{\pntext\f0 3.\tab}F\'e5 test att lyckas med s\'e5 sm\'e5 medel som m\'f6jligt.\par
+{\pntext\f0 4.\tab}Refaktorera\par
+{\pntext\f0 5.\tab}F\'e5 test att passera.\par
+
+\pard\sl240\slmult1\par
+\b Exempel test\b0 :\par
+\cf2\f1 const add = require('../src/sum');\par
+\cf0\f0\par
+\cf2\f1 test('if no numbers, return 0', () =>  \{\par
+  expect(add()).toBe(0);\par
+\})\par
+\cf0\f0\par
+N\'e4r man kallar p\'e5 \cf2\f1 add()\cf0\f0  utan argument ska det vara 0. Vi vill returnera \i n\'e5gonting\i0  \'e4ven om det inte \'e4r det r\'e4tta. I det h\'e4r fallet kommer received vara undefined men expected 0. \par
+\par
+F\'f6r att f\'e5 testet att passera kan man skriva i sum.js:\par
+\par
+\cf2\f1 module.exports = add;\par
+\par
+function add() \{\par
+  return 0;\par
+\}\par
+\cf0\f0\par
+Sedan kan man l\'e4gga till fler testfall. Under den f\'f6rsta test-funktionen kan man skriva:\par
+\par
+\cf2\f1 test('should return one value', () => \{\par
+  const result = add(5);\par
+  expect(add(5)).toBe(5);\par
+\})\par
+\cf0\f0\par
+Skriver man s\'e5 h\'e4r kommer det f\'f6rsta testet passera men inte det andra. Vad kan vi g\'f6ra f\'f6r att l\'f6sa det? Vi g\'e5r tillbaka till sum.js:\par
+\par
+\cf2\f1 module.exports = add;\par
+\par
+function add(number = 0) \{\par
+  return number;\par
+\}\par
+\cf0\f0\par
+Vi forts\'e4tter. I testfilen:\par
+\par
+\cf2\f1 test('should add more numbers', () => \{\par
+  expect(add(5,5)).toEqual(10);\par
+\})\par
+\cf0\f0\par
+Med nummer \'e4r \cf2\f1 toBe\cf0\f0  och \cf2\f1 toEqual\cf0\f0  samma sak. Med objekt kommer \cf2\f1 toBe\cf0\f0  returnera false om det \'e4r olika objekt \'e4ven om de har samma inneh\'e5ll.\par
+\par
+I sum.js:\par
+\par
+\cf2\f1 module.exports = add;\par
+\par
+function add(number = 0, number2 = 0) \{\par
+  return number + number2;\par
+\}\par
+\cf0\f0\par
+Det g\'e4ller att se till att alla tidigare test fortfarande kan k\'f6ras n\'e4r man l\'e4gger till mer funktionalitet.\par
+\par
+Tesftfilen:\par
+\par
+\cf2\f1 test('should add even more numbers!!!!', () => \{\par
+    expect(add(5,5,5)).toBe(15);\par
+\})\par
+\cf0\f0\par
+Det finns \'e4ven toBeNull, toBeUndefined, toBeGreaterThan, toContain, etc. Jest har bra dokumentation \'f6ver det. Se Using Matches under Jests introduktion.\par
+\par
+F\'f6r att passa med testet i testfilen kan man \'e4ndra i sum.js:\par
+\par
+\cf2\f1 module.exports = add;\par
+\par
+function add(...numbers) \{\par
+  return numbers.reduce((a, b) => a + b, 0);\par
+\}\par
+\cf0\f0\par
+Det \'e4r det h\'e4r som \'e4r enhetstest.\par
+\par
+Man kan skriva fler \cf2\f1 expect\cf0\f0 -statements i samma test. Det \'e4r d\'e4remot b\'e4ttre att skapa nya test.\par
+\par
+N\'e4sta g\'e5ng ska vi g\'f6ra fejkad funktionalitet. S\'e5 att det \'e4r mocks som testas.\par
+\par
+\b\fs28\'d6vning: Skapa unit tests\par
+{\b0\fs22{\field{\*\fldinst{HYPERLINK https://github.com/FEND16/unit-test-exercise }}{\fldrslt{https://github.com/FEND16/unit-test-exercise\ul0\cf0}}}}\b0\f0\fs22\par
+\par
+\cf2\f1 beforeEach\cf0\f0  \'e4r kod som k\'f6rs innan varje test. Har man n\'e5got man vill k\'f6ra innan kan man l\'e4gga in det d\'e4r; annars kan man l\'e5ta det vara.\par
+}
+ 
