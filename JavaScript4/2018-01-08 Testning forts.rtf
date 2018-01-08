@@ -1,0 +1,274 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;\red0\green77\blue187;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29 Idag ska vi g\'e5 igenom lite async. Vi fokuserar endast p\'e5 hur man g\'f6r det i Jest. N\'e4sta onsdag g\'e5r vi igenom React tillsammans med async.\par
+\par
+Ladda ned f\'f6ljande repo och installera: \par
+{{\field{\*\fldinst{HYPERLINK https://github.com/FEND16/jest-mock-exercise }}{\fldrslt{https://github.com/FEND16/jest-mock-exercise\ul0\cf0}}}}\f0\fs22\par
+\par
+Finns \'e4ven l\'e4nkat via Studentportalen.\par
+\par
+Det viktiga \'e4r att man har det installerat.\par
+\par
+\b\fs32 Async Testing\par
+\b0\fs22 Vi har ganska mycket som inte \'e4r enligt samma struktur som vi lagt upp koden. N\'e4r det \'e4r async vet vi inte n\'e4r det blir klart. Det blir sv\'e5rare att testa \cf2\f1 fetch()\cf0\f0 , \cf2\f1 setTimeout\cf0\f0  och \cf2\f1 $.ajax()\cf0\f0\par
+\par
+Det blir snart varierande respons, sv\'e5rt att \'e5terskapa vissa fel, och l\'e5ngsamt. Svar fr\'e5n API:n kan skilja sig fr\'e5n dag till dag. Det kan uppst\'e5 fel med anropet och vi f\'e5r bara ett fel tillbaka; ett s\'e5dant fel kan vara sv\'e5rt att \'e5terskapa i tester. Vi vill ha snabb feedback fr\'e5n testen. Om det tar f\'f6r l\'e5ng tid att skriva ett test b\'f6r man t\'e4nka om.\par
+\par
+Vi kan d\'e4remot fejka det. Vi g\'f6r fejkade scenarion och beteenden f\'f6r att testa en specifik sak. Vi kallar det mocks, fakes eller stubs; vilket ord som anv\'e4nds \'e4r mindre viktigt.\par
+\par
+Vi testar f\'f6r tre saker s\'e5 det blir tre testfall:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 H\'e4mta data fr\'e5n API\par
+{\pntext\f2\'B7\tab}Sortera data fr\'e5n API\par
+{\pntext\f2\'B7\tab}Append:a till DOM\par
+
+\pard\sl240\slmult1\par
+Att kunna append:a till DOM:en och sortera informationen beh\'f6ver bara data. Det beh\'f6ver inte komma fr\'e5n databasen.\par
+\par
+Hur man fejkar respons fr\'e5n servern:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 npm-paketet fech-mock eller liknande\par
+{\pntext\f2\'B7\tab}jest.mock\par
+
+\pard\sl240\slmult1\par
+Egentligen k\'f6rs de olika test-ramverken via Node. Vi har inte DOM:en eller local storage. De olika sakerna m\'e5ste l\'e4ggas till och fejkas. \par
+\par
+Som tur \'e4r har Jest inbyggd hantering av async. Det tar d\'e4remot lite tid eftersom man m\'e5ste v\'e4nta p\'e5 att informationen ska komma tillbaka.\par
+\par
+\cf2\f1 test('fetches data from actual server', () => \{\par
+  return fetchData(url)\par
+    .then(returnData => \{\par
+      expect(returnData).toBeDefined();\par
+  \})\par
+\})\par
+\cf0\f0\par
+Med async/await blir det snyggare:\par
+\cf2\f1 test('fetches data from actual server', async() => \{\par
+  const returnData = await fethData(url);\par
+  expect(returnData).toBeDefined();\par
+\})\par
+\cf0\f0\par
+\b\fs28 Vi kollar testfall med Jest\fs22\par
+\b0 Ladda ned repot som Jesper l\'e4nkat till (jest-mock-exercise). \'d6ppnar man upp det har vi mapparna \cf2\f1 src\cf0\f0  och \cf2\f1 _tests_\cf0\f0\par
+\par
+Titta i package.json. D\'e4r finns \cf2\f1 "test:serve"\cf0\f0  vilket st\'e5r f\'f6r att en server k\'f6rs ig\'e5ng. Det finns \'e4ven \cf2\f1 "test"\cf0\f0  och \cf2\f1 "test:watch"\cf0\f0  precis som f\'f6rra veckan.\par
+\par
+Vi har ocks\'e5 en del dependencies. De m\'e5ste finnas d\'e4r. Vi har \'e4ven en devDependency d\'e4r local storage mock:as.\par
+\par
+K\'f6r ig\'e5ng genom att skriva \cf2\f1 yarn test:serve\cf0\f0  eller motsvarande i r\'e4tt konsol.\par
+\par
+db.json \'e4r fejk-data som ska h\'e4mtas. \par
+\par
+asyncActions.js \'e4r filen d\'e4r async g\'f6rs.\par
+\par
+Ignorera asyncMockActions.js och domActions.js. filterActions.js \'e4r bara filer-funktioner. timerActions.js \'e4r ocks\'e5 async men inte fetch. Obs! Felskrivning i asyncMockActions; det ska vara \cf2\f1 asyncMockActions\cf0\f0  vid \cf2\f1 module exports\cf0\f0 .\par
+\par
+I domActions anv\'e4nds en fejkad DOM. Det kan vara lite skakigt. Det blir ocks\'e5 jobbigt eftersom vi m\'e5ste skapa \'e4ven HTML.\par
+\par
+Importera in fr\'e5n src-mappen i filerna i test-mappen f\'f6r att kunna k\'f6ra testen. Importera sedan in de olika testfilerna till asyncMockActions och kalla p\'e5 testen d\'e4r. \par
+\par
+Exempel p\'e5 test i filterActions.js:\par
+\par
+\cf2\f1 test('should filter content', () => \{\par
+  const data = [\par
+    \{\par
+      id: 1,\par
+      body: "hej"\par
+    \},\par
+    \{\par
+      id: 2,\par
+      body: "inte hej"\par
+    \}\par
+  ]\par
+  expect(filterActions.filterById(data, 1)).toHaveLength(1);\par
+\});\par
+\cf0\f0\par
+I det h\'e4r enhetstestet beh\'f6ver vi inte veta vilken data det \'e4r utan bara att den ska vara filtrerad. Pr\'f6va \'e4ven att g\'f6ra n\'e5got som definitivt kommer f\'e5 testet att misslyckas. H\'e4r,\par
+\cf2\f1 expect(filterActions.filterById(data, 1)).not.toHaveLength(1);\par
+\cf0\f0\par
+T\'e4nk till i f\'f6rv\'e4g vad som skulle kunna g\'e5 fel.\par
+\par
+\b Probleml\'f6sning\b0\par
+En del f\'e5r fel n\'e4r de f\'f6rs\'f6ker k\'f6ra testen. N\'e5got f\'f6rvirrande kan vara att man i yarn skriver \cf2\f1 yarn test:serve\cf0\f0  men med npm blir det \cf2\f1 npm run test:serve\cf0\f0 . Titta sedan i package.json. Om det inte fungerat kan man ta den l\'e5nga koden vid \cf2\f1 test:serve\cf0\f0  och k\'f6ra hela den raden i terminalen. F\'f6rst\'e5s m\'e5ste man k\'f6ra npm run test:watch eller yarn test:watch. Fungerar det inte kan man skriva \cf2\f1 npm i -g json-server\cf0\f0  f\'f6ljt av \cf2\f1 json-server --watch db.json --port 3005\cf0\f0 . Allts\'e5 man installerar json-server. Man kan testa att \'e4ndra porten men d\'e5 m\'e5ste man \'e4ndra i koden ocks\'e5.\par
+\par
+\b Problem\b0\par
+'.' is not recognized as an internal or external command, operable program of batch file.\par
+\par
+\b L\'f6sning\b0\par
+Installera:\par
+C:\\GitHub\\jest-mock-exercise>npm i -g json-server\par
+\par
+Starta:\par
+C:\\GitHub\\jest-mock-exercise>json-server db.json --port 3005\par
+\par
+db.json laddas!\par
+\par
+\'c4ndra inte n\'e5got i det Node-f\'f6nster som db.json laddats i.\par
+\par
+I filen asyncActions.js som ligger i _tests_-mappen, st\'e5r det ursprungligen\par
+\cf2\f1 const fetchMock = require('fetch-mock');\par
+\cf0\f0\par
+\'e4ndra det till \par
+\par
+\cf2\f1 const fetchMock = require('fetch-mock/es5/client');\par
+\cf0\f0\par
+Se \'e4ven: {{\field{\*\fldinst{HYPERLINK http://www.wheresrhys.co.uk/fetch-mock/troubleshooting }}{\fldrslt{http://www.wheresrhys.co.uk/fetch-mock/troubleshooting\ul0\cf0}}}}\f0\fs22\par
+\par
+"If your client-side code or tests do not use a loader that respects the browser field of package.json use require('fetch-mock/es5/client')."\par
+\par
+\b I asyncActionstest\par
+\cf2\b0\f1 test('should return response', () => \{\par
+  return asyncActions\par
+    .fetchData(asyncActions.url)\par
+    .then((returnData) => \{\par
+      expect(returnData).toBeDefined();\par
+    \})\par
+\});\par
+\cf0\f0\par
+H\'e4r kommer testet pass:a. Det \'e4r ett promise. Bara n\'e4r man f\'e5tt tillbaka informationen kan man kolla om det finns eller inte. Man kan anv\'e4nda \cf2\f1 console.log\cf0\f0  f\'f6r att se vad det \'e4r. Det man egentligen vill \'e4r d\'e4remot att anv\'e4nda \cf2\f1 expect\cf0\f0 . Pr\'f6va \'e4ven med \cf2\f1 .not\cf0\f0  framf\'f6r f\'f6r att se att det verkligen fungerar. Det g\'e5r att kolla \cf2\f1 .not\cf0\f0  samtidigt som det vanliga testet men oftast vill man ha tv\'e5 olika test eftersom det ena fallet inte ska g\'e5 igenom.\par
+\par
+Det g\'e5r snabbt nu eftersom API:et ligger p\'e5 datorn. I andra fall kan det ta l\'e4ngre tid att testa. Vi vill f\'f6rmodligen att det inte ska trigga ett API-anrop varje g\'e5ng vi sparar och d\'e5 ska testet inte k\'f6ras hela tiden. Man kan v\'e4lja att bara k\'f6ra en fil \'e5t g\'e5ngen genom att skriva olika kommandon f\'f6r de olika filerna. Man kan ocks\'e5 skriva \cf2\f1 test.skip\cf0\f0  ist\'e4llet f\'f6r \cf2\f1 test\cf0\f0  varvid testet hoppas \'f6ver. D\'e5 anropas det inte.\par
+\par
+\b fetch-mock\par
+\b0 Biblioteket fetch-mock kan anv\'e4ndas f\'f6r att fejka respons fr\'e5n en databas. Importera in det d\'e4r det ska anv\'e4ndas:\par
+\cf2\f1 const fetchMock = require('fetch-mock);\par
+\cf0\f0\par
+Ta sedan testet och \'e4ndra lite:\par
+\par
+\cf2\f1 test('should return fake response', () => \{\par
+  fetchMock.get(asyncActions.url, \{\par
+    id: 1,\par
+    body: "Hej"\par
+  \})\par
+  return asyncActions\par
+    .fetchData(asyncActions.url)\par
+    .then((returnData) => \{\par
+      expect(returnData).toBeDefined();\par
+    \})\par
+\});\par
+\cf0\f0\par
+D\'e5 kommer alla anrop till den h\'e4r url:en bara returnera exakt det som skrivs. D\'e5 slipper man kalla p\'e5 databasen och testet blir snabbare. T\'e4nk d\'e4remot p\'e5 att man inte testar det man ska s\'e5 man b\'f6r \'e4ven testa ett riktigt API-kall n\'e5gon g\'e5ng. Man kan testa funktionalitet och beteende men var datan kommer ifr\'e5n spelar inte s\'e5 stor roll.\par
+\par
+G\'f6r man en kopia av testet och k\'f6r det igen kommer man f\'e5 felmeddelande; man har ju redan k\'f6rt testet en g\'e5ng.\par
+\par
+\cf2\f1 fetchAndStore\cf0\f0  kan anv\'e4ndas ist\'e4llet f\'f6r \cf2\f1 fetchData\cf0\f0  f\'f6r att spara i local storage:\par
+\par
+\cf2\f1 test('should return response', () => \{\par
+  return asyncActions\par
+    .fetchAndStore(asyncActions.url)\par
+    .then((returnData) => \{\par
+      console.log(returnData);\par
+      expect(localStorage.setItem).toHaveBeenCalled();\par
+    \})\par
+\});\par
+\cf0\f0\par
+D\'e5 m\'e5ste man \'e4ndra till \cf2\f1 .toHaveBeenCalled\cf0\f0  eller \cf2\f1 .toHaveBeenCalledTimes(1)\cf0\f0  ocks\'e5.\par
+\par
+N\'e4sta lektion ska vi g\'e5 igenom hur man f\'e5r in det i React eller Vue; nu anv\'e4nder vi inte DOM:en.\par
+\par
+Man kan s\'e4tta fler GET-endpoints:\par
+\par
+\cf2\f1 fetchMock.get("https://hej.com/example", \{\})\par
+  return asyncActions\par
+    .fetchData(asyncActions.url)\par
+    .then((returnData) => \{\par
+      expect(returnData).toBeDefined();\par
+    \})\par
+\});\par
+\cf0\f0\par
+Man kan fejka ett beteende fr\'e5n en hel modul.\par
+\par
+Vi gjorde en identisk fil i form av asyncMockActions. Vi kan ers\'e4tta koden med det man skriver just nu:\par
+\par
+\cf2\f1 jest.mock('../src/asyncMockActions.js', () => (\{\par
+  fetchData: jest.fn()\par
+\}))\par
+\cf0\f0\par
+H\'e4r skapas en fejk-funktion, \cf2\f1 jest.fn()\cf0\f0 . Vi bryr oss inte om resten av koden.\par
+\par
+Efter det k\'f6r man testet:\par
+\par
+\cf2\f1 test('test jest.mock', () => \{\par
+  return asyncMockActions\par
+    .fetchData(asyncMockActions.url)\par
+    .then(returnData => \{\par
+      .console.log(returnData);\par
+    \})\par
+\})\par
+\cf0\f0\par
+Kommentera ut \cf2\f1 jest.mock\cf0\f0  f\'f6r att k\'f6ra som vanligt ist\'e4llet. D\'e5 f\'e5r man ut det som faktiskt h\'e4mtas. Vi kanske d\'e4remot vill g\'f6ra om det till ett promise:\par
+\par
+\cf2\f1 jest.mock('../src/asyncMockActions.js', () => (\{\par
+  fetchData: () => Promise.resolve("HAHA FAKE")\par
+\}))\par
+\cf0\f0\par
+Med fetch.mock har vi full frihet att ers\'e4tta all kod i modulen. \par
+\par
+\cf2\f1 fetch.mock\cf0\f0  eller \cf2\f1 jest.mock\cf0\f0  \'e4r s\'e4tten man kan fejka information fr\'e5n API:et. Det g\'e5r \'e4ven att g\'f6ra en fejk-modul fr\'e5n b\'f6rjan.\par
+\par
+\b timerActions\par
+\b0 I timerActions.js i src-mappen har vi Timeout. Importera filen till timerActions.js i test-mappen:\par
+\par
+\cf2\f1 const timerActions = require('../src/timerActions');\par
+\cf0\f0\par
+Alternativt kan man importera f\'f6r varje test som h\'e4r nedan:\par
+\par
+\cf2\f1 jest.useFakeTimers();\par
+\par
+test('timeout to have been called', () =>  \{\par
+  const timerActions = require('../src/timerActions');\par
+  timerActions.withTimeout();\par
+  expect(setTimeout).toHaveBeenCalled();\par
+  expect(setTimeout).toHaveBeenCalledTimes(1);\par
+\})\par
+\cf0\f0\par
+D\'e5 v\'e4ntar inte Jest p\'e5 att det ska k\'f6ras klart.\par
+\par
+Vi har inte f\'e5tt resultatet av det h\'e4r man vi kan se att det har kallats p\'e5.\par
+\par
+Gl\'f6m inte att testa testet genom att l\'e4gga in \cf2\f1 .not\cf0\f0  och k\'f6ra det en g\'e5ng.\par
+\par
+\cf2\f1 test('call all timeouts', () =>  \{\par
+  const timerActions = require('../src/timerActions');\par
+  const fakeCallback = jest.fn();\par
+  timerActions.withTimeout(fakeCallback);\par
+  expect(fakeCallback).toHaveBeenCalled();\par
+\})\par
+\cf0\f0\par
+H\'e4r ovan l\'e4gger vi in en fejk-funktion. Kollar vi bara om den kallats p\'e5 med \cf2\f1 toHaveBeenCalled()\f0  \cf0 kommer det inte fungera. Den v\'e4ntar inte p\'e5 att timeouten k\'f6rts. D\'e4rf\'f6r l\'e4gger vi in \cf2\f1 jest.runAllTimers()\cf0\f0  f\'f6r att snabbspola:\par
+\par
+\cf2\f1 test('call all timeouts', () =>  \{\par
+  const timerActions = require('../src/timerActions');\par
+  const fakeCallback = jest.fn();\par
+  timerActions.withTimeout(fakeCallback);\par
+  expect(fakeCallback).not.toHaveBeenCalled();\par
+  jest.runAllTimers();\par
+  expect(fakeCallback).toHaveBeenCalled();\par
+\})\par
+\cf0\f0\par
+Vi fejkar tiden som g\'e5tt. Dessutom vill vi inte att den ska ha blivit kallad p\'e5 innan tiden g\'e5tt. H\'e4r har vi tv\'e5 \cf2\f1 expect\cf0\f0  men det ska man oftast undvika.\par
+\par
+\cf2\f1 fetch.mock\cf0\f0  \'e4r l\'e4ttare att anv\'e4nda \'e4n \cf2\f1 jest.mock\cf0\f0  men det fungerar inte i alla fall.\par
+\par
+\b asyncActions\par
+\b0 Vi kan beh\'f6va reset:a saker. Efter varje test k\'f6r vi cleanup-metoder som g\'f6r att testen k\'f6rs i isolation av varandra.\par
+\par
+\cf2\f1 afterEach(() => \{\par
+  fetchMock.restore();\par
+  fetchMock.reset();\par
+\});\par
+\par
+afterAll(() => \{\par
+  \par
+\});\par
+\cf0\f0\par
+Man kan vilja reset:a efter\'e5t s\'e5 att det inte h\'e4mtas fr\'e5n den fejkade versionen.\par
+\par
+Jests hemsida har bra dokumentation. Det finns bra exempel p\'e5 hur man g\'f6r de olika sakerna. En del saker har Jesper d\'e4remot lagt till s\'e5 de finns inte med.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://facebook.github.io/jest/ }}{\fldrslt{https://facebook.github.io/jest/\ul0\cf0}}}}\f0\fs22\par
+\par
+\par
+}
+ 
