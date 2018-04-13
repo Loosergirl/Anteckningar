@@ -1,0 +1,255 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green77\blue187;\red155\green0\blue211;\red165\green165\blue165;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs28\lang29 Karma\b0\fs22\par
+A JavaScript command line tool used to spawn a web server to do tests on. Can be configured against a number of browsers to test on. \par
+\par
+\b\fs28 Jasmine\b0\fs22\par
+Behavior driven development framework for JavaScript. Most popular choice for testing AngularJS applications. Functions to help with structuring tests and making assertions, keeping tests well structured and documented.\par
+\par
+Group tests together with the \cf1\f1 describe\cf0\f0  function:\par
+\par
+\cf2\f1 describe\cf1 ("sorting list of users", function() \{\par
+\cf3   ...\par
+\cf1\});\par
+\cf0\f0\par
+Each individual test is defined within a call to the \cf1\f1 it\cf0\f0  function:\par
+\par
+\cf1\f1 describe('sorting the list of users', function() \{\par
+  \cf2 it\cf1 ('sorts in descending order by default', function()\par
+  \{\par
+\cf3     ..\par
+\cf1   \});\par
+\});\par
+\cf0\f0\par
+Provides matchers which let you make assertions:\par
+\par
+\cf1\f1 describe('sorting the list of users'), function() \{\par
+  it('sorts in descending order by default', function()\par
+  \{\par
+    var users = ['jack', 'igor', 'jeff'];\par
+    var sorted = sortUsers(users);\par
+    \cf2 expect(sorted).toEqual\cf1 (['jeff', 'jack', 'igor']);\par
+  \});\par
+\});\par
+\cf0\f0\par
+To use Jasmine with Karma, use the karma-jasmine test runner.\par
+\par
+\b\fs28 angular-mocks\par
+\b0\fs22 AngularJS provides the ngMock module, allowing the mocking of tests. This is used to inject and mock AngularJS services within unit tests. Also able to extend other modules so that they are synchronous. Having tests synchronously keeps them much cleaner and easier to work with. One of the most useful parts of ngMock is \cf1\f1 $httpBackend\cf0\f0 , which lets us mock XHR requests in tests, and return sample data instead.\par
+\par
+
+\pard\sl240\slmult1\qc *    *    *\par
+
+\pard\sl240\slmult1\par
+\b\fs28 Testing a Controller\par
+\b0\fs22 AngularJS separates logic from the view layer, making testing easy. In the example below, the controller provides \cf1\f1 $scope.grade\cf0\f0  which sets a property on the scope based on the length of the password.\par
+\par
+\cf1\f1 angular.module('app, [])\par
+.controller('PasswordController', function PasswordController($scope) \{\par
+  $scope.password = '';\par
+  $scope.grade = function() \{\par
+    var size = $scope.password.length;\par
+    if (size > 8) \{\par
+      $scope.strength = 'strong';\par
+    \} else if (size > 3 \{\par
+      $scope.strength = 'medium';\par
+    \} else \{\par
+      $scope.strength = 'weak';\par
+    \}\par
+  \};\par
+\});\par
+\cf0\f0\par
+Because controllers are not available in the global scope, we need to use \cf1\f1 angular.mock.inject\cf0\f0  to our controller first. The first steps is to use the \cf1\f1 module\cf0\f0  function, which is provided by angular-mocks. This loads the module it's given, so it is available in your tests. We pass this into \cf1\f1 beforeEach\cf0\f0 , which is a function Jasmine provides that lets us run code before each test. Then we can use \cf1\f1 inject\cf0\f0  to access \cf1\f1 $controller\cf0\f0 , the service that is responsible for instantiating controllers.\par
+\par
+\cf1\f1 describe('PasswordController', function() \{\par
+  beforeEach(\cf2 module\cf1 ('app'));\par
+\par
+  var $controller;\par
+\par
+  \cf2 beforeEach\cf1 (\cf2 inject\cf1 (function(_$controller_) \{\par
+\cf3     // The injector unwraps the underscores (_) from around the parameter names when matching\par
+\cf1     $controller = _$controller_;\par
+  \}));\par
+\par
+  describe('$scope.grade', function() \{\par
+    it('sets the strength to "strong" if the password length is >8 \par
+    chars', function() \{\par
+      var $scope = \{\};\par
+      var controller = $controller('PasswordController', \{ $scope: \par
+      $scope \};\par
+      $scope.password = 'longerthaneightchars';\par
+      $scope.grade();\par
+      expect($scope.strength).toEqual('strong');\par
+    \});\par
+    \par
+    it('sets the strength to "weak" if the password length <3 chars', \par
+    function() \{\par
+      var $scope = \{\}\par
+      var controller = $controller('PasswordController',\par
+      \{ $scope: $scope \}\};\par
+      $scope.password = 'a';\par
+      $scope.grade();\par
+      expect($scope.strength).toEqual('weak');\par
+    \});\par
+  \});\par
+\});\par
+\par
+\cf0\f0 By nesting \cf1\f1 describe\cf0\f0  calls and being descriptive when calling them with strings, the test is very clear. With two tests, both have to create the \cf1\f1 $scope\cf0\f0  variable and create the controller. With more and more tests, the duplication will get worse. Thankfully, Jasmine provides \cf1\f1 beforeEach\cf0\f0 , which lets us run a function before each individual test:\par
+\par
+\cf1\f1 describe('PasswordController', function() \{\par
+  beforeEach(module('app'));\par
+\par
+  var $controller;\par
+\par
+  beforeEach(inject(function(_$controller_) \{\par
+\cf3     // The injector unwraps the underscores (_) from around the parameter names when matching\par
+\cf1     $controller = _$controller_;\par
+  \}));\par
+\par
+  describe('$scope.grade', function() \{\par
+\cf2     var $scope = controller;\par
+    beforeEach(function() \{\par
+      $scope = \{\};\par
+      controller = $controller('PasswordController', \par
+      \{ $scope: $scope \});\par
+    \});\par
+\cf1\par
+    it('sets the strength to "strong" if the password length is >8 \par
+    chars', function() \{\par
+      $scope.password = 'longerthaneightchars';\par
+      $scope.grade();\par
+      expect($scope.strength).toEqual('strong');\par
+    \});\par
+    \par
+    it('sets the strength to "weak" if the password length <3 chars', \par
+    function() \{\par
+      $scope.password = 'a';\par
+      $scope.grade();\par
+      expect($scope.strength).toEqual('weak');\par
+    \});\par
+  \});\par
+\});\par
+\cf0\f0\par
+\b Other functions of this type provided by Jasmine\b0 :\par
+{{\field{\*\fldinst{HYPERLINK https://jasmine.github.io/1.3/introduction.html#section-Setup_and_Teardown }}{\fldrslt{https://jasmine.github.io/1.3/introduction.html#section-Setup_and_Teardown\ul0\cf0}}}}\f0\fs22\par
+\par
+\b\fs28 Testing Filters\par
+\b0\fs22 Example:\par
+\par
+\cf1\f1 myModule.filter('length', function() \{\par
+  return function(text) \{\par
+    return ('' + (text || '')).length;\par
+  \}\par
+\});\par
+\par
+describe('length filter', function() \{\par
+  var $filter;\par
+\par
+  beforeEach(inject(function(_$filter_) \{\par
+    $filter = _$filter_;\par
+  \}));\par
+\par
+  it('returns 0 when given null', function() \{\par
+    var length = $filter('length');\par
+    expect(length(null)).toEqual(0);\par
+  \});\par
+\par
+  it('returns the correct value when given a string of chars',\par
+  function() \{\par
+    var length = $filter('length');\par
+    expect(length('abc')).toEqual(3);\par
+  \});\par
+\});\par
+\cf0\f0\par
+\b\fs28 Testing Directives\par
+\b0\fs22 Directives in AngularJS are responsible for encapsulating complex functionality within custom HTML tags, attributes, classes or comments. Unit tests are very important for directives because the components you create within directives may be used throughout your application and in many different contexts.\par
+\par
+\b Simple HTML Element Directive\par
+\b0 Starting with an app with no dependencies:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+\cf0\f0\par
+Adding a directive:\par
+\par
+\cf1\f1 app.directive('aGreatEye', function() \{\par
+  return \{\par
+    restrict: 'E',\par
+    replace: true, \par
+    template: '<h1>lidless, wreathed in flame, \{\{ 1 + 1 \}\} times</h1>'\par
+  \};\par
+\});\par
+\cf0\f0\par
+This directive is used as a tag \cf1\f1 <a-great-eye></a-great-eye>\cf0\f0 . It replaces the entire tag with the template. We are going to write a jasmine unit test to verify this functionality. Note that the expression \cf1\f1\{\{1 + 1\}\}\cf0\f0  times will also be evaluated in the rendered content.\par
+\par
+\cf1\f1 describe('Unit testing great quotes', function() \{\par
+  var $compile,\par
+  $rootScope;\par
+\par
+\cf3   // Load the myApp module, which contains the directive\par
+\cf1   beforeEach(module('myApp'));\par
+\par
+
+\pard\li218\sl240\slmult1\cf3 /* Store references to $rootScope and $compile so they are available to all tests in this describe block */\par
+
+\pard\sl240\slmult1\cf1   beforeEach(inject(function(_$compile_, $rootScope_) \{\par
+
+\pard\li546\sl240\slmult1\cf3 /* The injector unwraps the underscores (_) from around the parameter names when matching */\par
+
+\pard\sl240\slmult1\cf1     $compile = _$compile_;\par
+    $rootScope = _$rootScope_;\par
+  \}));\par
+\par
+  it('Replaces the element with the appropriate content', function() \{\par
+\cf3     // Compile a piece of HTML containing the directive\par
+\cf1     var element = $compile("<a-great-eye></a-great-eye>")($rootScope);\par
+
+\pard\li437\sl240\slmult1\cf3 // fire all the watches, so the scope expression \{\{1 + 1 will be evaluated\par
+
+\pard\sl240\slmult1\cf1     $rootScope.digest();\par
+\cf3     // Check that the compiled element contains the templated content\par
+
+\pard\li437\sl240\slmult1\cf1 expect(element.html()).toContain("lidless, wreathed in flame, 2 times");\par
+
+\pard\sl240\slmult1   \});\par
+\});\par
+\cf0\f0\par
+We inject the $compile service and $rootScope before each jasmine test. The $compile service is used to render the aGreatEye directive. After rendering the directive we ensure that the directive has replaced the content and "lidless, wreathed in flame, 2 times" is present.\par
+\par
+\b Underscore notation\b0 : The use of the underscore notation (e.g.: \cf1\f1 _$rootScope_\cf0\f0 ) is a convention wide spread in AngularJS community to keep the variable names clean in your tests. That's why the \cf1\f1 $injector\cf0\f0  strips out the leading and the trailing underscores when matching the parameters. The underscore rule applies \i only\i0  if the name starts and ends with exactly one underscore, otherwise no replacing happens.\par
+\par
+\b\fs28 HTML\b0\fs22\par
+\cf1\f1 describe('Unit testing great quotes', function() \{\par
+  var $compile, \par
+      $rootScope;\par
+\par
+  // Load the app module\par
+  beforeEach(module('app'));\par
+  \par
+  /* Store references to $rootScope and $compile so they are available to all tests in this describe block */\par
+  beforeEach(inject(function(_$compile_, _$rootScope_)\{\par
+    $compile = _$compile_;\par
+\tab $rootScope = _$rootScope_;\par
+  \}));\par
+  \par
+  it('Replaces the element with the appropriate content', function()\{\par
+    var element = $compile("<a-great-eye></a-great-eye>")($rootScope);\par
+\tab $rootScope.$digest();\par
+\tab expect(element.html()).toContain("lidless, wreathed in flame, 2 times");\par
+  \});\par
+\});\par
+\cf0\f0\par
+Elements are accessible inside components.\par
+\par
+To access templates used by controllers, a plugin might be necessary. $templateCache might be useful.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://docs.angularjs.org/api/ng/service/$templateCache }}{\fldrslt{https://docs.angularjs.org/api/ng/service/$templateCache\ul0\cf0}}}}\f0\fs22\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 

@@ -1,0 +1,746 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red155\green0\blue211;\red0\green176\blue80;\red128\green158\blue194;\red255\green0\blue0;\red165\green165\blue165;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang29\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 ng-model\par
+\b0\fs22\par
+\b Validate User Input (ng-show)\par
+\b0 The ng-model directive can provide type validation for application data (number, email, required)\par
+\par
+\cf1\f1 <form ng-app="" name="myForm">\par
+
+\pard\li237\sl240\slmult1 Email:\par
+<input type="email" name="myAddress" \cf2 ng-model="text"\cf1 >\par
+<span \cf2 ng-show="myForm.myAddress.$error.email"\cf1 >Not a valid e-mail address</span>\par
+
+\pard\sl240\slmult1 </form>\par
+\cf0\f0\par
+In the above example, the span will be displayed only if the expression in the ng-show attribute returns true.\par
+\par
+\b Note\b0 : If the property in the ng-model attribute does not exist, AngularJS will create one for you.\par
+\par
+\b Application Status\par
+\b0 The ng-model directive can provide status for application data (invalid, dirty, touched, error):\par
+\par
+\cf1\f1 <form ng-app="" name="myForm" ng-init="myText" = 'post@myweb.com'">\par
+
+\pard\li284\sl240\slmult1 Email:\par
+<input type="email" name="myAddress" ng-model="myText" required>\par
+<h1>Status</h1>\par
+\{\{myForm.myAddress.$valid\}\}\par
+\{\{myForm.myAddress.$dirty\}\}\par
+\{\{myForm.myAddress.$touched\}\}\par
+
+\pard\sl240\slmult1 </form>\par
+\cf0\f0\par
+Valid, if true, means the value meets all criteria.\par
+Dirty, if true, means the value has been changed.\par
+Touched, if true, means the field has been in focus (but is no longer).\par
+\par
+\b CSS Classes\par
+\b0 The ng-model directive may provide CSS classes for HTML elements, depending on their status:\par
+\cf1\f1\par
+<style>\par
+\cf2 input.ng-invalid \cf1\{\par
+
+\pard\li284\sl240\slmult1 background-color: lightblue;\par
+
+\pard\sl240\slmult1\}\par
+</style>\par
+ \par
+<form ng-app="" name="myForm">\par
+
+\pard\li284\sl240\slmult1 Enter your name:\par
+<input name="myName" \cf2 ng-model\cf1 ="myText" required>\par
+
+\pard\sl240\slmult1 </form>\par
+\cf0\f0\par
+According to the status of the form field, the ng-model directive adds or removes the following classes:\par
+\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 ng-empty (view does not contain a value, or is deemed "empty")\par
+{\pntext\f2\'B7\tab}ng-not-empty (view contains a non-empty value)\par
+{\pntext\f2\'B7\tab}ng-touched (control has been blurred)\par
+{\pntext\f2\'B7\tab}ng-untouched (control hasn't been blurred)\par
+{\pntext\f2\'B7\tab}ng-valid (model is valid)\par
+{\pntext\f2\'B7\tab}ng-invalid (model is invalid)\par
+{\pntext\f2\'B7\tab}ng-dirty (control has been interacted with)\par
+{\pntext\f2\'B7\tab}ng-pending (any $asyncValidators are unfulfilled)\par
+{\pntext\f2\'B7\tab}ng-pristine (control hasn't been interacted with)\par
+
+\pard\sl240\slmult1\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Data Model\par
+\b0\fs24 The data model is a collection of data available for the application.\par
+\par
+\cf3 ME: Backend.\par
+\cf0\par
+\b Example\b0 :\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.firstname = "Maria";\par
+$scope.lastname = "Kilsved";\par
+
+\pard\sl240\slmult1\});\fs22\par
+\cf0\f0\par
+HTML View\par
+The HTML container where the AngularJS application is displayed, is called the view. The view has access to the model, where there are several ways of displaying model data in the view. You can use the ng-bind directive, which will bind the innerHTML of the element to the specified model property:\par
+\par
+\cf1\f1 <p ng-bind="firstname"></p>\cf0\f0\par
+\par
+or use the \cf1\f1\{\{\cf0\f0  and \cf1\f1\}\}\cf0\f0\par
+\par
+\b Two-way Binding\par
+\b0 Data binding in AngularJS is the synchronization between the model and the view. When the data in the model changes, the view reflects the change, and when the data in the view changes, the model is updated as well. This happens immediately and automatically, which makes sure that the model and the view are updated at all times.\par
+\par
+\b Controller\b0\par
+Because of the immediate synchronization of the model and the view, the controller can be completely separated from the view, and simply concentrate on the model data. THanks to the data binding in AngularJS, the view will reflect any changes made in the controller.\par
+\par
+Example:\par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="myCtrl">\par
+
+\pard\li284\sl240\slmult1 <h1 \cf2 ng-click="changeName()"\cf1 >\{\{firstname\}\}</h1>\par
+
+\pard\sl240\slmult1 </div>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.firstname = "Maria";\par
+\cf2 $scope.changeName = function()\cf1  \{\par
+
+\pard\li568\sl240\slmult1\cf2 $scope.firstname = "Nelly";\par
+
+\pard\li284\sl240\slmult1\}\par
+
+\pard\sl240\slmult1\cf1\});\par
+</script>\par
+\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 AngularJS Controllers\par
+\b0\fs22 A controller is a JavaScript Object, creted by a standard JavaScript object constructor.\par
+\par
+\cf3 ME: \f1 ng-controller\f0  ... put this around a page or a set of states. \par
+\cf0\par
+\b Example\b0 :\par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="myCtrl">\par
+\par
+First Name: <input type="text" ng-model="firstName"><br>\par
+Last Name: <input type="text" ng-model="lastName"><br>\par
+<br>\par
+Full Name: \{\{\cf4 fullname()\cf1\}\}\par
+\par
+</div>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.firstName = "Maria";\par
+$scope.lastName = "Kilsved";\par
+\cf4 $scope.fullName = function() \{\par
+return $scope.firstName + " " + $scope.lastName;\par
+\};\par
+
+\pard\sl240\slmult1\cf1\});\par
+</script>\par
+\cf0\f0\par
+AngularJS will invoke the controller with a $scope object. In AngularJS, $scope is the application object (the owner of application variables and functions). \par
+\par
+In the above example, the controller creates two properties (variables) in the scope (frirstName and lastName). The ng-model directives bind the input fields to the controller properties (firstName and lastName).\par
+\par
+The controller can also have methods (variables as functions). In the example above, a method was added later (\cf4 lighter blue\cf0 ).\par
+\par
+\b Controllers in External Files\par
+\b0 In larger applications, it is common to store controllers in external files. Simply copy the code between the <script> tags.\par
+\par
+Example of a controller file:\par
+\cf1\f1 angular.module('myApp', [].controller('namesCtrl', function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.names = [\par
+
+\pard\li568\sl240\slmult1\{name: 'Jani', country: 'Norway'\},\par
+\{name: 'Hege', country: 'Sweden'\},\par
+\{name:'Kai', country: 'Denmark'\}\par
+
+\pard\li284\sl240\slmult1 ];\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Scope\b0\fs22\par
+The scope is the binding part between the HTML (view) and the JavaScript (controller). The schole is an object with the available properties and methods. The scope is avalable for both the view and the controller. The $scope is passed as an argument when you make a controller.\par
+\par
+When adding properties to the $scope object in the controller, the view (HTML) gets access to these properties. In the view, you do not use the prefix $scope, you just refer to a propertyname, e.g. \cf1\f1\{\{carname\}\}\cf0\f0 .\par
+\par
+If we consider an AngularJS application to consist of View, which is the HTML; model, which is the data available for the current view; and controller, which is the JavaScript function that makes/changes/removes/controls the data. Then the scope is the model. The scope is a JavaScript object with properties and methods, which are available for both the view and the controller. If you make changes in the view, the model and the controller will be updated.\par
+\par
+It is important to know which scope you are dealing with, at any time. In largerr applications there can be sections in the HTML DOM which can only access certain scopes.\par
+\par
+\b Example\b0 :\par
+When dealing with the ng-repeat directive, each repetition has access to the current repetition object:\par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="myCtrl">\par
+\par
+<ul>\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in names">\{\{x\}\}</li>\par
+
+\pard\sl240\slmult1 </ul>\par
+</div>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.names = ["Emil", "Tobias", "Linus"];\par
+
+\pard\sl240\slmult1\});\par
+</script>\par
+\cf0\f0\par
+Each <li> element has access to the current repetition object, in this case a string, which is referred to by using x.\par
+\par
+\b Root Scope\par
+\b0 All applications have $rootScope which is the scope created on the HTML element that contains the ng-app directive. The rootScope is available in the entire application. If a variable has the same name in both the current scope and in the rootScope, the application uses the one in the current scope.\par
+\par
+\b Example\b0 :\par
+A variable named "color" exists both in the controller's scope and in the rootScope:\par
+\par
+\cf1\f1 <body ng-app="myApp">\par
+\par
+<p>The rootScope's favorite color:</p>\par
+<h1>\{\{color\}\}</h1>\par
+\par
+<div ng-controller="myCtrl">\par
+
+\pard\li284\sl240\slmult1 <p>The scope of the controller's favorite color:</p>\par
+<h1>\{\{\cf5 color\cf1\}\}</h1>\par
+
+\pard\sl240\slmult1 </div>\par
+\par
+<p>The rootScope's favorite color is still:</p>\par
+<h1>\{\{color\}\}</h1>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.run(function($rootScope) \{\par
+
+\pard\li284\sl240\slmult1 $rootScope.color = 'blue';\par
+
+\pard\sl240\slmult1\});\par
+app.controller('myCtrl', function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.color = "red";\par
+
+\pard\sl240\slmult1\});\par
+</script>\par
+</body>\par
+\cf0\f0\par
+I the above example, the controller's color variable does not overwrite the rootScope's color value.\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Filters\b0\fs22\par
+AngularJS provides filters to transform data:\par
+\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1\cf1\f1 currency\f0  \cf0 Format a number to a currency format ($ dollars by default).\par
+{\pntext\f2\'B7\tab}\cf1\f1 data\cf0\f0  Format a date to a specified format.\par
+{\pntext\f2\'B7\tab}\cf1\f1 filter\cf0\f0  Select a subset of items from an array.\par
+{\pntext\f2\'B7\tab}\cf1\f1 json\cf0\f0  Format an object to a JSON string.\par
+{\pntext\f2\'B7\tab}\cf1\f1 limitTo\cf0\f0  Limits an array or string into a specified number of elements or characters.\par
+{\pntext\f2\'B7\tab}\cf1\f1 lowercase\cf0\f0  Format a string to lower case.\par
+{\pntext\f2\'B7\tab}\cf1\f1 number\cf0\f0  Format a number to a string.\par
+{\pntext\f2\'B7\tab}\cf1\f1 orderBy\cf0\f0  Orders an array by an expression.\par
+{\pntext\f2\'B7\tab}\cf1\f1 uppercase\cf0\f0  Format a string to upper case.\par
+
+\pard\sl240\slmult1\par
+Filters can be added to expressions by using the pipe character |, followed by a filter.\par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="personCtrl">\par
+<p>The name is \{\{lastName | uppercase \}\}</p>\par
+</div>\par
+\cf0\f0\par
+\b Adding Filters to Directives\par
+\b0 The orderBy filter sorts an array:\par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="namesCtrl">\par
+\par
+<ul>\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in names | orderBy:'country'">\par
+
+\pard\li568\sl240\slmult1\{\{ x.name + ', ' + x.country \}\}\par
+
+\pard\li284\sl240\slmult1 </li>\par
+
+\pard\sl240\slmult1 </ul>\par
+\par
+</div>\par
+\cf0\f0\par
+\b The filter Filter\par
+\b0 The filter filter selects a subset of an array. The filter filter can only be used on arraus, and it returns an array containing matching items.\par
+\par
+Example: Return the names that contain the letter "i":\par
+\cf1\f1 <div ng-app="myApp" ng-controller="namesCtrl">\par
+\par
+<ul>\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in names | filter : 'i'">\par
+
+\pard\li568\sl240\slmult1\{\{ x \}\}\par
+
+\pard\li284\sl240\slmult1 </li>\par
+
+\pard\sl240\slmult1 </ul>\par
+</div>\par
+\cf0\f0\par
+\b Filter an Array Based on User Input\par
+\b0 By setting the ng-model directive on an input field, we can use the value of the input field as an expression in a filter. \par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="namesCtrl">\par
+\par
+<p>Type a letter in the input field:</p>\par
+\par
+<p><input type="text" ng-model="test"></p>\par
+\par
+<ul>\par
+  <li ng-repeat="x in names | filter:test">\par
+    \{\{ x \}\}\par
+  </li>\par
+</ul>\par
+\par
+</div>\par
+\par
+<script>\par
+angular.module('myApp', []).controller('namesCtrl', function($scope) \{\par
+    $scope.names = [\par
+        'Jani',\par
+        'Carl',\par
+        'Margareth',\par
+        'Hege',\par
+        'Joe',\par
+        'Gustav',\par
+        'Birgit',\par
+        'Mary',\par
+        'Kai'\par
+    ];\par
+\});\par
+</script>\par
+\par
+<p>The list will only consists of names matching the filter.</p>\par
+\cf0\f0\par
+\b Sort an Array Based on User Input\par
+\b0 By adding the ng-click directive to table headers, we can run a function that changes the sorting order of the array:\par
+\par
+\cf1\f1 <p>Click the table headers to change the sorting order:</p>\par
+\par
+<div ng-app="myApp" ng-controller="namesCtrl">\par
+\par
+<table border="1" width="100%">\par
+<tr>\par
+<th ng-click="orderByMe('name')">Name</th>\par
+<th ng-click="orderByMe('country')">Country</th>\par
+</tr>\par
+<tr ng-repeat="x in names | orderBy:myOrderBy">\par
+<td>\{\{x.name\}\}</td>\par
+<td>\{\{x.country\}\}</td>\par
+</tr>\par
+</table>\par
+\par
+</div>\par
+\par
+<script>\par
+angular.module('myApp', []).controller('namesCtrl', function($scope) \{\par
+    $scope.names = [\par
+        \{name:'Jani',country:'Norway'\},\par
+        \{name:'Carl',country:'Sweden'\},\par
+        \{name:'Margareth',country:'England'\},\par
+        \{name:'Hege',country:'Norway'\},\par
+        \{name:'Joe',country:'Denmark'\},\par
+        \{name:'Gustav',country:'Sweden'\},\par
+        \{name:'Birgit',country:'Denmark'\},\par
+        \{name:'Mary',country:'England'\},\par
+        \{name:'Kai',country:'Norway'\}\par
+        ];\par
+    $scope.orderByMe = function(x) \{\par
+        $scope.myOrderBy = x;\par
+    \}\par
+\});\par
+</script>\par
+\cf0\f0\par
+Custom Filters\par
+You can make your own filters by registering a new filter factory function with your module.\par
+\par
+Example\par
+Make a custom filter called "myFormat":\par
+\par
+\cf1\f1 <ul ng-app="myApp" ng-controller="namesCtrl">\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in names">\par
+
+\pard\li568\sl240\slmult1\{\{x | \cf2 myFormat\cf1\}\}\par
+
+\pard\li284\sl240\slmult1 </li>\par
+
+\pard\sl240\slmult1 </ul>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.filter('\cf2 myFormat\cf1 ', function() \{\par
+
+\pard\li284\sl240\slmult1 return function(x) \{\par
+
+\pard\li568\sl240\slmult1 var i, c, txt = "";\par
+for (i = 0; i < x.length; i++) \{\par
+
+\pard\li852\sl240\slmult1 c = x[i];\par
+if (i % 2 == 0) \{\par
+
+\pard\li1136\sl240\slmult1 c = c.toUpperCase();\par
+
+\pard\li852\sl240\slmult1\}\par
+txt += c;\par
+
+\pard\li568\sl240\slmult1\}\par
+return txt;\par
+
+\pard\li284\sl240\slmult1\};\par
+
+\pard\sl240\slmult1\});\par
+app.controller('namesCtrl', function($scope) \{\par
+$scope.names = ['Jani', 'Carl', 'Margareth', 'Hege', 'Joe', 'Gustav', 'Birgit', 'Mary', 'Kai'];\par
+\});\par
+</script>\par
+\cf0\f0\par
+In the above example, the myFormat filter will format every other character to uppercase.\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Services\b0\fs22\par
+You can make your own service, or use one of the many built-in services. A service is a function, or object, that is available for, and limited to, your AngularJS application. AngularJS has about 30 built-in services. One of them is the $location service.\par
+\par
+The $location service has methods which return information about the location of the current web page:\par
+\par
+\b Example\b0\par
+Use the $location service in a controller:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('customersCtrl', function($scope, $location) \{\par
+
+\pard\li284\sl240\slmult1 $scope.myUrl = $location.absUrl();\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+The $location service is passed into the controller as an argument. \b In order to use the service in the controller, it must be defined as a dependency\b0 .\par
+\par
+\b Why use Services?\par
+\b0 For many services, like the $location service, it seems like you could use objects that are already in the DOM, like the window.location object, and you could, but it would have some limitations, at least for your AngularJS application. AngularJS constantly supervises your application, and for it to handle changes and events properly, AngularJS prefers that you use the $location service instead of the window.location object.\par
+\par
+\b The $http Service\par
+\b0 The $http service is one of the most commonly used services in AngularJS applications. The serives makes a request to the server, and lets your application handle the response.\par
+\par
+Example:\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $http) \{\par
+
+\pard\li284\sl240\slmult1 $http.get("welcome.htm").then(function(response) \{\par
+
+\pard\li568\sl240\slmult1 $scope.myWelcome = response.data;\par
+
+\pard\li284\sl240\slmult1\});\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+\b The $timeout Service\par
+\b0 AngularJS' version of the window.setTimeout function:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $timeout) \{\par
+
+\pard\li284\sl240\slmult1 $scope.myHeader = "Hello World!";\par
+$timeout(function () \{\par
+
+\pard\li568\sl240\slmult1 $scope.myHeader = "How are you today?";\par
+
+\pard\li284\sl240\slmult1\}, 2000);\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+\b The $interval Service\par
+\b0 AngularJS' version of window.setInterval (do something at a regular interval). Example:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $timeout) \{\par
+
+\pard\li284\sl240\slmult1 $scope.theTime = new Date().toLocaleTimeString();\par
+$interval(function () \{\par
+
+\pard\li568\sl240\slmult1 $scope.theTime = new Date().toLocaleTimeString();\par
+
+\pard\li284\sl240\slmult1\}, 1000);\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+\b Create Your Own Service\par
+\b0 To create your own service, connect the service to the module. Example:\par
+\par
+\cf1\f1 app.service('heafy', function() \{\par
+
+\pard\li284\sl240\slmult1 this.myFunc = function (x) \{\par
+
+\pard\li568\sl240\slmult1 return x.toString(16);\par
+
+\pard\li284\sl240\slmult1\}\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+To use your custom made service, add it as a dependency when defining the controller:\par
+\par
+\cf1 app.controller('myCtrl', function($scope, hexafy) \{\par
+
+\pard\li284\sl240\slmult1 $scope.hex = hexafy.myFunc(255);\par
+
+\pard\sl240\slmult1\});\par
+\cf0\par
+\b Use a Custom Service Inside a Filter\par
+\b0 Once you have created a service, and connected it to your application, you can use the service in any controller, directive, filer, or even inside other services. To use the service inside a filter, add it as a dependency when defining the filter:\par
+\par
+\cf1\f1 app.filter('myFormat,['hexafy', function(hexafy) \{\par
+
+\pard\li284\sl240\slmult1 return function(x) \{\par
+
+\pard\li568\sl240\slmult1 return hexafy.myFunc(x);\par
+
+\pard\li284\sl240\slmult1\};\par
+
+\pard\sl240\slmult1\}]);\par
+\cf0\f0\par
+You can use the filter when displaying values from an object, or an array:\par
+\cf1\f1 <ul>\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in counts">\{\{x | myFormat\}\}</li>\par
+
+\pard\sl240\slmult1 </ul>\par
+\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 $http\par
+\b0\fs22\par
+\b Example\b0\par
+\cf1\f1 <div ng-app="myApp" ng-controller="myCtrl">\par
+<p>Today's welcome message is:</p>\par
+<h1>\{\{myWelcome\}\}</h1>\par
+</div>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $http)\par
+
+\pard\li237\sl240\slmult1 $http.get("welcome.htm")\par
+.then(function(response) \{\par
+
+\pard\li473\sl240\slmult1 $scope.myWelcome = response.data;\par
+
+\pard\li237\sl240\slmult1\});\par
+
+\pard\sl240\slmult1\});\par
+</script>\par
+\cf0\f0\par
+\b Methods\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1\cf1\f1 .delete()\par
+{\pntext\f2\'B7\tab}.get()\par
+{\pntext\f2\'B7\tab}.head()\par
+{\pntext\f2\'B7\tab}.jsonp()\par
+{\pntext\f2\'B7\tab}.patch()\par
+{\pntext\f2\'B7\tab}.post()\par
+{\pntext\f2\'B7\tab}.put\par
+
+\pard\sl240\slmult1\cf0\f0\par
+These methods are all shortcuts for calling the $http service:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $http) \{\par
+
+\pard\li237\sl240\slmult1 $http(\{\par
+
+\pard\li473\sl240\slmult1 method : "GET",\par
+url : "welcome.htm"\par
+
+\pard\li237\sl240\slmult1\}).then(function mySuccess(response) \{\par
+
+\pard\li473\sl240\slmult1 $scope.myWelcome = response.data;\par
+
+\pard\li237\sl240\slmult1\}, function myError(response) \{\par
+
+\pard\li473\sl240\slmult1 $scope.myWelcome = response.statusText;\par
+
+\pard\li237\sl240\slmult1\});\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+The example above executes the $http service with an object as an argument. The object is specifying the HTTP method, the url, what to do on success, and what to do on failure.\par
+\par
+\b Properties\b0\par
+The response from the server is an object with these properties:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1\cf1\f1 .config\cf0\f0  the object used to generate the request.\par
+{\pntext\f2\'B7\tab}\cf1\f1 .data\cf0\f0  a string, or an object, carrying the response from the server.\par
+{\pntext\f2\'B7\tab}\cf1\f1 .headers\cf0\f0  a function to use to get header information.\par
+{\pntext\f2\'B7\tab}\cf1\f1 .status\cf0\f0  a number defining the HTTP status.\par
+{\pntext\f2\'B7\tab}\cf1\f1 .statusText\cf0\f0  a string defining the HTTP status.\par
+
+\pard\sl240\slmult1\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $http) \{\par
+    $http.get("welcome.htm")\par
+    .then(function(response) \{\par
+        $scope.content = response.\cf2 data\cf1 ;\par
+        $scope.statuscode = response.\cf2 status\cf1 ;\par
+        $scope.statustext = response.\cf2 statusText\cf1 ; \par
+    \});\par
+\});\par
+\cf0\f0\par
+To handle errors, add one or more functions to the .then method:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope, $http) \{\par
+    $http.get("wrongfilename.htm")\par
+    .then(function(response) \{\par
+\cf6         //First function handles success\par
+\cf1         $scope.content = response.data;\par
+    \}, function(response) \{\par
+\cf6         //Second function handles error\par
+\cf1         $scope.content = "Something went wrong";\par
+    \});\par
+\});\par
+\cf0\f0\par
+\b JSON\b0\par
+The data you get from the response is expected to be in JSON format. \par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Tables\b0\fs22\par
+\par
+\b Example\b0\par
+\cf1\f1 <div ng-app="myApp" ng-controller="customersCtrl"> \par
+\par
+<table>\par
+  <tr \cf2 ng-repeat="x in names"\cf1 >\par
+    <td>\{\{ x.Name \}\}</td>\par
+    <td>\{\{ x.Country \}\}</td>\par
+  </tr>\par
+</table>\par
+\par
+</div>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.controller('customersCtrl', function($scope, $http) \{\par
+    $http.get("customers.php")\par
+    .then(function (response) \{$scope.names = response.data.records;\});\par
+\});\par
+</script>\par
+\cf0\f0\par
+\b Display with orderBy Filter\par
+\b0 Instead write:\par
+\cf1\f1 <tr ng-repeat="x in names | orderBy : 'Country'">\par
+\cf0\f0\par
+\b Uppercase Filter\par
+\cf1\b0\f1 <td>\{\{ x.Country | uppercase \}\}</td>\par
+\cf0\f0\par
+\b Display Table Index ($index)\par
+\b0 To display the table index, add a <td> with $index:\par
+\par
+\cf1\f1 <table>\par
+  <tr ng-repeat="x in names">\par
+    <td>\{\{ $index + 1 \}\}</td>\par
+    <td>\{\{ x.Name \}\}</td>\par
+    <td>\{\{ x.Country \}\}</td>\par
+  </tr>\par
+</table>\par
+\cf0\f0\par
+\b Using $even and $odd\par
+\cf1\b0\f1 <table>\par
+<tr ng-repeat="x in names">\par
+<td ng-if="$odd" style="background-color:#f1f1f1">\{\{ x.Name \}\}</td>\par
+<td ng-if="$even">\{\{ x.Name \}\}</td>\par
+<td ng-if="$odd" style="background-color:#f1f1f1">\{\{ x.Country \}\}</td>\par
+<td ng-if="$even">\{\{ x.Country \}\}</td>\par
+</tr>\par
+</table>\par
+\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+Select\par
+If you want to create a dropdown list, based on an object or an array in AngularJS, you should use the ng-options directive:\par
+\par
+\cf1\f1 <div ng-app="myApp" ng-controller="myCtrl">\par
+
+\pard\li218\sl240\slmult1 <select ng-model="selectedName" \cf2 ng-options\cf1 ="x for x in names">\par
+</select>\par
+
+\pard\sl240\slmult1 </div>\par
+\par
+<script>\par
+var app = angular.module('myApp', []);\par
+app.controller('myCtrl', function($scope) \{\par
+    $scope.names = ["Emil", "Tobias", "Linus"];\par
+\});\par
+</script>\par
+\cf0\f0\par
+\b ng-options vs ng-repeat\par
+\b0 You can also use the ng-repeat directive to make the same dropdown list:\par
+\par
+\cf1\f1 <select>\par
+
+\pard\li218\sl240\slmult1 <option ng-repeat="x in names">\{\{x\}\}</option>\par
+
+\pard\sl240\slmult1 </select>\par
+\cf0\f0\par
+However, the ng-options directive was made especially for filling a dropdown list with options, and ahs at least one important advantage: Dropdowns made with ng-options allow the selected value to be an object, while dropdowns made from ng-repeat has to be a string.\par
+\par
+\b The Data Source as an Object\par
+\b0 The data source can also be an object. Assume you have an object with key-value pairs:\par
+\par
+$scope.cars = \{\par
+car01 : "Ford",\par
+car02 : "Fiat",\par
+car03 : "Volvo"\par
+\};\par
+\par
+The expression in the ng-options attribute is a bit different for objects.\par
+\par
+Example:\par
+Using an object as the data source, x represents the key, and y represents the value:\par
+\par
+\cf1\f1 <select ng-model="selectedCar" ng-options="x for (x, y) in cars">\par
+</select>\par
+\par
+<h1>You selected: \{\{selectedCar\}\}</h1>\par
+\cf0\f0\par
+The selected value will always be the value in the key-value pair. The value in a key-value pair can also be an object:\par
+\par
+\cf1\f1 $scope.cars = \{\par
+car01 : \{brand : "Ford", model : "Mustang", color : "red"\},\par
+car02 : \{brand : "Fiat", model : "500", color : "white"\},\par
+car03 : \{brand : "Volvo", model : "XC90", color : "black"\}\par
+\};\par
+\cf0\f0\par
+The options in the dropdown list does not have to be the key in a key-value pair; it can also be the value, or a property of the value object:\par
+\par
+\cf1\f1 <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars">\par
+</select>\par
+\cf0\f0\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 

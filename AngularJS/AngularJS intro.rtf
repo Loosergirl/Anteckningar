@@ -1,0 +1,536 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1053{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red155\green0\blue211;\red0\green0\blue255;\red0\green176\blue80;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\sl240\slmult1\b\f0\fs28\lang29 Summary\b0\fs22\par
+Modules = components or containers\par
+Directives = HTML attributes\par
+Scope = JavaScript objects\par
+\par
+\cf1\f1 ng-app\cf0\f0  ... put this around the AngularJS content\par
+\cf1\f1 ng-controller\cf0\f0  ... put this around a page or a set of states. Actually an object.\par
+\par
+\cf1\f1 ng-init\cf0\f0  ... creates a variable\par
+\cf1\f1 ng-bind\cf0\f0  ... puts the variable value as innerHTML; also possible to add variables together here\par
+\cf1 ng-model \cf0 ... when added to an input element, it will allow you to change the variable value; the input element may also have its content set by \cf1\f1 app.controller\cf0\f0  in the JS part.\par
+\par
+\cf1\f1\{\{ x + y \}\}\cf0\f0  ... makes a JavaScript expression, no loops etc. allowed\par
+\par
+\b Updating controller (states); adding a module and a controller\b0 :\par
+\cf1\f1 <script>\par
+\cf2 var app = angular.module('myApp', []);\par
+\cf1 app.controller('myCtrl', function($scope) \{\par
+  $scope.firstName= "Maria";\par
+  $scope.lastName = "Kilsved";\par
+\});\par
+</script>\par
+\cf0\f0\par
+* If this is in a JS file, the purple code might be in a different JS file\par
+\par
+\b Objects\b0 :\par
+\cf1\f1 <div ng-app="" ng-init="points=[1,15,19,2,40]">\par
+
+\pard\li284\sl240\slmult1 <p>The third result is \{\{ points[2] \}\}</p>\par
+
+\pard\sl240\slmult1 </div>\cf0\f0\par
+\par
+\b Arrays\b0 :\par
+\cf1\f1 <div ng-app="" ng-init="person\{firstName:'Maria', lastName:'Kilsved'\}">\par
+
+\pard\li284\sl240\slmult1 <p>The name is \{\{ person.lastName \}\}</p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+\i Reference\i0 :\par
+{{\field{\*\fldinst{HYPERLINK https://www.w3schools.com/angular/angular_ref_directives.asp }}{\fldrslt{https://www.w3schools.com/angular/angular_ref_directives.asp\ul0\cf0}}}}\f0\fs22\par
+\par
+\b Add your own directive\b0 :\cf1\f1\par
+<w3-test-directive></w3-test-directive>\par
+\par
+<script>\par
+var app = angular.module("myApp", []);\par
+app.directive("w3TestDirective", function() \{\par
+    return \{\par
+        template : "<h1>Made by a directive!</h1>"\par
+    \};\par
+\});\par
+</script>\par
+\cf0\f0\par
+\b ng-repeat\b0 :\par
+\cf1\f1 ng-repeat\cf0\f0  ... repeat an HTML element\par
+\par
+\cf1\f1 <div ng-app="" ng-init="names=['Jani', 'Hege', 'Kai']">\par
+
+\pard\li284\sl240\slmult1 <p>Looping with ng-repeat:</p>\par
+<ul>\par
+
+\pard\li568\sl240\slmult1 <li ng-repeat="x in names">\par
+
+\pard\li852\sl240\slmult1\{\{ x \}\}\par
+
+\pard\li568\sl240\slmult1 </li>\par
+
+\pard\li284\sl240\slmult1 </ul>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+and/or\par
+\par
+\cf1\f1 <div ng-app="" ng-init="names=[\par
+\{name: 'Jani', country: 'Norway'\},\par
+\{name: 'Hege', country: 'Sweden'\},\par
+\{name: 'Kai', country:'Denmark'\}]">\par
+\par
+<ul>\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in names">\par
+
+\pard\li568\sl240\slmult1\{\{ x.name + ', ' + x.country \}\}\par
+
+\pard\li284\sl240\slmult1 </li>\par
+
+\pard\sl240\slmult1 </ul>\par
+\par
+</div>\par
+\cf0\f0\par
+\b Restrict directive\b0 :\par
+E = element, A = attribute, C = class, M = comment\par
+\par
+\cf1\f1 var app = angular.module("myApp", []);\par
+app.directive("w3TestDirective", function() \{\par
+
+\pard\li284\sl240\slmult1 return \{\par
+
+\pard\li568\sl240\slmult1 restrict : "A",\par
+template : "<h1>Made by a directive!</h1>\par
+
+\pard\li284\sl240\slmult1\};\par
+
+\pard\sl240\slmult1\});\cf0\f0\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+Model-View-Controller. \par
+Model is the data source.\par
+View is HTML and CSS; the rendered web page.\par
+Controller handles communication between Model and View. It is JavaScript and API:s.\par
+\par
+Modules are the components. This makes it easier to reuse code.\par
+Directives are used to extend HTML-tags. This allows data to be bound to HTML elements.\par
+JavaScript objects are used to represent the data. They are called the scope.\par
+Expressions are directly linked to the scope or data, allowing the webpage to be updated dynamically as the data changes. Data binding allows the module to update when data changes, and in turn on the web page.\par
+Services are provided for common tasks.\par
+\par
+Modules = components\par
+Directives = HTML attributes\par
+Scope = JavaScript objects\par
+\b\fs28\par
+Add Angular\par
+\b0\fs22 At the top of the page, add:\par
+\par
+\cf1\f1 <script src="{\cf0{\field{\*\fldinst{HYPERLINK https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js }}{\fldrslt{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js\ul0\cf0}}}}\f1\fs22 "></script>\par
+\cf0\f0\par
+\b\fs28 ng-directives\b0\fs22  (attributes)\b\fs28\par
+\b0\fs22 AngularJS extends HTML with ng-directives. The ng-app defines an AngularJS application. The ng-model directive binds the value of HTML controls (input, select, etc) to application data. The ng-bind directive binds application data to the HTML view.\par
+\par
+\cf4 ME: Since the model is the backend part, the ng-model is related to HTML inputs? \par
+\par
+The ng-bind attribute will put whatever the variable says as innerHTML. The variable is changed through whichever input is the ng-model.\par
+\cf0\par
+\b Example\b0 :\par
+\par
+\cf1\f1 <!DOCTYPE html>\par
+<html>\par
+<script src="{\cf0{\field{\*\fldinst{HYPERLINK https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js }}{\fldrslt{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js\ul0\cf0}}}}\f1\fs22 "></script>\par
+\par
+<div \cf2 ng-app\cf1 ="">\par
+  <p>Name: <input type="text" \cf2 ng-model\cf1 ="name"></p>\par
+  <p \cf2 ng-bind\cf1 ="name"></p>\par
+</div>\par
+\par
+</body\par
+</html>\par
+\cf0\f0\par
+Here:\par
+The \b ng-app \b0 directive tells AngularJS the <div> element is the "owner" of an AngularJS application. \par
+The \b ng-model \b0 directive binds the value of the input field to the application variable name.\par
+The \b ng-bind \b0 directive binds the innerHTML of the <p> element to the application variable name.\par
+\par
+\b\fs28 Directives\fs22\par
+\b0 The AngularJS directives are HTML attributes with an ng prefix. The \b ng-init\b0  directive initializes AngularJS application variables.\par
+\par
+Example:\par
+\cf1\f1 <div ng-app="" \cf2 ng-init\cf1 ="firstName='Maria'"\par
+\par
+<p>The name is <span ng-bind="firstName"></span></p>\par
+\par
+</div>\cf0\f0\par
+\par
+To use valid HTML, add data before the ng-prefixes, e.g. data-ng-bind instead of ng-bind.\par
+\par
+\b\fs28 Expressions\b0\fs22\par
+Expressions are written inside double braces: \{\{ expression \}\}\par
+AngularJS will "output" data exactly where the expression is written:\par
+\par
+\cf1\f1 <!DOCTYPE html>\par
+<html>\par
+<script src="{\cf0{\field{\*\fldinst{HYPERLINK https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js }}{\fldrslt{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js\ul0\cf0}}}}\f1\fs22 "></script>\par
+<body>\par
+\par
+<div ng-app="">\par
+  <p>My first expression: \cf2\{\{ 5 + 5 \}\}\cf1 </p>\par
+</div>\par
+\par
+</body>\par
+</html>\par
+\cf0\f0\par
+AngularJS expressions bind AngularJS data to HTML the same way as the ng-bind directive:\par
+\par
+\b Example\b0 :\par
+\par
+\cf1\f1 <!DOCTYPE html>\par
+<html>\par
+<script src="{\cf0{\field{\*\fldinst{HYPERLINK https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js }}{\fldrslt{https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js\ul0\cf0}}}}\f1\fs22 "></script>\par
+<body>\par
+\par
+<div ng-app="">\par
+  <p>Name: <input type="text" \cf2 ng-model\cf1 ="name"></p>\par
+  <p>\cf2\{\{name\}\}\cf1 </p>\par
+</div>\par
+\par
+</body>\par
+</html>\par
+\par
+\cf0\f0 In the above case, whatever is inputted in the textbox will be written out in the p-tag.\par
+\par
+\b\fs28 Applications\b0\fs22\par
+Modules define AngularJS applications. Controllers control them. The ng-app directive defines the application, the ng-controller directive defines the controller.\par
+\par
+\cf1\f1 <div \cf2 ng-app\cf1 ="myApp" \cf2 ng-controller\cf1 ="myCtrl">\par
+\par
+First Name: <input type="text" ng-model="firstName"><br>\line Last Name: <input type="text" ng-model="lastName"><br>\par
+<br>\par
+Full Name: \{\{firstName + " " + lastName\}\}\par
+\par
+</div>\par
+\par
+<script>\par
+var \cf2 app \cf1 = \cf2 angular.module\cf1 ('myApp', []);\par
+\cf2 app.controller\cf1 ('myCtrl', function($scope) \{\par
+  $scope.firstName= "Maria";\par
+  $scope.lastName = "Kilsved";\par
+\});\par
+</script>\par
+\cf0\f0\par
+The modules define applications:\par
+\par
+\cf1\f1 var app = angular.module('myApp', []);\par
+\cf0\f0\par
+The controllers control applications:\par
+\par
+\cf1\f1 app.controller('myCtrl', function($scope) \{\par
+  $scope.firstName= "Maria";\par
+  $scope.lastName= "Kilsved";\par
+\});\par
+\cf0\f0\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\b Strings\b0\par
+AngularJS strings are like JavaScript strings:\par
+\cf1\f1 <div ng-app="" ng-init="firstName='Maria';lastName='Kilsved'"">\par
+  <p>The name is \{\{ firstName + " " + lastName \}\}</p>\par
+</div>\par
+\cf0\f0\par
+The same thing with ng-bind:\par
+\cf1\f1 <div ng-app="" ng-init="firstName='Maria';lastName='Kilsved'"">\par
+
+\pard\li284\sl240\slmult1 <p>The name is <span ng-bind="firstName + ' ' + lastName"></span></p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+\b Objects\b0\par
+AngularJS objects are like JavaScript objects:\par
+\cf1\f1 <div ng-app="" ng-init="person\{firstName:'Maria', lastName:'Kilsved'\}">\par
+
+\pard\li284\sl240\slmult1 <p>The name is \{\{ person.lastName \}\}</p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+The same with ng-bind:\par
+\cf1\f1 <div ng-app="" ng-init="person\{firstName:'Maria', lastName:'Kilsved'\}">\par
+
+\pard\li284\sl240\slmult1 <p>The name is <span ng-bind="person.lastName"></span></p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+\b Arrays\b0\par
+\cf1\f1 <div ng-app="" ng-init="points=[1,15,19,2,40]">\par
+
+\pard\li284\sl240\slmult1 <p>The third result is \{\{ points[2] \}\}</p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+or\par
+\cf1\f1 <div ng-app="" ng-init="points=[1,15,19,2,40]">\par
+
+\pard\li284\sl240\slmult1 <p>The third result is <span ng-bind="points[2]"></span></p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+\b AngularJS Expressions vs. JavaScript Expressions\par
+\b0 AngularJS expressions may contain literals, operators, and variables just like JavaScript. However, AngularJS expressiosn can be written inside HTML. Conditionals, loops, and exceptions are not supported in AngularJS. On the other hand, AngularJS expressions support filters, while JavaScript expressions do not.\par
+\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\b\fs28 Modules\b0\fs22\par
+A module defines an application. The module is a container for different parts of an application. The module is a container for the application controllers. Controllers always belong to a module.\par
+\par
+\b Creating a Module\par
+\b0 A module is created by using the function angular.module:\par
+\par
+\cf1\f1 <div ng-app="myApp">...</div>\par
+\par
+<script>\par
+
+\pard\li284\sl240\slmult1 var app = angular.module("myApp", []);\par
+
+\pard\sl240\slmult1 </script>\par
+\cf0\f0\par
+The myApp parameter refers to an HTML element in which the application will run.\par
+\par
+\b Adding a Controller\par
+\b0 Refer to the controller with the ng-controller directive:\par
+\par
+\cf1\f1 <div ng-app="\cf2 myApp\cf1 " \cf2 ng-controller\cf1 ="\cf2 myCtrl\cf1 ">\par
+\{\{ firstName + " " + lastName \}\}\par
+</div>\par
+\par
+<script>\par
+var app = angular.module("\cf2 myApp\cf1 ", []);\par
+\par
+app.controller("\cf2 myCtrl\cf1 ", function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.firstName = "Maria";\par
+$scope.lastName = "Kilsved";\par
+
+\pard\sl240\slmult1\});\par
+</script>\par
+\cf0\f0\par
+\b Adding a Directive\par
+\b0 AngularJS has a set of built-in directives which you can use to add functionality to your application.\par
+\par
+\i Reference\i0 :\par
+{{\field{\*\fldinst{HYPERLINK https://www.w3schools.com/angular/angular_ref_directives.asp }}{\fldrslt{https://www.w3schools.com/angular/angular_ref_directives.asp\ul0\cf0}}}}\f0\fs22\par
+\par
+You can also use the module to add your own directives to your applications:\par
+\par
+\cf1\f1 <div ng-app="myApp" w3-test-directive></div>\par
+\par
+<script>\par
+var app = angular.module("myApp", []);\par
+\par
+app.directive("w3TestDirective", function() \{\par
+
+\pard\li284\sl240\slmult1 return \{\par
+
+\pard\li568\sl240\slmult1 template : "I was made in a directive constructor!"\par
+
+\pard\li284\sl240\slmult1\};\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+\par
+\b Modules and Controllers in Files\par
+\b0 It is common in AngularJS applications to put the module and the controllers in JavaScript files.\par
+\par
+\i Example\i0 :\par
+\par
+In myApp.js:\par
+\cf1\f1 var app = angular.module("myApp", []);\par
+\cf0\f0\par
+In myCtrl.js:\par
+\cf1\f1 app.controller("myCtrl", function($scope) \{\par
+
+\pard\li284\sl240\slmult1 $scope.firstName = "Maria";\par
+$scope.lastName= "Kilsved";\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+\b Note\b0 : The [] parameter in the module definition can be used to define dependent modules. Without the [] parameter, you are not creating a new module, but retrieving an existing one.\par
+\par
+Global functions should be avoided in JavaScript as they can easily be overwritten or destroyed by other scripts. AngularJS modules reduces this problem by keeping all functions local to the module.\par
+\par
+\b When to Load the Library\par
+\b0 While it is common in HTML applications to place scripts at the end of the <body> element, it is recommended that you load the AngularJS library either in the <head> or at the start of the <body>. This is because calls to angular.module can only be compiled after the libary has been loaded.\par
+\par
+---------------------------------------------------------------------------------------------------------------------------\par
+\b\fs32 Directives\b0\fs22\par
+AngularJS lets you extend HTML with new attributes called Directives. AngularJS has a set of built-in directives which offer functionality to your applications. AngularJS also lets you define your own directives.\par
+\par
+Directives extend HTML attributes with the prefix \b ng\b0 -\par
+The \b ng-app \b0 directive initializes application data. \par
+The \b ng-model \b0 directive binds the value of HTML controls (input, select, textarea) to application data. \par
+\par
+\i Reference\i0 :\par
+{{\field{\*\fldinst{HYPERLINK https://www.w3schools.com/angular/angular_ref_directives.asp }}{\fldrslt{https://www.w3schools.com/angular/angular_ref_directives.asp\ul0\cf0}}}}\f0\fs22\par
+\par
+Example:\par
+\par
+\cf1\f1 <div ng-app="" ng-init="firstName='Maria'">\par
+
+\pard\li284\sl240\slmult1 <p>Name: <input type="text" ng-model="firstName"></p>\par
+<p>You wrote: \{\{ firstName \}\}</p>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+The ng-app directive also tells AngularJS that the <div> element is the "owner" of the AngularJS application.\par
+\par
+\b Data Binding\par
+\b0 The \{\{ firstName \}\} expression, in the above example, is an AngularJS data binding expression. Data binding in AngularJS binds AngularJS expressions with AngularJS data. \par
+\{\{ firstName \}\} is bound with ng-model="firstName".\par
+\par
+In the next example two text fields are bound together with two ng-model directives:\par
+\par
+\cf1\f1 <div ng-app="" ng-init="quantity=1;price=5">\par
+\par
+Quantity: <input type="number" \cf2 ng-model\cf1 ="quantity">\par
+Costs: <input type="number" \cf2 ng-model\cf1 ="price">\par
+\par
+Total in dollars: \{\{ quantity * price \}\}\par
+\par
+</div>\par
+\cf0\f0\par
+\b Repeating HTML Elements\par
+\b0 The ng-repeat directive repeats an HTML element:\par
+\par
+\cf1\f1 <div ng-app="" ng-init="names=['Jani', 'Hege', 'Kai']">\par
+
+\pard\li284\sl240\slmult1 <p>Looping with ng-repeat:</p>\par
+<ul>\par
+
+\pard\li568\sl240\slmult1 <li ng-repeat="x in names">\par
+
+\pard\li852\sl240\slmult1\{\{ x \}\}\par
+
+\pard\li568\sl240\slmult1 </li>\par
+
+\pard\li284\sl240\slmult1 </ul>\par
+
+\pard\sl240\slmult1 </div>\par
+\cf0\f0\par
+The ng-repeat directive actually clones HTML elements once for each item in a collection. \par
+\par
+\b The ng-repeat directive used on an array of objects\b0 :\par
+\cf1\f1 <div ng-app="" ng-init="names=[\par
+\{name: 'Jani', country: 'Norway'\},\par
+\{name: 'Hege', country: 'Sweden'\},\par
+\{name: 'Kai', country:'Denmark'\}]">\par
+\par
+<ul>\par
+
+\pard\li284\sl240\slmult1 <li ng-repeat="x in names">\par
+
+\pard\li568\sl240\slmult1\{\{ x.name + ', ' + x.country \}\}\par
+
+\pard\li284\sl240\slmult1 </li>\par
+
+\pard\sl240\slmult1 </ul>\par
+\par
+</div>\par
+\cf0\f0\par
+\b Note\b0 : AngularJS is perfect for database CRUD (Create Read Update Delete) applications. Just imagine if these objects were records from a database.\par
+\par
+\b The ng-app Directive\par
+\b0 The ng-app directive defines the root element of an AngularJS application.\par
+The ng-app directive will \b auto-bootstrap \b0 (automatically initialize) the application when a web page is loaded.\par
+\par
+\b The ng-init Directive\par
+\b0 The ng-init directive defines initial values for an AngularJS application. Normally, you will not use ng-init. You will use a controller or module instead.\par
+\par
+\b The ng-model Directive\par
+\b0 The ng-model directive binds the value of HTML controls (input, select, textarea) to application data. \par
+\par
+The ng-model directive can also:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 Provide type validation for application data (number, email, required)\par
+{\pntext\f2\'B7\tab}Provide status for application data (invalid, dirty, touched, error)\par
+{\pntext\f2\'B7\tab}Provide CSS classes for HTML elements\par
+{\pntext\f2\'B7\tab}Bind HTML elements to HTML forms.\par
+
+\pard\sl240\slmult1\par
+\b Create New Directives\par
+\b0 In addition to all the built-in AngularJS directives, you can create your own directives. New directives are created by using the .directive function. To invoke the new directive, make an HTML element with the same tag name as the new directive. When naming a directive, you must use a camel case name (as in w3TestDirective), but when invoking it, you must use a - separated name (as in w3-test-directive):\par
+\par
+\cf1\f1 <body ng-app="myApp">\par
+\par
+<w3-test-directive></w3-test-directive>\par
+\par
+<script>\par
+var app = angular.module("myApp, []);\par
+app.directive("w3TestDirective", function() \{\par
+
+\pard\li284\sl240\slmult1 return \{\par
+
+\pard\li568\sl240\slmult1 template : "<h1>Made by a directive!</h1>\par
+
+\pard\li284\sl240\slmult1\};\par
+
+\pard\sl240\slmult1\});\par
+</script>\par
+\par
+</body>\par
+\cf0\f0\par
+You can evoke a directive using: \par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 Element name\par
+{\pntext\f2\'B7\tab}Attribue\par
+{\pntext\f2\'B7\tab}Class\par
+{\pntext\f2\'B7\tab}Comment\par
+
+\pard\sl240\slmult1\par
+Thus these examples will produce the same result:\par
+\par
+Element name\par
+\cf1\f1 <w3-test-directive></w3-test-directive>\par
+\cf0\f0\par
+Attribute\par
+\cf1\f1 <div w3-test-directive></div>\par
+\cf0\f0\par
+Class\par
+\cf1\f1 <div class="w3-test-directive"></div>\par
+\cf0\f0\par
+Comment\par
+<!-- directive: w3-test-directive -->\par
+\par
+\b Restrictions\b0\par
+You can restrict your directives to only be invoked by some of the methods.\par
+\par
+Example:\par
+By adding a restrict property with the value "A", the directive can only be invoked by attributes:\par
+\par
+\cf1\f1 var app = angular.module("myApp", []);\par
+app.directive("w3TestDirective", function() \{\par
+
+\pard\li284\sl240\slmult1 return \{\par
+
+\pard\li568\sl240\slmult1 restrict : "A",\par
+template : "<h1>Made by a directive!</h1>\par
+
+\pard\li284\sl240\slmult1\};\par
+
+\pard\sl240\slmult1\});\par
+\cf0\f0\par
+The legal restrict values are:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li360\sl240\slmult1 E for Element name\par
+{\pntext\f2\'B7\tab}A for Attribute\par
+{\pntext\f2\'B7\tab}C for Class\par
+{\pntext\f2\'B7\tab}M for comment\par
+
+\pard\sl240\slmult1\par
+By default the value is EA, meaning that both Element names and attribute names can invoke the directive.\par
+\par
+\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+\cf1\f1\par
+}
+ 
